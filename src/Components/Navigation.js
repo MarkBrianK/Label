@@ -6,7 +6,7 @@ function Navigation() {
       <Navbar className='navigation'>
         <Container>
             <Nav className="ms-auto">
-              <NavLink className="nav-link" exact to="/">
+              <NavLink className="nav-link" exact="true" to="/">
                 Home
               </NavLink>
               <NavLink className="nav-link" to="/about">
