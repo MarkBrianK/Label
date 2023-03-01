@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import image from "./Image/manu.webp"
 import "./Product.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Product() {
 
@@ -184,7 +185,7 @@ function Product() {
       <Button variant="primary">Add to cart</Button>
     </Card.Body>
   </Card>
-  
+
 
 
   </div>

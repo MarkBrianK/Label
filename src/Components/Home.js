@@ -15,17 +15,17 @@ function Home() {
       <Carousel.Item>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
           <img
-            src="https://media.istockphoto.com/id/692909922/photo/hes-off-on-an-adventure.jpg?s=612x612&w=0&k=20&c=PDGuIM0yoBF6roGIDwmJXODe8fIRZWawmjOE4Rnb7fA="
+            src="https://i.pinimg.com/originals/d7/80/81/d7808137845528c11ada34dfa3bbfff4.jpg"
             alt="First slide"
             style={{ width: '33.33%', height: '50vh' }}
           />
           <img
-            src="https://i.pinimg.com/originals/cd/9d/5f/cd9d5f76653337711f4cf04ac78463cd.jpg"
+            src="https://www.apetogentleman.com/wp-content/uploads/2020/04/how-to-wear-polo-shirt.jpg"
             alt="Second slide"
             style={{ width: '33.33%', height: '50vh' }}
           />
           <img
-            src="https://media.istockphoto.com/id/1293366109/photo/this-one-match-perfect-with-me.jpg?b=1&s=170667a&w=0&k=20&c=H5hgZid5Aji924X_NLc4t7zt1v5Qza_e33XI2VdgrlU="
+            src="https://i.pinimg.com/736x/e8/10/2e/e8102eb672183c74649c2597b544a2b2.jpg"
             alt="Third slide"
             style={{ width: '33.33%', height: '50vh' }}
           />
@@ -34,17 +34,17 @@ function Home() {
       <Carousel.Item>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
       <img
-        src="https://picsum.photos/200/300"
+        src="https://images.pexels.com/photos/19090/pexels-photo.jpg?cs=srgb&dl=pexels-web-donut-19090.jpg&fm=jpg"
         alt="First slide"
         style={{ width: '33.33%', height: '50vh' }}
       />
       <img
-        src="https://picsum.photos/200/300"
+        src="https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?cs=srgb&dl=pexels-pixabay-267301.jpg&fm=jpg"
         alt="Second slide"
         style={{ width: '33.33%', height: '50vh' }}
       />
       <img
-        src="https://picsum.photos/200/300"
+        src="https://image.kilimall.com/kenya/shop/store/goods/5968/2021/06/5968_06767302645445915_1280.jpg.webp"
         alt="Third slide"
         style={{ width: '33.33%', height: '50vh' }} />
     </div>
@@ -52,17 +52,17 @@ function Home() {
       <Carousel.Item>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
       <img
-        src="https://picsum.photos/200/300"
+        src="https://www.claraitosblog.com/wp-content/uploads/2022/03/IMG_20210518_150134_867.jpg"
         alt="First slide"
         style={{ width: '33.33%', height: '50vh' }}
       />
       <img
-        src="https://picsum.photos/200/300"
+        src="https://glamsquadmagazine.com/wp-content/uploads/2021/10/20211012_213738.jpg"
         alt="Second slide"
         style={{ width: '33.33%', height: '50vh' }}
       />
       <img
-        src="https://picsum.photos/200/300"
+        src="https://www.od9jastyles.com/wp-content/uploads/2021/01/Gorgeous-and-Fascinating-Pictures-of-Office-Wear-for-Working-Class-Ladies.jpg"
         alt="Third slide"
         style={{ width: '33.33%', height: '50vh' }}
       />
