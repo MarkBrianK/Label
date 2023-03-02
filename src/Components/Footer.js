@@ -1,69 +1,59 @@
+import React from "react";
 import "./Nav.css";
-import { Row, Col } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Carousel } from "react-bootstrap";
 
 function Footer() {
   return (
-    <div className="footer">
-      <Row>
-        <Col xs={6} sm={3}>
-          <h5>Section 1</h5>
-          <ul>
+    <footer className="footer">
+      <div className="container" >
+        <div className="row" >
+          <div className="col-sm-6 col-md-3" style={{marginTop:"30px"}}>
+            <h6> INFORMATION</h6>
             <li>
-              <a href="#">Link 1</a>
+            <ul>
+            <a href="#"> About us</a> <br></br><br></br>
+            <a href="#"> Terms and Conditions </a><br></br><br></br>
+            <a href="#"> Delivery Policies </a><br></br><br></br>
+            <a href="#"> Privacy Policies</a><br></br><br></br>
+            </ul>
+
             </li>
+          </div>
+          <div className="col-sm-6 col-md-3" style={{marginTop:"30px"}}>
+            <h6> CUSTOMER SUPPORT</h6>
             <li>
-              <a href="#">Link 2</a>
+            <ul>
+            <a href="#"> Payment Policies</a> <br></br><br></br>
+            <a href="#"> Cancellation Policies </a><br></br><br></br>
+            <a href="#"> Contact Us</a><br></br><br></br>
+            </ul>
             </li>
+          </div>
+          <div className="col-sm-6 col-md-3" style={{marginTop:"30px"}}>
+            <h6>CONTACT US</h6>
             <li>
-              <a href="#">Link 3</a>
+            <ul>
+            <p>P.O Box</p> <br></br>
+            <p>Kenya</p><br></br>
+            <p>+254741242922</p> <br></br>
+            <li><ul>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            </ul>
             </li>
-          </ul>
-        </Col>
-        <Col xs={6} sm={3}>
-          <h5>Section 2</h5>
-          <ul>
-            <li>
-              <a href="#">Link 1</a>
+
+            </ul>
             </li>
-            <li>
-              <a href="#">Link 2</a>
-            </li>
-            <li>
-              <a href="#">Link 3</a>
-            </li>
-          </ul>
-        </Col>
-        <Col xs={6} sm={3}>
-          <h5>Section 3</h5>
-          <ul>
-            <li>
-              <a href="#">Link 1</a>
-            </li>
-            <li>
-              <a href="#">Link 2</a>
-            </li>
-            <li>
-              <a href="#">Link 3</a>
-            </li>
-          </ul>
-        </Col>
-        <Col xs={6} sm={3}>
-          <h5>Section 4</h5>
-          <ul>
-            <li>
-              <a href="#">Link 1</a>
-            </li>
-            <li>
-              <a href="#">Link 2</a>
-            </li>
-            <li>
-              <a href="#">Link 3</a>
-            </li>
-          </ul>
-        </Col>
-      </Row>
-    </div>
+
+          </div>
+          <div className="col-sm-6 col-md-3" style={{marginTop:"30px"}}>
+            <h6>SUBSCRIBE US</h6>
+
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 

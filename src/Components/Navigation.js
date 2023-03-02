@@ -9,7 +9,7 @@ function Navigation() {
     <Navbar expand="md" className='navigation' collapseOnSelect>
       <Container fluid>
         <Navbar.Brand href="/">
-          <img src={logo} alt = "logo" style={{ width: "13vh", height: '13vh', borderRadius:"50%" }} />
+          <img src={logo} alt = "logo" style={{ width: "10vh", height: '10vh', borderRadius:"50%" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
