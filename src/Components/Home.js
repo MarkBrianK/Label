@@ -60,7 +60,7 @@ function Home() {
       <Carousel.Item>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
       <img
-        src="https://media.istockphoto.com/id/1208148708/photo/polka-dot-summer-brown-dress-suede-wedge-sandals-eco-straw-tote-bag-cosmetics-on-a-light.jpg?s=612x612&w=0&k=20&c=9Y135GYKHLlPotGIfynBbMPhXNbYeuDuFzreL_nfDE8="
+        src="https://coronadotimes.com/wp-content/uploads/2022/07/best-ways-to-find-womens-plus-size-clothing.jpg"
         alt="First slide"
         style={{ width: '33.33%', maxHeight: '50vh', marginRight:"15px" }}
       />
