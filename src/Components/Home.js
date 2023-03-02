@@ -54,7 +54,7 @@ function Home() {
       <img
         src="https://image.kilimall.com/kenya/shop/store/goods/5968/2021/06/5968_06767302645445915_1280.jpg.webp"
         alt="Third slide"
-        style={{ width: '33.33%', height: '50vh' }} />
+        style={{ width: '33.33%', maxHeight: '50vh' }} />
     </div>
       </Carousel.Item>
       <Carousel.Item>
