@@ -1,0 +1,29 @@
+.brands{
+    box-shadow: #8E793E;
+}
+.brands h1{
+    color: #8E793E;
+    text-align: left !important;
+    margin-left: 30px;
+    margin-top: 20px;
+    box-shadow: black 1px 1px 1px;
+
+}
+.logo-links{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px;
+    margin-bottom: 15vh;
+    box-shadow: #8E793E 1px 1px 1px 1px;
+}
+.logo-links a img{
+    height: 250px;
+    width: 250px;
+    border-radius:12px;
+}
+@media only screen and (max-width: 768px) {
+    .logo-links {
+      flex-direction: column;
+    }
+  }

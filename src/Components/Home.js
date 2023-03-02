@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Home.css"
+import nike from "./Image/nike.jpg";
+import puma from "./Image/puma.jpg";
+import reebok from "./Image/reebok.png";
+import adidas  from "./Image/adidas.jpg";
+import versace from "./Image/versace.png";
+
 
 function Home() {
   const [index, setIndex] = useState(0);
@@ -10,6 +17,7 @@ function Home() {
   };
 
   return (
+    <div>
     <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} className="d-block w-100 h-10"
     >
       <Carousel.Item>
@@ -69,6 +77,21 @@ function Home() {
     </div>
       </Carousel.Item>
     </Carousel>
+
+    <div className="brands" >
+    <h1> OUR BRANDS</h1>
+    </div>
+    <div className="logo-links">
+
+    <a href="#" > <img src={adidas} /></a>
+    <a href="#" > <img src={nike} /></a>
+    <a href="#" > <img src={puma} /></a>
+    <a href="#" > <img src={reebok} /></a>
+    <a href="#" > <img src={versace} /></a>
+   
+    </div>
+
+    </div>
   );
 }
 
