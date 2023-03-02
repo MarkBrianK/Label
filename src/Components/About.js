@@ -4,7 +4,7 @@ import "./About.css";
 
 function About() {
   const backgroundStyle = {
-    background: 'rgba(142, 121, 62, 0.5) url("https://burst.shopifycdn.com/photos/clothing-on-retail-rack.jpg?width=1200&format=pjpg&exif=1&iptc=1") no-repeat center center fixed',
+    background: 'rgba(142, 121, 62, 0.5) url("https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/05/black-paper-background.jpg") no-repeat center center fixed',
     backgroundSize: 'cover',
     minHeight: '100vh',
   };
