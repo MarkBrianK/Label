@@ -18,8 +18,8 @@
     box-shadow: #8E793E 1px 1px 1px 1px;
 }
 .logo-links a img{
-    height: 250px;
-    width: 250px;
+    max-height: 250px;
+    max-width: 250px;
     border-radius:12px;
 }
 @media only screen and (max-width: 768px) {
