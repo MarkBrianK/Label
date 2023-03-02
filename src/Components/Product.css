@@ -15,25 +15,25 @@
 
   }
 
-  @media only screen and (min-width: 576px) {
+  @media only screen and (min-width: 320px) {
     .grid-container {
       grid-template-columns: repeat(1, 1fr);
     }
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 576px) {
     .grid-container {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media only screen and (min-width: 992px) {
+  @media only screen and (min-width: 768px) {
     .grid-container {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: 992px) {
     .grid-container {
       grid-template-columns: repeat(4, 1fr);
     }
