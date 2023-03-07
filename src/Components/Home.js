@@ -35,16 +35,14 @@ function Home() {
 
   return (
     <div className="home-container">
-    <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} style={{width:"100px", height:"100px"}}>
-    {data.map((item) => (
-      <Carousel.Item key={item.id}>
-        <img className="d-block w-100" src={item.image} alt={item.name} style={{height:"100px", width:"100px",borderRadius:"50%"}}/>
-        <Carousel.Caption>
+    <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} style={{maxWidth:"200px"}} controls={false} indicators={false}>
+  {data.map((item) => (
+    <Carousel.Item key={item.id}>
+      <img src={item.image} alt={item.name} style={{height:"100px", width:"100px",borderRadius:"50%"}}/>
+    </Carousel.Item>
+  ))}
+</Carousel>
 
-        </Carousel.Caption>
-      </Carousel.Item>
-    ))}
-  </Carousel>
 
       <div className="cards-container">
         <Row className="row-container" >
