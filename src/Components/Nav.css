@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
 .navigation{
     background: linear-gradient( 60deg,  rgb(24, 24, 24) 30%, rgb(143, 124, 19) 70% );
     background-color:rgb(0, 0, 0);
@@ -53,3 +54,11 @@
     }
   }
 
+.logo-title{
+  color: darkgoldenrod;
+  font-family: 'Coca Cola ii', sans-serif;
+}
+.logo-title span{
+  color: white;
+  font-size: medium;
+}
