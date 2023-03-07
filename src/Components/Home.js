@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import Form from 'react-bootstrap/Form'
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Home.css"
@@ -31,6 +32,14 @@ function Home() {
                   Size: {item.size}
                 </Card.Text>
                 <Button variant="primary">Add to Cart</Button>
+                <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Control type="text" placeholder="comment" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Comment
+      </Button>
+    </Form>
               </Card.Body>
             </Card>
           </Col>
