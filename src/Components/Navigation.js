@@ -6,13 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navigation() {
   return (
-    <Navbar expand="md" className='navigation' collapseOnSelect>
+    <Navbar expand="md" className='navigation' collapseOnSelect >
       <Container fluid>
         <Navbar.Brand href="/">
           <h1 className='logo-title'> Label <span>23</span></h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav" >
           <Nav className="ms-auto">
             <NavLink className="nav-link" exact="true" to="/">
               Home

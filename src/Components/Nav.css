@@ -1,15 +1,19 @@
 @import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
 .navigation{
-    background: linear-gradient( 60deg,  rgb(24, 24, 24) 30%, rgb(143, 124, 19) 70% );
-    background-color:rgb(0, 0, 0);
+    background: linear-gradient( 60deg,  rgb(24, 24, 24) 30%, rgb(63, 54, 1) 70% );
     height: auto;
 }
 .nav-link {
     text-decoration: none;
-    color: white;
+    color: whitesmoke;
     text-decoration: solid;
     font-weight: bold;
   }
+  .nav-link:hover
+  {
+    color: black;
+  }
+
 
   .nav-link {
     margin-right: 80px;
