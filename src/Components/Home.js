@@ -5,6 +5,7 @@ import { Card, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Home.css"
 import data from "./db.json"
+import { FaHeart } from 'react-icons/fa';
 
 
 function Home() {
@@ -13,6 +14,10 @@ function Home() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+  function handleLike(){
+
+
+  }
 
   return (
     <div className="home-container">
@@ -22,7 +27,7 @@ function Home() {
       <Row className="row-container" >
         {data.map((item) => (
           <Col key={item.name} xs={12} style={{ marginBottom: '20px' }}>
-            <Card style={{maxWidth:"70vh", marginTop:"20px"}}>
+            <Card style={{ maxWidth: "70vh", marginTop: "20px" }}>
               <Card.Img variant="top" src={item.image} />
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
@@ -33,13 +38,19 @@ function Home() {
                 </Card.Text>
                 <Button variant="primary">Add to Cart</Button>
                 <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-      <Form.Control type="text" placeholder="comment" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Comment
-      </Button>
-    </Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Control type="text" placeholder="comment" />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Comment
+                  </Button>
+                  <Button onClick={handleLike}>
+
+                    <FaHeart className="navbar-icon" />
+
+                  </Button>
+
+                </Form>
               </Card.Body>
             </Card>
           </Col>

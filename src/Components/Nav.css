@@ -1,68 +1,79 @@
 @import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
-.navigation{
-    background: linear-gradient( 60deg,  rgb(24, 24, 24) 30%, rgb(63, 54, 1) 70% );
-    height: auto;
+
+.navigation {
+  background: linear-gradient(60deg, rgb(24, 24, 24) 30%, rgb(63, 54, 1) 70%);
+  height: auto;
 }
+
 .nav-link {
-    text-decoration: none;
-    color: whitesmoke;
-    text-decoration: solid;
-    font-weight: bold;
-  }
-  .nav-link:hover
-  {
-    color: black;
-  }
+  text-decoration: none;
+  color: whitesmoke;
+  text-decoration: solid;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: black;
+}
 
 
-  .nav-link {
-    margin-right: 80px;
+.nav-link {
+  margin-right: 80px;
+}
+
+.nav-link:first-child {
+  margin-left: 80px;
+}
+
+.footer {
+  background: linear-gradient(60deg, rgb(143, 124, 19) 30%, rgb(24, 24, 24) 70%);
+  background-color: rgb(0, 0, 0);
+  height: auto;
+  color: white;
+}
+
+.footer li ul a {
+  color: rgb(68, 67, 67);
+}
+
+.footer li ul p {
+  color: rgb(68, 67, 67);
+}
+
+.footer li {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer li img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .col-sm-6,
+  .col-md-3 {
+    width: 100%;
   }
 
-  .nav-link:first-child {
-    margin-left: 80px;
+  .footer li {
+    margin-bottom: 20px;
   }
-  .footer{
-    background: linear-gradient( 60deg,  rgb(143, 124, 19) 30%,  rgb(24, 24, 24) 70%);
-    background-color:rgb(0, 0, 0);
-    height: auto;
-    color: white;
-  }
-  .footer li ul a{
-    color: rgb(68, 67, 67);
-  }
-  .footer li ul p {
-    color: rgb(68, 67, 67);
-  }
-  .footer li{
-    list-style: none;
-    margin-top: 20px;
-  }
-  .footer a{
-    text-decoration: none;
-    color: white;
-  }
-  .footer li img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-  }
-  @media only screen and (max-width: 768px) {
-    .col-sm-6,
-    .col-md-3 {
-      width: 100%;
-    }
+}
 
-    .footer li {
-      margin-bottom: 20px;
-    }
-  }
-
-.logo-title{
+.logo-title {
   color: darkgoldenrod;
   font-family: 'Coca Cola ii', sans-serif;
 }
-.logo-title span{
+
+.logo-title span {
   color: white;
   font-size: medium;
 }
