@@ -35,15 +35,19 @@ function Home() {
 
   return (
     <div className="home-container">
+      <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} className="d-block w-100 h-10">
+        <Carousel.Item>
+        </Carousel.Item>
+      </Carousel>
 
       <div className="cards-container">
         <Row className="row-container" >
           {data.map((item) => (
             <Col key={item.name} xs={12} style={{ marginBottom: '20px' }}>
-              <Card style={{ maxWidth: "70vh", marginTop: "20px" }}>
+              <Card style={{ maxWidth: "70vh", marginTop: "20px", color: "black" }}>
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
-                  <Card.Text>
+                  <Card.Text style={{ color: "" }}>
                     Category: {item.category}<br />
                     Price: {item.price}<br />
                     Size: {item.size}
