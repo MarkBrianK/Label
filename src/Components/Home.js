@@ -35,10 +35,10 @@ function Home() {
 
   return (
     <div className="home-container">
-    <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} style={{maxWidth:"200px"}} controls={false} indicators={false}>
+    <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} style={{maxHeight:"200px",maxWidth:"200px"}} controls={false} indicators={false}>
   {data.map((item) => (
     <Carousel.Item key={item.id}>
-      <img src={item.image} alt={item.name} style={{height:"100px", width:"100px",borderRadius:"50%"}}/>
+      <img src={item.image} alt={item.name} style={{height:"200px", width:"200px",borderRadius:"50%"}}/>
     </Carousel.Item>
   ))}
 </Carousel>
@@ -50,7 +50,7 @@ function Home() {
             <Col key={item.name} xs={12} style={{ marginBottom: '20px' }}>
               <Card style={{ maxWidth: "70vh", marginTop: "20px", color: "black" }}>
                 <Card.Body>
-                <Card.Img variant="top" src={item.image} />
+                <Card.Img variant="top" src={item.image} style={{height:"400px", width:"300px"}}/>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text style={{ color: "black" }}>
                     Category: {item.category}<br />

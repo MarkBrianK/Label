@@ -1,8 +1,51 @@
 [
   {
     "name": "Product Name 1",
-    "image": "/image1.jpeg",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image1.jpeg",
     "category": "Category 1",
     "price": 9.99,
     "size": "S"
-  }]
+  },
+  {
+    "name": "Product Name 1",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image2.jpeg",
+    "category": "Category 1",
+    "price": 9.99,
+    "size": "S"
+  },
+  {
+    "name": "Product Name 1",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image4.jpeg",
+    "category": "Category 1",
+    "price": 9.99,
+    "size": "S"
+  },
+  {
+    "name": "Product Name 1",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image2.jpeg",
+    "category": "Category 1",
+    "price": 9.99,
+    "size": "S"
+  },
+  {
+    "name": "Product Name 1",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image3.jpeg",
+    "category": "Category 1",
+    "price": 9.99,
+    "size": "S"
+  },
+  {
+    "name": "Product Name 1",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image1.jpeg",
+    "category": "Category 1",
+    "price": 9.99,
+    "size": "S"
+  },
+  {
+    "name": "Product Name 1",
+    "image": "https://raw.githubusercontent.com/MarkBrianK/Label/main/src/Components/Image/image4.jpeg",
+    "category": "Category 1",
+    "price": 9.99,
+    "size": "S"
+  }
+]
