@@ -50,7 +50,7 @@ function Home() {
             <Col key={item.name} xs={12} style={{ marginBottom: '20px' }}>
               <Card style={{ maxWidth: "70vh", marginTop: "20px", color: "black" }}>
                 <Card.Body>
-                <Card.Img variant="top" src={item.image} style={{height:"400px", width:"300px"}}/>
+                <Card.Img variant="top" src={item.image} style={{height:"400px", width:"400px"}}/>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text style={{ color: "black" }}>
                     Category: {item.category}<br />
