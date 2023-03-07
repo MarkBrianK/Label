@@ -35,3 +35,15 @@ body {
         flex-direction: column;
     }
 }
+
+.cards-container {
+    margin-top: 20px;
+}
+
+.carousel-item {
+    max-height: 500px;
+}
+
+.carousel-item img {
+    max-height: 400px;
+}

@@ -1,32 +1,46 @@
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import logo from "./Image/label.png";
-import "./Nav.css";
+import React, { useState } from 'react';
+import { NavLink  } from 'react-router-dom';
+import { CDBSidebar, CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenuItem, CDBSidebarMenu } from 'cdbreact';
+import logo from './Image/label.png';
+import './Nav.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navigation() {
+
+
+
+
   return (
-    <Navbar expand="md" className='navigation' collapseOnSelect >
-      <Container fluid>
-        <Navbar.Brand href="/">
-          <h1 className='logo-title'> Label <span>23</span></h1>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" >
-          <Nav className="ms-auto">
-            <NavLink className="nav-link" exact="true" to="/">
-              Home
+    <div className='sidebar'>
+      <CDBSidebar textColor="white"  >
+        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />} style={{ backgroundColor: "black" }}>
+          <a href="/" className="text-decoration-none" id='title'>
+          <h1>  Label <span>23</span></h1>
+
+
+          </a>
+        </CDBSidebarHeader>
+        <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarMenu>
+            <NavLink className="navlink" exact={true} to="/" >
+              <CDBSidebarMenuItem>Home</CDBSidebarMenuItem>
+            </NavLink >
+            <NavLink className="navlink" to="/about" >
+              <CDBSidebarMenuItem>About Us</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink className="nav-link" to="/about">
-              About Us
-            </NavLink>
-            <NavLink className="nav-link" to="/products">
-              Our Products
-            </NavLink>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            <NavLink className="navlink" to="/products" >
+              <CDBSidebarMenuItem>Our Products</CDBSidebarMenuItem>
+            </NavLink >
+          </CDBSidebarMenu>
+        </CDBSidebarContent>
+        <CDBSidebarFooter style={{ textAlign: "center", backgroundColor:"rgb(63, 54, 1)" }}>
+          <div className="sidebar-footer-text" id='footer'>
+          <img src={logo} alt="Logo" />
+          </div>
+        </CDBSidebarFooter>
+      </CDBSidebar>
+
+    </div>
   );
 }
 
