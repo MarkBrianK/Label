@@ -1,23 +1,18 @@
 .App {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   height: 100vh;
   overflow: hidden;
 }
 
-.sidebar {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-  position: fixed;
-  height: 100%;
-  background-color: #f8f9fa;
-  border-right: 1px solid #dee2e6;
-}
-
-.main {
+.content {
   grid-column: 2 / -1;
-  grid-row: 2 / 3;
-  overflow-y: scroll;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
   padding: 2rem;
 }

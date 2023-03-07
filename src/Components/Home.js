@@ -35,7 +35,7 @@ function Home() {
 
   return (
     <div className="home-container">
-     
+
       <div className="cards-container">
         <Row className="row-container" >
           {data.map((item) => (
