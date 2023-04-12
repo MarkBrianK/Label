@@ -81,3 +81,39 @@
     }
   }
 
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 350px;
+    margin: 20px;
+    font-size: 18px; /* default font size */
+  }
+
+  @media (min-width: 576px) { /* for small screens and above */
+    .card {
+      font-size: 20px;
+    }
+  }
+
+  @media (min-width: 768px) { /* for medium screens and above */
+    .card {
+      font-size: 22px;
+    }
+  }
+
+  @media (min-width: 992px) { /* for large screens and above */
+    .card {
+      font-size: 24px;
+    }
+  }
+
+  @media (min-width: 1200px) { /* for extra-large screens and above */
+    .card {
+      font-size: 26px;
+    }
+  }

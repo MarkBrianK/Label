@@ -39,8 +39,8 @@ function Home() {
       <div className="cards-container">
         <Row className="row-container" >
           {data.map((item) => (
-            <Col key={item.name} xs={12} style={{ marginBottom: '20px' }}>
-              <Card style={{ maxWidth: "100vh", marginTop: "20px", color: "black" }}>
+            <Col key={item.name} xs={12} style={{ marginBottom: '20px' }} >
+              <Card style={{ maxWidth: "100vh", marginTop: "20px", color: "black", height:"auto" }}>
                 <Card.Body>
                   <Card.Img src={item.image} style={{ maxWidth: "120vh" }} />
                   <Card.Title>{item.name}</Card.Title>

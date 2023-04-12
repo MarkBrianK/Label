@@ -18,12 +18,12 @@ function Navigation() {
     <div className='sidebar'>
       <CDBSidebar textColor="white" backgroundColor="black" isOpen={sidebarIsOpen}>
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />} className="d-md-none">
-          <a href="/" className="text-decoration-none" id='title'>
-            <h1>Label <span>23</span></h1>
-          </a>
           <button className="btn-close" onClick={toggleSidebar}></button>
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
+        <a href="/" className="text-decoration-none" id='title'>
+        <h1>Label <span>23</span></h1>
+      </a>
           <CDBSidebarMenu>
             <NavLink className="navlink" exact={true} to="/" onClick={toggleSidebar}>
               <CDBSidebarMenuItem>Home</CDBSidebarMenuItem>
