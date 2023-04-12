@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
 import Form from 'react-bootstrap/Form'
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button, Row, Col, Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Home.css"
 import cloth from "./db.json"
@@ -35,22 +34,15 @@ function Home() {
 
   return (
     <div className="home-container">
-    <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} style={{maxHeight:"200px",maxWidth:"200px"}} controls={false} indicators={false}>
-  {data.map((item) => (
-    <Carousel.Item key={item.id}>
-      <img src={item.image} alt={item.name} style={{height:"200px", width:"200px",borderRadius:"50%"}}/>
-    </Carousel.Item>
-  ))}
-</Carousel>
 
 
       <div className="cards-container">
         <Row className="row-container" >
           {data.map((item) => (
             <Col key={item.name} xs={12} style={{ marginBottom: '20px' }}>
-              <Card style={{ maxWidth: "70vh", marginTop: "20px", color: "black" }}>
+              <Card style={{ maxWidth: "100vh", marginTop: "20px", color: "black" }}>
                 <Card.Body>
-                <Card.Img variant="top" src={item.image} style={{height:"400px", width:"400px"}}/>
+                  <Card.Img src={item.image} style={{ maxWidth: "120vh" }} />
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text style={{ color: "black" }}>
                     Category: {item.category}<br />

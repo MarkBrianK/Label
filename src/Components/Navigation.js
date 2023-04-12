@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import {Image } from 'react-bootstrap';
 import { CDBSidebar, CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenuItem, CDBSidebarMenu } from 'cdbreact';
 import logo from './Image/label.png';
 import './Nav.css';
@@ -37,7 +38,7 @@ function Navigation() {
         </CDBSidebarContent>
         <CDBSidebarFooter style={{ textAlign: "center", backgroundColor: "rgb(63, 54, 1)" }}>
           <div className="sidebar-footer-text" id='footer'>
-            <img src={logo} alt="Logo" />
+            <Image src={logo} alt="Logo" />
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
