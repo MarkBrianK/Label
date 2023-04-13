@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Card, Button, Row, Col, Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Home.css';
+import './Styles/Home.css';
 import cloth from './db.json';
 import { FaHeart } from 'react-icons/fa';
 

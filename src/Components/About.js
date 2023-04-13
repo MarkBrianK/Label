@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import "./About.css";
+import "./Styles/About.css";
 
 function About() {
   const backgroundStyle = {

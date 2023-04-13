@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {Image } from 'react-bootstrap';
 import { CDBSidebar, CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenuItem, CDBSidebarMenu } from 'cdbreact';
 import logo from './Image/label.png';
-import './Nav.css';
+import './Styles/Nav.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navigation() {
