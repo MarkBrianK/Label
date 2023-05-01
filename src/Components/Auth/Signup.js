@@ -24,7 +24,7 @@ function SignupForm(props) {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:3000/users", {
+      const response = await axios.post("http://127.0.0.1:3000/users/signup", {
         user: {
           name,
           email,
@@ -34,14 +34,13 @@ function SignupForm(props) {
       }, {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-Token": props.csrfToken,
         },
       });
 
       if (response.status === 200) {
         setSuccess(true);
         setTimeout(() => {
-          navigate("/signin");
+          navigate("/");
         }, 3000);
       } else {
         const data = response.data;
@@ -123,9 +122,6 @@ function SignupForm(props) {
             {passwordConfirmationError}
           </Form.Control.Feedback>
         </Form.Group> <br />
-        <Form.Group controlId="authenticity-token">
-          <Form.Control type="hidden" name="authenticity_token" value={props.csrfToken} />
-        </Form.Group>
 
         <Button variant="primary" type="submit" disabled={isLoading}>
           {isLoading ? "Loading..." : "Sign Up"}

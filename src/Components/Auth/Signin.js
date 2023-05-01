@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -13,23 +13,33 @@ const SignInForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if email and password fields are empty
+    if (!email || !password) {
+      setErrorMessage('Please fill in all fields.');
+      return;
+    }
+
+    // Check if email is in the correct format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
     setIsLoading(true);
-    setErrorMessage("");
+    setErrorMessage('');
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:3000/login",
+      await axios.post(
+        'http://127.0.0.1:3000/users/login',
         {
-          email,
-          password,
-        },
-        {
-          headers: {
-            "X-CSRF-Token": props.csrfToken,
-          },
+          user: {
+            email,
+            password,
+          }
         }
       );
-      console.log(response);
 
       // Set a state variable to indicate that the user is logged in
       setIsLoggedIn(true);
@@ -39,12 +49,13 @@ const SignInForm = (props) => {
     }
   };
 
+
   return (
     <div>
       {isLoggedIn ? (
         <User />
       ) : (
-        <Row >
+        <Row>
           <Col md={6} className="mx-auto">
             <div className="p-5 bg-light rounded">
               <Form onSubmit={handleSubmit}>
@@ -68,10 +79,6 @@ const SignInForm = (props) => {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="authenticity-token">
-                  <Form.Control type="hidden" name="authenticity_token" value={props.csrfToken} />
-                </Form.Group>
-
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
                 <Button type="submit" disabled={isLoading} block>
@@ -85,7 +92,6 @@ const SignInForm = (props) => {
             </div>
           </Col>
         </Row>
-
       )}
     </div>
   );
