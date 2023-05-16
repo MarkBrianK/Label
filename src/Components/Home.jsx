@@ -7,10 +7,10 @@ import { FaHeart } from 'react-icons/fa';
 import axios from 'axios';
 import CommentList from './CommentList';
 
-const Home = ({ sessionCookie }) => {
+const Home = () => {
   const [data, setData] = useState([]);
   const [comments, setComments] = useState({});
-  console.log(sessionCookie);
+  const sessionCookie = parseInt(sessionStorage.getItem('user_id'))
 
   useEffect(() => {
     async function fetchData() {

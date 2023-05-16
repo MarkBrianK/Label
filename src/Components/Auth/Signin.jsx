@@ -48,6 +48,7 @@ const SignInForm = ({setSession, setUserId}) => {
 
         // Set the session ID in the session storage
         sessionStorage.setItem('session_id', sessionID);
+        sessionStorage.setItem('user_id', userID.toString());
 
 
 
@@ -56,6 +57,7 @@ const SignInForm = ({setSession, setUserId}) => {
         setSession(sessionID);
       } else {
         setErrorMessage(response.data.message || 'Could not log in.');
+        setIsLoading(false)
       }
 
     } catch (error) {

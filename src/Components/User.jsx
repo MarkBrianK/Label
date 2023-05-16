@@ -18,6 +18,7 @@ function User({ session, user }) {
 
       // Clear the session
       sessionStorage.removeItem('session_id');
+      sessionStorage.removeItem('user_id');
 
       // Redirect the user to the sign-in page after signing out
       navigate('/');
