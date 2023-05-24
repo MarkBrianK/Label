@@ -68,7 +68,7 @@ function SignupForm() {
           You have successfully signed up. Redirecting to sign-in form...
         </Alert>
       )}
-      {isLoading && <div className="spinner-border text-primary" role="status">
+      {isLoading && <div className="spinner-border text-primary d-inline-block" role="status">
         <span className="sr-only">Loading...</span>
       </div>}
       <Form onSubmit={handleSubmit}>
@@ -129,7 +129,6 @@ function SignupForm() {
 
       </Form>
     </div>
-
   );
 }
 

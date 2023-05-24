@@ -143,11 +143,10 @@ const HandleCloth = () => {
 
   return (
     <div>
-      <h2>Cloth Details</h2>
-      <p>Cloth ID: {clothId}</p>
-      <p>Title: {cloth.title}</p>
+
+
+      <img src={cloth.image} alt="" /> <br/>
       <p>Description: {cloth.description}</p>
-      <img src={cloth.image} alt="" />
       <button onClick={liked ? handleUnlike : handleLike}>
         <FaHeart color={liked ? "red" : "black"} />
         {liked ? "Unlike" : "Like"} <br />

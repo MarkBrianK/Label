@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Button, Row, Col} from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import './Styles/Home.css';
 
-const Home = () => {
+const HomePage = () => {
   const [data, setData] = useState([]);
-  const sessionCookie = sessionStorage.getItem('session_id');
+  const sessionCookie = sessionStorage.getItem('session');
   const userId = parseInt(sessionStorage.getItem('user_id'));
   const navigate = useNavigate();
 
@@ -30,37 +30,15 @@ const Home = () => {
 
     fetchData();
   }, [sessionCookie, userId]);
-
-  const handleSignOut = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axios.delete('http://localhost:3000/users/sign_out', {
-        headers: {
-          Authorization: `Bearer ${userId}`,
-        },
-        withCredentials: true,
-      });
-
-      sessionStorage.removeItem('session_id');
-      sessionStorage.removeItem('user_id');
-
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-
-  const handleViewMore = (clothId) => {
-    navigate(`/handle-cloth/${clothId}`);
-  };
+  const handleLogin= ()=> {
+    navigate(`/signin`)
+  }
 
   return (
     <div>
-      <div>
-        <Button onClick={handleSignOut}> Log out </Button>
-      </div>
+        <div>
+            <Button onClick={handleLogin}  > Log in </Button>
+        </div>
       <Row>
         {data.map((item) => (
           <Col key={item.id} sm={4}>
@@ -69,7 +47,6 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>{item.description}</Card.Text>
-                <Button onClick={() => handleViewMore(item.id)}>View More</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -79,4 +56,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

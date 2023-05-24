@@ -1,109 +1,103 @@
-import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
-const SignInForm = ({setSession, setUserId}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import logo from "../Image/label.png";
+import "../Styles/Signin.css";
+
+const SignInForm = ({ setSession, setUserId }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if email and password fields are empty
     if (!email || !password) {
-      setErrorMessage('Please fill in all fields.');
+      setErrorMessage("Please fill in all fields.");
       return;
     }
 
-    // Check if email is in the correct format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setErrorMessage('Please enter a valid email address.');
+      setErrorMessage("Please enter a valid email address.");
       return;
     }
 
-    setErrorMessage('');
+    setErrorMessage("");
 
     try {
-      const response = await axios.post('http://localhost:3000/users/sign_in', {
+      const response = await axios.post("http://localhost:3000/users/sign_in", {
         user: {
           email,
           password,
         },
       });
-
-      // Check the success field in the response data
       if (response && response.data && response.data.success) {
-        // Extract the session ID from the response
         const sessionID = response.data.session_id.public_id;
         const userID = response.data.user_id;
-        setUserId(userID);
 
+        sessionStorage.setItem("session_id", sessionID);
+        sessionStorage.setItem("user_id", userID.toString());
 
-        // Set the session ID in the session storage
-        sessionStorage.setItem('session_id', sessionID);
-        sessionStorage.setItem('user_id', userID.toString());
-
-
-
-        // Redirect to the user page or perform any other necessary actions
-        navigate('/user');
+        navigate("/home");
         setSession(sessionID);
       } else {
-        setErrorMessage(response.data.message || 'Could not log in.');
-        setIsLoading(false)
+        setErrorMessage(response.data.message || "Could not log in.");
+        setIsLoading(false);
       }
-
     } catch (error) {
-      setErrorMessage(error.response.data.message || 'An error occurred.');
+      setErrorMessage(error.response.data.message || "An error occurred.");
     }
   };
 
   return (
-    <div>
-      <Row>
-        <Col md={6} className="mx-auto">
-          <div className="p-5 bg-light rounded">
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="email">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </Form.Group>
+    <div className="signin">
+      <div className="image">
+        <img src={logo} alt="Logo" className="logo-image" />
+      </div>
+      <div className="p-5 rounded">
+        <Form onSubmit={handleSubmit} className="form">
+          <Form.Group controlId="email">
+            <Form.Label className="formlabel">Email address</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
 
-              <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </Form.Group>
+          <Form.Group controlId="password">
+            <Form.Label className="formlabel">Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group> <br/>
 
-              {errorMessage && <p className="text-danger">{errorMessage}</p>}
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} <br/>
 
-              <Button type="submit" disabled={isLoading} block>
-                {isLoading ? 'Loading...' : 'Sign In'}
-              </Button>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            block
+            className="custom-button"
+          >
+            {isLoading ? "Loading..." : "Sign In"}
+          </Button>
 
-              <div className="mt-3 text-center">
-                Don't have an account? <Link to="/signup">Sign up</Link> now.
-              </div>
-            </Form>
+          <div className="mt-3 text-center" id="signuplink">
+            Don't have an account? <Link className="tosignup" to="/signup">Sign up</Link> now.
           </div>
-        </Col>
-      </Row>
+        </Form>
+      </div>
     </div>
   );
 };
