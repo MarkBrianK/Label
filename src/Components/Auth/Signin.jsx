@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -44,8 +44,8 @@ const SignInForm = ({ setSession, setUserId }) => {
         sessionStorage.setItem("session_id", sessionID);
         sessionStorage.setItem("user_id", userID.toString());
 
-        navigate("/home");
         setSession(sessionID);
+        navigate('/home');
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
         setIsLoading(false);

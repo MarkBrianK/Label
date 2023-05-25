@@ -1,0 +1,31 @@
+.cloth {
+    display: flex;
+  }
+
+  .whatsapp img {
+    width: 30px;
+    height: auto;
+  }
+
+  .whatsapp {
+    text-decoration: none;
+  }
+
+  @media (max-width: 575px) {
+    .cloth img {
+      height: 200px;
+      width: 200px;
+    }
+
+    .cloth {
+      flex-direction: column;
+    }
+
+    .like {
+      order: 2;
+    }
+
+    .comment {
+      order: 2;
+    }
+  }

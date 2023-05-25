@@ -4,6 +4,7 @@ import { Card, Button, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import './Styles/Home.css';
+import Header from './Header';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -31,26 +32,11 @@ const Home = () => {
     fetchData();
   }, [sessionCookie, userId]);
 
-  const handleSignOut = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axios.delete('http://localhost:3000/users/sign_out', {
-        headers: {
-          Authorization: `Bearer ${userId}`,
-        },
-        withCredentials: true,
-      });
-
-      sessionStorage.removeItem('session_id');
-      sessionStorage.removeItem('user_id');
-
-      navigate('/');
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    if (!sessionCookie) {
+      navigate('/signin');
     }
-  };
-
+  }, [sessionCookie, navigate]);
 
   const handleViewMore = (clothId) => {
     navigate(`/handle-cloth/${clothId}`);
@@ -59,17 +45,19 @@ const Home = () => {
   return (
     <div>
       <div>
-        <Button onClick={handleSignOut}> Log out </Button>
+        <Header>
+
+        </Header>
       </div>
-      <Row>
+      <Row className='row'>
         {data.map((item) => (
           <Col key={item.id} sm={4}>
-            <Card>
-              <Card.Img variant="top" src={item.image} alt={item.title} />
+            <Card className='cards-container'>
+              <Card.Img className='image' variant="top" src={item.image} alt={item.title} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
-                <Card.Text>{item.description}</Card.Text>
-                <Button onClick={() => handleViewMore(item.id)}>View More</Button>
+                <Card.Text className='description'>{item.description}</Card.Text>
+                <Button className="custom-button" onClick={() => handleViewMore(item.id)}>View More</Button>
               </Card.Body>
             </Card>
           </Col>
