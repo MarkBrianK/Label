@@ -7,11 +7,17 @@ import HandleCloth from './Components/ClothHandler';
 import HomePage from './Components/Home2';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const storedSession = sessionStorage.getItem('session_id');
+  const [isLoggedIn, setIsLoggedIn] = useState(!!storedSession);
 
   const setSession = (sessionID) => {
     sessionStorage.setItem('session_id', sessionID);
     setIsLoggedIn(true);
+  };
+
+  const clearSession = () => {
+    sessionStorage.removeItem('session_id');
+    setIsLoggedIn(false);
   };
 
   useEffect(() => {
@@ -40,5 +46,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

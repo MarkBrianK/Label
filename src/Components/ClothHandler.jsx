@@ -8,15 +8,13 @@ import "./Styles/Cloth.css";
 
 const HandleCloth = () => {
   const { clothId } = useParams();
-  const [likeId, setLikeId]= useState(null)
-  const [likeValue, setLikeValue] = useState([])
+  const [likeId, setLikeId] = useState(null);
   const [cloth, setCloth] = useState(null);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [liked, setLiked] = useState(false);
   const sessionCookie = parseInt(sessionStorage.getItem("user_id"));
   const [inputCommentValue, setInputCommentValue] = useState("");
-
 
   useEffect(() => {
     async function fetchCloth() {
@@ -30,11 +28,13 @@ const HandleCloth = () => {
           }
         );
         setCloth(response.data);
-        setLikeValue(response.data.likes)
         setLikes(response.data.likes.length);
         setComments(response.data.comments);
-        const value = response.data.likes.find(like =>like.user_id === sessionCookie)
-        setLikeId(value.id);
+        const value = response.data.likes.find(
+          (like) => like.user_id === sessionCookie
+        );
+        setLikeId(value?.id);
+        setLiked(value !== undefined);
       } catch (error) {
         console.log(error);
       }
@@ -42,60 +42,39 @@ const HandleCloth = () => {
 
     fetchCloth();
   }, []);
-
   const handleLike = async () => {
     try {
-      if (likeId !== undefined) {
+      if (liked) {
         // Unlike the cloth
-        await axios.delete(`http://127.0.0.1:3000/cloths/${clothId}/likes`, {
-          headers: {
-            Authorization: `Bearer ${sessionCookie}`,
-          },
-        });
-        setLiked(false);
-        setCloth((prevCloth) => ({
-          ...prevCloth,
-          likes: prevCloth.likes - 1,
-        }));
-      } else {
-        // Check if the user has already liked the cloth
-
-        if (likeValue.user_id === sessionCookie ) {
-          // Unlike the cloth
-          // Like the cloth
-          const likeResponse = await axios.post(
-            `http://127.0.0.1:3000/cloths/${clothId}/likes`,
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${sessionCookie}`,
-              },
-            }
-          );
-          setLiked(true);
-          setCloth((prevCloth) => ({
-            ...prevCloth,
-            likes: prevCloth.likes + 1,
-            likes: likeResponse.data.likes,
-          }));
-        } else{
-          await axios.delete(`http://127.0.0.1:3000/cloths/${clothId}/likes/${likeId}`, {
+        await axios.delete(
+          `http://127.0.0.1:3000/cloths/${clothId}/likes/${likeId}`,
+          {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,
             },
-          });
-          setLiked(false);
-          setCloth((prevCloth) => ({
-            ...prevCloth,
-            likes: prevCloth.likes - 1,
-          }));
-        }
+          }
+        );
+        setLiked(false);
+        setLikes((prevLikes) => prevLikes - 1);
+      } else {
+        // Like the cloth
+        const likeResponse = await axios.post(
+          `http://127.0.0.1:3000/cloths/${clothId}/likes`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${sessionCookie}`,
+            },
+          }
+        );
+        setLiked(true);
+        setLikes((prevLikes) => prevLikes + 1);
+        setLikeId(likeResponse.data.id);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
 
   const handleComment = async (clothId, comment) => {
     try {
@@ -173,12 +152,9 @@ const HandleCloth = () => {
           <p>Description: {cloth.description}</p>
           <button onClick={handleLike}>
             <FaHeart color={liked ? "red" : "black"} />
-            {liked ? "Unlike" : "Like"} <br />
           </button>
-
           <p>Likes: {likes}</p>
         </div>
-
         <div className="comment">
           <h3>Comments</h3>
           {comments.length > 0 ? (

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -17,13 +17,13 @@ axios.get("http://127.0.0.1:3000/csrfToken")
     console.error(error);
   });
 
-const rootElement = document.getElementById('root');
-ReactDOM.createRoot(rootElement).render(
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 reportWebVitals();
