@@ -150,9 +150,8 @@ const HandleCloth = () => {
           <img src={cloth.image} alt="" />
           <br />
           <p>Description: {cloth.description}</p>
-          <button onClick={handleLike}>
-            <FaHeart color={liked ? "red" : "black"} />
-          </button>
+
+            <FaHeart onClick={handleLike}  color={liked ? "red" : "black"} ></FaHeart>
           <p>Likes: {likes}</p>
         </div>
         <div className="comment">

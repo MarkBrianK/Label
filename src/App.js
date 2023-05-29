@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div >
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUpForm />} />

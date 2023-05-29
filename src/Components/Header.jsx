@@ -1,18 +1,30 @@
 import "./Styles/Header.css"
 import { useNavigate } from 'react-router-dom';
-import React from "react";
+import React,{useState, useEffect} from "react";
 import axios from 'axios';
 import {Button} from 'react-bootstrap'
 function Header() {
     const sessionCookie = sessionStorage.getItem('session_id');
     const userId = parseInt(sessionStorage.getItem('user_id'));
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn]= useState(false)
 
-    const handleSignOut = async (e) => {
+    useEffect(()=>{
+      if (sessionCookie){
+        setIsLoggedIn(true)
+
+      }else{
+        setIsLoggedIn(false)
+      }
+    },[])
+
+    const handleAuth = async (e) => {
         e.preventDefault();
 
         try {
-          await axios.delete('http://localhost:3000/users/sign_out', {
+          if (sessionCookie){
+
+            await axios.delete('http://localhost:3000/users/sign_out', {
             headers: {
               Authorization: `Bearer ${userId}`,
             },
@@ -22,7 +34,14 @@ function Header() {
           sessionStorage.removeItem('session_id');
           sessionStorage.removeItem('user_id');
 
+
           navigate('/');
+
+          }else{
+            navigate(`/signin`)
+
+          }
+
         } catch (error) {
           console.error(error);
         }
@@ -32,7 +51,9 @@ function Header() {
       <h1>
         Label <span>23</span>
       </h1>
-      <Button className = "button" onClick={handleSignOut}> Log out </Button>
+
+        <Button className = "button" onClick={handleAuth} > {isLoggedIn ? (<>Log Out </>):(<>Log In</>)} </Button>
+
     </div>
   );
 }
