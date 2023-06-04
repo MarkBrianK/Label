@@ -1,60 +1,35 @@
-import "./Styles/Header.css"
+import "./Styles/Header.css";
 import { useNavigate } from 'react-router-dom';
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
+import levick from "./Image/Levick.png";
+
 function Header() {
-    const sessionCookie = sessionStorage.getItem('session_id');
-    const userId = parseInt(sessionStorage.getItem('user_id'));
-    const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn]= useState(false)
-
-    useEffect(()=>{
-      if (sessionCookie){
-        setIsLoggedIn(true)
-
-      }else{
-        setIsLoggedIn(false)
-      }
-    },[])
-
-    const handleAuth = async (e) => {
-        e.preventDefault();
-
-        try {
-          if (sessionCookie){
-
-            await axios.delete('http://localhost:3000/users/sign_out', {
-            headers: {
-              Authorization: `Bearer ${userId}`,
-            },
-            withCredentials: true,
-          });
-
-          sessionStorage.removeItem('session_id');
-          sessionStorage.removeItem('user_id');
+  const sessionCookie = sessionStorage.getItem('session_id');
+  const userId = parseInt(sessionStorage.getItem('user_id'));
+  const navigate = useNavigate();
 
 
-          navigate('/');
 
-          }else{
-            navigate(`/signin`)
 
-          }
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    navigate('/signin')
+  };
 
-        } catch (error) {
-          console.error(error);
-        }
-      };
   return (
-    <div className="header">
+    <header className="header">
       <h1>
-        Label <span>23</span>
+        Levick<span>23</span>
       </h1>
+      <img className="image" src={levick} alt="" />
 
-        <Button className = "button" onClick={handleAuth} > {isLoggedIn ? (<>Log Out </>):(<>Log In</>)} </Button>
-
-    </div>
+      <Button className="button" onClick={handleAuth}>
+         <p>Log In</p>
+      </Button>
+    </header>
   );
 }
+
 export default Header;

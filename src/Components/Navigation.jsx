@@ -1,50 +1,73 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import {Image } from 'react-bootstrap';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Image, Button } from 'react-bootstrap';
 import { CDBSidebar, CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBSidebarMenuItem, CDBSidebarMenu } from 'cdbreact';
-import logo from './Image/label.png';
-import './Styles/Nav.css';
+import axios from 'axios';
+import logo from './Image/Levick.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Styles/Nav.css';
 
 function Navigation() {
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const userId = sessionStorage.getItem('userId');
+  const navigate = useNavigate()
 
   const toggleSidebar = () => {
     setSidebarIsOpen(!sidebarIsOpen);
+  };
+const handleAuth = () => {
+  try{
+     axios.delete('http://localhost:3000/users/sign_out', {
+          headers: {
+            Authorization: `Bearer ${userId}`,
+          },
+          withCredentials: true,
+        });
+
+        sessionStorage.removeItem('session_id');
+        sessionStorage.removeItem('user_id');
+        navigate('/')
   }
+  catch (error) {
+    console.error(error)
+  }
+}
 
   return (
     <div className='sidebar'>
       <CDBSidebar textColor="white" backgroundColor="black" isOpen={sidebarIsOpen}>
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />} className="d-md-none">
-          <button className="btn-close" onClick={toggleSidebar}></button>
+        <CDBSidebarHeader prefix={<Image src={logo} height='70' alt='logo' />} onClick={toggleSidebar}>
+          <p>Levick <span>23</span></p>
         </CDBSidebarHeader>
+
         <CDBSidebarContent className="sidebar-content">
-        <a href="/" className="text-decoration-none" id='title'>
-        <h1>Label <span>23</span></h1>
-      </a>
           <CDBSidebarMenu>
-            <NavLink className="navlink" exact={true} to="/" onClick={toggleSidebar}>
-              <CDBSidebarMenuItem>Home</CDBSidebarMenuItem>
-            </NavLink >
-            <NavLink className="navlink" to="/about" onClick={toggleSidebar}>
-              <CDBSidebarMenuItem>About Us</CDBSidebarMenuItem>
+            <NavLink exact to="/" activeClassName="activeRoute">
+              <CDBSidebarMenuItem icon="home">Home</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink className="navlink" to="/products" onClick={toggleSidebar}>
-              <CDBSidebarMenuItem>Our Products</CDBSidebarMenuItem>
-            </NavLink >
+
+            <NavLink to="/about" activeClassName="activeRoute">
+              <CDBSidebarMenuItem icon="info-circle">About</CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink to="/services" activeClassName="activeRoute">
+              <CDBSidebarMenuItem icon="cogs">Services</CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink to="/contact" activeClassName="activeRoute">
+              <CDBSidebarMenuItem icon="envelope">Contact</CDBSidebarMenuItem>
+            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
-        <CDBSidebarFooter style={{ textAlign: "center", backgroundColor: "rgb(63, 54, 1)" }}>
-          <div className="sidebar-footer-text" id='footer'>
-            <Image src={logo} alt="Logo" />
+
+        <CDBSidebarFooter>
+          <div className="sidebar-btn-wrapper">
+            <Button className='button' onClick={handleAuth}> Log Out</Button>
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
-      <button className="btn-toggle d-md-none" onClick={toggleSidebar}>
-        <i className={`fa fa-bars fa-2x ${sidebarIsOpen ? 'fa-times' : ''}`}></i>
-      </button>
+
+      <div className="sidebar-overlay" onClick={toggleSidebar} />
     </div>
   );
 }

@@ -1,31 +1,100 @@
-.cloth {
-    display: flex;
-  }
+.cloth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
-  .whatsapp img {
-    width: 30px;
-    height: auto;
-  }
+.cloth-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  .whatsapp {
-    text-decoration: none;
-  }
+.cloth-image {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
 
-  @media (max-width: 575px) {
-    .cloth img {
-      height: 200px;
-      width: 200px;
-    }
+.cloth-image img {
+  width: 100%;
+  height: auto;
+}
 
-    .cloth {
-      flex-direction: column;
-    }
+.cloth-info {
+  text-align: center;
+}
 
-    .like {
-      order: 2;
-    }
+.like-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
 
-    .comment {
-      order: 2;
-    }
-  }
+.like-icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.like-icon.liked {
+  color: red;
+}
+
+.comment-section {
+  width: 100%;
+  max-width: 400px;
+}
+
+.comment-section h3 {
+  text-align: center;
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  margin-bottom: 10px;
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.comment-form input {
+  flex: 1;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.comment-form button {
+  padding: 5px 10px;
+}
+
+.whatsapp-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #000;
+}
+
+.whatsapp-link p {
+  display: flex;
+  align-items: center;
+}
+
+.whatsapp-link img {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}

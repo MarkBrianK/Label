@@ -42,6 +42,7 @@ const HandleCloth = () => {
 
     fetchCloth();
   }, []);
+
   const handleLike = async () => {
     try {
       if (liked) {
@@ -112,31 +113,43 @@ const HandleCloth = () => {
     }
   };
 
-  const handleWhatsAppContact = () => {
+  const handleWhatsAppContact = async () => {
     const phoneNumber = "+254758750384"; // Replace with your WhatsApp phone number
-    const image = cloth.image; // Assuming the cloth.image is a URL to the image
-    const message = `I'm interested in the cloth (${image}).`;
+    const message = `I'm interested in the cloth (${cloth.image}).`;
 
-    // Fetch the image as a Blob object
-    fetch(image)
-      .then((response) => response.blob())
-      .then((blob) => {
-        // Read the image data as a base64 string
-        const reader = new FileReader();
-        reader.onloadend = function () {
-          const base64Image = reader.result;
-          const encodedImage = encodeURIComponent(base64Image);
-          const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
-            message
-          )}&image=${encodedImage}`;
-
-          window.open(whatsappURL, "_blank");
-        };
-        reader.readAsDataURL(blob);
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const response = await fetch(cloth.image);
+      const imageBlob = await response.blob();
+      const imageFile = new File([imageBlob], "cloth_image.jpg", {
+        type: imageBlob.type,
+        lastModified: Date.now(),
       });
+
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+      const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        message
+      )}`;
+
+      const win = window.open(whatsappURL, "_blank");
+
+
+      win.onload = () => {
+
+        const attachmentInput = win.document.querySelector(
+          'input[type="file"][accept="image/*"]'
+        );
+
+
+        if (attachmentInput) {
+         
+          attachmentInput.files = formData;
+        }
+      };
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!cloth) {
@@ -144,55 +157,62 @@ const HandleCloth = () => {
   }
 
   return (
-    <div className="home">
-      <div className="cloth">
-        <div className="like">
+    <div className="cloth-container">
+      <div className="cloth-details">
+        <div className="cloth-image">
           <img src={cloth.image} alt="" />
-          <br />
-          <p>Description: {cloth.description}</p>
-
-            <FaHeart onClick={handleLike}  color={liked ? "red" : "black"} ></FaHeart>
-          <p>Likes: {likes}</p>
         </div>
-        <div className="comment">
-          <h3>Comments</h3>
-          {comments.length > 0 ? (
-            <ul>
-              {comments.map((comment) => (
-                <li key={comment.id}>
-                  {comment.body}{" "}
-                  {comment.user_id === sessionCookie && (
-                    <Button onClick={() => handleDeleteComment(comment.id)}>
-                      Delete
-                    </Button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No comments yet.</p>
-          )}
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="text"
-              placeholder="Add a comment"
-              value={inputCommentValue}
-              onChange={(e) => setInputCommentValue(e.target.value)}
+        <div className="cloth-info">
+          <p>Description: {cloth.description}</p>
+          <div className="like-section">
+            <FaHeart
+              className={`like-icon ${liked ? "liked" : ""}`}
+              onClick={handleLike}
             />
-            <button
-              type="submit"
-              onClick={() => handleComment(clothId, inputCommentValue)}
-            >
-              Submit
-            </button>
-          </form>
+            <p>Likes: {likes}</p>
+          </div>
         </div>
       </div>
-
-      <Link className="whatsapp" onClick={handleWhatsAppContact}>
+      <div className="comment-section">
+        <h3>Comments</h3>
+        {comments.length > 0 ? (
+          <ul className="comment-list">
+            {comments.map((comment) => (
+              <li key={comment.id} className="comment-item">
+                {comment.body}{" "}
+                {comment.user_id === sessionCookie && (
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDeleteComment(comment.id)}
+                  >
+                    Delete
+                  </Button>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No comments yet.</p>
+        )}
+        <form className="comment-form" onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            placeholder="Add a comment"
+            value={inputCommentValue}
+            onChange={(e) => setInputCommentValue(e.target.value)}
+          />
+          <button
+            type="submit"
+            onClick={() => handleComment(clothId, inputCommentValue)}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <Link className="whatsapp-link" onClick={handleWhatsAppContact}>
         <p>
-          {" "}
-          Contact us for more details <img src={whatsapp} alt="" />{" "}
+          Contact us for more details <img src={whatsapp} alt="" />
         </p>
       </Link>
     </div>

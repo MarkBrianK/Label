@@ -40,7 +40,7 @@ function SignupForm() {
       if (response.status === 200) {
         setSuccess(true);
         setTimeout(() => {
-          navigate("/");
+          navigate("/signin");
         }, 3000);
       } else {
         const data = response.data;
