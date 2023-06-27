@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import SignUpForm from './Components/Auth/Signup';
 import SignInForm from './Components/Auth/Signin';
 import Home from './Components/Home';
-import HandleCloth from './Components/ClothHandler';
 import HomePage from './Components/Home2';
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
         {isLoggedIn ? (
           <>
             <Route path="/home" element={<Home />} />
-            <Route path="/handle-cloth/:clothId" element={<HandleCloth />} />
 
           </>
         ) : (

@@ -102,6 +102,43 @@
   .custom-button {
     margin-top: 10px;
   }
+  .like-icon.liked {
+    color: red;
+  }
+
+.modal-image {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.cloth-image {
+  margin-bottom: 10px;
+}
+
+
+
+.whatsapp-link {
+  color: #00e676;
+  text-decoration: none;
+}
+
+.whatsapp-link p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.whatsapp-link img {
+  margin-left: 5px;
+  height: 20px;
+}
+
 
 
 
