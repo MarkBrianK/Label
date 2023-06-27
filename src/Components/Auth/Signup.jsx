@@ -18,7 +18,8 @@ function SignupForm() {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
+  const [passwordConfirmationError, setPasswordConfirmationError] =
+    useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -65,7 +66,7 @@ function SignupForm() {
 
   return (
     <div className="home-container">
-      <div className="image"> 
+      <div className="image">
         <img src={logo} alt="Logo" className="logo img-fluid" />
       </div>
       <div className="centered-container">
@@ -76,9 +77,20 @@ function SignupForm() {
               You have successfully signed up. Redirecting to sign-in form...
             </Alert>
           )}
+
           {isLoading && (
-            <div className="spinner-border text-primary d-inline-block" role="status">
-              <span className="sr-only">Loading...</span>
+            <div className="loading-alert">
+              <div
+                className="spinner-border text-primary loading-spinner"
+                role="status"
+              >
+                <span className="sr-only" id="spinner">
+                  Loading...
+                </span>
+              </div>
+              <Alert variant="danger" className="loading-text">
+                {isLoading ? "Loading..." : ""}
+              </Alert>
             </div>
           )}
           <Form onSubmit={handleSubmit}>
@@ -132,7 +144,12 @@ function SignupForm() {
               </Form.Control.Feedback>
             </Form.Group>
             <br />
-            <Button className="custom-button" variant="primary" type="submit" disabled={isLoading}>
+            <Button
+              className="custom-button"
+              variant="primary"
+              type="submit"
+              disabled={isLoading}
+            >
               {isLoading ? "Loading..." : "Sign Up"}
             </Button>
           </Form>
