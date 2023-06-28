@@ -102,6 +102,10 @@
   .custom-button {
     margin-top: 10px;
   }
+  .like-icon {
+    color: black;
+  }
+
   .like-icon.liked {
     color: red;
   }

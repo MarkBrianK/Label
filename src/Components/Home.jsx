@@ -36,7 +36,6 @@ const Home = () => {
 
     fetchData();
   }, []);
-
   const handleViewMore = async (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
@@ -55,14 +54,11 @@ const Home = () => {
         (like) => like.user_id === sessionCookie
       );
 
-      if (value !== undefined) {
-        setLiked(true);
-      }
-
       setCloth(response.data);
       setLikes(response.data.likes.length);
       setComments(response.data.comments);
       setLikeId(value?.id);
+      setLiked(value !== undefined);
     } catch (error) {
       console.log(error);
     }
@@ -280,11 +276,11 @@ const Home = () => {
                         className="modal-image"
                       />
                     </div>
-
                     <FaHeart
                       className={`like-icon ${liked ? "liked" : ""}`}
                       onClick={handleLike}
                     />
+
                     <p>Likes: {likes}</p>
                     <h3>Comments</h3>
                     {comments.length > 0 ? (
