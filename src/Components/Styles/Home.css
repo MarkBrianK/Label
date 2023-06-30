@@ -1,13 +1,17 @@
 @import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
 
 
-.head  {
+.head {
   color: white;
   font-size: xx-large;
   font-family: 'Coca Cola ii', sans-serif;
   margin: 0;
   width: auto;
   background-color: black;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 .head span {
   color: goldenrod;
@@ -16,6 +20,10 @@
 
 .category-buttons {
   margin-bottom: 20px;
+}
+.category-buttons .category-image{
+  height: 30px;
+  width: 30px;
 }
 
 .cards-container {
@@ -138,6 +146,7 @@
     margin-bottom: 5px;
     width: 50%;
     border-radius: 50%;
+    height: 50%;
 
   }
 

@@ -61,12 +61,12 @@ function Header() {
         {isLoggedIn ? (
           <Link to="/" className="icon-link">
             <ExitToApp onClick={handleAuth} className="icon" style={{ color: 'white' }} />
-            <span>Log Out</span>
+            
           </Link>
         ) : (
           <Link to="/signin" className="icon-link">
             <AccountCircle className="icon" style={{ color: 'white' }} />
-            <span>Log In</span>
+
           </Link>
         )}
       </div>

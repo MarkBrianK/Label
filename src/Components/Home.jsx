@@ -24,7 +24,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [inputCommentValue, setInputCommentValue] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     async function fetchData() {
@@ -238,12 +238,13 @@ const Home = () => {
                         key={category.id}
                         variant={
                           selectedCategory === category.id
-                            ? "primary"
+                            ? "success"
                             : "secondary"
                         }
                         onClick={() => handleCategorySelection(category.id)}
                       >
-                        {category.name}
+                        <Image src={category.image} alt={category.name} className="category-image"/>
+
                       </Button>
                     ))}
                   <div className="category-navigation">
