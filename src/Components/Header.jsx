@@ -1,9 +1,9 @@
 import "./Styles/Header.css";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
-import { AccountCircle, ExitToApp } from '@mui/icons-material';
+import { AccountCircle, ExitToApp, Home, Info, Work, Mail } from '@mui/icons-material';
 import levick from "./Image/Levick.png";
 
 function Header() {
@@ -22,13 +22,14 @@ function Header() {
       try {
         await axios.delete('http://localhost:3000/users/sign_out', {
           headers: {
-            Authorization: `Bearer ${userId}`,
+            Authorization: `Bearer ${sessionCookie}`,
           },
           withCredentials: true,
         });
 
         sessionStorage.removeItem('session_id');
         sessionStorage.removeItem('user_id');
+        setIsLoggedIn(false);
         navigate('/');
       } catch (error) {
         console.error(error);
@@ -41,10 +42,32 @@ function Header() {
   return (
     <header className="header">
       <div className="nav-icons">
+        <Link to="/" className="icon-link">
+          <Home className="icon" style={{ color: 'white' }} />
+          <span>Home</span>
+        </Link>
+        <Link to="/about" className="icon-link">
+          <Info className="icon" style={{ color: 'white' }} />
+          <span>About</span>
+        </Link>
+        <Link to="/services" className="icon-link">
+          <Work className="icon" style={{ color: 'white' }} />
+          <span>Services</span>
+        </Link>
+        <Link to="/contact" className="icon-link">
+          <Mail className="icon" style={{ color: 'white' }} />
+          <span>Contact</span>
+        </Link>
         {isLoggedIn ? (
-          <ExitToApp onClick={handleAuth} className="icon" style={{color:'white'}} >Log out</ExitToApp>
+          <Link to="/" className="icon-link">
+            <ExitToApp onClick={handleAuth} className="icon" style={{ color: 'white' }} />
+            <span>Log Out</span>
+          </Link>
         ) : (
-          <AccountCircle onClick={() => navigate('/signin')} className="icon" style={{color:'white'}} > Log in</AccountCircle>
+          <Link to="/signin" className="icon-link">
+            <AccountCircle className="icon" style={{ color: 'white' }} />
+            <span>Log In</span>
+          </Link>
         )}
       </div>
     </header>

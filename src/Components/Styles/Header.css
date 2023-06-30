@@ -1,24 +1,24 @@
-@import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
-.head  {
+@import url("https://fonts.cdnfonts.com/css/coca-cola-ii");
+
+.head {
   color: white;
   font-size: xx-large;
-  font-family: 'Coca Cola ii', sans-serif;
+  font-family: "Coca Cola ii", sans-serif;
   margin: 0;
   width: auto;
   background-color: black;
 }
+
 .head span {
   color: goldenrod;
   font-size: small;
 }
-
 
 .header {
   position: fixed;
   bottom: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: black !important;
@@ -36,10 +36,10 @@
 
 .header .button {
   background-color: black !important;
-  color: #1A474A !important;
+  color: #1a474a !important;
   border-color: black !important;
   margin: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .header .button p:hover {
@@ -49,7 +49,7 @@
 .header h1 {
   color: white;
   font-size: xx-large;
-  font-family: 'Coca Cola ii', sans-serif;
+  font-family: "Coca Cola ii", sans-serif;
   margin: 0;
 }
 
@@ -63,8 +63,28 @@
   align-self: flex-end;
 }
 
-@media (max-width: 767px) {
+.header .nav-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
+}
+.header .nav-icons .icon-link{
+  text-decoration: none;
+  color: white;
+  gap: 10px;
+}
+.header .nav-icons .icon-link:hover{
+  color: #1a474a;
+}
 
+.header .icon-link:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
   .header {
     position: fixed;
     bottom: 0;
@@ -74,14 +94,32 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-
+    padding: 0 10px;
   }
 
   .header.open {
     transform: translateY(0);
   }
+
+  .header .nav-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    text-decoration: none;
+    margin-top: 0;
+  }
+  .header .nav-icons .icon-link{
+    text-decoration: none;
+    color: white;
+    gap: 10px;
+  }
+  .header .nav-icons .icon-link:hover{
+    color: #1a474a;
+  }
 }
+
 
 @media (min-width: 768px) {
   .header {

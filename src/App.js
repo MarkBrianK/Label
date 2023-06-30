@@ -17,35 +17,27 @@ function App() {
     const session = sessionStorage.getItem('session_id');
     if (session) {
       setIsLoggedIn(true);
-
     }
-
   }, []);
 
   return (
     <div>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/signin"
-          element={<SignInForm setSession={setSession} />} />
         {isLoggedIn ? (
-          <>
-            <Route path="/home" element={<Home />} />
-
-          </>
+          <Route path="/" element={<Navigate to="/home" />} />
         ) : (
-          <>
-            <Route path="*/" element={<Navigate to="/" replace />} />
-          </>
-
-
-
+          <Route path="/" element={<HomePage />} />
+        )}
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/signin" element={<SignInForm setSession={setSession} />} />
+        {isLoggedIn ? (
+          <Route path="/home" element={<Home />} />
+        ) : (
+          <Route path="/*" element={<Navigate to="/" replace />} />
         )}
       </Routes>
     </div>
   );
 }
-
 
 export default App;
