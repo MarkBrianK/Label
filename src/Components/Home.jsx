@@ -3,9 +3,11 @@ import axios from "axios";
 import { Card, Button, Row, Col, Modal, Image } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import "./Styles/Home.css";
-import Navigation from "./Navigation";
+import Header from "./Header";
 import whatsapp from "./Image/whatsapp.png";
+import levick from './Image/Levick.png';
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -21,6 +23,8 @@ const Home = () => {
   const sessionCookie = parseInt(sessionStorage.getItem("user_id"));
   const navigate = useNavigate();
   const [inputCommentValue, setInputCommentValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 4;
 
   useEffect(() => {
     async function fetchData() {
@@ -133,7 +137,13 @@ const Home = () => {
       console.log(error);
     }
   };
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
   const handleWhatsAppContact = async () => {
     const phoneNumber = "+254758750384"; // Replace with your WhatsApp phone number
     const message = `I'm interested in the cloth (${selectedCloth?.image}).`;
@@ -206,28 +216,50 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      <p className="head"> Levick<span>23</span></p>
+
+
       <div className="container">
         <div className="row">
-          <div className="col-md-2 ">
-            <Navigation />
+          <div className="col-md-2">
+            <Header />
           </div>
           <div className="col-md-10 content">
             <div>
               {categories.length > 0 ? (
                 <div className="category-buttons">
-                  {categories.map((category) => (
-                    <Button
-                      key={category.id}
-                      variant={
-                        selectedCategory === category.id
-                          ? "primary"
-                          : "secondary"
-                      }
-                      onClick={() => handleCategorySelection(category.id)}
-                    >
-                      {category.name}
-                    </Button>
-                  ))}
+                  {categories
+                    .slice(
+                      currentPage * itemsPerPage,
+                      (currentPage + 1) * itemsPerPage
+                    )
+                    .map((category) => (
+                      <Button
+                        key={category.id}
+                        variant={
+                          selectedCategory === category.id
+                            ? "primary"
+                            : "secondary"
+                        }
+                        onClick={() => handleCategorySelection(category.id)}
+                      >
+                        {category.name}
+                      </Button>
+                    ))}
+                  <div className="category-navigation">
+                    {currentPage > 0 && (
+                      <FaAngleLeft
+                        className="category-navigation-icon"
+                        onClick={handlePreviousPage}
+                      />
+                    )}
+                    {(currentPage + 1) * itemsPerPage < categories.length && (
+                      <FaAngleRight
+                        className="category-navigation-icon"
+                        onClick={handleNextPage}
+                      />
+                    )}
+                  </div>
                 </div>
               ) : (
                 <p>No categories found.</p>

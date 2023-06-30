@@ -1,5 +1,17 @@
-.home-page {
-  padding-top: 60px;
+@import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
+
+
+.head  {
+  color: white;
+  font-size: xx-large;
+  font-family: 'Coca Cola ii', sans-serif;
+  margin: 0;
+  width: auto;
+  background-color: black;
+}
+.head span {
+  color: goldenrod;
+  font-size: small;
 }
 
 .category-buttons {
@@ -74,10 +86,17 @@
   .category-buttons {
     position: static;
     margin-bottom: 10px;
-    margin-left: 100px;
+  }
+  .category-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .category-navigation-icon {
+    cursor: pointer;
   }
   .card-container {
-    margin-left: 100px;
     margin-bottom: 20px;
   }
   .card-container .image {
@@ -108,12 +127,30 @@
   }
 
   .category-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     margin-bottom: 10px;
   }
 
   .category-buttons button {
     margin-right: 5px;
     margin-bottom: 5px;
-    width: 100%;
+    width: 50%;
+    border-radius: 50%;
+
   }
+
+  .category-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .category-navigation-icon {
+    cursor: pointer;
+  }
+
+
+
 }

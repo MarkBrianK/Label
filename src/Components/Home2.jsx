@@ -9,8 +9,8 @@ const HomePage = () => {
   return (
     <div>
       <div>
-        <Header>
-        </Header>
+      <p className="head"> Levick<span>23</span></p>
+      <Header />
       </div>
 
     </div>
