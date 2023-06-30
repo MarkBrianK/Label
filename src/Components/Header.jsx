@@ -42,9 +42,9 @@ function Header() {
     <header className="header">
       <div className="nav-icons">
         {isLoggedIn ? (
-          <ExitToApp onClick={handleAuth} className="icon" />
+          <ExitToApp onClick={handleAuth} className="icon" style={{color:'white'}} >Log out</ExitToApp>
         ) : (
-          <AccountCircle onClick={() => navigate('/signin')} className="icon" />
+          <AccountCircle onClick={() => navigate('/signin')} className="icon" style={{color:'white'}} > Log in</AccountCircle>
         )}
       </div>
     </header>
