@@ -36,6 +36,7 @@ const Home = () => {
 
     fetchData();
   }, []);
+
   const handleViewMore = async (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
@@ -207,7 +208,7 @@ const Home = () => {
     <div className="home-page">
       <div className="container">
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-2 ">
             <Navigation />
           </div>
           <div className="col-md-10 content">

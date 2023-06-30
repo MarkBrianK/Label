@@ -1,114 +1,37 @@
 .home-page {
-    min-height: 100vh;
-    overflow: hidden;
-  }
+  padding-top: 60px;
+}
 
-  .cards-container {
-    margin-top: 20px;
-    background-color: black;
-  }
+.category-buttons {
+  margin-bottom: 20px;
+}
 
-  .cards-container .image {
-    background-color: black;
-    margin: 0;
-    padding: 0;
-  }
+.cards-container {
+  margin-bottom: 15px;
+}
 
-  .cards-container .description {
-    color: #c7a034;
-  }
+.card-container .image {
+  height: 250px;
+  object-fit: cover;
+}
 
-  .custom-button {
-    background-color: #1a474a !important;
-    color: white !important;
-    border-color: #1a474a !important;
-  }
+.card-container .description {
+  height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  .custom-button:hover {
-    background-color: black !important;
-  }
+.custom-button {
+  margin-top: 10px;
+}
 
-  .row {
-    margin-right: 0;
-    margin-left: 0;
-  }
+.like-icon {
+  color: black;
+}
 
-  .content {
-    padding-top: 40px;
-    margin-left: 200px;
-  }
-
-  .category-buttons {
-    margin-bottom: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 999;
-  }
-
-  .cards-container {
-    margin-bottom: 15px;
-  }
-
-  .page {
-    position: relative;
-  }
-
-  .container {
-    overflow-y: auto;
-    height: auto;
-  }
-
-  .content {
-    margin-left: 200px;
-  }
-
-  .home-page {
-    padding-top: 60px;
-  }
-
-  .container {
-    margin-top: 20px;
-  }
-
-  .content {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .category-buttons {
-    margin-bottom: 20px;
-  }
-
-  .category-buttons button {
-    margin-right: 10px;
-  }
-
-  .card-container {
-    margin-bottom: 20px;
-  }
-
-  .card-container .image {
-    height: 250px;
-    object-fit: cover;
-  }
-
-  .card-container .description {
-    height: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .custom-button {
-    margin-top: 10px;
-  }
-  .like-icon {
-    color: black;
-  }
-
-  .like-icon.liked {
-    color: red;
-  }
+.like-icon.liked {
+  color: red;
+}
 
 .modal-image {
   max-width: 100%;
@@ -123,8 +46,6 @@
 .cloth-image {
   margin-bottom: 10px;
 }
-
-
 
 .whatsapp-link {
   color: #00e676;
@@ -143,38 +64,56 @@
   height: 20px;
 }
 
-
-
-
-  @media (max-width: 767px) {
-    .content {
-      margin-left: 0;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-
-    .category-buttons {
-      position: static;
-      margin-bottom: 10px;
-    }
-
-    .card-container .image {
-      height: 200px;
-    }
-
-    .card-container .description {
-      height: auto;
-      max-height: 120px;
-    }
-
-    .custom-button {
-      margin-top: 5px;
-    }
+@media (max-width: 767px) {
+  .content {
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
-  @media (max-width: 991px) {
-    .container {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
+  .category-buttons {
+    position: static;
+    margin-bottom: 10px;
+    margin-left: 100px;
   }
+  .card-container {
+    margin-left: 100px;
+    margin-bottom: 20px;
+  }
+  .card-container .image {
+    height: 200px;
+  }
+
+  .card-container .description {
+    height: auto;
+    max-height: 120px;
+  }
+
+  .custom-button {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .content {
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .category-buttons {
+    margin-bottom: 10px;
+  }
+
+  .category-buttons button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+}
