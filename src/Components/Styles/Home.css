@@ -22,6 +22,7 @@
 .category-buttons {
   margin-bottom: 20px;
   margin-top: 50px;
+  width: auto;
 }
 .category-buttons .category-image{
   height: 30px;
@@ -145,14 +146,14 @@
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
   }
 
   .category-buttons button {
     margin-right: 5px;
     margin-bottom: 5px;
-    width: 50%;
-    border-radius: 50%;
-    height: 50%;
 
   }
 
