@@ -7,7 +7,7 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import "./Styles/Home.css";
 import Header from "./Header";
 import whatsapp from "./Image/whatsapp.png";
-import levick from './Image/Levick.png';
+import levick from "./Image/Levick.png";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -216,8 +216,10 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <p className="head"> Levick<span>23</span></p>
-
+      <p className="head">
+        {" "}
+        Levick<span>23</span>
+      </p>
 
       <div className="container">
         <div className="row">
@@ -243,8 +245,11 @@ const Home = () => {
                         }
                         onClick={() => handleCategorySelection(category.id)}
                       >
-                        <Image src={category.image} alt={category.name} className="category-image"/>
-
+                        <Image
+                          src={category.image}
+                          alt={category.name}
+                          className="category-image"
+                        />
                       </Button>
                     ))}
                   <div className="category-navigation">
@@ -295,10 +300,10 @@ const Home = () => {
             </Row>
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
-              <Modal.Header closeButton>
-                <Modal.Title>Cloth Details</Modal.Title>
+              <Modal.Header className="modal-header" closeButton>
+                <Modal.Title className="modal-title">Cloth Details</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body className="modal-body">
                 {selectedCloth && (
                   <div>
                     <h2>{selectedCloth.name}</h2>
@@ -353,13 +358,13 @@ const Home = () => {
                           handleComment(selectedCloth?.id, inputCommentValue)
                         }
                       >
-                        Submit
+                        Comment{" "}
                       </button>
                     </form>
                   </div>
                 )}
               </Modal.Body>
-              <Modal.Footer>
+              <Modal.Footer className="modal-footer">
                 <Link className="whatsapp-link" onClick={handleWhatsAppContact}>
                   <p>
                     Contact us for more details <img src={whatsapp} alt="" />

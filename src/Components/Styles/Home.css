@@ -1,6 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
 
-
 .head {
   color: white;
   font-size: xx-large;
@@ -14,6 +13,7 @@
   right: 0;
   z-index: 999;
 }
+
 .head span {
   color: goldenrod;
   font-size: small;
@@ -24,7 +24,8 @@
   margin-top: 50px;
   width: auto;
 }
-.category-buttons .category-image{
+
+.category-buttons .category-image {
   height: 30px;
   width: 30px;
 }
@@ -62,8 +63,90 @@
   margin: 0 auto;
 }
 
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  color: rgb(2, 2, 2);
+  border-radius: 10px 10px 0 0;
+  padding: 15px;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
 .modal-body {
   text-align: center;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-body > * {
+  margin-bottom: 10px;
+}
+
+.modal-body .cloth-image {
+  margin-bottom: 20px;
+}
+
+.modal-body .comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-body .comment-list .comment-item {
+  margin-bottom: 5px;
+}
+
+.modal-body .comment-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body .comment-form input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+  width: 200px;
+}
+
+.modal-body .comment-form button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-body .comment-form button:hover {
+  background-color: #0056b3;
+}
+
+.modal-footer {
+  border-top: 1px solid #ccc;
+  padding: 15px;
+  text-align: center;
+}
+
+.modal-footer button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-footer button:hover {
+  background-color: #0056b3;
 }
 
 .cloth-image {
@@ -87,11 +170,34 @@
   height: 20px;
 }
 
+
+.cloth-image {
+  margin-bottom: 10px;
+}
+
+.whatsapp-link {
+  color: #00e676;
+  text-decoration: none;
+}
+
+.whatsapp-link p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.whatsapp-link img {
+  margin-left: 5px;
+  height: 20px;
+}
+
 @media (max-width: 767px) {
-  .head{
+  .head {
     position: fixed;
     z-index: 999;
   }
+
   .content {
     margin-left: 10px;
     padding-left: 10px;
@@ -102,6 +208,7 @@
     position: static;
     margin-bottom: 10px;
   }
+
   .category-navigation {
     display: flex;
     justify-content: space-between;
@@ -111,9 +218,11 @@
   .category-navigation-icon {
     cursor: pointer;
   }
+
   .card-container {
     margin-bottom: 20px;
   }
+
   .card-container .image {
     height: 200px;
   }
@@ -134,7 +243,6 @@
     padding-right: 10px;
   }
 
-
   .content {
     margin-left: 0;
     padding-left: 0;
@@ -154,7 +262,6 @@
   .category-buttons button {
     margin-right: 5px;
     margin-bottom: 5px;
-
   }
 
   .category-navigation {
@@ -166,7 +273,5 @@
   .category-navigation-icon {
     cursor: pointer;
   }
-
-
-
 }
+
