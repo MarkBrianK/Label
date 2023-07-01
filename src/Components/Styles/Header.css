@@ -70,6 +70,7 @@
   color: white;
   text-decoration: none;
   margin-top: 20px;
+  justify-content: space-between;
 }
 .header .nav-icons .icon-link{
   text-decoration: none;
@@ -109,6 +110,7 @@
     color: white;
     text-decoration: none;
     margin-top: 0;
+    justify-content: space-between;
   }
   .header .nav-icons .icon-link{
     text-decoration: none;

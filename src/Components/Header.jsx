@@ -44,24 +44,20 @@ function Header() {
       <div className="nav-icons">
         <Link to="/" className="icon-link">
           <Home className="icon" style={{ color: 'white' }} />
-          <span>Home</span>
         </Link>
         <Link to="/about" className="icon-link">
           <Info className="icon" style={{ color: 'white' }} />
-          <span>About</span>
         </Link>
         <Link to="/services" className="icon-link">
           <Work className="icon" style={{ color: 'white' }} />
-          <span>Services</span>
         </Link>
         <Link to="/contact" className="icon-link">
           <Mail className="icon" style={{ color: 'white' }} />
-          <span>Contact</span>
         </Link>
         {isLoggedIn ? (
           <Link to="/" className="icon-link">
             <ExitToApp onClick={handleAuth} className="icon" style={{ color: 'white' }} />
-            
+
           </Link>
         ) : (
           <Link to="/signin" className="icon-link">
