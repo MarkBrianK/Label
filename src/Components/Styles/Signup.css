@@ -80,5 +80,9 @@
       height: 150px;
       width: 150px;
     }
+    .image img {
+      height: 100px;
+      width: 100px;
+    }
   }
 

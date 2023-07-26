@@ -40,6 +40,7 @@ function Header() {
   };
 
   return (
+    
     <header className="header">
       <div className="nav-icons">
         <Link to="/" className="icon-link">

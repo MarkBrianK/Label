@@ -273,31 +273,32 @@ const Home = () => {
             </div>
 
             <Row className="row">
-              {sortedCloths.map((cloth) => (
-                <Col key={cloth.id} xs={12} sm={6} md={4} lg={3}>
-                  <Card className="card-container">
-                    <Card.Img
-                      className="image"
-                      variant="top"
-                      src={cloth.image}
-                      alt={cloth.title}
-                    />
-                    <Card.Body>
-                      <Card.Title>{cloth.title}</Card.Title>
-                      <Card.Text className="description">
-                        {cloth.description}
-                      </Card.Text>
-                      <Button
-                        className="custom-button"
-                        onClick={() => handleViewMore(cloth)}
-                      >
-                        View More
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+  {sortedCloths.map((cloth) => (
+    <Col key={cloth.id} xs={12} sm={6} md={4} lg={3}>
+      <Card className="card-container">
+        <Card.Img
+          className="image"
+          variant="top"
+          src={cloth.image}
+          alt={cloth.title}
+        />
+        <Card.Body className="text-center">
+          <Card.Title>{cloth.title}</Card.Title>
+          <Card.Text className="description">
+            {cloth.description}
+          </Card.Text>
+          <Button
+            className="custom-button"
+            onClick={() => handleViewMore(cloth)}
+          >
+            View More
+          </Button>
+        </Card.Body>
+      </Card>
+    </Col>
+  ))}
+</Row>
+
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
               <Modal.Header className="modal-header" closeButton>
