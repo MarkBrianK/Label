@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
-import { AccountCircle, ExitToApp, Home, Info, Work, Mail } from '@mui/icons-material';
+import { AccountCircle, ExitToApp, Home, Info, Work, Mail, Search, AddTask, AddCardTwoTone, AddToHomeScreen, ShoppingBag } from '@mui/icons-material';
 import levick from "./Image/Levick.png";
 
 function Header() {
@@ -40,17 +40,17 @@ function Header() {
   };
 
   return (
-    
+
     <header className="header">
       <div className="nav-icons">
         <Link to="/" className="icon-link">
           <Home className="icon" style={{ color: 'white' }} />
         </Link>
         <Link to="/about" className="icon-link">
-          <Info className="icon" style={{ color: 'white' }} />
+          <Search className="icon" style={{ color: 'white' }} />
         </Link>
         <Link to="/services" className="icon-link">
-          <Work className="icon" style={{ color: 'white' }} />
+          <ShoppingBag className="icon" style={{ color: 'white' }} />
         </Link>
         <Link to="/contact" className="icon-link">
           <Mail className="icon" style={{ color: 'white' }} />
