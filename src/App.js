@@ -23,18 +23,14 @@ function App() {
   return (
     <div>
       <Routes>
-        {isLoggedIn ? (
-          <Route path="/" element={<Navigate to="/home" />} />
-        ) : (
-          <Route path="/" element={<HomePage />} />
-        )}
+
+
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/signin" element={<SignInForm setSession={setSession} />} />
-        {isLoggedIn ? (
-          <Route path="/home" element={<Home />} />
-        ) : (
-          <Route path="/*" element={<Navigate to="/" replace />} />
-        )}
+
+
+
       </Routes>
     </div>
   );
