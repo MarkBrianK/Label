@@ -45,7 +45,7 @@ const SignInForm = ({ setSession, setUserId }) => {
         sessionStorage.setItem("user_id", userID.toString());
 
         setSession(sessionID);
-        navigate('/home');
+        navigate('/');
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
         setIsLoading(false);

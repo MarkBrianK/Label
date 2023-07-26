@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Button, Row, Col, Modal, Image } from "react-bootstrap";
+import { Card, Button, Row, Col, Modal, Image, Alert } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
@@ -42,6 +42,11 @@ const Home = () => {
   }, []);
 
   const handleViewMore = async (cloth) => {
+    if (!sessionCookie) {
+      window.alert("Please sign in or sign up to view more details.");
+      return;
+    }
+
     setSelectedCloth(cloth);
     setShowModal(true);
 
@@ -199,12 +204,6 @@ const Home = () => {
 
     fetchCloths();
   }, [sessionCookie, selectedCategory]);
-
-  useEffect(() => {
-    if (!sessionCookie) {
-      navigate("/signin");
-    }
-  }, [sessionCookie, navigate]);
 
   const handleCategorySelection = (categoryId) => {
     setSelectedCategory(categoryId);

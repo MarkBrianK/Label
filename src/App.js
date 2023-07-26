@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import SignUpForm from './Components/Auth/Signup';
 import SignInForm from './Components/Auth/Signin';
 import Home from './Components/Home';
-import HomePage from './Components/Home2';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

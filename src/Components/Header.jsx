@@ -35,7 +35,7 @@ function Header() {
         console.error(error);
       }
     } else {
-      navigate('/signin');
+      navigate('/');
     }
   };
 
