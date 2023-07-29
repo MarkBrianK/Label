@@ -27,7 +27,6 @@
   width: auto;
   height: 100vh;
   transition: transform 0.3s ease-in-out;
-  margin-top: 40px;
 }
 
 .header.open {

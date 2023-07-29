@@ -235,12 +235,10 @@ const Home = () => {
                       (currentPage + 1) * itemsPerPage
                     )
                     .map((category) => (
-                      <Button
+                      <div
                         key={category.id}
                         variant={
-                          selectedCategory === category.id
-                            ? "success"
-                            : "secondary"
+                          selectedCategory === category.i
                         }
                         onClick={() => handleCategorySelection(category.id)}
                       >
@@ -249,7 +247,7 @@ const Home = () => {
                           alt={category.name}
                           className="category-image"
                         />
-                      </Button>
+                      </div>
                     ))}
                   <div className="category-navigation">
                     {currentPage > 0 && (
