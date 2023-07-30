@@ -150,11 +150,11 @@ const Home = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
   const handleWhatsAppContact = async () => {
-    const phoneNumber = "+254758750384"; // Replace with your WhatsApp phone number
-    const message = `I'm interested in the cloth (${selectedCloth?.image}).`;
+    const phoneNumber = "+254758750384";
+    const message = `I'm interested in the cloth.`;
 
     try {
-      const response = await fetch(cloth.image);
+      const response = await fetch(selectedCloth?.image);
       const imageBlob = await response.blob();
       const imageFile = new File([imageBlob], "cloth_image.jpg", {
         type: imageBlob.type,
@@ -164,7 +164,7 @@ const Home = () => {
       const formData = new FormData();
       formData.append("image", imageFile);
 
-      const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
         message
       )}`;
 
