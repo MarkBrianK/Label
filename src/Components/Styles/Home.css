@@ -281,6 +281,11 @@
   .custom-button {
     margin-top: 5px;
   }
+  .category-image{
+    height:50px;
+    width :50px;
+    border-radius: 50%;
+  }
 }
 
 @media (max-width: 991px) {

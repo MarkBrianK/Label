@@ -30,7 +30,7 @@ const Home = () => {
     async function fetchData() {
       try {
         const categoriesResponse = await axios.get(
-          "http://localhost:3000/categories"
+          "https://levick-7b15defb7ee9.herokuapp.com/categories"
         );
         setCategories(categoriesResponse.data);
       } catch (error) {
@@ -52,7 +52,7 @@ const Home = () => {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:3000/cloths/${cloth.id}`,
+        `https://levick-7b15defb7ee9.herokuapp.com/${cloth.id}`,
         {
           headers: {
             Authorization: `Bearer ${sessionCookie}`,
@@ -78,7 +78,7 @@ const Home = () => {
     try {
       if (liked) {
         await axios.delete(
-          `http://127.0.0.1:3000/cloths/${selectedCloth?.id}/likes/${likeId}`,
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/likes/${likeId}`,
           {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,
@@ -90,7 +90,7 @@ const Home = () => {
       } else {
         // Like the cloth
         const likeResponse = await axios.post(
-          `http://127.0.0.1:3000/cloths/${selectedCloth?.id}/likes`,
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/likes`,
           {},
           {
             headers: {
@@ -110,7 +110,7 @@ const Home = () => {
   const handleComment = async (selectedClothId, comment) => {
     try {
       const response = await axios.post(
-        `http://127.0.0.1:3000/cloths/${selectedClothId}/comments`,
+        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedClothId}/comments`,
         { body: comment },
         {
           headers: {
@@ -128,7 +128,7 @@ const Home = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       await axios.delete(
-        `http://127.0.0.1:3000/cloths/${selectedCloth?.id}/comments/${commentId}`,
+        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/comments/${commentId}`,
         {
           headers: {
             Authorization: `Bearer ${sessionCookie}`,
@@ -187,7 +187,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCloths = async () => {
       try {
-        let url = "http://localhost:3000/cloths";
+        let url = "https://levick-7b15defb7ee9.herokuapp.com/cloths";
         if (selectedCategory) {
           url += `?categoryID=${selectedCategory}`;
         }
