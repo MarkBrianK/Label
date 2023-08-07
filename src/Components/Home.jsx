@@ -42,10 +42,10 @@ const Home = () => {
   }, []);
 
   const handleViewMore = async (cloth) => {
-    if (!sessionCookie) {
-      window.alert("Please sign in or sign up to view more details.");
-      return;
-    }
+    // if (!sessionCookie) {
+    //   window.alert("Please sign in or sign up to view more details.");
+    //   return;
+    // }
 
     setSelectedCloth(cloth);
     setShowModal(true);
