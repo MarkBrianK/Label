@@ -74,74 +74,74 @@ const Home = () => {
     }
   };
 
-  const handleLike = async () => {
-    try {
-      if (liked) {
-        await axios.delete(
-          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/likes/${likeId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${sessionCookie}`,
-            },
-          }
-        );
-        setLiked(false);
-        setLikes((prevLikes) => prevLikes - 1);
-      } else {
-        // Like the cloth
-        const likeResponse = await axios.post(
-          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/likes`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${sessionCookie}`,
-            },
-          }
-        );
-        setLiked(true);
-        setLikes((prevLikes) => prevLikes + 1);
-        setLikeId(likeResponse.data.id);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleLike = async () => {
+  //   try {
+  //     if (liked) {
+  //       await axios.delete(
+  //         `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/likes/${likeId}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${sessionCookie}`,
+  //           },
+  //         }
+  //       );
+  //       setLiked(false);
+  //       setLikes((prevLikes) => prevLikes - 1);
+  //     } else {
+  //       // Like the cloth
+  //       const likeResponse = await axios.post(
+  //         `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/likes`,
+  //         {},
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${sessionCookie}`,
+  //           },
+  //         }
+  //       );
+  //       setLiked(true);
+  //       setLikes((prevLikes) => prevLikes + 1);
+  //       setLikeId(likeResponse.data.id);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleComment = async (selectedClothId, comment) => {
-    try {
-      const response = await axios.post(
-        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedClothId}/comments`,
-        { body: comment },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionCookie}`,
-          },
-        }
-      );
-      setComments((prevComments) => [...prevComments, response.data]);
-      setInputCommentValue("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleComment = async (selectedClothId, comment) => {
+  //   try {
+  //     const response = await axios.post(
+  //       `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedClothId}/comments`,
+  //       { body: comment },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${sessionCookie}`,
+  //         },
+  //       }
+  //     );
+  //     setComments((prevComments) => [...prevComments, response.data]);
+  //     setInputCommentValue("");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleDeleteComment = async (commentId) => {
-    try {
-      await axios.delete(
-        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/comments/${commentId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${sessionCookie}`,
-          },
-        }
-      );
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment.id !== commentId)
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleDeleteComment = async (commentId) => {
+  //   try {
+  //     await axios.delete(
+  //       `https://levick-7b15defb7ee9.herokuapp.com/cloths/${selectedCloth?.id}/comments/${commentId}`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${sessionCookie}`,
+  //         },
+  //       }
+  //     );
+  //     setComments((prevComments) =>
+  //       prevComments.filter((comment) => comment.id !== commentId)
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
@@ -312,12 +312,12 @@ const Home = () => {
                         className="modal-image"
                       />
                     </div>
-                    <FaHeart
+                    {/* <FaHeart
                       className={`like-icon ${liked ? "liked" : ""}`}
                       onClick={handleLike}
-                    />
+                    /> */}
 
-                    <p>Likes: {likes}</p>
+                    {/* <p>Likes: {likes}</p>
                     <h3>Comments</h3>
                     {comments.length > 0 ? (
                       <ul className="comment-list">
@@ -338,8 +338,8 @@ const Home = () => {
                       </ul>
                     ) : (
                       <p>No comments yet.</p>
-                    )}
-                    <form
+                    )} */}
+                    {/* <form
                       className="comment-form"
                       onSubmit={(e) => e.preventDefault()}
                     >
@@ -357,7 +357,7 @@ const Home = () => {
                       >
                         Comment{" "}
                       </button>
-                    </form>
+                    </form> */}
                   </div>
                 )}
               </Modal.Body>
