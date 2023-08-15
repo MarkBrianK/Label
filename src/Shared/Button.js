@@ -1,8 +1,11 @@
 import React from "react";
+import "../Assets/Styles/Button.css"
 
-function Button(){
+function Button({children}){
     return(
-        <div></div>
+        <button className="button" >
+        {children}
+        </button>
     )
 }
 export default Button
