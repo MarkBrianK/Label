@@ -220,12 +220,12 @@ const Home = () => {
         Levick<span>23</span>
       </p>
 
-      <div className="container">
+      <div className="container" >
         <div className="row">
           <div className="col-md-2">
             <Header />
           </div>
-          <div className="col-md-8 content">
+          <div className="col-md-8 content" >
             <div>
               {categories.length > 0 ? (
                 <div className="category-buttons">

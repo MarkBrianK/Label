@@ -77,7 +77,8 @@
 
 @media (max-width: 767px) {
   .sidebar {
-    width: 20%;
+    position:fixed;
+    bottom: 0;
   }
 
   .sidebar p {
