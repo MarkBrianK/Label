@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { AccountCircle, ExitToApp, Home, Info, Work, Mail, Search, AddTask, AddCardTwoTone, AddToHomeScreen, ShoppingBag } from '@mui/icons-material';
-import levick from "./Image/Levick.png";
+import levick from "../Assets/Image/Levick.png";
 
 function Header() {
   const sessionCookie = sessionStorage.getItem('session_id');
