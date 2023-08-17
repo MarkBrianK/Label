@@ -4,7 +4,8 @@ import Levick from "../Assets/Image/Levick.png";
 import SearchBar from "../Shared/SearchBar";
 import SheetModal from "../Shared/SheetModal";
 import Header from "../Components/Header";
-import ClothHandler from '../Screens/ClothHandler';
+import ClothHandler from "../Screens/ClothHandler";
+import ModalScreen from "../Shared/ModalScreen"; // Import the ModalScreen component
 import "../Assets/Styles/Home.css";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
 
   const [clothes, setClothes] = useState([]);
   const [selectedCloth, setSelectedCloth] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
@@ -25,7 +27,12 @@ export default function Home() {
 
   const handleViewMore = (cloth) => {
     setSelectedCloth(cloth);
-    // Handle opening the modal or other actions
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedCloth(null);
+    setShowModal(false);
   };
 
   return (
@@ -39,6 +46,13 @@ export default function Home() {
         <SheetModal>
           <ClothHandler clothes={clothes} handleViewMore={handleViewMore} />
         </SheetModal>
+        {/* Display the ModalScreen with the selected cloth */}
+        <ModalScreen
+          title={selectedCloth?.title}
+          body={selectedCloth?.description}
+          show={showModal}
+          onHide={closeModal}
+        />
       </div>
     </div>
   );
