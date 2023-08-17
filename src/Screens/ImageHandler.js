@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ImageHandler({ src, alt, ...props }) {
+function ImageHandler({ src, alt, style, ...props }) {
     return (
-        <div>
-            <img src={src} alt={alt} {...props} />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', height: '100vh' }}>
+            <img src={src} alt={alt} style={style} {...props} />
         </div>
     );
 }
