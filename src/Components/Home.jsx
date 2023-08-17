@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ImageHandler from "../Screens/ImageHandler";
 import Levick from "../Assets/Image/Levick.png";
-import SearchBar from "../Shared/SearchBar";
 import SheetModal from "../Shared/SheetModal";
 import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
-import ModalScreen from "../Shared/ModalScreen"; // Import the ModalScreen component
+import ModalScreen from "../Shared/ModalScreen";
+import SearchBar from "../Shared/SearchBar"; // Import the SearchBar component
 import "../Assets/Styles/Home.css";
 
 export default function Home() {
@@ -17,6 +17,7 @@ export default function Home() {
   const [clothes, setClothes] = useState([]);
   const [selectedCloth, setSelectedCloth] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // Add searchQuery state
 
   useEffect(() => {
     fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
@@ -35,6 +36,11 @@ export default function Home() {
     setShowModal(false);
   };
 
+  // Filter clothes based on the search query
+  const filteredClothes = clothes.filter(cloth =>
+    cloth.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="home-container">
       <div>
@@ -42,9 +48,10 @@ export default function Home() {
       </div>
       <div>
         <ImageHandler src={Levick} alt="Logo" style={imageStyle} />
-        <SearchBar />
+        {/* Display the SearchBar on the home page */}
+        <SearchBar setSearchQuery={setSearchQuery} />
         <SheetModal>
-          <ClothHandler clothes={clothes} handleViewMore={handleViewMore} />
+          <ClothHandler clothes={filteredClothes} handleViewMore={handleViewMore} />
         </SheetModal>
         {/* Display the ModalScreen with the selected cloth */}
         <ModalScreen
