@@ -2,9 +2,7 @@ import "../Assets/Styles/Header.css";
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { AccountCircle, ExitToApp, Home, Info, Work, Mail, Search, AddTask, AddCardTwoTone, AddToHomeScreen, ShoppingBag } from '@mui/icons-material';
-import levick from "../Assets/Image/Levick.png";
+import { AccountCircle, ExitToApp, Home, Mail, Search, ShoppingBag } from '@mui/icons-material';
 
 function Header() {
   const sessionCookie = sessionStorage.getItem('session_id');
@@ -40,32 +38,29 @@ function Header() {
   };
 
   return (
-
-    <header className="header">
+    <header className={`header ${isLoggedIn ? 'loggedIn' : ''}`}>
       <div className="nav-icons">
         <Link to="/" className="icon-link">
-          <Home className="icon" style={{ color: 'white' }} />
+          <Home className="icon" />
         </Link>
         <Link to="/about" className="icon-link">
-          <Search className="icon" style={{ color: 'white' }} />
+          <Search className="icon" />
         </Link>
         <Link to="/services" className="icon-link">
-          <ShoppingBag className="icon" style={{ color: 'white' }} />
+          <ShoppingBag className="icon" />
         </Link>
         <Link to="/contact" className="icon-link">
-          <Mail className="icon" style={{ color: 'white' }} />
+          <Mail className="icon" />
         </Link>
-        {isLoggedIn ? (
-          <Link to="/" className="icon-link">
-            <ExitToApp onClick={handleAuth} className="icon" style={{ color: 'white' }} />
-
-          </Link>
-        ) : (
-          <Link to="/signin" className="icon-link">
-            <AccountCircle className="icon" style={{ color: 'white' }} />
-
-          </Link>
-        )}
+        <div className="auth-link">
+          {isLoggedIn ? (
+            <ExitToApp onClick={handleAuth} className="icon" />
+          ) : (
+            <Link to="/signin" className="icon-link">
+              <AccountCircle className="icon" />
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );

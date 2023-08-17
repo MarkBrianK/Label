@@ -1,12 +1,18 @@
 @import url("https://fonts.cdnfonts.com/css/coca-cola-ii");
 
+/* Reset margin and padding for body */
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .head {
   color: white;
   font-size: xx-large;
   font-family: "Coca Cola ii", sans-serif;
   margin: 0;
-  width: auto;
   background-color: black;
+  padding: 10px;
 }
 
 .head span {
@@ -16,121 +22,76 @@
 
 .header {
   position: fixed;
+  bottom: 0;
   left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black !important;
-  padding: 10px;
+  background-color: black;
   z-index: 999;
-  height: 100vh;
-  transition: transform 0.3s ease-in-out;
+  height: 60px;
+  padding: 0 10px;
+  border-top: 1px solid goldenrod;
 }
 
-.header.open {
-  transform: translateX(0);
-}
-
-.header .button {
-  background-color: black !important;
-  color: #1a474a !important;
-  border-color: black !important;
-  margin: 0;
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.header .button p:hover {
-  color: white;
-}
-
-.header h1 {
-  color: white;
-  font-size: xx-large;
-  font-family: "Coca Cola ii", sans-serif;
-  margin: 0;
-}
-
-.header h1 span {
-  color: goldenrod;
-  font-size: small;
-}
-
-.header .image {
-  height: 100px;
-  align-self: flex-end;
+.header.loggedIn {
+  border-top: none;
 }
 
 .header .nav-icons {
   display: flex;
-  flex-direction: column;
   gap: 20px;
   color: white;
   text-decoration: none;
-  margin-top: 20px;
   justify-content: space-between;
+  align-items: center;
+  flex: 1; /* Distribute icons evenly */
 }
-.header .nav-icons .icon-link{
+
+.header .icon-link {
+  text-decoration: none;
+  color: white;
+}
+
+.header .icon-link:hover {
+  color: #1a474a;
+}
+
+.header .auth-link {
   text-decoration: none;
   color: white;
   gap: 10px;
 }
-.header .nav-icons .icon-link:hover{
+
+.header .auth-link:hover {
   color: #1a474a;
 }
 
-.header .icon-link:hover {
-  text-decoration: none;
-}
+/* Media queries */
+@media (min-width: 768px) {
+  .header .nav-icons {
+    display: flex;
+    gap: 20px;
+    color: white;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1; /* Distribute icons evenly */
+  }
 
-@media (max-width: 767px) {
   .header {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-  }
-
-
-
-  .header .nav-icons {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    color: white;
-    text-decoration: none;
-    margin-top: 0;
     justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    z-index: 999;
+    height: 60px;
+    padding: 0 10px;
+    border-top: 1px solid goldenrod;
   }
-  .header .nav-icons .icon-link{
-    text-decoration: none;
-    color: white;
-    gap: 10px;
-  }
-  .header .nav-icons .icon-link:hover{
-    color: #1a474a;
-  }
-}
-
-
-@media (min-width: 768px) {
-  .header {
-    position: fixed;
-    left: 0;
-    bottom: unset;
-    width: 200px;
-  }
-
-  .header.open {
-    transform: translateX(0);
-  }
-}
-
-body {
-  padding-bottom: 100px;
 }
