@@ -1,9 +1,11 @@
 import React from 'react';
 
-
-function ImageHandler(){
-    return(
-        <div></div>
-    )
+function ImageHandler({ src, alt, ...props }) {
+    return (
+        <div>
+            <img src={src} alt={alt} {...props} />
+        </div>
+    );
 }
-export default ImageHandler
+
+export default ImageHandler;
