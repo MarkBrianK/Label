@@ -1,8 +1,14 @@
-import React from 'react';
+import React from "react";
+import CardHolder from "../Shared/CardHolder";
 
-function ClothHandler(){
-    return(
-        <div></div>
-    )
+function ClothHandler({ clothes, handleViewMore }) {
+  return (
+    <div className="cloth-container">
+      {clothes.map((cloth, index) => (
+        <CardHolder key={index} cloth={cloth} handleViewMore={handleViewMore} />
+      ))}
+    </div>
+  );
 }
-export default ClothHandler
+
+export default ClothHandler;
