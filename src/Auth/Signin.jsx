@@ -3,8 +3,8 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-import logo from "../Image/Levick.png";
-import "../Styles/Signin.css";
+import logo from "../Assets/Image/Levick.png";
+import '../Assets/Styles/Signin.css'
 
 const SignInForm = ({ setSession, setUserId }) => {
   const [email, setEmail] = useState("");

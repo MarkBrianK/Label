@@ -1,0 +1,97 @@
+@import url("https://fonts.cdnfonts.com/css/coca-cola-ii");
+
+/* Reset margin and padding for body */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.head {
+  color: white;
+  font-size: xx-large;
+  font-family: "Coca Cola ii", sans-serif;
+  margin: 0;
+  background-color: black;
+  padding: 10px;
+}
+
+.head span {
+  color: goldenrod;
+  font-size: small;
+}
+
+.header {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  z-index: 999;
+  height: 60px;
+  padding: 0 10px;
+  border-top: 1px solid goldenrod;
+}
+
+.header.loggedIn {
+  border-top: none;
+}
+
+.header .nav-icons {
+  display: flex;
+  gap: 20px;
+  color: white;
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1; /* Distribute icons evenly */
+}
+
+.header .icon-link {
+  text-decoration: none;
+  color: white;
+}
+
+.header .icon-link:hover {
+  color: #1a474a;
+}
+
+.header .auth-link {
+  text-decoration: none;
+  color: white;
+  gap: 10px;
+}
+
+.header .auth-link:hover {
+  color: #1a474a;
+}
+
+/* Media queries */
+@media (min-width: 768px) {
+  .header .nav-icons {
+    display: flex;
+    gap: 20px;
+    color: white;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1; /* Distribute icons evenly */
+  }
+
+  .header {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    z-index: 999;
+    height: 60px;
+    padding: 0 10px;
+    border-top: 1px solid goldenrod;
+  }
+}
