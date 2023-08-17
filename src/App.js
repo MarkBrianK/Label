@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import SignUpForm from './Components/Auth/Signup';
-// import SignInForm from './Components/Auth/Signin';
+import SignUpForm from './Auth/Signup';
+import SignInForm from './Auth/Signin';
  import Home from './Components/Home';
 import Button from './Shared/Button';
 import SheetModal from './Shared/SheetModal';
+import { ROUTES } from './Routes/Routes';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,9 +24,11 @@ function App() {
 
   return (
     <div>
-
-   
-    <Home/>
+    <Routes>
+    <Route path={ROUTES.home} element={<Home/>}/>
+    <Route path={ROUTES.signUp} element={<SignUpForm/>}/>
+    <Route path={ROUTES.signIn} element={<SignInForm/>}/>
+    </Routes>
     </div>
   );
 }
