@@ -43,9 +43,7 @@ function Header() {
         <Link to="/" className="icon-link">
           <Home className="icon" />
         </Link>
-        <Link to="/about" className="icon-link">
-          <Search className="icon" />
-        </Link>
+
         <Link to="/services" className="icon-link">
           <ShoppingBag className="icon" />
         </Link>
