@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
-import logo from "../Image/Levick.png";
-import "../Styles/Signup.css";
+import logo from "../Assets/Image/Levick.png";
+import '../Assets/Styles/Signup.css'
 
 function SignupForm() {
   const [name, setName] = useState("");
