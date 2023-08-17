@@ -1,5 +1,4 @@
 .home-container {
   background-color: black;
-  min-height: 100vh;
-  overflow-y: auto;
+  height: fit-content;
 }
