@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../Assets/Image/Levick.png";
-import '../Assets/Styles/Signin.css'
+import "../Assets/Styles/Signin.css";
 
 const SignInForm = ({ setSession, setUserId }) => {
   const [email, setEmail] = useState("");
@@ -31,12 +31,15 @@ const SignInForm = ({ setSession, setUserId }) => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("https://levick-7b15defb7ee9.herokuapp.com/users/sign_in", {
-        user: {
-          email,
-          password,
-        },
-      });
+      const response = await axios.post(
+        "https://levick-7b15defb7ee9.herokuapp.com/users/sign_in",
+        {
+          user: {
+            email,
+            password,
+          },
+        }
+      );
       if (response && response.data && response.data.success) {
         const sessionID = response.data.session_id.public_id;
         const userID = response.data.user_id;
@@ -45,7 +48,7 @@ const SignInForm = ({ setSession, setUserId }) => {
         sessionStorage.setItem("user_id", userID.toString());
 
         setSession(sessionID);
-        navigate('/');
+        navigate("/");
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
         setIsLoading(false);
@@ -71,7 +74,6 @@ const SignInForm = ({ setSession, setUserId }) => {
               required
             />
           </Form.Group>
-
           <Form.Group controlId="password">
             <Form.Label className="formlabel">Password</Form.Label>
             <Form.Control
@@ -80,10 +82,10 @@ const SignInForm = ({ setSession, setUserId }) => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </Form.Group> <br/>
-
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} <br/>
-
+          </Form.Group>{" "}
+          <br />
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
+          <br />
           <Button
             type="submit"
             disabled={isLoading}
@@ -92,9 +94,12 @@ const SignInForm = ({ setSession, setUserId }) => {
           >
             {isLoading ? "Loading..." : "Sign In"}
           </Button>
-
           <div className="mt-3 text-center" id="signuplink">
-            Don't have an account? <Link className="tosignup" to="/signup">Sign up</Link> now.
+            Don't have an account?{" "}
+            <Link className="tosignup" to="/signup">
+              Sign up
+            </Link>{" "}
+            now.
           </div>
         </Form>
       </div>

@@ -6,7 +6,7 @@ import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
 import ModalScreen from "../Shared/ModalScreen";
 import SearchBar from "../Shared/SearchBar";
-import { Container, Row, Col } from "react-bootstrap"; // Import Bootstrap components
+import { Container, Row, Col } from "react-bootstrap";
 import "../Assets/Styles/Home.css";
 
 export default function Home() {
@@ -45,25 +45,22 @@ export default function Home() {
     <div className="home-container">
       <Header />
 
-      {/* Bootstrap Container */}
       <Container className="text-center mt-3">
-        <Row>
-          <Col>
-            {/* ImageHandler at the top center */}
+        <Row style={{display:"flex", alignItems:"center"}}>
+          <Col xs={3}> {/* Adjust the column size to your preference */}
             <ImageHandler src={Levick} alt="Logo" style={imageStyle} />
           </Col>
-        </Row>
-        <Row>
           <Col>
-            {/* SearchBar below ImageHandler */}
             <SearchBar setSearchQuery={setSearchQuery} />
           </Col>
         </Row>
         <Row>
           <Col>
-            {/* SheetModal below SearchBar */}
             <SheetModal>
-              <ClothHandler clothes={filteredClothes} handleViewMore={handleViewMore} />
+              <ClothHandler
+                clothes={filteredClothes}
+                handleViewMore={handleViewMore}
+              />
               <ModalScreen
                 title={selectedCloth?.title}
                 body={selectedCloth?.description}
