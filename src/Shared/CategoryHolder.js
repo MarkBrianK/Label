@@ -68,19 +68,19 @@ function CategoryHolder({ children }) {
                 selectedCategory === category.name ? "#f6f6f6" : "transparent",
               borderRadius: "50%",
               cursor: "pointer",
-              border: "none",
+              border: "1px solid goldenrod",
               marginRight: "10px",
               width: "60px",
-              height: "600px",
-              minWidth: "600px",
+              height: "60px",
+              minWidth: "60px",
               minHeight: "60px",
               padding: 0,
             }}
           >
             <img
-              src={category.image}
+              src={category.image} // Make sure this is a valid image URL or file path
               alt={category.name}
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
             />
           </button>
         ))}
