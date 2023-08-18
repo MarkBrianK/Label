@@ -32,7 +32,7 @@ body {
   z-index: 999;
   height: 60px;
   padding: 0 10px;
-  border-top: 1px solid goldenrod;
+  border-top: 1px solid grey;
 }
 
 .header.loggedIn {
@@ -41,10 +41,9 @@ body {
 
 .header .nav-icons {
   display: flex;
-  gap: 20px;
   color: white;
   text-decoration: none;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex: 1; /* Distribute icons evenly */
 }
