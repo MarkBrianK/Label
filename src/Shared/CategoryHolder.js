@@ -34,7 +34,7 @@ function CategoryHolder({ children }) {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-evenly",
           marginBottom: "10px",
         }}
       >
@@ -58,6 +58,8 @@ function CategoryHolder({ children }) {
             alt="Show All"
             style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
           />
+         <p style={{color:"white", fontSize:"xx-small"}}>
+         High end && Street Fashion</p>
         </button>
         {categories.map((category) => (
           <button
@@ -82,6 +84,7 @@ function CategoryHolder({ children }) {
               alt={category.name}
               style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
             />
+           <p style={{color:"white", fontSize:"xx-small"}}>{category.name}</p>
           </button>
         ))}
       </div>
