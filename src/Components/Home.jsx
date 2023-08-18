@@ -46,14 +46,16 @@ export default function Home() {
       <Header />
 
       <Container className="text-center mt-3">
-        <Row style={{display:"flex", alignItems:"center"}}>
-          <Col xs={3}> {/* Adjust the column size to your preference */}
-            <ImageHandler src={Levick} alt="Logo" style={imageStyle} />
-          </Col>
-          <Col>
-            <SearchBar setSearchQuery={setSearchQuery} />
-          </Col>
-        </Row>
+        <div className="fixed-logo-search-container">
+          <Row style={{ display: "flex", alignItems: "center" }}>
+            <Col xs={3}>
+              <ImageHandler src={Levick} alt="Logo" style={imageStyle} />
+            </Col>
+            <Col>
+              <SearchBar setSearchQuery={setSearchQuery} />
+            </Col>
+          </Row>
+        </div>
         <Row>
           <Col>
             <SheetModal>

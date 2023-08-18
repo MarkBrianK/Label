@@ -5,7 +5,16 @@
   flex-direction: column;
   align-items: center; /* Center horizontally */
 }
-
+.fixed-logo-search-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: black; /* Adjust this to your design */
+  z-index: 100;
+  padding: 10px; /* Adjust the padding as needed */
+  border-bottom: 0.5px solid rgb(50, 50, 50);
+}
 @media (min-width: 787px) {
   .home-container {
     flex-direction: row; /* Adjust flex direction for larger screens */

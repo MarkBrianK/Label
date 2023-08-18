@@ -11,8 +11,6 @@ export default function SheetModal({ children}) {
         borderTopLeftRadius: "45px",
         borderTopRightRadius: "45px",
         backgroundColor: "black",
-        borderLeft: "0.5px solid grey",
-        borderRight: "0.5px solid grey",
         display: "flex",
         justifyContent: "center",
         height: "100vh",
