@@ -44,17 +44,17 @@ function Header() {
           <Home className="icon" />
         </Link>
 
-        <Link to="/services" className="icon-link">
+        <Link to="/" className="icon-link">
           <ShoppingBag className="icon" />
         </Link>
-        <Link to="/contact" className="icon-link">
+        <Link to="/" className="icon-link">
           <Mail className="icon" />
         </Link>
         <div className="auth-link">
           {isLoggedIn ? (
             <ExitToApp onClick={handleAuth} className="icon" />
           ) : (
-            <Link to="/signin" className="icon-link">
+            <Link to="/" className="icon-link">
               <AccountCircle className="icon" />
             </Link>
           )}
