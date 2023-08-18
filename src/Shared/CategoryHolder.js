@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Levick from '../Assets/Image/Levick.png'
 
 function CategoryHolder({ children }) {
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const categoriesResponse = await axios.get(
-          'https://levick-7b15defb7ee9.herokuapp.com/categories'
+          "https://levick-7b15defb7ee9.herokuapp.com/categories"
         );
         // Sort the categories alphabetically by name
         const sortedCategories = categoriesResponse.data.sort((a, b) =>
@@ -23,25 +25,67 @@ function CategoryHolder({ children }) {
     fetchData();
   }, []);
 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
     <div>
-      {categories.map((category) => (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "10px",
+        }}
+      >
         <button
-          key={category.id}
+          onClick={() => handleCategoryClick(null)}
           style={{
-            backgroundColor: '#f6f6f6',
-            padding: '5px 10px',
-            borderRadius: '30px',
-            cursor: 'pointer',
-            width: '141px',
-            height: '62px',
-            border: 'none',
-            marginBottom: '10px', 
+            backgroundColor: selectedCategory === null ? "#f6f6f6" : "transparent",
+            borderRadius: "50%",
+            cursor: "pointer",
+            border: "1px solid goldenrod",
+            marginRight: "10px",
+            width: "60px",
+            height: "60px",
+            minWidth: "60px",
+            minHeight: "60px",
+            padding: 0,
           }}
         >
-          {children}
+          <img
+            src={Levick}
+            alt="Show All"
+            style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
+          />
         </button>
-      ))}
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => handleCategoryClick(category.name)}
+            style={{
+              backgroundColor:
+                selectedCategory === category.name ? "#f6f6f6" : "transparent",
+              borderRadius: "50%",
+              cursor: "pointer",
+              border: "none",
+              marginRight: "10px",
+              width: "60px",
+              height: "600px",
+              minWidth: "600px",
+              minHeight: "60px",
+              padding: 0,
+            }}
+          >
+            <img
+              src={category.image}
+              alt={category.name}
+              style={{ width: "100%", height: "100%" }}
+            />
+          </button>
+        ))}
+      </div>
+      {children(selectedCategory)}
     </div>
   );
 }

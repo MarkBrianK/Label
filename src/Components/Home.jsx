@@ -6,6 +6,7 @@ import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
 import ModalScreen from "../Shared/ModalScreen";
 import SearchBar from "../Shared/SearchBar";
+import CategoryHolder from "../Shared/CategoryHolder"; // Import the correct path
 import { Container, Row, Col } from "react-bootstrap";
 import "../Assets/Styles/Home.css";
 
@@ -56,20 +57,29 @@ export default function Home() {
             </Col>
           </Row>
         </div>
-        <Row>
+        <Row style ={{marginTop:"20vh"}}>
           <Col>
-            <SheetModal>
-              <ClothHandler
-                clothes={filteredClothes}
-                handleViewMore={handleViewMore}
-              />
-              <ModalScreen
-                title={selectedCloth?.title}
-                body={selectedCloth?.description}
-                show={showModal}
-                onHide={closeModal}
-              />
-            </SheetModal>
+            <CategoryHolder>
+              {(selectedCategory) => (
+                <SheetModal >
+                  <>
+                    {selectedCategory && (
+                      <p>Selected Category: {selectedCategory}</p>
+                    )}
+                    <ClothHandler
+                      clothes={
+                        selectedCategory
+                          ? filteredClothes.filter(
+                              (cloth) => cloth.category === selectedCategory
+                            )
+                          : filteredClothes
+                      }
+                      handleViewMore={handleViewMore}
+                    />
+                  </>
+                </SheetModal>
+              )}
+            </CategoryHolder>
           </Col>
         </Row>
       </Container>
