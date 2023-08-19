@@ -38,29 +38,6 @@ function CategoryHolder({ children }) {
           marginBottom: "10px",
         }}
       >
-        <button
-          onClick={() => handleCategoryClick(null)}
-          style={{
-            backgroundColor: selectedCategory === null ? "#f6f6f6" : "transparent",
-            borderRadius: "50%",
-            cursor: "pointer",
-            border: "1px solid goldenrod",
-            marginRight: "10px",
-            width: "60px",
-            height: "60px",
-            minWidth: "60px",
-            minHeight: "60px",
-            padding: 0,
-          }}
-        >
-          <img
-            src={Levick}
-            alt="Show All"
-            style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
-          />
-         <p style={{color:"white", fontSize:"xx-small"}}>
-         High end && Street Fashion</p>
-        </button>
         {categories.map((category) => (
           <button
             key={category.id}
