@@ -57,7 +57,7 @@ function CategoryHolder({ children }) {
             }}
           >
             <img
-              src={category.image} // Make sure this is a valid image URL or file path
+              src={category.image}
               alt={category.name}
               style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
             />

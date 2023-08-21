@@ -39,7 +39,7 @@ export default function Home() {
   };
 
   const filteredClothes = clothes.filter((cloth) =>
-    cloth.title.toLowerCase().includes(searchQuery.toLowerCase())
+    cloth.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -57,11 +57,11 @@ export default function Home() {
             </Col>
           </Row>
         </div>
-        <Row style ={{marginTop:"20vh"}}>
+        <Row style={{ marginTop: "20vh" }}>
           <Col>
             <CategoryHolder>
               {(selectedCategory) => (
-                <SheetModal >
+                <SheetModal>
                   <>
                     {selectedCategory && (
                       <p>Selected Category: {selectedCategory}</p>
@@ -77,6 +77,13 @@ export default function Home() {
                       handleViewMore={handleViewMore}
                     />
                   </>
+                  <ModalScreen
+                    show={showModal}
+                    onHide={closeModal}
+                    title={selectedCloth?.name} // Use optional chaining to prevent errors when selectedCloth is null
+                    body={selectedCloth?.description} // Use optional chaining
+                    footer={<button onClick={closeModal}>Close</button>}
+                  />
                 </SheetModal>
               )}
             </CategoryHolder>

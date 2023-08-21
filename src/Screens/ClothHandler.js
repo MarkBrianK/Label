@@ -8,7 +8,7 @@ function ClothHandler({ clothes, handleViewMore }) {
         <CardHolder
           key={index}
           cloth={cloth}
-          handleViewMore={() => handleViewMore(cloth)} // Pass the cloth to handleViewMore
+          handleViewMore={() => handleViewMore(cloth)}
         />
       ))}
     </div>
