@@ -6,7 +6,7 @@ import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
 import ModalScreen from "../Shared/ModalScreen";
 import SearchBar from "../Shared/SearchBar";
-import CategoryHolder from "../Shared/CategoryHolder"; // Import the correct path
+import CategoryHolder from "../Shared/CategoryHolder";
 import { Container, Row, Col } from "react-bootstrap";
 import "../Assets/Styles/Home.css";
 
@@ -62,31 +62,34 @@ export default function Home() {
             <CategoryHolder>
               {(selectedCategory) => (
                 <SheetModal>
-                  <>
-                    {selectedCategory && (
-                      <p>Selected Category: {selectedCategory}</p>
-                    )}
-                    <ClothHandler
-                      clothes={
-                        selectedCategory
-                          ? filteredClothes.filter(
-                              (cloth) => cloth.category === selectedCategory
-                            )
-                          : filteredClothes
-                      }
-                      handleViewMore={handleViewMore}
-                    />
-                  </>
-                  <ModalScreen
-                    show={showModal}
-                    onHide={closeModal}
-                    title={selectedCloth?.name} // Use optional chaining to prevent errors when selectedCloth is null
-                    body={selectedCloth?.description} // Use optional chaining
-                    footer={<button onClick={closeModal}>Close</button>}
+                  {selectedCategory && (
+                    <p>Selected Category: {selectedCategory}</p>
+                  )}
+                  <ClothHandler
+                    clothes={
+                      selectedCategory
+                        ? filteredClothes.filter(
+                            (cloth) => cloth.category === selectedCategory
+                          )
+                        : filteredClothes
+                    }
+                    handleViewMore={handleViewMore}
                   />
                 </SheetModal>
               )}
             </CategoryHolder>
+
+            <ModalScreen
+              show={showModal}
+              onHide={closeModal}
+              body={selectedCloth?.description}
+              footer={<button onClick={closeModal}>Close</button>}
+              name={selectedCloth?.name}
+              description={selectedCloth?.description}
+              price={selectedCloth?.price}
+              size={selectedCloth?.size}
+              image={selectedCloth?.image}
+            />
           </Col>
         </Row>
       </Container>
