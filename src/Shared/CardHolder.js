@@ -4,6 +4,7 @@ import Button from './Button';
 
 
 function CardHolder({ cloth, handleViewMore }) {
+
     return (
         <Card className="card-container">
             <Card.Img
