@@ -8,6 +8,7 @@ import ModalScreen from "../Shared/ModalScreen";
 import SearchBar from "../Shared/SearchBar";
 import CategoryHolder from "../Shared/CategoryHolder";
 import { Container, Row, Col } from "react-bootstrap";
+import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
 
 export default function Home() {
@@ -83,7 +84,7 @@ export default function Home() {
               show={showModal}
               onHide={closeModal}
               body={selectedCloth?.description}
-              footer={<button onClick={closeModal}>Close</button>}
+              footer={<Button onClick={closeModal}>Back</Button>}
               name={selectedCloth?.name}
               description={selectedCloth?.description}
               price={selectedCloth?.price}
