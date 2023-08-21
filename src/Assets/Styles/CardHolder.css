@@ -1,34 +1,48 @@
-/* CardHolder.css */
 .card-container {
-    margin-top: 20px;
+    margin: 20px;
     border: none;
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
-  }
-
-  .card-container:hover {
-    transform: translateY(-5px);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+    max-width: 300px;
   }
 
   .responsive-image {
-    position: relative;
-    padding-top: 100%; /* Creates a square aspect ratio */
+    width: 100%;
+    max-height: 300px; /* Adjust this value as needed */
     overflow: hidden;
   }
 
   .image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+
+  .text-center {
+    padding: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+    color: #555;
   }
 
   .custom-button {
-  width: 100% !important; /* Button takes up full width of the card */
-  height: 52px !important; /* Set a fixed height */
-  border-radius: 16px !important;
-  margin-top: 10px !important; /* Add some spacing between card content and button */
-}
+    background-color: #1a474a;
+    color: white;
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+  }
+
+  .custom-button:hover {
+    background-color: black;
+  }
