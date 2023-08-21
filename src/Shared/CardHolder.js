@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import Button from "./Button";
-import "../Assets/Styles/CardHolder.css"; // Update the import path
+import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore }) {
   return (
