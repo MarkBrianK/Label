@@ -74,6 +74,7 @@ export default function Home() {
                         : filteredClothes
                     }
                     handleViewMore={handleViewMore}
+
                   />
                 </SheetModal>
               )}

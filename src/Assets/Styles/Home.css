@@ -1,6 +1,6 @@
 .home-container {
   background-color: black;
-  height: fit-content;
+  min-height: 200vh;
   display: flex;
   flex-direction: column;
   align-items: center; /* Center horizontally */
