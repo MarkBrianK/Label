@@ -21,9 +21,10 @@ export default function Home() {
   const [selectedCloth, setSelectedCloth] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null); // New state for selected category
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
+    // Fetch clothes data from the API
     fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
       .then((response) => response.json())
       .then((data) => setClothes(data))
@@ -42,15 +43,17 @@ export default function Home() {
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
+    setSearchQuery(""); // Reset search query when category is selected
   };
 
-  const filteredClothes = clothes.filter((cloth) =>
+
+  const filteredByCategory = selectedCategory
+    ? clothes.filter((cloth) => cloth.category_id === selectedCategory.id)
+    : clothes;
+
+  const filteredBySearch = filteredByCategory.filter((cloth) =>
     cloth.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  const categoryFilteredClothes = selectedCategory
-    ? filteredClothes.filter((cloth) => cloth.category === selectedCategory)
-    : filteredClothes;
 
   return (
     <div className="home-container">
@@ -73,7 +76,8 @@ export default function Home() {
               {(selectedCategory) => (
                 <SheetModal>
                   <ClothHandler
-                    clothes={categoryFilteredClothes} // Pass the filtered clothes
+                    clothes={filteredBySearch}
+                    selectedCategory={selectedCategory} // Pass the selectedCategory
                     handleViewMore={handleViewMore}
                   />
                 </SheetModal>
