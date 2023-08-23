@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Levick from '../Assets/Image/Levick.png'
 
-function CategoryHolder({ children }) {
+function CategoryHolder({ children, handleCategorySelect }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const categoriesResponse = await axios.get(
+        const response = await fetch(
           "https://levick-7b15defb7ee9.herokuapp.com/categories"
         );
-        // Sort the categories alphabetically by name
-        const sortedCategories = categoriesResponse.data.sort((a, b) =>
+        const categoriesData = await response.json();
+        const sortedCategories = categoriesData.sort((a, b) =>
           a.name.localeCompare(b.name)
         );
         setCategories(sortedCategories);
@@ -27,6 +25,7 @@ function CategoryHolder({ children }) {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    handleCategorySelect(category); // Call the handleCategorySelect function
   };
 
   return (
@@ -41,7 +40,7 @@ function CategoryHolder({ children }) {
         {categories.map((category) => (
           <button
             key={category.id}
-            onClick={() => handleCategoryClick(category.name)}
+            onClick={() => handleCategoryClick(category)}
             style={{
               backgroundColor:
                 selectedCategory === category.name ? "#f6f6f6" : "transparent",
@@ -61,7 +60,7 @@ function CategoryHolder({ children }) {
               alt={category.name}
               style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
             />
-           <p style={{color:"white", fontSize:"xx-small"}}>{category.name}</p>
+            <p style={{color:"white", fontSize:"xx-small"}}>{category.name}</p>
           </button>
         ))}
       </div>
