@@ -10,7 +10,7 @@ function ModalScreen(props) {
     const phoneNumber = "+254719435030";
 
     // Generate the WhatsApp message
-    const message = `Hi, I'm interested in the ${name} cloth.`;
+    const message = `Hi, I'm interested in the ${name}`;
 
     // Create the WhatsApp link for mobile application
     const mobileWhatsAppLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
