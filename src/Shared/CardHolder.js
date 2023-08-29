@@ -11,7 +11,7 @@ function CardHolder({ cloth, handleViewMore }) {
           className="image"
           variant="top"
           src={cloth.image}
-          alt={cloth.title}
+          alt={cloth.name}
         />
       </div>
       <Card.Body className="text-center">
