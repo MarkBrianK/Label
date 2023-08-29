@@ -13,7 +13,7 @@ export default function SheetModal({ children}) {
         backgroundColor: "black",
         display: "flex",
         justifyContent: "center",
-        height: "100vh",
+        height: "fit-content",
         overflow: 'hidden',
         width:"100%",
         marginTop:"20px"
