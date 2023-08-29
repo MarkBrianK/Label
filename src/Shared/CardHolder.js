@@ -15,8 +15,7 @@ function CardHolder({ cloth, handleViewMore }) {
         />
       </div>
       <Card.Body className="text-center">
-        <Card.Title>{cloth.title}</Card.Title>
-        <Card.Text className="description">{cloth.description}</Card.Text>
+        <Card.Title>{cloth.name}</Card.Title>
         <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
           View More
         </Button>
