@@ -62,6 +62,15 @@ export default function Home() {
       itemSize.includes(searchTerm)
     );
   });
+  const isWithinLastTwoWeeks = (dateString) => {
+    const today = new Date();
+    const creationDate = new Date(dateString);
+    const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000); // Two weeks in milliseconds
+
+    return creationDate >= twoWeeksAgo;
+  };
+
+  const newArrivals = clothes.filter((cloth) => isWithinLastTwoWeeks(cloth.creationDate));
 
   return (
     <div className="home-container">
