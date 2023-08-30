@@ -10,6 +10,7 @@ import CategoryHolder from "../Shared/CategoryHolder";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
+import Carousel from "../Screens/Carousel";
 
 export default function Home() {
   const imageStyle = {
@@ -70,8 +71,10 @@ export default function Home() {
     return creationDate >= twoWeeksAgo;
   };
 
-  const newArrivals = clothes.filter((cloth) => isWithinLastTwoWeeks(cloth.creationDate));
-
+  const newArrivals = clothes.filter((cloth) =>
+    isWithinLastTwoWeeks(cloth.created_at)
+  );
+  console.log(clothes);
   return (
     <div className="home-container">
       <Header />
@@ -88,6 +91,10 @@ export default function Home() {
           </Row>
         </div>
         <Row style={{ marginTop: "20vh" }}>
+          <Row>
+          <Carousel newArrivals={newArrivals}/>
+          </Row>
+
           <Col>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
