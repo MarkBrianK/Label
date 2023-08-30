@@ -54,7 +54,7 @@ function Header() {
           {isLoggedIn ? (
             <ExitToApp onClick={handleAuth} className="icon" />
           ) : (
-            <Link to="/" className="icon-link">
+            <Link to="/signin" className="icon-link">
               <AccountCircle className="icon" />
             </Link>
           )}
