@@ -46,14 +46,22 @@ export default function Home() {
     setSearchQuery(""); // Reset search query when category is selected
   };
 
-
   const filteredByCategory = selectedCategory
     ? clothes.filter((cloth) => cloth.category_id === selectedCategory.id)
     : clothes;
 
-  const filteredBySearch = filteredByCategory.filter((cloth) =>
-    cloth.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredBySearch = filteredByCategory.filter((cloth) => {
+    const searchTerm = searchQuery.toLowerCase();
+    const itemName = cloth.name.toLowerCase();
+    const itemDescription = cloth.description.toLowerCase();
+    const itemSize = cloth.size.toLowerCase();
+
+    return (
+      itemName.includes(searchTerm) ||
+      itemDescription.includes(searchTerm) ||
+      itemSize.includes(searchTerm)
+    );
+  });
 
   return (
     <div className="home-container">
