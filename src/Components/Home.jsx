@@ -41,7 +41,6 @@ export default function Home() {
     setSelectedCloth(null);
     setShowModal(false);
   };
-
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setSearchQuery(""); // Reset search query when category is selected
