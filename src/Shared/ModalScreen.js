@@ -45,7 +45,7 @@ function ModalScreen(props) {
               key={index}
               src={imageUrl}
               alt={name}
-              style={{ maxWidth: "100%", maxHeight: "200px" }}
+              style={{ maxWidth: "100%", maxHeight: "200px", width: `${100 / imageUrls.length}%`, height: `${100/ imageUrls.length}%`  }}
             />
           ))}
           </div>
