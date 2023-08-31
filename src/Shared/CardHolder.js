@@ -4,19 +4,24 @@ import Button from "./Button";
 import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore }) {
+  // Split the image string into an array of image URLs
+  const imageUrls = cloth.image.split(',');
+
   return (
     <Card className="card-container">
       <div className="responsive-image">
-        <Card.Img
-          className="image"
-          variant="top"
-          src={cloth.image}
-          alt={cloth.name}
-        />
+        {imageUrls.map((imageUrl, index) => (
+          <img
+            key={index}
+            className="image"
+            src={imageUrl}
+            alt={`${cloth.name}`}
+            style={{ width: `${100 / imageUrls.length}%` }} // Evenly distribute width
+          />
+        ))}
       </div>
       <Card.Body className="text-center">
         <Card.Title>{cloth.name}</Card.Title>
-
         <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
           View More
         </Button>
