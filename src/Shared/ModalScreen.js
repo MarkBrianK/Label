@@ -28,6 +28,9 @@ function ModalScreen(props) {
     }
   };
 
+
+  const imageUrls = image ? image.split(',') : [];
+
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header className="modal-header">
@@ -37,7 +40,14 @@ function ModalScreen(props) {
         <div className="modal-content" style={{ display: "flex" }}>
           {/* Image displayed alone on the left */}
           <div className="image-container" style={{ flex: "1", padding: "10px" }}>
-            <img src={image} alt={name} style={{ maxWidth: "100%", maxHeight: "200px" }} />
+          {imageUrls.map((imageUrl, index) => (
+            <img
+              key={index}
+              src={imageUrl}
+              alt={name}
+              style={{ maxWidth: "100%", maxHeight: "200px" }}
+            />
+          ))}
           </div>
           {/* Other details displayed on the right */}
           <div className="details-container" style={{ flex: "2", padding: "10px" }}>
