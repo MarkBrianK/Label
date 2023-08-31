@@ -16,7 +16,7 @@ function CardHolder({ cloth, handleViewMore }) {
             className="image"
             src={imageUrl}
             alt={`${cloth.name}`}
-            style={{ width: `${100 / imageUrls.length}%` }} // Evenly distribute width
+            style={{ width: `${100 / imageUrls.length}%`, height: `${100/ imageUrls.length}%`  }} // Evenly distribute width
           />
         ))}
       </div>
