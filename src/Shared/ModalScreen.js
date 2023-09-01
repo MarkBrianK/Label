@@ -71,8 +71,8 @@ function ModalScreen(props) {
             >
               <FontAwesomeIcon
                 style={{
-                  width: "40px",
-                  height: "40px",
+                  width: "20px",
+                  height: "20px",
                   borderRadius: "50%",
                   marginRight: "5px",
                   backgroundColor: "#25D366",  // WhatsApp Green Color
@@ -81,7 +81,7 @@ function ModalScreen(props) {
                 }}
                 icon={faWhatsapp}
               />
-              <span style={{ marginLeft: "5px" }}>Contact via WhatsApp</span>
+              <span style={{ marginLeft: "5px", fontWeight:"600", color:"#1a474a" }}>Contact via WhatsApp</span>
             </button>
 
           </div>
