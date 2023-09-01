@@ -5,8 +5,6 @@ import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore }) {
   const [showImages, setShowImages] = useState(false);
-
-  
   const imageUrls = cloth.image.split(',');
 
   const showAdditionalImages = () => {
@@ -34,7 +32,7 @@ function CardHolder({ cloth, handleViewMore }) {
               alt={`${cloth.name}`}
               style={{ width: `${100 / imageUrls.length}%`, height: `${100 / imageUrls.length}%` }}
             />
-            <div className="overlay-text">+{imageUrls.length - 1}</div>
+            {imageUrls.length > 1 && <div className="overlay-text">+{imageUrls.length - 1}</div>}
           </div>
         )}
       </div>
