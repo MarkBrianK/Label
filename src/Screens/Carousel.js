@@ -7,7 +7,7 @@ export default function Carousel({ newArrivals }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % newArrivals.length);
-    }, 5000);
+    }, 1000);
 
     // Clear the interval and reset the currentIndex when the component unmounts
     return () => {
@@ -21,7 +21,7 @@ export default function Carousel({ newArrivals }) {
     width: "100%",
     height: "100%",
     position: "relative",
-    marginBottom:"20px"
+    marginBottom: "20px",
   };
 
   const imageStyle = {
@@ -38,18 +38,25 @@ export default function Carousel({ newArrivals }) {
       controls={false} // Set controls to false to remove arrows
       indicators={false} // Set indicators to false to remove page indicators
       style={carouselStyle} // Apply carousel styles
+      wrap={true} // Enable continuous circular motion
     >
       {newArrivals.map((item, index) => (
         <BootstrapCarousel.Item key={item.id}>
-          {item.images.map((imageUrl, imageIndex) => (
+          {Array.isArray(item.images) ? (
             <img
-              key={imageIndex}
-              src={imageUrl}
+              src={item.images[0]}
               alt={`${item.name}`}
               className="d-block w-100"
               style={imageStyle} // Apply image styles
             />
-          ))}
+          ) : (
+            <img
+              src={item.images}
+              alt={`${item.name}`}
+              className="d-block w-100"
+              style={imageStyle} // Apply image styles
+            />
+          )}
         </BootstrapCarousel.Item>
       ))}
     </BootstrapCarousel>
