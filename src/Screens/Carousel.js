@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import '../Assets/Styles/Carousel.css'
 
 export default function Carousel({ newArrivals }) {
@@ -21,7 +20,13 @@ export default function Carousel({ newArrivals }) {
           key={item.id}
           className={`carousel-item ${index === currentIndex ? "active" : ""}`}
         >
-          <img src={item.image} alt={item.name} />
+          {item.images.map((imageUrl, imageIndex) => (
+            <img
+              key={imageIndex}
+              src={imageUrl}
+              alt={`${item.name}`}
+            />
+          ))}
         </div>
       ))}
     </div>

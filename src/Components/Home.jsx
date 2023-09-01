@@ -70,10 +70,13 @@ export default function Home() {
     return creationDate >= twoWeeksAgo;
   };
 
-  const newArrivals = clothes.filter((cloth) =>
-    isWithinLastTwoWeeks(cloth.created_at)
-  );
-  console.log(clothes);
+  const newArrivals = clothes
+    .filter((cloth) => isWithinLastTwoWeeks(cloth.created_at))
+    .map((cloth) => ({
+      ...cloth,
+      images: cloth.image.split(","), // Assuming cloth.image is a comma-separated string of image URLs
+    }));
+
   return (
     <div className="home-container">
       <Header />
@@ -91,7 +94,7 @@ export default function Home() {
         </div>
         <Row style={{ marginTop: "20vh" }}>
           <Row>
-          <Carousel newArrivals={newArrivals}/>
+            <Carousel newArrivals={newArrivals} />
           </Row>
 
           <Col>
