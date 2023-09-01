@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import SignUpForm from './Auth/Signup';
-import SignInForm from './Auth/Signin';
- import Home from './Components/Home';
-import Button from './Shared/Button';
-import SheetModal from './Shared/SheetModal';
 import { ROUTES } from './Routes/Routes';
+
+const Home = lazy(() => import('./Components/Home'));
+const SignUpForm = lazy(() => import('./Auth/Signup'));
+const SignInForm = lazy(() => import('./Auth/Signin'));
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,11 +23,11 @@ function App() {
 
   return (
     <div>
-    <Routes>
-    <Route path={ROUTES.home} element={<Home/>}/>
-    <Route path={ROUTES.signUp} element={<SignUpForm/>}/>
-    <Route path={ROUTES.signIn} element={<SignInForm/>}/>
-    </Routes>
+      <Routes>
+        <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home /></Suspense>} />
+        <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
+        <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm /></Suspense>} />
+      </Routes>
     </div>
   );
 }
