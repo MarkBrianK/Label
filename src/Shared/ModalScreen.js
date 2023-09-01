@@ -2,6 +2,9 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 function ModalScreen(props) {
   const { body, footer, show, onHide, name, description, price, size, image } = props;
@@ -28,8 +31,18 @@ function ModalScreen(props) {
     }
   };
 
+  const iconButtonStyle = {
+    position: "absolute",
+    zIndex: 2,
+    top: "50%",
+    transform: "translateY(-50%)",
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+  };
 
   const imageUrls = image ? image.split(',') : [];
+  const showImageCarousel = imageUrls.length > 1;
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -39,19 +52,73 @@ function ModalScreen(props) {
       <Modal.Body className="modal-body">
         <div className="modal-content" style={{ display: "flex" }}>
           {/* Image displayed alone on the left */}
-          <div className="image-container" style={{ flex: "1", padding: "10px", textAlign: "center" }}>
-            {imageUrls.map((imageUrl, index) => (
+          <div className="responsive-image">
+            {showImageCarousel && (
+              <Carousel
+                showStatus={false}
+                showThumbs={false}
+                renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                  hasPrev && (
+                    <button
+                      type="button"
+                      onClick={onClickHandler}
+                      title={label}
+                      style={{
+                        ...iconButtonStyle,
+                        left: "15px",
+                        color: "white", // Set the color to white
+                      }}
+                    >
+                      <IoIosArrowBack size={30} />
+                    </button>
+                  )
+                }
+                renderArrowNext={(onClickHandler, hasNext, label) =>
+                  hasNext && (
+                    <button
+                      type="button"
+                      onClick={onClickHandler}
+                      title={label}
+                      style={{
+                        ...iconButtonStyle,
+                        right: "15px",
+                        color: "white", // Set the color to white
+                      }}
+                    >
+                      <IoIosArrowForward size={30} />
+                    </button>
+                  )
+                }
+              >
+                {imageUrls.map((imageUrl, index) => (
+                  <div key={index} className="popup-image-container">
+                    <img
+                      className="popup-image"
+                      src={imageUrl}
+                      alt={`logo`}
+                      style={{
+                        maxWidth: "100%", // Set a maximum width
+                        maxHeight: "300px", // Set a maximum height
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            )}
+            {!showImageCarousel && (
               <img
-                key={index}
-                src={imageUrl}
-                alt={name}
+                className="image"
+                src={imageUrls[0]}
+                alt={`logo`}
                 style={{
-                  maxHeight: "200px", // Set a maximum height
-                  width: "auto",      // Maintain aspect ratio
-                  margin: "0 auto",   // Center horizontally
+                  maxWidth: "100%", // Set a maximum width
+                  maxHeight: "300px", // Set a maximum height
+                  objectFit: "cover",
+                  borderRadius: "15px 15px 0 0",
                 }}
               />
-            ))}
+            )}
           </div>
           {/* Other details displayed on the right */}
           <div className="details-container" style={{ flex: "2", padding: "10px" }}>
@@ -85,7 +152,7 @@ function ModalScreen(props) {
                 }}
                 icon={faWhatsapp}
               />
-              <span style={{ marginLeft: "5px", fontWeight: "600", color: "#1a474a", fontSize:"small" }}>Contact via WhatsApp</span>
+              <span style={{ marginLeft: "5px", fontWeight: "600", color: "#1a474a", fontSize: "small" }}>Contact via WhatsApp</span>
             </button>
 
           </div>
