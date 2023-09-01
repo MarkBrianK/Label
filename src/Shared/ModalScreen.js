@@ -39,15 +39,19 @@ function ModalScreen(props) {
       <Modal.Body className="modal-body">
         <div className="modal-content" style={{ display: "flex" }}>
           {/* Image displayed alone on the left */}
-          <div className="image-container" style={{ flex: "1", padding: "10px" }}>
-          {imageUrls.map((imageUrl, index) => (
-            <img
-              key={index}
-              src={imageUrl}
-              alt={name}
-              style={{ maxWidth: "100%", maxHeight: "200px", width: `${100 / imageUrls.length}%`, height: `${100/ imageUrls.length}%`  }}
-            />
-          ))}
+          <div className="image-container" style={{ flex: "1", padding: "10px", textAlign: "center" }}>
+            {imageUrls.map((imageUrl, index) => (
+              <img
+                key={index}
+                src={imageUrl}
+                alt={name}
+                style={{
+                  maxHeight: "200px", // Set a maximum height
+                  width: "auto",      // Maintain aspect ratio
+                  margin: "0 auto",   // Center horizontally
+                }}
+              />
+            ))}
           </div>
           {/* Other details displayed on the right */}
           <div className="details-container" style={{ flex: "2", padding: "10px" }}>
@@ -81,7 +85,7 @@ function ModalScreen(props) {
                 }}
                 icon={faWhatsapp}
               />
-              <span style={{ marginLeft: "5px", fontWeight:"600", color:"#1a474a" }}>Contact via WhatsApp</span>
+              <span style={{ marginLeft: "5px", fontWeight: "600", color: "#1a474a", fontSize:"small" }}>Contact via WhatsApp</span>
             </button>
 
           </div>
