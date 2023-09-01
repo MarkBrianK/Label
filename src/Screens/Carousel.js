@@ -7,7 +7,7 @@ export default function Carousel({ newArrivals }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % newArrivals.length);
-    }, 10000);
+    }, 5000);
 
     // Clear the interval and reset the currentIndex when the component unmounts
     return () => {

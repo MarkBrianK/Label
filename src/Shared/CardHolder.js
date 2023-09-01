@@ -26,11 +26,6 @@ function CardHolder({ cloth, handleViewMore }) {
     horizontal: true,
   };
 
-  const imageStyle = {
-    maxWidth: "100%",
-    maxHeight: "100%",
-  };
-
   return (
     <Card className="card-container">
       <div className="responsive-image">
@@ -38,7 +33,7 @@ function CardHolder({ cloth, handleViewMore }) {
           className="image"
           src={imageUrls[0]}
           alt={`${cloth.name}`}
-          style={{ ...imageStyle, width: "auto" }}
+          style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover" }}
         />
         {showImages && (
           <div className="image-popup" onClick={hideAdditionalImages}>
@@ -49,7 +44,7 @@ function CardHolder({ cloth, handleViewMore }) {
                     className="popup-image"
                     src={imageUrl}
                     alt={`${cloth.name}`}
-                    style={imageStyle}
+                    style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover" }}
                   />
                 </div>
               ))}
