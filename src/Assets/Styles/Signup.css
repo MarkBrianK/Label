@@ -1,22 +1,15 @@
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     background-color: black;
-    position: relative;
   }
   .display-image {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 30px;
 
   }
 
   .display-logo {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    display: flex;
     height: 100px;
     width: 100px;
     align-content: flex-end;
@@ -24,7 +17,7 @@
 
   .centered-container {
     min-width:auto;
-    margin-top: 70px;
+    margin: 30px;
   }
 
   .holder {
