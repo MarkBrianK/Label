@@ -24,13 +24,13 @@
 
   .centered-container {
     min-width:auto;
-    margin-top: 50px;
+    margin-top: 70px;
   }
 
   .holder {
     background-color: black;
     padding: 20px;
-    border: 1px solid gold;
+    border: 0.3px solid #1A474A;
     border-radius: 16px;
   }
 
