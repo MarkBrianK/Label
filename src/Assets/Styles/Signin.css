@@ -1,8 +1,6 @@
-.logo-image {
-    display: flex;
-    height: 300px;
-    width: 300px;
-    align-content: flex-end;
+  .signin {
+    background-color: black;
+    min-height: 100vh;
   }
 
   .image {
@@ -10,11 +8,12 @@
     justify-content: flex-end;
   }
 
-  .signin {
-    background-color: black;
-    min-height: 100vh;
+  .image .logo-image {
+    display: flex;
+    height: 100px;
+    width: 100px;
+    align-content: flex-end;
   }
-
   .formlabel {
     color: #c7a034;
   }
@@ -44,6 +43,7 @@
   #signuplink{
     color: #c7a034;
     text-decoration: none;
+    font-size: small;
   }
 
 
