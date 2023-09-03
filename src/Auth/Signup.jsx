@@ -66,8 +66,8 @@ function SignupForm() {
 
   return (
     <div className="home-container">
-      <div className="image">
-        <img src={logo} alt="Logo" className="logo img-fluid" />
+      <div className="display-image">
+        <img src={logo} alt="Logo" className="display-logo img-fluid" />
       </div>
       <div className="centered-container">
         <div className="holder">
