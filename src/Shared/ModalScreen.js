@@ -122,9 +122,9 @@ function ModalScreen(props) {
           </div>
           {/* Other details displayed on the right */}
           <div className="details-container" style={{ flex: "2", padding: "10px" }}>
-            <p><strong>Name:</strong> {name}</p>
-            <p><strong>Description:</strong> {description}</p>
-            <p><strong>Size:</strong> {size}</p>
+            <p style={{fontSize:"small"}}><strong>Name:</strong> {name}</p>
+            <p style={{fontSize:"small"}}><strong>Description:</strong> {description}</p>
+            <p style={{fontSize:"small"}}> <strong>Size:</strong> {size}</p>
             <button
               style={{
                 display: "flex",
