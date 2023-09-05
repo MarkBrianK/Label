@@ -7,7 +7,7 @@ import Button from "./Button";
 import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore }) {
-  const imageUrls = cloth.image.split(",");
+  const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
 
   const iconButtonStyle = {
