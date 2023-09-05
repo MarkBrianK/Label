@@ -77,7 +77,7 @@ export default function Home() {
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "20vh" }}>
+        <Row style={{ marginTop: "20vh"}}>
           <Col>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
