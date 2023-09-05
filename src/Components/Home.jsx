@@ -10,7 +10,6 @@ import CategoryHolder from "../Shared/CategoryHolder";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
-import Carousel from "../Screens/Carousel";
 
 export default function Home() {
   const imageStyle = {
@@ -62,20 +61,6 @@ export default function Home() {
       itemSize.includes(searchTerm)
     );
   });
-  const isWithinLastTwoWeeks = (dateString) => {
-    const today = new Date();
-    const creationDate = new Date(dateString);
-    const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000); // Two weeks in milliseconds
-
-    return creationDate >= twoWeeksAgo;
-  };
-
-  const newArrivals = clothes
-    .filter((cloth) => isWithinLastTwoWeeks(cloth.created_at))
-    .map((cloth) => ({
-      ...cloth,
-      images: cloth.image.split(","), // Assuming cloth.image is a comma-separated string of image URLs
-    }));
 
   return (
     <div className="home-container">
@@ -93,10 +78,6 @@ export default function Home() {
           </Row>
         </div>
         <Row style={{ marginTop: "20vh" }}>
-          {/* <Row>
-            <Carousel newArrivals={newArrivals} />
-          </Row> */}
-
           <Col>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
