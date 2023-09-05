@@ -60,7 +60,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
               alt={category.name}
               style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
             />
-            <p style={{color:"white", fontSize:"xx-small"}}>{category.name}</p>
+            <p style={{color:"white", fontSize:"xx-small", marginTop:"4px"}}>{category.name}</p>
           </button>
         ))}
       </div>
