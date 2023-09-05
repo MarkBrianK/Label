@@ -41,7 +41,7 @@ function ModalScreen(props) {
     cursor: "pointer",
   };
 
-  const imageUrls = image ? image.split(',') : [];
+  const imageUrls = image ? JSON.parse(image) : [];
   const showImageCarousel = imageUrls.length > 1;
 
   return (
