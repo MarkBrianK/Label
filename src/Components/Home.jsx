@@ -93,9 +93,9 @@ export default function Home() {
           </Row>
         </div>
         <Row style={{ marginTop: "20vh" }}>
-          <Row>
+          {/* <Row>
             <Carousel newArrivals={newArrivals} />
-          </Row>
+          </Row> */}
 
           <Col>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
