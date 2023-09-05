@@ -19,6 +19,13 @@ function CardHolder({ cloth, handleViewMore }) {
     border: "none",
     cursor: "pointer",
   };
+  function isWithinLastTwoWeeks(dateString) {
+    const today = new Date();
+    const creationDate = new Date(dateString);
+    const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000); // Two weeks in milliseconds
+
+    return creationDate >= twoWeeksAgo;
+  }
 
   return (
     <Card className="card-container">
@@ -89,14 +96,53 @@ function CardHolder({ cloth, handleViewMore }) {
             }}
           />
         )}
+
+
+        {isWithinLastTwoWeeks(cloth.created_at) && (
+          <div
+            className="new-arrival-mark"
+            style={{
+              position: "absolute",
+              top: "5px",
+              left: "5px",
+              width: "34px",
+              height: "34px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "14px", // Adjust the font size for the "new" text
+              fontWeight: "bold",
+            }}
+          >
+            <span
+              style={{
+                backgroundColor: "black",
+                color: "goldenrod",
+                borderRadius: "50%",
+                padding: "4px", // Adjust padding as needed
+                display: "inline-block",
+                width: "100%",
+                height: "100%",
+                textAlign: "center",
+                lineHeight: "1",
+                fontSize:"x-small"
+              }}
+            >
+              &#9733; New{/* Unicode star character */}
+            </span>
+          </div>
+        )}
+
+
+
       </div>
       <Card.Body className="text-center">
         <Card.Title style={{ fontSize: "small", fontWeight: "600" }}>
           {cloth.name}
         </Card.Title>
         <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
-        View More
-      </Button>
+          View More
+        </Button>
       </Card.Body>
     </Card>
   );
