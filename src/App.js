@@ -17,7 +17,10 @@ function App() {
   useEffect(() => {
     const session = localStorage.getItem('session_id');
     if (session) {
-      setIsLoggedIn(true);
+      // Introduce a 2-second delay before setting isLoggedIn to true
+      setTimeout(() => {
+        setIsLoggedIn(true);
+      }, 2000);
     }
   }, []);
 
@@ -25,8 +28,14 @@ function App() {
     <div>
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home isLoggedIn={isLoggedIn} /></Suspense>} />
-        <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
-        <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setSession={setSession} /></Suspense>} />
+        {/* Render the SignUpForm route only when the user is not logged in */}
+        {!isLoggedIn && (
+          <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
+        )}
+        {/* Render the SignInForm route only when the user is not logged in */}
+        {!isLoggedIn && (
+          <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setSession={setSession} /></Suspense>} />
+        )}
       </Routes>
     </div>
   );
