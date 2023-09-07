@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 
 const Home = lazy(() => import('./Components/Home'));
@@ -15,7 +15,7 @@ function App() {
   };
 
   useEffect(() => {
-    const session = sessionStorage.getItem('session_id');
+    const session = localStorage.getItem('session_id');
     if (session) {
       setIsLoggedIn(true);
     }
@@ -24,7 +24,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home /></Suspense>} />
+        <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home isLoggedIn={isLoggedIn} /></Suspense>} />
         <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
         <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setSession={setSession} /></Suspense>} />
       </Routes>
