@@ -34,6 +34,7 @@ export default function Home() {
   const handleViewMore = (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
+   
   };
 
   const closeModal = () => {
@@ -42,7 +43,7 @@ export default function Home() {
   };
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    setSearchQuery(""); // Reset search query when category is selected
+    setSearchQuery("");
   };
 
   const filteredByCategory = selectedCategory
