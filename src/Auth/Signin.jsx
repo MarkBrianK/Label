@@ -13,6 +13,7 @@ import "../Assets/Styles/Signin.css";
 const SignInForm = ({ setSession, setUserId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -36,7 +37,7 @@ const SignInForm = ({ setSession, setUserId }) => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:3000/users/sign_in",
+        "https://levick-7b15defb7ee9.herokuapp.com/users/sign_in",
         {
           user: {
             email,
@@ -66,8 +67,11 @@ const SignInForm = ({ setSession, setUserId }) => {
         localStorage.setItem("session_id", sessionID);
 
         setSession(sessionID)
+        setSuccess(true)
 
-        navigate("/")
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
         setIsLoading(false);
@@ -107,6 +111,11 @@ const SignInForm = ({ setSession, setUserId }) => {
           </Form.Group>{" "}
           <br />
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
+          {success && (
+            <Alert variant="success">
+              You have successfully signed up. Kindly check your email to confirm your account.
+            </Alert>
+          )}
           <br />
           <Button
             type="submit"
