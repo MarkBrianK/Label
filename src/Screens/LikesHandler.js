@@ -5,27 +5,47 @@ import CryptoJS from "crypto-js";
 function LikeButton({ cloth }) {
     const [liked, setLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
+    const [user, setUser] = useState(null)
 
-    const secretKey = "wabebee_x1_levick";
 
-    const encryptedUserID = localStorage.getItem("user_id");
+    // Retrieve the encrypted user ID from localStorage
+    useEffect(() => {
+        try {
+          const secretKey = "wabebee_x1_levick";
+          const encryptedUserID = localStorage.getItem("user_id");
+          if (encryptedUserID) {
+            const bytes = CryptoJS.AES.decrypt(encryptedUserID, secretKey);
+            const decryptedUserData = bytes.toString(CryptoJS.enc.Utf8);
 
-    const bytes = CryptoJS.AES.decrypt(encryptedUserID, secretKey);
-    const decryptedUserID = bytes.toString(CryptoJS.enc.Utf8);
+            // Check if the decrypted data is not empty
+            if (decryptedUserData) {
+              // Parse the decrypted JSON string into a JavaScript object
+              const currentUser = JSON.parse(decryptedUserData);
+              setUser(currentUser)
+            } else {
+              console.error("Decrypted user data is empty.");
+            }
+          } else {
+            console.error("User ID not found in localStorage");
+          }
+        } catch (error) {
+          console.error("Decryption error:", error);
+        }
+      }, []);
 
-    const currentUser = decryptedUserID
+
 
 
     useEffect(() => {
         // Fetch likes for the specific cloth when the component mounts
         const fetchLikes = async () => {
             try {
-                const response = await fetch(`/cloth/${cloth.id}/likes`);
+                const response = await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch likes");
                 }
                 const data = await response.json();
-                const userHasLiked = data.some((like) => like.user_id === currentUser.id);
+                const userHasLiked = data.some((like) => like.user_id === user);
                 setLikesCount(data.length);
                 setLiked(userHasLiked);
             } catch (error) {
@@ -41,12 +61,12 @@ function LikeButton({ cloth }) {
             // Perform the like/unlike action
             if (liked) {
                 // Unlike the cloth
-                await fetch(`/cloth/${cloth.id}/likes/${currentUser.id}`, {
+                await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes/${user}`, {
                     method: "DELETE",
                 });
             } else {
                 // Like the cloth
-                await fetch(`/cloth/${cloth.id}/likes`, {
+                await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`, {
                     method: "POST",
                 });
             }
