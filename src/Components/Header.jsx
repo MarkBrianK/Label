@@ -2,8 +2,7 @@ import "../Assets/Styles/Header.css";
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { AccountCircle, ExitToApp, Home, Mail, Search, ShoppingBag } from '@mui/icons-material';
-
+import { AccountCircle, ExitToApp, Home, Mail,ShoppingBag } from '@mui/icons-material';
 function Header() {
   const sessionCookie = sessionStorage.getItem('session_id');
   const userId = parseInt(sessionStorage.getItem('user_id'));

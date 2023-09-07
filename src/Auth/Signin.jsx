@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
+
+import CryptoJS from "crypto-js";
+
 
 import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signin.css";
@@ -32,29 +36,47 @@ const SignInForm = ({ setSession, setUserId }) => {
 
     try {
       const response = await axios.post(
-        "https://levick-7b15defb7ee9.herokuapp.com/users/sign_in",
+        "http://127.0.0.1:3000/users/sign_in",
         {
           user: {
             email,
             password,
           },
+        },
+        {
+          withCredentials: true,
         }
       );
       if (response && response.data && response.data.success) {
         const sessionID = response.data.session_id.public_id;
         const userID = response.data.user_id;
 
-        sessionStorage.setItem("session_id", sessionID);
-        sessionStorage.setItem("user_id", userID.toString());
+        const secretKey = "wabebee_x1_levick"
 
-        setSession(sessionID);
-        navigate("/");
+
+        // Encrypt the userID before storing it
+        const encryptedUserID = CryptoJS.AES.encrypt(
+          userID.toString(), // Convert user ID to a string
+          secretKey
+        ).toString();
+
+        localStorage.setItem("user_id", encryptedUserID);
+
+
+        localStorage.setItem("session_id", sessionID);
+
+        setSession(sessionID)
+
+        navigate("/")
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
         setIsLoading(false);
       }
     } catch (error) {
-      setErrorMessage(error.response.data.message || "An error occurred.");
+      console.log(error)
+      setErrorMessage(error.response?.data?.message || "An error occurred.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
