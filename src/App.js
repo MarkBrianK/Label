@@ -10,7 +10,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const setSession = (sessionID) => {
-    sessionStorage.setItem('session_id', sessionID);
+    localStorage.setItem('session_id', sessionID);
     setIsLoggedIn(true);
   };
 
@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home /></Suspense>} />
         <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
-        <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm /></Suspense>} />
+        <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setSession={setSession} /></Suspense>} />
       </Routes>
     </div>
   );
