@@ -4,29 +4,29 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { AccountCircle, ExitToApp, Home, Mail,ShoppingBag } from '@mui/icons-material';
 function Header() {
-  const sessionCookie = sessionStorage.getItem('session_id');
-  const userId = parseInt(sessionStorage.getItem('user_id'));
+  const sessionCookie = localStorage.getItem('session_id');
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    setIsLoggedIn(!!sessionCookie && userId);
-  }, [sessionCookie, userId]);
+    setIsLoggedIn(!!sessionCookie);
+  }, [sessionCookie]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
     if (isLoggedIn) {
       try {
-        await axios.delete('http://localhost:3000/users/sign_out', {
+        await axios.delete('https://levick-7b15defb7ee9.herokuapp.com/users/sign_out', {
           headers: {
             Authorization: `Bearer ${sessionCookie}`,
           },
           withCredentials: true,
         });
 
-        sessionStorage.removeItem('session_id');
-        sessionStorage.removeItem('user_id');
+        localStorage.removeItem('session_id');
+        localStorage.removeItem('user_id');
         setIsLoggedIn(false);
+        window.location.reload();
         navigate('/');
       } catch (error) {
         console.error(error);
