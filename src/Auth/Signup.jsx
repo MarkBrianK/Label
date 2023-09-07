@@ -28,7 +28,7 @@ function SignupForm() {
 
     try {
       const response = await axios.post(
-        "https://levick-7b15defb7ee9.herokuapp.com/users",
+        "http://127.0.0.1:3000/users",
         {
           user: {
             name,
@@ -56,6 +56,7 @@ function SignupForm() {
           setNameError(data.errors.name);
           setEmailError(data.errors.email);
           setPasswordError(data.errors.password);
+          setPasswordConfirmationError(data.errors.password_confirmation)
         }
       }
     } catch (error) {
@@ -74,24 +75,33 @@ function SignupForm() {
           {error && <Alert variant="danger">{error}</Alert>}
           {success && (
             <Alert variant="success">
-              You have successfully signed up. Redirecting to sign-in form...
+              You have successfully signed up. Kindly check your email to confirm your account.
             </Alert>
           )}
 
           {isLoading && (
-            <div className="loading-alert">
-              <div
-                className="spinner-border text-primary loading-spinner"
-                role="status"
-              >
-                <span className="sr-only" id="spinner">
-                  Loading...
-                </span>
-              </div>
-              <Alert variant="danger" className="loading-text">
-                {isLoading ? "Loading..." : ""}
-              </Alert>
-            </div>
+           <div className="loading-alert">
+           <div className="spinner-border text-primary loading-spinner" role="status">
+             <span className="sr-only" id="spinner"></span>
+           </div>
+           <style>
+             {`
+               .loading-spinner {
+                 transform-origin: center;
+                 animation: spin 2s linear infinite;
+               }
+
+               @keyframes spin {
+                 0% { transform: rotate(0deg); }
+                 100% { transform: rotate(360deg); }
+               }
+             `}
+           </style>
+           <Alert variant="danger" className="loading-text">
+             {isLoading ? "Loading..." : ""}
+           </Alert>
+         </div>
+
           )}
           <Form onSubmit={handleSubmit}>
             <h2 className="form-header">Sign Up</h2>
