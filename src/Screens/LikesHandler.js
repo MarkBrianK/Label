@@ -23,13 +23,13 @@ function LikeButton({ cloth }) {
               const currentUser = JSON.parse(decryptedUserData);
               setUser(currentUser)
             } else {
-              console.error("Decrypted user data is empty.");
+              console.error("Please log in.");
             }
           } else {
-            console.error("User ID not found in localStorage");
+            console.error("Please log in.");
           }
         } catch (error) {
-          console.error("Decryption error:", error);
+          console.error("Please log in");
         }
       }, []);
 
@@ -57,30 +57,41 @@ function LikeButton({ cloth }) {
     },);
 
     const handleLikeClick = async () => {
-        try {
-            // Perform the like/unlike action
-            if (liked) {
-                // Unlike the cloth
-                await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes/${user}`, {
-                    method: "DELETE",
-                });
-            } else {
-                // Like the cloth
-                await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`, {
-                    method: "POST",
-                });
-            }
-            setLiked(!liked);
-            setLikesCount(liked ? likesCount - 1 : likesCount + 1);
-        } catch (error) {
-            console.error("Error updating likes:", error);
+        // Check if there is no user, and return early if so
+        if (!user) {
+          return;
         }
-    };
+
+        try {
+          // Perform the like/unlike action
+          if (liked) {
+            // Unlike the cloth
+            await fetch(
+              `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes/${user}`,
+              {
+                method: "DELETE",
+              }
+            );
+          } else {
+            // Like the cloth
+            await fetch(
+              `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`,
+              {
+                method: "POST",
+              }
+            );
+          }
+          setLiked(!liked);
+          setLikesCount(liked ? likesCount - 1 : likesCount + 1);
+        } catch (error) {
+          console.error("Error updating likes:", error);
+        }
+      };
 
     return (
-        <div onClick={handleLikeClick}>
+        <div onClick={handleLikeClick} style={{fontSize:"small"}}>
             {liked ? <FaHeart color="red" /> : <FaRegHeart />}
-            {likesCount} Likes
+            {likesCount}  Likes
         </div>
     );
 }
