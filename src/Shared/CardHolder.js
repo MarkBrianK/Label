@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
+import LikeButton from "../Screens/LikesHandler"
 import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore }) {
@@ -140,6 +141,7 @@ function CardHolder({ cloth, handleViewMore }) {
         <Card.Title style={{ fontSize: "small", fontWeight: "600" }}>
           {cloth.name}
         </Card.Title>
+        <LikeButton cloth={cloth} />
         <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
           View More
         </Button>
