@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 function ModalScreen(props) {
-  const { body, footer, show, onHide, name, description, price, size, image } = props;
+  const { footer, show, onHide, name, description, size, image } = props;
 
   const handleContactWhatsApp = () => {
     const phoneNumber = "+254719435030";
