@@ -34,7 +34,7 @@ export default function Home() {
   const handleViewMore = (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
-   
+
   };
 
   const closeModal = () => {
