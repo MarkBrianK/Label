@@ -18,7 +18,7 @@ function LikeButton({ cloth }) {
 
         if (decryptedUserData) {
           const currentUser = JSON.parse(decryptedUserData);
-          setUser(currentUser);
+          setUser(currentUser); // Set user here
         } else {
           console.error("Please log in.");
         }
@@ -26,7 +26,7 @@ function LikeButton({ cloth }) {
         console.error("Please log in.");
       }
     } catch (error) {
-      console.error("Please log in");
+      console.error("Please log in", error);
     }
   }, []);
 
@@ -35,13 +35,13 @@ function LikeButton({ cloth }) {
     const fetchLikes = async () => {
       try {
         const response = await fetch(
-          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`
+          `http://127.0.0.1:3000/cloths/${cloth.id}/likes`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch likes");
         }
         const data = await response.json();
-        const userHasLiked = data.some((like) => like.user_id === user);
+        const userHasLiked = data.some((like) => like.user_id === user); // Use user.id
         setLikesCount(data.length);
         setLiked(userHasLiked);
       } catch (error) {
@@ -49,8 +49,10 @@ function LikeButton({ cloth }) {
       }
     };
 
-    fetchLikes();
-  }, [cloth.id, user]); // Make sure to include cloth.id and user.id as dependencies
+    if (user) {
+      fetchLikes(); // Only fetch likes if user is defined
+    }
+  }, [cloth.id, user]);
 
   const handleLikeClick = async () => {
     if (!user) {
@@ -59,23 +61,25 @@ function LikeButton({ cloth }) {
     }
 
     try {
+      const requestData = { user_id: user }; // Change user_id value to "user"
+
       if (liked) {
         // Unlike the cloth
-        await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/unlike`, {
+        await fetch(`http://127.0.0.1:3000/cloths/${cloth.id}/unlike`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user_id: user }), // Send user.id instead of user
+          body: JSON.stringify(requestData), // Send the modified request data
         });
       } else {
         // Like the cloth
-        await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`, {
+        await fetch(`http://127.0.0.1:3000/cloths/${cloth.id}/likes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user_id: user }), // Send user.id instead of user
+          body: JSON.stringify(requestData), // Send the modified request data
         });
       }
       setLiked(!liked);
