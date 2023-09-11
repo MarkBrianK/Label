@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-
-
 import CryptoJS from "crypto-js";
-
-
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signin.css";
 
-const SignInForm = ({ setSession, setUserId }) => {
+
+const SignInForm = ({ setSession }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -27,47 +23,28 @@ const SignInForm = ({ setSession, setUserId }) => {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setErrorMessage("Please enter a valid email address.");
-      return;
-    }
-
     setErrorMessage("");
 
     try {
       const response = await axios.post(
         "http://127.0.0.1:3000/users/sign_in",
         {
-          user: {
-            email,
-            password,
-          },
+          email,
+          password,
         },
         {
           withCredentials: true,
         }
       );
+
       if (response && response.data && response.data.success) {
-        const sessionID = response.data.session_id.public_id;
-        const userID = response.data.user_id;
+        setSuccess(true);
 
-        const secretKey = "wabebee_x1_levick"
-
-
-        // Encrypt the userID before storing it
-        const encryptedUserID = CryptoJS.AES.encrypt(
-          userID.toString(), // Convert user ID to a string
-          secretKey
-        ).toString();
-
-        localStorage.setItem("user_id", encryptedUserID);
-
-
-        localStorage.setItem("session_id", sessionID);
-
-        setSession(sessionID)
-        setSuccess(true)
+        const userIdToEncrypt = response.data.user_id.toString();
+        const secretKey = "wabebee_x1_levick";
+        const encryptedUserId = CryptoJS.AES.encrypt(userIdToEncrypt, secretKey).toString();
+        localStorage.setItem("user_id", encryptedUserId);
+        localStorage.setItem("session_id", response.data.session_id);
 
         setTimeout(() => {
           navigate("/");
@@ -77,12 +54,13 @@ const SignInForm = ({ setSession, setUserId }) => {
         setIsLoading(false);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setErrorMessage(error.response?.data?.message || "An error occurred.");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="signin">
@@ -113,7 +91,7 @@ const SignInForm = ({ setSession, setUserId }) => {
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
           {success && (
             <Alert variant="success">
-              You have successfully signed up. Kindly check your email to confirm your account.
+              You have successfully signed in.
             </Alert>
           )}
           <br />
