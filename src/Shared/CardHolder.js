@@ -4,10 +4,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
-import LikeButton from "../Screens/LikesHandler"
 import "../Assets/Styles/CardHolder.css";
 
-function CardHolder({ cloth, handleViewMore }) {
+function CardHolder({ cloth, handleViewMore, children }) {
   const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
 
@@ -141,7 +140,7 @@ function CardHolder({ cloth, handleViewMore }) {
         <Card.Title style={{ fontSize: "small", fontWeight: "600" }}>
           {cloth.name}
         </Card.Title>
-        <LikeButton cloth={cloth} />
+        {children}
         <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
           View More
         </Button>
