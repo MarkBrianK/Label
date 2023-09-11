@@ -3,6 +3,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import CryptoJS from "crypto-js";
 
 function LikeButton({ cloth }) {
+  const [like, setLike] = useState(null);
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [user, setUser] = useState(null);
@@ -35,15 +36,26 @@ function LikeButton({ cloth }) {
     const fetchLikes = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:3000/cloths/${cloth.id}/likes`
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch likes");
         }
+
         const data = await response.json();
-        const userHasLiked = data.some((like) => like.user_id === user)
-        setLikesCount(data.length);
-        setLiked(userHasLiked);
+        const individualLikeData=(data.likes);
+
+        const likeUserId = individualLikeData.map((like)=> like.user_id)
+        const likeUserIdString = likeUserId.join(", ");
+        const totalLikes = individualLikeData.length
+        const likeId = individualLikeData.map((like) => like.id)
+        setLike(parseInt(likeId))
+
+        if (likeUserIdString.toString() === user.toString()){
+          setLiked(true)
+        }
+        setLikesCount(totalLikes)
+
       } catch (error) {
         console.error("Error fetching likes:", error);
       }
@@ -63,16 +75,19 @@ function LikeButton({ cloth }) {
 
       if (liked) {
         // Unlike the cloth
-        await fetch(`http://127.0.0.1:3000/cloths/${cloth.id}/likes`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        });
+        await fetch(
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes/${like}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData),
+          }
+        );
       } else {
         // Like the cloth
-        await fetch(`http://127.0.0.1:3000/cloths/${cloth.id}/likes`, {
+        await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -90,7 +105,7 @@ function LikeButton({ cloth }) {
   return (
     <div onClick={handleLikeClick} style={{ fontSize: "small" }}>
       {liked ? <FaHeart color="red" /> : <FaRegHeart />}
-      {likesCount} Likes
+      {likesCount}
     </div>
   );
 }
