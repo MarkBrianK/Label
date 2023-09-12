@@ -43,18 +43,20 @@ function LikeButton({ cloth }) {
         }
 
         const data = await response.json();
-        const individualLikeData=(data.likes);
+        const individualLikeData = (data.likes);
         const totalLikes = individualLikeData.length
         setLikesCount(totalLikes)
-
-        const likeUserId = individualLikeData.map((like)=> like.user_id)
-        const likeUserIdString = likeUserId.join(", ");
         const likeId = individualLikeData.map((like) => like.id)
         setLike(parseInt(likeId))
+        const likeUserId = individualLikeData.map((like) => like.user_id)
+        const likeUserIdString = likeUserId.join(", ");
+        const userString = user ? user.toString() : ''; 
+        const parsedUserId = parseInt(likeUserIdString);
 
-        if (likeUserIdString.toString() === user.toString()){
-          setLiked(true)
+        if (!isNaN(parsedUserId) && likeUserIdString === userString) {
+          setLiked(true);
         }
+
 
 
       } catch (error) {
