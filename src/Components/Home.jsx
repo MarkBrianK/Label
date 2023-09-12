@@ -25,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch clothes data from the API
-    fetch("http://127.0.0.1:3000/cloths")
+    fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
       .then((response) => response.json())
       .then((data) => setClothes(data))
       .catch((error) => console.error("Error fetching clothes:", error));
