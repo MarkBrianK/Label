@@ -44,17 +44,18 @@ function LikeButton({ cloth }) {
 
         const data = await response.json();
         const individualLikeData=(data.likes);
+        const totalLikes = individualLikeData.length
+        setLikesCount(totalLikes)
 
         const likeUserId = individualLikeData.map((like)=> like.user_id)
         const likeUserIdString = likeUserId.join(", ");
-        const totalLikes = individualLikeData.length
         const likeId = individualLikeData.map((like) => like.id)
         setLike(parseInt(likeId))
 
         if (likeUserIdString.toString() === user.toString()){
           setLiked(true)
         }
-        setLikesCount(totalLikes)
+
 
       } catch (error) {
         console.error("Error fetching likes:", error);
