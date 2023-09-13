@@ -11,7 +11,7 @@ function CommentHandler({ cloth }) {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/comments`
+        `https://levick-7b15defb7ee9.herokuapp.com/${cloth.id}/comments`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
@@ -19,7 +19,9 @@ function CommentHandler({ cloth }) {
 
       const data = await response.json();
       console.log(data)
-      setComments(data.comments);
+      setComments(data);
+      console.log(comments)
+
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
@@ -47,11 +49,11 @@ function CommentHandler({ cloth }) {
     }
   }, []);
 
-//   useEffect(() => {
-//     // Fetch comments for the specific cloth when the component mounts or when cloth.id changes
-//     fetchComments(); // Call the fetchComments function here
+  useEffect(() => {
+    // Fetch comments for the specific cloth when the component mounts or when cloth.id changes
+    fetchComments(); // Call the fetchComments function here
 
-//   });
+  });
   const handleCommentSubmit = async () => {
     if (!user) {
       console.error("Please log in to comment.");
@@ -60,12 +62,12 @@ function CommentHandler({ cloth }) {
 
     try {
       const requestData = {
-        user_id: user.id, // Use the user's ID
+        user_id: user, // Use the user's ID
         cloth_id: cloth.id,
         body: newComment,
       };
 
-      await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/comments`, {
+      await fetch(`https://levick-7b15defb7ee9.herokuapp.com/${cloth.id}/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,15 +97,18 @@ function CommentHandler({ cloth }) {
         <Button onClick={handleCommentSubmit}>Submit</Button>
       </div>
       <div>
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            <p>{comment.body}</p>
-            {/* Display other comment details as needed */}
-          </div>
-        ))}
+        {comments && comments.length > 0 ? ( // Check if comments exist and are not empty
+          comments.map((comment) => (
+            <div key={comment.id}>
+              <p>{comment.body}</p>
+              {/* Display other comment details as needed */}
+            </div>
+          ))
+        ) : (
+          <p>No comments yet.</p>
+        )}
       </div>
     </div>
   );
 }
-
 export default CommentHandler;
