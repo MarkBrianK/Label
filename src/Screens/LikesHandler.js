@@ -48,12 +48,8 @@ function LikeButton({ cloth }) {
         setLikesCount(totalLikes)
         const likeId = individualLikeData.map((like) => like.id)
         setLike(parseInt(likeId))
-        const likeUserId = individualLikeData.map((like) => like.user_id)
-        const likeUserIdString = likeUserId.join(", ");
-        const userString = user ? user.toString() : '';
-        const parsedUserId = parseInt(likeUserIdString);
-
-        if (!isNaN(parsedUserId) && likeUserIdString.includes(userString)) {
+        const likeUserId = individualLikeData.map((like) => like.user_id);
+        if (likeUserId.includes(user)) {
           setLiked(true);
         }
 
