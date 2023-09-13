@@ -1,6 +1,7 @@
 import React from "react";
 import CardHolder from "../Shared/CardHolder";
 import LikeButton from "./LikesHandler";
+// import CommentHandler from "./CommentsHandler";
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -18,7 +19,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
     ? clothes.filter((cloth) => cloth.category_id === selectedCategory.id)
     : clothes;
 
-    
+
   // Shuffle the filtered clothes array
   const shuffledClothes = shuffleArray([...filteredClothes]);
 
