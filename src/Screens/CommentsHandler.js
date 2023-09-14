@@ -10,6 +10,7 @@ function CommentHandler() {
   const {clothId} = useParams();
 
   // State management
+  
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [user, setUser] = useState(null);
