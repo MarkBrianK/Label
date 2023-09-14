@@ -1,6 +1,7 @@
 export const ROUTES = {
     home:"/",
     signUp:"/signup",
-    signIn:"/signin"
+    signIn:"/signin",
+    clothcomments:"comments/:clothId"
 
 }
