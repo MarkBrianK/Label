@@ -65,7 +65,7 @@ function LikeButton({ cloth }) {
 
   const handleLikeClick = async () => {
     if (!user) {
-      console.error("Please log in.");
+      alert("Please log in.");
       return;
     }
 
