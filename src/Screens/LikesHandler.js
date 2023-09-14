@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import CryptoJS from "crypto-js";
+import {Alert} from "react-bootstrap";
 
 function LikeButton({ cloth }) {
+  const [errorMessage, setErrorMessage] = useState("")
   const [like, setLike] = useState(null);
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
@@ -21,6 +23,7 @@ function LikeButton({ cloth }) {
           const currentUser = JSON.parse(decryptedUserData);
           setUser(currentUser); // Set user here
         } else {
+          setErrorMessage("Please Log in.")
           console.error("Please log in.");
         }
       } else {
@@ -65,7 +68,7 @@ function LikeButton({ cloth }) {
 
   const handleLikeClick = async () => {
     if (!user) {
-      alert("Please log in.");
+      setErrorMessage("Please log in to like")
       return;
     }
 
@@ -105,6 +108,7 @@ function LikeButton({ cloth }) {
     <div onClick={handleLikeClick} style={{ fontSize: "small" }}>
       {liked ? <FaHeart color="red" /> : <FaRegHeart />}
       {likesCount}
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
     </div>
   );
 }
