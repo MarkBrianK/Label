@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import CardHolder from "../Shared/CardHolder";
 import LikeButton from "./LikesHandler";
 import { Link } from "react-router-dom";
@@ -12,7 +12,20 @@ function shuffleArray(array) {
   return array;
 }
 
-function ClothHandler({ clothes, handleViewMore, selectedCategory, isLoggedIn }) {
+function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
+
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const session = localStorage.getItem('session_id');
+    if (session) {
+      // Introduce a 2-second delay before setting isLoggedIn to true
+      setTimeout(() => {
+        setIsLoggedIn(true);
+      }, 2000);
+    }
+  }, []);
   // Filter clothes based on the selected category
   const filteredClothes = selectedCategory
     ? clothes.filter((cloth) => cloth.category_id === selectedCategory.id)

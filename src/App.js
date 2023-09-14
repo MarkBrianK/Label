@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home isLoggedIn={isLoggedIn} /></Suspense>} />
 
-        <Route path={ROUTES.clothcomments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler isLoggedIn={isLoggedIn} /></Suspense>} />
+        <Route path={ROUTES.clothcomments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler /></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
