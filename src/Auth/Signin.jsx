@@ -7,7 +7,7 @@ import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signin.css";
 
 
-const SignInForm = ({ setSession }) => {
+const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
