@@ -3,6 +3,7 @@ import CardHolder from "../Shared/CardHolder";
 import LikeButton from "./LikesHandler";
 import { Link } from "react-router-dom";
 import { FaComment } from "react-icons/fa";
+import {Alert} from "react-bootstrap"
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -17,6 +18,8 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState("")
+
   useEffect(() => {
     const session = localStorage.getItem('session_id');
     if (session) {
@@ -26,6 +29,11 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
       }, 2000);
     }
   }, []);
+
+  const error = ()=>{
+    if (!isLoggedIn)
+    setErrorMessage("Please Log in to comment")
+  }
   // Filter clothes based on the selected category
   const filteredClothes = selectedCategory
     ? clothes.filter((cloth) => cloth.category_id === selectedCategory.id)
@@ -50,10 +58,12 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
               </Link>
             ) : (
               <span style={{ color: "black" }}>
-                <FaComment /> {item.comments.length}
+                <FaComment onClick={error} /> {item.comments.length}
+
               </span>
             )}
           </div>
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
         </CardHolder>
       ))}
     </div>
