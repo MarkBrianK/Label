@@ -37,7 +37,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
 
   const error = () => {
     if (!isLoggedIn) {
-      setLikeErrorMessage("Please log in.");
+      setLikeErrorMessage("Please log in to comment.");
       setTimeout(() => {
         setLikeErrorMessage("");
       }, 2000);
