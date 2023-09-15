@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import CryptoJS from "crypto-js";
-import {Alert} from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
-function LikeButton({ cloth }) {
-  const [errorMessage, setErrorMessage] = useState("")
+function LikeButton({ cloth, onLikeError }) {
+  const [errorMessage, setErrorMessage] = useState("");
   const [like, setLike] = useState(null);
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
@@ -21,9 +21,9 @@ function LikeButton({ cloth }) {
 
         if (decryptedUserData) {
           const currentUser = JSON.parse(decryptedUserData);
-          setUser(currentUser); // Set user here
+          setUser(currentUser);
         } else {
-          setErrorMessage("Please Log in.")
+          setErrorMessage("Please Log in.");
           console.error("Please log in.");
         }
       } else {
@@ -46,18 +46,15 @@ function LikeButton({ cloth }) {
         }
 
         const data = await response.json();
-        const individualLikeData = (data.likes);
-        const totalLikes = individualLikeData.length
-        setLikesCount(totalLikes)
-        const likeId = individualLikeData.map((like) => like.id)
-        setLike(parseInt(likeId))
+        const individualLikeData = data.likes;
+        const totalLikes = individualLikeData.length;
+        setLikesCount(totalLikes);
+        const likeId = individualLikeData.map((like) => like.id);
+        setLike(parseInt(likeId));
         const likeUserId = individualLikeData.map((like) => like.user_id);
         if (likeUserId.includes(user)) {
           setLiked(true);
         }
-
-
-
       } catch (error) {
         console.error("Error fetching likes:", error);
       }
@@ -68,7 +65,11 @@ function LikeButton({ cloth }) {
 
   const handleLikeClick = async () => {
     if (!user) {
-      setErrorMessage("Please log in to like")
+      const errorMessage = "Please log in to like.";
+      onLikeError(errorMessage);
+      setTimeout(() => {
+        onLikeError(""); // Clear the error message after 2 seconds
+      }, 2000);
       return;
     }
 
@@ -89,13 +90,16 @@ function LikeButton({ cloth }) {
         );
       } else {
         // Like the cloth
-        await fetch(`https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        });
+        await fetch(
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData),
+          }
+        );
       }
       setLiked(!liked);
       setLikesCount(liked ? likesCount - 1 : likesCount + 1);
@@ -108,7 +112,7 @@ function LikeButton({ cloth }) {
     <div onClick={handleLikeClick} style={{ fontSize: "small" }}>
       {liked ? <FaHeart color="red" /> : <FaRegHeart />}
       {likesCount}
-      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
     </div>
   );
 }
