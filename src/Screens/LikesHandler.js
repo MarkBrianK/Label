@@ -24,10 +24,9 @@ function LikeButton({ cloth, onLikeError }) {
           setUser(currentUser);
         } else {
           setErrorMessage("Please Log in.");
-          console.error("Please log in.");
+
         }
       } else {
-        console.error("Please log in.");
       }
     } catch (error) {
       console.error("Please log in", error);
