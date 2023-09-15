@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 import CommentHandler from './Screens/CommentsHandler';
 
+
 const Home = lazy(() => import('./Components/Home'));
 const SignUpForm = lazy(() => import('./Auth/Signup'));
 const SignInForm = lazy(() => import('./Auth/Signin'));
