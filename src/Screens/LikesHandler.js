@@ -29,7 +29,6 @@ function LikeButton({ cloth, onLikeError }) {
       } else {
       }
     } catch (error) {
-      console.error("Please log in", error);
     }
   }, []);
 
