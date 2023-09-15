@@ -1,10 +1,11 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import CardHolder from "../Shared/CardHolder";
 import LikeButton from "./LikesHandler";
 import { Link } from "react-router-dom";
 import { FaComment } from "react-icons/fa";
-import {Alert} from "react-bootstrap"
+import { Alert } from "react-bootstrap";
 
+// Function to shuffle an array
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -14,14 +15,12 @@ function shuffleArray(array) {
 }
 
 function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
-
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const [errorMessage, setErrorMessage] = useState("")
+  const [likeErrorMessage, setLikeErrorMessage] = useState("");
+  const [shuffledClothes, setShuffledClothes] = useState([]);
 
   useEffect(() => {
-    const session = localStorage.getItem('session_id');
+    const session = localStorage.getItem("session_id");
     if (session) {
       // Introduce a 2-second delay before setting isLoggedIn to true
       setTimeout(() => {
@@ -30,17 +29,20 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
     }
   }, []);
 
-  const error = ()=>{
-    if (!isLoggedIn)
-    setErrorMessage("Please Log in to comment")
-  }
-  // Filter clothes based on the selected category
-  const filteredClothes = selectedCategory
-    ? clothes.filter((cloth) => cloth.category_id === selectedCategory.id)
-    : clothes;
+  // Shuffle the clothes array when it changes
+  useEffect(() => {
+    const newShuffledClothes = shuffleArray([...clothes]);
+    setShuffledClothes(newShuffledClothes);
+  }, [clothes]);
 
-  // Shuffle the filtered clothes array
-  const shuffledClothes = shuffleArray([...filteredClothes]);
+  const error = () => {
+    if (!isLoggedIn) {
+      setLikeErrorMessage("Please log in.");
+      setTimeout(() => {
+        setLikeErrorMessage("");
+      }, 2000);
+    }
+  };
 
   return (
     <div className="cloth-container">
@@ -50,20 +52,38 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
           cloth={item}
           handleViewMore={() => handleViewMore(item)}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "20%", marginLeft: "30%" }}>
-            <LikeButton cloth={item} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "20%",
+              marginLeft: "30%",
+            }}
+          >
+            <LikeButton
+              cloth={item}
+              onLikeError={(errorMessage) => setLikeErrorMessage(errorMessage)}
+            />
             {isLoggedIn ? (
-              <Link style={{ textDecoration: "none", display: "flex", alignItems: "center", color: "black" }} to={`comments/${item.id}`} className="comment-link ml-2">
+              <Link
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "black",
+                }}
+                to={`comments/${item.id}`}
+                className="comment-link ml-2"
+              >
                 <FaComment /> {item.comments.length}
               </Link>
             ) : (
               <span style={{ color: "black" }}>
                 <FaComment onClick={error} /> {item.comments.length}
-
               </span>
             )}
           </div>
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
+          {likeErrorMessage && <Alert variant="danger">{likeErrorMessage}</Alert>}
         </CardHolder>
       ))}
     </div>
