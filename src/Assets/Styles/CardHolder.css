@@ -48,3 +48,19 @@
 .custom-button:hover {
   background-color: black;
 }
+@media (min-width: 787px) {
+  .card-container {
+    margin: 30px 0px 30px 0px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+    max-width: 400px;
+  }
+
+
+}
