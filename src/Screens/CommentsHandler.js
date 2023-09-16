@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import Button from "../Shared/Button";
@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 
 function CommentHandler() {
-  const {clothId} = useParams();
+  const { clothId } = useParams();
 
   // State management
 
@@ -93,8 +93,8 @@ function CommentHandler() {
   return (
     <Container>
       <Row>
-        <Col>
-          <h2>Comments </h2>
+        <Col xs={12}>
+          <h2>Comments</h2>
           <ul className="comment-list">
             {comments.map((comment) => (
               <li key={comment.id}>{comment.body}</li>
@@ -103,17 +103,20 @@ function CommentHandler() {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col xs={12}>
           <textarea
-            className="comment-textarea"
+            className="form-control comment-textarea"
             rows="4"
-            cols="50"
             placeholder="Add a comment..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
           ></textarea>
-          <Button onClick={handleCommentSubmit}>Submit</Button>
         </Col>
+      </Row>
+      <Row style={{margin: '10px 0px 0px 10px'}}>
+
+          <Button onClick={handleCommentSubmit}>Submit</Button>
+
       </Row>
     </Container>
   );
