@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback} from "react";
 import { useParams } from "react-router-dom";
 import CryptoJS from "crypto-js";
-import PropTypes from "prop-types";
 import Button from "../Shared/Button";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -10,7 +9,7 @@ function CommentHandler() {
   const {clothId} = useParams();
 
   // State management
-  
+
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [user, setUser] = useState(null);
@@ -95,7 +94,7 @@ function CommentHandler() {
     <Container>
       <Row>
         <Col>
-          <h2>Comments ({comments.length})</h2>
+          <h2>Comments </h2>
           <ul className="comment-list">
             {comments.map((comment) => (
               <li key={comment.id}>{comment.body}</li>
@@ -120,8 +119,6 @@ function CommentHandler() {
   );
 }
 
-CommentHandler.propTypes = {
-  cloth: PropTypes.object.isRequired,
-};
+
 
 export default CommentHandler;
