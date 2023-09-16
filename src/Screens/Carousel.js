@@ -21,14 +21,15 @@ export default function Carousel({ newArrivals }) {
     width: "100%",
     height: "100%",
     position: "relative",
-    marginBottom: "20px",
+    marginBottom: "20px"
   };
 
   const imageStyle = {
     width: "auto",
-    maxHeight: "80px", // Set a specific height for your carousel images
+    maxHeight: "80px",
     objectFit: "contain",
     borderRadius: "12px",
+    transition: "transform 0.5s ease"
   };
 
   return (
@@ -38,7 +39,7 @@ export default function Carousel({ newArrivals }) {
       controls={false} // Set controls to false to remove arrows
       indicators={false} // Set indicators to false to remove page indicators
       style={carouselStyle} // Apply carousel styles
-      wrap={true} // Enable continuous circular motion
+      wrap={true}
     >
       {newArrivals.map((item, index) => (
         <BootstrapCarousel.Item key={item.id}>
