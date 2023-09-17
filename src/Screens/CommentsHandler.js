@@ -8,7 +8,6 @@ import { Container, Row, Col } from "react-bootstrap";
 function CommentHandler() {
   const { clothId } = useParams();
 
-  // State management
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");

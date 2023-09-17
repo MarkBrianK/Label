@@ -9,7 +9,6 @@ export default function Carousel({ newArrivals }) {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % newArrivals.length);
     }, 3000);
 
-    // Clear the interval and reset the currentIndex when the component unmounts
     return () => {
       clearInterval(interval);
       setCurrentIndex(0);
@@ -36,9 +35,9 @@ export default function Carousel({ newArrivals }) {
     <BootstrapCarousel
       activeIndex={currentIndex}
       onSelect={() => {}}
-      controls={false} // Set controls to false to remove arrows
-      indicators={false} // Set indicators to false to remove page indicators
-      style={carouselStyle} // Apply carousel styles
+      controls={false}
+      indicators={false}
+      style={carouselStyle}
       wrap={true}
     >
       {newArrivals.map((item, index) => (
@@ -48,14 +47,14 @@ export default function Carousel({ newArrivals }) {
               src={item.images[0]}
               alt={`${item.name}`}
               className="d-block w-100"
-              style={imageStyle} // Apply image styles
+              style={imageStyle}
             />
           ) : (
             <img
               src={item.images}
               alt={`${item.name}`}
               className="d-block w-100"
-              style={imageStyle} // Apply image styles
+              style={imageStyle}
             />
           )}
         </BootstrapCarousel.Item>
