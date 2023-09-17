@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { FaComment } from "react-icons/fa";
 import { Alert } from "react-bootstrap";
 
-// Function to shuffle an array
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -22,14 +21,12 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
   useEffect(() => {
     const session = localStorage.getItem("session_id");
     if (session) {
-      // Introduce a 2-second delay before setting isLoggedIn to true
+    
       setTimeout(() => {
         setIsLoggedIn(true);
       }, 2000);
     }
   }, []);
-
-  // Shuffle the clothes array when it changes
   useEffect(() => {
     const newShuffledClothes = shuffleArray([...clothes]);
     setShuffledClothes(newShuffledClothes);
