@@ -53,12 +53,10 @@ function CommentHandler() {
     }
   }, []);
 
-  // Fetch comments when the cloth ID or fetchComments function changes
   useEffect(() => {
     fetchComments();
   }, [fetchComments, clothId]);
 
-  // Handle comment submission
   const handleCommentSubmit = async () => {
     if (!user) {
       console.error("Please log in to comment.");

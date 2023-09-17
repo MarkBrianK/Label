@@ -25,7 +25,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    handleCategorySelect(category); // Call the handleCategorySelect function
+    handleCategorySelect(category); 
   };
 
   return (
