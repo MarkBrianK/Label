@@ -22,7 +22,7 @@ function CardHolder({ cloth, handleViewMore, children }) {
   function isWithinLastTwoWeeks(dateString) {
     const today = new Date();
     const creationDate = new Date(dateString);
-    const twoWeeksAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000); // Two weeks in milliseconds
+    const twoWeeksAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000); // one weeks in milliseconds
 
     return creationDate >= twoWeeksAgo;
   }
