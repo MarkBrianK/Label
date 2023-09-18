@@ -14,13 +14,13 @@ function SignupForm() {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [passwordConfirmationError, setPasswordConfirmationError] =
-    useState("");
+  const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ function SignupForm() {
           setNameError(data.errors.name);
           setEmailError(data.errors.email);
           setPasswordError(data.errors.password);
-          setPasswordConfirmationError(data.errors.password_confirmation)
+          setPasswordConfirmationError(data.errors.password_confirmation);
         }
       }
     } catch (error) {
@@ -80,28 +80,27 @@ function SignupForm() {
           )}
 
           {isLoading && (
-           <div className="loading-alert">
-           <div className="spinner-border text-primary loading-spinner" role="status">
-             <span className="sr-only" id="spinner"></span>
-           </div>
-           <style>
-             {`
-               .loading-spinner {
-                 transform-origin: center;
-                 animation: spin 2s linear infinite;
-               }
+            <div className="loading-alert">
+              <div className="spinner-border text-primary loading-spinner" role="status">
+                <span className="sr-only" id="spinner"></span>
+              </div>
+              <style>
+                {`
+                .loading-spinner {
+                  transform-origin: center;
+                  animation: spin 2s linear infinite;
+                }
 
-               @keyframes spin {
-                 0% { transform: rotate(0deg); }
-                 100% { transform: rotate(360deg); }
-               }
-             `}
-           </style>
-           <Alert variant="danger" className="loading-text">
-             {isLoading ? "Loading..." : ""}
-           </Alert>
-         </div>
-
+                @keyframes spin {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+              `}
+              </style>
+              <Alert variant="danger" className="loading-text">
+                {isLoading ? "Loading..." : ""}
+              </Alert>
+            </div>
           )}
           <Form onSubmit={handleSubmit}>
             <h2 className="form-header">Sign Up</h2>
@@ -132,11 +131,19 @@ function SignupForm() {
             <Form.Group controlId="password">
               <Form.Label className="formlabel">Password</Form.Label>
               <Form.Control
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 isInvalid={!!passwordError}
               />
+              <div className="show-password-toggle">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                />
+                <label>Show Password</label>
+              </div>
               <Form.Control.Feedback type="invalid">
                 {passwordError}
               </Form.Control.Feedback>
