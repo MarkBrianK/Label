@@ -140,8 +140,8 @@ function SignupForm() {
               <div className="show-password-toggle">
                 <input
                   type="checkbox"
-                  checked={showPasswordConfirmation}
-                  onChange={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
                 />
                 <label>Show Password</label>
               </div>
@@ -160,8 +160,8 @@ function SignupForm() {
               <div className="show-password-toggle">
                 <input
                   type="checkbox"
-                  checked={showPassword}
-                  onChange={() => setShowPassword(!showPassword)}
+                  checked={showPasswordConfirmation}
+                  onChange={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
                 />
                 <label>Show Password</label>
               </div>
