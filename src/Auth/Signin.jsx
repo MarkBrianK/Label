@@ -6,10 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signin.css";
 
-
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
@@ -26,6 +26,8 @@ const SignInForm = () => {
     setErrorMessage("");
 
     try {
+      setIsLoading(true);
+
       const response = await axios.post(
         "https://levick-7b15defb7ee9.herokuapp.com/users/sign_in",
         {
@@ -42,7 +44,10 @@ const SignInForm = () => {
 
         const userIdToEncrypt = response.data.user_id.toString();
         const secretKey = "wabebee_x1_levick";
-        const encryptedUserId = CryptoJS.AES.encrypt(userIdToEncrypt, secretKey).toString();
+        const encryptedUserId = CryptoJS.AES.encrypt(
+          userIdToEncrypt,
+          secretKey
+        ).toString();
         localStorage.setItem("user_id", encryptedUserId);
         localStorage.setItem("session_id", response.data.session_id);
 
@@ -51,16 +56,14 @@ const SignInForm = () => {
         }, 2000);
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
-        setIsLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorMessage(error.response?.data?.message || "An error occurred.");
     } finally {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="signin">
@@ -81,14 +84,22 @@ const SignInForm = () => {
           <Form.Group controlId="password">
             <Form.Label className="formlabel">Password</Form.Label>
             <Form.Control
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </Form.Group>{" "}
+            <div className="show-password-toggle">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              <label>Show Password</label>
+            </div>
+          </Form.Group>
           <br />
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}{" "}
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
           {success && (
             <Alert variant="success">
               You have successfully signed in.
