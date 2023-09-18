@@ -48,7 +48,7 @@ function SignupForm() {
         setSuccess(true);
         setTimeout(() => {
           navigate("/signin");
-        }, 3000);
+        }, 5000);
       } else {
         const data = response.data;
         setError(data.error);
