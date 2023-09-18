@@ -94,7 +94,7 @@ function CommentHandler() {
           <h2>Comments</h2>
           <ul className="comment-list">
             {comments.map((comment) => (
-              <li key={comment.id}>{comment.body}</li>
+              <li key={comment.id}>{comment.user.username}</li>
             ))}
           </ul>
         </Col>
