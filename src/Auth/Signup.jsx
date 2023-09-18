@@ -20,6 +20,7 @@ function SignupForm() {
   const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -139,8 +140,8 @@ function SignupForm() {
               <div className="show-password-toggle">
                 <input
                   type="checkbox"
-                  checked={showPassword}
-                  onChange={() => setShowPassword(!showPassword)}
+                  checked={showPasswordConfirmation}
+                  onChange={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
                 />
                 <label>Show Password</label>
               </div>
@@ -156,6 +157,14 @@ function SignupForm() {
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 isInvalid={!!passwordConfirmationError}
               />
+              <div className="show-password-toggle">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                />
+                <label>Show Password</label>
+              </div>
               <Form.Control.Feedback type="invalid">
                 {passwordConfirmationError}
               </Form.Control.Feedback>
