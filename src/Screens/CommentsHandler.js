@@ -2,12 +2,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import Button from "../Shared/Button";
-import { Container, Row, Col } from "react-bootstrap";
-
+import { Container, Row, Col, Image } from "react-bootstrap";
+import defaultProfilePicture from "../Assets/Image/user.jpg";
 
 function CommentHandler() {
   const { clothId } = useParams();
-
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
@@ -29,7 +28,6 @@ function CommentHandler() {
     }
   }, [clothId]);
 
-  // Check if the user is logged in and set the user state
   useEffect(() => {
     try {
       const secretKey = "wabebee_x1_levick";
@@ -91,10 +89,31 @@ function CommentHandler() {
     <Container>
       <Row>
         <Col xs={12}>
-          <h2>Comments</h2>
-          <ul className="comment-list">
+          <ul className="comment-list list-unstyled">
             {comments.map((comment) => (
-              <li key={comment.id}>{comment.user.username}</li>
+              <li key={comment.id}>
+                <div className="comment-content">
+                  <div className="comment-user-info">
+                    {comment.user.profile_picture ? (
+                      <Image
+                        src={comment.user.profile_picture}
+                        roundedCircle
+                        width={30}
+                        height={30}
+                      />
+                    ) : (
+                      <Image
+                        src={defaultProfilePicture}
+                        roundedCircle
+                        width={30}
+                        height={30}
+                      />
+                    )}
+                    <span className="comment-username" style={{ fontWeight: "700" }}>{comment.user.name}</span>
+                  </div>
+                  <div className="comment-body">{comment.body}</div>
+                </div>
+              </li>
             ))}
           </ul>
         </Col>
@@ -110,15 +129,11 @@ function CommentHandler() {
           ></textarea>
         </Col>
       </Row>
-      <Row style={{margin: '10px 0px 0px 10px'}}>
-
-          <Button onClick={handleCommentSubmit}>Submit</Button>
-
+      <Row style={{ margin: "10px 0px 0px 10px" }}>
+        <Button onClick={handleCommentSubmit}>Submit</Button>
       </Row>
     </Container>
   );
 }
-
-
 
 export default CommentHandler;
