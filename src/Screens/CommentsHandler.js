@@ -11,6 +11,7 @@ function CommentHandler() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [user, setUser] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const fetchComments = useCallback(async () => {
     try {
@@ -22,7 +23,9 @@ function CommentHandler() {
       }
 
       const data = await response.json();
-      setComments(data.comments);
+      // Filter out comments with null or empty body
+      const filteredComments = data.comments.filter(comment => comment.body && comment.body.trim() !== '');
+      setComments(filteredComments);
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
@@ -39,10 +42,13 @@ function CommentHandler() {
         if (decryptedUserData) {
           const currentUser = JSON.parse(decryptedUserData);
           setUser(currentUser);
+          setLoggedIn(true);
         } else {
+          setLoggedIn(false);
           console.error("Please log in.");
         }
       } else {
+        setLoggedIn(false);
         console.error("Please log in.");
       }
     } catch (error) {
@@ -55,7 +61,7 @@ function CommentHandler() {
   }, [fetchComments, clothId]);
 
   const handleCommentSubmit = async () => {
-    if (!user) {
+    if (!loggedIn) {
       console.error("Please log in to comment.");
       return;
     }
@@ -90,48 +96,62 @@ function CommentHandler() {
       <Row>
         <Col xs={12}>
           <ul className="comment-list list-unstyled">
-            {comments.map((comment) => (
-              <li key={comment.id}>
-                <div className="comment-content">
-                  <div className="comment-user-info">
-                    {comment.user.profile_picture ? (
-                      <Image
-                        src={comment.user.profile_picture}
-                        roundedCircle
-                        width={30}
-                        height={30}
-                      />
-                    ) : (
-                      <Image
-                        src={defaultProfilePicture}
-                        roundedCircle
-                        width={30}
-                        height={30}
-                      />
-                    )}
-                    <span className="comment-username" style={{ fontWeight: "700" }}>{comment.user.name}</span>
+            {comments.map((comment) => {
+              return comment.body ? (
+                <li key={comment.id}>
+                  <div className="comment-content">
+                    <div className="comment-user-info">
+                      {comment.user.profile_picture ? (
+                        <Image
+                          src={comment.user.profile_picture}
+                          roundedCircle
+                          width={30}
+                          height={30}
+                        />
+                      ) : (
+                        <Image
+                          src={defaultProfilePicture}
+                          roundedCircle
+                          width={30}
+                          height={30}
+                        />
+                      )}
+                      <span className="comment-username" style={{ fontWeight: "700" }}>
+                        {comment.user.name}
+                      </span>
+                    </div>
+                    <div className="comment-body">{comment.body}</div>
                   </div>
-                  <div className="comment-body">{comment.body}</div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ) : null;
+            })}
           </ul>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12}>
-          <textarea
-            className="form-control comment-textarea"
-            rows="4"
-            placeholder="Add a comment..."
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          ></textarea>
-        </Col>
-      </Row>
-      <Row style={{ margin: "10px 0px 0px 10px" }}>
-        <Button onClick={handleCommentSubmit}>Submit</Button>
-      </Row>
+      {loggedIn ? (
+        <Row>
+          <Col xs={12}>
+            <textarea
+              className="form-control comment-textarea"
+              rows="4"
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            ></textarea>
+          </Col>
+        </Row>
+      ) : (
+        <Row>
+          <Col xs={12}>
+            <p>Please log in to comment.</p>
+          </Col>
+        </Row>
+      )}
+      {loggedIn && (
+        <Row style={{ margin: "10px 0px 0px 10px" }}>
+          <Button onClick={handleCommentSubmit}>Submit</Button>
+        </Row>
+      )}
     </Container>
   );
 }
