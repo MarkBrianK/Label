@@ -152,7 +152,7 @@ function SignupForm() {
             <Form.Group controlId="password-confirmation">
               <Form.Label className="formlabel">Confirm Password</Form.Label>
               <Form.Control
-                type="password"
+                type={showPasswordConfirmation ? "text" : "password"}
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 isInvalid={!!passwordConfirmationError}
