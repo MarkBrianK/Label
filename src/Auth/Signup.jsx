@@ -8,13 +8,13 @@ import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signup.css";
 
 function SignupForm() {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [nameError, setNameError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
@@ -32,7 +32,7 @@ function SignupForm() {
         "https://levick-7b15defb7ee9.herokuapp.com/users",
         {
           user: {
-            name,
+            username,
             email,
             password,
             password_confirmation: passwordConfirmation,
@@ -54,7 +54,7 @@ function SignupForm() {
         const data = response.data;
         setError(data.error);
         if (data.errors) {
-          setNameError(data.errors.name);
+          setUsernameError(data.errors.username);
           setEmailError(data.errors.email);
           setPasswordError(data.errors.password);
           setPasswordConfirmationError(data.errors.password_confirmation);
@@ -105,16 +105,16 @@ function SignupForm() {
           )}
           <Form onSubmit={handleSubmit}>
             <h2 className="form-header">Sign Up</h2>
-            <Form.Group controlId="name">
-              <Form.Label className="formlabel">Name</Form.Label>
+            <Form.Group controlId="username">
+              <Form.Label className="formlabel">Username</Form.Label>
               <Form.Control
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                isInvalid={!!nameError}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                isInvalid={!!usernameError}
               />
               <Form.Control.Feedback type="invalid">
-                {nameError}
+                {usernameError}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="email">
