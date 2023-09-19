@@ -50,10 +50,10 @@ function Header({ user  }) {
                   cursor: "pointer",
                   border: "1px solid goldenrod",
                   marginRight: "10px",
-                  width: "40px",
-                  height: "40px",
-                  minWidth: "40px",
-                  minHeight: "40px",
+                  width: "48px",
+                  height: "48px",
+                  minWidth: "48px",
+                  minHeight: "48px",
                   padding: 0,
                 }}
               >
