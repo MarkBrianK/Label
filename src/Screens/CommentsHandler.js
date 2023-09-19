@@ -1,22 +1,24 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import CryptoJS from "crypto-js";
 import Button from "../Shared/Button";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import defaultProfilePicture from "../Assets/Image/user.jpg";
 
-function CommentHandler() {
+function CommentHandler({user}) {
   const { clothId } = useParams();
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  if(user){
+    setLoggedIn(true)
+  }
 
   const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${clothId}`
+        `http://127.0.0.1:3000/cloths/${clothId}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
@@ -31,30 +33,7 @@ function CommentHandler() {
     }
   }, [clothId]);
 
-  useEffect(() => {
-    try {
-      const secretKey = "wabebee_x1_levick";
-      const encryptedUserID = localStorage.getItem("user_id");
-      if (encryptedUserID) {
-        const bytes = CryptoJS.AES.decrypt(encryptedUserID, secretKey);
-        const decryptedUserData = bytes.toString(CryptoJS.enc.Utf8);
 
-        if (decryptedUserData) {
-          const currentUser = JSON.parse(decryptedUserData);
-          setUser(currentUser);
-          setLoggedIn(true);
-        } else {
-          setLoggedIn(false);
-          console.error("Please log in.");
-        }
-      } else {
-        setLoggedIn(false);
-        console.error("Please log in.");
-      }
-    } catch (error) {
-      console.error("Error decrypting user data:", error);
-    }
-  }, []);
 
   useEffect(() => {
     fetchComments();
@@ -74,7 +53,7 @@ function CommentHandler() {
       };
 
       await fetch(
-        `https://levick-7b15defb7ee9.herokuapp.com/cloths/${clothId}/comments`,
+        `http://127.0.0.1:3000/cloths/${clothId}/comments`,
         {
           method: "POST",
           headers: {
