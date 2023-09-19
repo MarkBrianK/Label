@@ -23,7 +23,7 @@ export default function Profile({ user }) {
     if (user) {
       fetchUserData(user);
     }
-  }, [user]); // Added user as a dependency to refetch data if user changes
+  }, [user]);
 
   const handleUpdateProfile = async () => {
     if (!user) {
@@ -31,7 +31,6 @@ export default function Profile({ user }) {
       return;
     }
 
-    // Prepare form data with updated username and profile picture
     const formData = new FormData();
     formData.append("user[username]", username);
     if (profilePicture) {
@@ -39,12 +38,11 @@ export default function Profile({ user }) {
     }
 
     try {
-      // Update the user's profile
       await axios.patch(`https://levick-7b15defb7ee9.herokuapp.com/users/${user}`, formData);
-
       console.log("Profile updated successfully.");
-      window.reload()
-      // Add any further actions you want after a successful update
+
+      // Reload the page after updating the profile
+      window.location.reload();
 
     } catch (error) {
       console.error("Error updating profile:", error);
