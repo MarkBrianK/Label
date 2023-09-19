@@ -11,7 +11,7 @@ export default function Profile({ user }) {
   useEffect(() => {
     const fetchUserData = async (user) => {
       try {
-        const response = await axios.get(`http://127.0.0.1:3000/users/${user}`);
+        const response = await axios.get(`https://levick-7b15defb7ee9.herokuapp.com/users/${user}`);
         console.log(response.data)
         setUsername(response.data.username);
 
@@ -40,7 +40,7 @@ export default function Profile({ user }) {
 
     try {
       // Update the user's profile
-      await axios.patch(`http://127.0.0.1:3000/users/${user}`, formData);
+      await axios.patch(`https://levick-7b15defb7ee9.herokuapp.com/users/${user}`, formData);
 
       console.log("Profile updated successfully.");
       window.reload()
