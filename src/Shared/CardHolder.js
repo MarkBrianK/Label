@@ -6,7 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
 import "../Assets/Styles/CardHolder.css";
 
-function CardHolder({ cloth, handleViewMore, children }) {
+function CardHolder({ cloth, handleViewMore, user, children }) {
   const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
 
