@@ -69,7 +69,13 @@ function Header({ user  }) {
                     }}
                   />
                 ) : (
-                  <AccountCircle className="icon" />
+                  <AccountCircle
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                  }}
+                   className="icon" />
                 )}
               </div>
             </Link>
