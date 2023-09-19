@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import AvatarEditor from "react-avatar-editor";
 import Header from "./Header";
 
 export default function Profile({ user }) {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
-
-  console.log(user);
+  const editorRef = useRef();
 
   useEffect(() => {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(`http://127.0.0.1:3000/users/${user}`);
+        console.log(response.data)
         setUsername(response.data.username);
+
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -23,22 +25,30 @@ export default function Profile({ user }) {
     }
   }, [user]); // Added user as a dependency to refetch data if user changes
 
-  const handleUpdateProfile = () => {
+  const handleUpdateProfile = async () => {
     if (!user) {
       console.error("User is null. Cannot update profile.");
       return;
     }
 
+    // Prepare form data with updated username and profile picture
     const formData = new FormData();
     formData.append("user[username]", username);
-    formData.append("user[profile_picture]", profilePicture);
+    if (profilePicture) {
+      formData.append("user[profile_picture]", profilePicture);
+    }
 
-    axios
-      .patch(`http://127.0.0.1:3000/users/${user}`, formData)
-      .then((response) =>
-        console.log("Profile updated successfully:", response.data)
-      )
-      .catch((error) => console.error("Error updating profile:", error));
+    try {
+      // Update the user's profile
+      await axios.patch(`http://127.0.0.1:3000/users/${user}`, formData);
+
+      console.log("Profile updated successfully.");
+      window.reload()
+      // Add any further actions you want after a successful update
+
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const handleFileChange = (event) => {
@@ -46,45 +56,67 @@ export default function Profile({ user }) {
   };
 
   return (
-    <div>
-      {user ? (
-        <div>
+    <div className="container">
+      <div className="row mt-5">
+        <div className="col-md-6">
           <h2>User Profile</h2>
-          <div>
-            <label htmlFor="username">Username:</label>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              Username:
+            </label>
             <input
               type="text"
               id="username"
+              className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div>
-            <label htmlFor="profilePicture">Profile Picture:</label>
+          <div className="mb-3">
+            <label htmlFor="profilePicture" className="form-label">
+              Profile Picture:
+            </label>
             <input
               type="file"
               id="profilePicture"
               accept="image/*"
+              className="form-control"
               onChange={handleFileChange}
             />
+            {profilePicture && (
+              <AvatarEditor
+                ref={editorRef}
+                image={profilePicture}
+                width={200}
+                height={200}
+                border={50}
+                borderRadius={100}
+                scale={1.2}
+                className="mt-3"
+                style={{
+                  borderRadius: "50%",
+                  border: "1px solid goldenrod",
+                }}
+              />
+            )}
           </div>
-          <button onClick={handleUpdateProfile}>Update Profile</button>
-
-          <div>
+          <button className="btn btn-primary" onClick={handleUpdateProfile}>
+            Update Profile
+          </button>
+        </div>
+        <div className="col-md-6">
+          <div className="mb-3">
             <h3>User Details</h3>
             <ul>
               <li>
                 <strong>Username:</strong> {username}
               </li>
             </ul>
-            <button>Edit Details</button>
+            <button className="btn btn-secondary">Edit Details</button>
           </div>
-
           <Header user={user} />
         </div>
-      ) : (
-        <p>Loading user details...</p>
-      )}
+      </div>
     </div>
   );
 }
