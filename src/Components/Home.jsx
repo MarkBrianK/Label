@@ -65,7 +65,7 @@ export default function Home({user}) {
 
   return (
     <div className="home-container">
-      <Header />
+      <Header user={user} />
 
       <Container className="text-center mt-3">
         <div className="fixed-logo-search-container">
