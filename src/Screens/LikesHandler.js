@@ -12,7 +12,7 @@ function LikeButton({ cloth, onLikeError, user }) {
     const fetchLikes = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:3000/cloths/${cloth.id}`
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch likes");
@@ -55,7 +55,7 @@ function LikeButton({ cloth, onLikeError, user }) {
       if (liked) {
         // Unlike the cloth
         await fetch(
-          `http://127.0.0.1:3000/cloths/${cloth.id}/likes/${like}`,
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes/${like}`,
           {
             method: "DELETE",
             headers: {
@@ -67,7 +67,7 @@ function LikeButton({ cloth, onLikeError, user }) {
       } else {
         // Like the cloth
         await fetch(
-          `http://127.0.0.1:3000/cloths/${cloth.id}/likes`,
+          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`,
           {
             method: "POST",
             headers: {
