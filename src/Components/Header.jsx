@@ -49,23 +49,23 @@ function Header({ user  }) {
                   borderRadius: "50%",
                   cursor: "pointer",
                   border: "1px solid goldenrod",
-                  marginRight: "10px",
-                  width: "48px",
-                  height: "48px",
-                  minWidth: "48px",
-                  minHeight: "48px",
+
+                  width: "40px",
+                  height: "44px",
+                  minWidth: "40px",
+                  minHeight: "40px",
                   padding: 0,
                 }}
               >
                 {profilePicture ? (
                   <Image
                     src={profilePicture}
-                    roundedCircle
                     alt={user}
                     style={{
                       width: "100%",
                       height: "100%",
-                      borderRadius: "50%",
+                      borderRadius:"50%"
+
                     }}
                   />
                 ) : (

@@ -11,9 +11,12 @@ export default function Profile({ user }) {
   useEffect(() => {
     const fetchUserData = async (user) => {
       try {
-        const response = await axios.get(`https://levick-7b15defb7ee9.herokuapp.com/users/${user}`);
+        const response = await axios.get(
+          `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
+        );
         setUsername(response.data.username);
-
+        // Set the profile picture from the response
+        setProfilePicture(response.data.profile_picture);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -37,12 +40,14 @@ export default function Profile({ user }) {
     }
 
     try {
-      await axios.patch(`https://levick-7b15defb7ee9.herokuapp.com/users/${user}`, formData);
+      await axios.patch(
+        `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`,
+        formData
+      );
       console.log("Profile updated successfully.");
 
       // Reload the page after updating the profile
       window.location.reload();
-
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -97,11 +102,6 @@ export default function Profile({ user }) {
               />
             )}
           </div>
-          <button className="btn btn-primary" onClick={handleUpdateProfile}>
-            Update Profile
-          </button>
-        </div>
-        <div className="col-md-6">
           <div className="mb-3">
             <h3>User Details</h3>
             <ul>
@@ -109,8 +109,27 @@ export default function Profile({ user }) {
                 <strong>Username:</strong> {username}
               </li>
             </ul>
-            <button className="btn btn-secondary">Edit Details</button>
+            {profilePicture && (
+              <div>
+                <h4>Profile Picture:</h4>
+                <img
+                  src={profilePicture}
+                  alt="Profile_picture"
+                  style={{
+                    width: "104px",
+                    height: "100px",
+                    borderRadius: "50%",
+                  }}
+                />
+              </div>
+            )}
           </div>
+
+          <button className="btn btn-primary" onClick={handleUpdateProfile}>
+            Update Profile
+          </button>
+        </div>
+        <div className="col-md-6">
           <Header user={user} />
         </div>
       </div>
