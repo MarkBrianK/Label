@@ -13,7 +13,7 @@ function shuffleArray(array) {
   return array;
 }
 
-function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
+function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [likeErrorMessage, setLikeErrorMessage] = useState("");
   const [shuffledClothes, setShuffledClothes] = useState([]);
@@ -21,7 +21,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
   useEffect(() => {
     const session = localStorage.getItem("session_id");
     if (session) {
-    
+
       setTimeout(() => {
         setIsLoggedIn(true);
       }, 2000);
@@ -46,6 +46,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory }) {
       {shuffledClothes.map((item, index) => (
         <CardHolder
           key={index}
+          user={user}
           cloth={item}
           handleViewMore={() => handleViewMore(item)}
         >
