@@ -29,6 +29,7 @@ function LikeButton({ cloth, onLikeError, user }) {
           setLiked(true);
         }
       } catch (error) {
+        setErrorMessage(error)
         console.error("Error fetching likes:", error);
       }
     };
