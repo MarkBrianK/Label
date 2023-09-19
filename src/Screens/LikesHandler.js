@@ -1,43 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import CryptoJS from "crypto-js";
 import { Alert } from "react-bootstrap";
 
-function LikeButton({ cloth, onLikeError }) {
+function LikeButton({ cloth, onLikeError, user }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [like, setLike] = useState(null);
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Retrieve the encrypted user ID from localStorage
-    try {
-      const secretKey = "wabebee_x1_levick";
-      const encryptedUserID = localStorage.getItem("user_id");
-      if (encryptedUserID) {
-        const bytes = CryptoJS.AES.decrypt(encryptedUserID, secretKey);
-        const decryptedUserData = bytes.toString(CryptoJS.enc.Utf8);
+  if (!user){
+    setErrorMessage("Please Log in")
+  }
 
-        if (decryptedUserData) {
-          const currentUser = JSON.parse(decryptedUserData);
-          setUser(currentUser);
-        } else {
-          setErrorMessage("Please Log in.");
-
-        }
-      } else {
-      }
-    } catch (error) {
-    }
-  }, []);
 
   useEffect(() => {
     // Fetch likes for the specific cloth when the component mounts or when cloth.id changes
     const fetchLikes = async () => {
       try {
         const response = await fetch(
-          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}`
+          `http://127.0.0.1:3000/cloths/${cloth.id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch likes");
@@ -77,7 +58,7 @@ function LikeButton({ cloth, onLikeError }) {
       if (liked) {
         // Unlike the cloth
         await fetch(
-          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes/${like}`,
+          `http://127.0.0.1:3000/cloths/${cloth.id}/likes/${like}`,
           {
             method: "DELETE",
             headers: {
@@ -89,7 +70,7 @@ function LikeButton({ cloth, onLikeError }) {
       } else {
         // Like the cloth
         await fetch(
-          `https://levick-7b15defb7ee9.herokuapp.com/cloths/${cloth.id}/likes`,
+          `http://127.0.0.1:3000/cloths/${cloth.id}/likes`,
           {
             method: "POST",
             headers: {
