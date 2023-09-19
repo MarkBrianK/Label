@@ -8,13 +8,7 @@ function LikeButton({ cloth, onLikeError, user }) {
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
 
-  if (!user){
-    setErrorMessage("Please Log in")
-  }
-
-
   useEffect(() => {
-    // Fetch likes for the specific cloth when the component mounts or when cloth.id changes
     const fetchLikes = async () => {
       try {
         const response = await fetch(
@@ -31,7 +25,7 @@ function LikeButton({ cloth, onLikeError, user }) {
         const likeId = individualLikeData.map((like) => like.id);
         setLike(parseInt(likeId));
         const likeUserId = individualLikeData.map((like) => like.user_id);
-        if (likeUserId.includes(user)) {
+        if (likeUserId.includes(user.id)) {
           setLiked(true);
         }
       } catch (error) {
@@ -39,7 +33,9 @@ function LikeButton({ cloth, onLikeError, user }) {
       }
     };
 
-    fetchLikes();
+    if (user) {
+      fetchLikes();
+    }
   }, [cloth.id, user]);
 
   const handleLikeClick = async () => {
@@ -53,7 +49,7 @@ function LikeButton({ cloth, onLikeError, user }) {
     }
 
     try {
-      const requestData = { user_id: user, cloth_id: cloth.id };
+      const requestData = { user_id: user.id, cloth_id: cloth.id };
 
       if (liked) {
         // Unlike the cloth
