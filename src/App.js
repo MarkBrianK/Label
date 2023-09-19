@@ -1,15 +1,42 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
-import CommentHandler from './Screens/CommentsHandler';
+import CryptoJS from "crypto-js";
 
 
 const Home = lazy(() => import('./Components/Home'));
 const SignUpForm = lazy(() => import('./Auth/Signup'));
 const SignInForm = lazy(() => import('./Auth/Signin'));
+const CommentHandler = lazy(()=> import('./Screens/CommentsHandler'));
+const Profile = lazy(()=> import('./Components/Profile'));
+
+
 
 function App() {
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    try {
+      const secretKey = "wabebee_x1_levick";
+      const encryptedUserID = localStorage.getItem("user_id");
+      if (encryptedUserID) {
+        const bytes = CryptoJS.AES.decrypt(encryptedUserID, secretKey);
+        const decryptedUserData = bytes.toString(CryptoJS.enc.Utf8);
+
+        if (decryptedUserData) {
+          const currentUser = JSON.parse(decryptedUserData);
+          setUser(currentUser);
+        } else {
+
+          console.error("Please log in.");
+        }
+      } else {
+        console.error("Please log in.");
+      }
+    } catch (error) {
+      console.error("Error decrypting user data:", error);
+    }
+  }, []);
 
   useEffect(() => {
     const session = localStorage.getItem('session_id');
@@ -25,9 +52,10 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home isLoggedIn={isLoggedIn} /></Suspense>} />
+        <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} isLoggedIn={isLoggedIn} /></Suspense>} />
 
-        <Route path={ROUTES.clothcomments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler /></Suspense>} />
+        <Route path={ROUTES.clothcomments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
+        <Route path={ROUTES.profile} element={<Suspense fallback={<div>Loading ...</div>}> < Profile user={user} /> </Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
@@ -37,6 +65,7 @@ function App() {
         {!isLoggedIn && (
           <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm  /></Suspense>} />
         )}
+
       </Routes>
     </div>
   );
