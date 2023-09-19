@@ -8,7 +8,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
     async function fetchData() {
       try {
         const response = await fetch(
-          "https://levick-7b15defb7ee9.herokuapp.com/categories"
+          "http://127.0.0.1:3000/categories"
         );
         const categoriesData = await response.json();
         const sortedCategories = categoriesData.sort((a, b) =>
@@ -25,7 +25,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    handleCategorySelect(category); 
+    handleCategorySelect(category);
   };
 
   return (
