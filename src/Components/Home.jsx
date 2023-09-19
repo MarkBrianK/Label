@@ -11,7 +11,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
 
-export default function Home() {
+export default function Home({user}) {
   const imageStyle = {
     height: "100px",
     width: "100px",
@@ -25,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch clothes data from the API
-    fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
+    fetch("http://127.0.0.1:3000/cloths")
       .then((response) => response.json())
       .then((data) => setClothes(data))
       .catch((error) => console.error("Error fetching clothes:", error));
@@ -84,6 +84,8 @@ export default function Home() {
               {(selectedCategory) => (
                 <SheetModal>
                   <ClothHandler
+
+                  user={user}
                     clothes={filteredBySearch}
                     selectedCategory={selectedCategory} // Pass the selectedCategory
                     handleViewMore={handleViewMore}

@@ -1,22 +1,33 @@
-import "../Assets/Styles/Header.css";
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { AccountCircle, ExitToApp, Home, Mail,ShoppingBag } from '@mui/icons-material';
-function Header() {
+import { Image } from 'react-bootstrap';
+import { AccountCircle, ExitToApp, Home, Mail, ShoppingBag } from '@mui/icons-material';
+import '../Assets/Styles/Header.css';
+
+function Header({ user }) {
   const sessionCookie = localStorage.getItem('session_id');
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
     setIsLoggedIn(!!sessionCookie);
-  }, [sessionCookie]);
+
+    if (!!sessionCookie) {
+      axios.get(`http://127.0.0.1:3000/users/${user}`)
+        .then(response => {
+          setProfilePicture(response.data.profile_picture);
+        })
+        .catch(error => console.error('Error fetching profile picture:', error));
+    }
+  }, [sessionCookie, user]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
     if (isLoggedIn) {
       try {
-        await axios.delete('https://levick-7b15defb7ee9.herokuapp.com/users/sign_out', {
+        await axios.delete('http://127.0.0.1:3000/users/sign_out', {
           headers: {
             Authorization: `Bearer ${sessionCookie}`,
           },
@@ -51,7 +62,20 @@ function Header() {
         </Link>
         <div className="auth-link">
           {isLoggedIn ? (
-            <ExitToApp onClick={handleAuth} className="icon" />
+            <div >
+              {profilePicture ? (
+                <Image
+                  src={profilePicture}
+                  roundedCircle
+                  width={50}
+                  height={50}
+                  className="profile-picture"
+                />
+              ) : (
+                <AccountCircle className="icon" />
+              )}
+              <ExitToApp onClick={handleAuth} className="icon" />
+            </div>
           ) : (
             <Link to="/signin" className="icon-link">
               <AccountCircle className="icon" />
