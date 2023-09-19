@@ -1,7 +1,6 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
-import CryptoJS from "crypto-js";
 
 
 const Home = lazy(() => import('./Components/Home'));
@@ -15,28 +14,7 @@ const Profile = lazy(()=> import('./Components/Profile'));
 function App() {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    try {
-      const secretKey = "wabebee_x1_levick";
-      const encryptedUserID = localStorage.getItem("user_id");
-      if (encryptedUserID) {
-        const bytes = CryptoJS.AES.decrypt(encryptedUserID, secretKey);
-        const decryptedUserData = bytes.toString(CryptoJS.enc.Utf8);
 
-        if (decryptedUserData) {
-          const currentUser = JSON.parse(decryptedUserData);
-          setUser(currentUser);
-        } else {
-
-          console.error("Please log in.");
-        }
-      } else {
-        console.error("Please log in.");
-      }
-    } catch (error) {
-      console.error("Error decrypting user data:", error);
-    }
-  }, []);
 
   useEffect(() => {
     const session = localStorage.getItem('session_id');
@@ -59,11 +37,11 @@ function App() {
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
-          <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
+          <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm  /></Suspense>} />
         )}
         {/* Render the SignInForm route only when the user is not logged in */}
         {!isLoggedIn && (
-          <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm  /></Suspense>} />
+          <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setUser={setUser}  /></Suspense>} />
         )}
 
       </Routes>

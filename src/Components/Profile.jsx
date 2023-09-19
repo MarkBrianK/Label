@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 import Header from "./Header";
+import Button from '../Shared/Button';
 
 export default function Profile({ user }) {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const editorRef = useRef();
+  const sessionCookie = localStorage.getItem('session_id')
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchUserData = async (user) => {
@@ -24,6 +30,7 @@ export default function Profile({ user }) {
 
     if (user) {
       fetchUserData(user);
+      setIsLoggedIn(true)
     }
   }, [user]);
 
@@ -56,6 +63,28 @@ export default function Profile({ user }) {
   const handleFileChange = (event) => {
     setProfilePicture(event.target.files[0]);
   };
+  const handleAuth = async () => {
+
+    if (isLoggedIn) {
+      try {
+        await axios.delete('https://levick-7b15defb7ee9.herokuapp.com/users/sign_out', {
+          headers: {
+            Authorization: `Bearer ${sessionCookie}`,
+          },
+          withCredentials: true,
+        });
+        localStorage.removeItem('session_id');
+        localStorage.removeItem('user_id');
+        setIsLoggedIn(false);
+        navigate('/');
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      navigate('/');
+    }
+  };
+
 
   return (
     <div className="container">
@@ -107,6 +136,8 @@ export default function Profile({ user }) {
             <ul>
               <li>
                 <strong>Username:</strong> {username}
+
+            <Button onClick={handleAuth}> Log Out</Button>
               </li>
             </ul>
             {profilePicture && (
@@ -123,12 +154,15 @@ export default function Profile({ user }) {
                 />
               </div>
             )}
+
           </div>
 
           <button className="btn btn-primary" onClick={handleUpdateProfile}>
             Update Profile
           </button>
         </div>
+
+
         <div className="col-md-6">
           <Header user={user} />
         </div>
