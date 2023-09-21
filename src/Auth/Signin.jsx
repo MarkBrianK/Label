@@ -47,13 +47,14 @@ const SignInForm = () => {
           secretKey
         ).toString();
         localStorage.setItem("user_id", encryptedUserId);
-        
+
         setSuccess(true);
         localStorage.setItem("session_id", response.data.session_id);
-
+        localStorage.setItem("username", response.data.username)
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+          window.location.reload();
+        }, 1000);
       } else {
         setErrorMessage(response.data.message || "Could not log in.");
       }
