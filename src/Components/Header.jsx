@@ -5,10 +5,11 @@ import { Image } from "react-bootstrap";
 import { AccountCircle, Home, Mail, ShoppingBag } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
 
-function Header({ user  }) {
+function Header({ user,username  }) {
   const sessionCookie = localStorage.getItem("session_id");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
+
 
   useEffect(() => {
     setIsLoggedIn(!!sessionCookie);
@@ -42,7 +43,7 @@ function Header({ user  }) {
 
         <div className="auth-link">
           {isLoggedIn ? (
-            <Link to={`/profile/${user}`} className="icon-link">
+            <Link to={`/profile/${username}`} className="icon-link">
               <div
                 className="d-flex align-items-center"
                 style={{
