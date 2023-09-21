@@ -5,15 +5,15 @@ import AvatarEditor from "react-avatar-editor";
 import Header from "./Header";
 import Button from '../Shared/Button';
 
-export default function Profile({ user }) {
+export default function Profile({ user, userdetails}) {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const editorRef = useRef();
   const sessionCookie = localStorage.getItem('session_id')
 
-  const navigate = useNavigate()
 
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchUserData = async (user) => {
       try {
@@ -21,6 +21,8 @@ export default function Profile({ user }) {
           `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
         );
         setUsername(response.data.username);
+
+
         // Set the profile picture from the response
         setProfilePicture(response.data.profile_picture);
       } catch (error) {
@@ -28,11 +30,15 @@ export default function Profile({ user }) {
       }
     };
 
+
     if (user) {
       fetchUserData(user);
       setIsLoggedIn(true)
     }
+
   }, [user]);
+
+
 
   const handleUpdateProfile = async () => {
     if (!user) {
@@ -164,8 +170,8 @@ export default function Profile({ user }) {
         </div>
 
 
-        <div className="col-md-6">
-          <Header user={user} />
+        <div className="col-md-6" style={{marginTop:"40px"}}>
+          <Header username={userdetails} user={user}/>
         </div>
       </div>
     </div>
