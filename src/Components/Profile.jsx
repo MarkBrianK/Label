@@ -74,8 +74,9 @@ export default function Profile({ user }) {
           withCredentials: true,
         });
         localStorage.removeItem('session_id');
-        localStorage.removeItem('user_id');
+        localStorage.removeItem('user_id')
         setIsLoggedIn(false);
+
         navigate('/');
       } catch (error) {
         console.error(error);
@@ -147,8 +148,8 @@ export default function Profile({ user }) {
                   src={profilePicture}
                   alt="Profile_picture"
                   style={{
-                    width: "104px",
-                    height: "100px",
+                    width: "200px",
+                    height: "206px",
                     borderRadius: "50%",
                   }}
                 />
