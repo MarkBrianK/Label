@@ -2,7 +2,7 @@ const home = "/";
 const signup = "/signup";
 const signin = "/signin";
 const comments = "/comments/:clothId";
-const profile = "/profile/:userId";
+const profile = "/profile/:username";
 
 export const ROUTES = {
   home: home,
