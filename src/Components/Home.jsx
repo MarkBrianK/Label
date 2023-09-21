@@ -11,7 +11,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
 
-export default function Home({user}) {
+export default function Home({user, userdetails}) {
   const imageStyle = {
     height: "100px",
     width: "100px",
@@ -65,7 +65,7 @@ export default function Home({user}) {
 
   return (
     <div className="home-container">
-      <Header user={user} />
+      <Header user={user} username={userdetails}  />
 
       <Container className="text-center mt-3">
         <div className="fixed-logo-search-container">
