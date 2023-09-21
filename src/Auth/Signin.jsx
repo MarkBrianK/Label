@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signin.css";
 
-const SignInForm = ({setUser}) => {
+const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -39,8 +40,15 @@ const SignInForm = ({setUser}) => {
       );
 
       if (response && response.data && response.data.success) {
+        const userIdToEncrypt = response.data.user_id.toString();
+        const secretKey = "wabebee_x1_levick";
+        const encryptedUserId = CryptoJS.AES.encrypt(
+          userIdToEncrypt,
+          secretKey
+        ).toString();
+        localStorage.setItem("user_id", encryptedUserId);
+        
         setSuccess(true);
-        setUser(response.data.user_id)
         localStorage.setItem("session_id", response.data.session_id);
 
         setTimeout(() => {
