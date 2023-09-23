@@ -34,7 +34,17 @@ function EditProfile (){
     setProfilePicture(event.target.files[0]);
   };
     return(
-        <div></div>
+        <div>
+        <input
+              type="file"
+              id="profilePicture"
+              accept="image/*"
+              className="form-control"
+              onChange={handleFileChange}
+            />
+
+
+        </div>
     )
 }
 
