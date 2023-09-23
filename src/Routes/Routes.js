@@ -3,11 +3,13 @@ const signup = "/signup";
 const signin = "/signin";
 const comments = "/comments/:clothId";
 const profile = "/profile/:username";
+const editProfile = "/profile/edit"
 
 export const ROUTES = {
   home: home,
   signUp: signup,
   signIn: signin,
   comments: comments,
-  profile: profile
+  profile: profile,
+  editProfile: editProfile
 }
