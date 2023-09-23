@@ -85,13 +85,7 @@ export default function Profile({ user, userdetails}) {
             <label htmlFor="profilePicture" className="form-label">
               Profile Picture:
             </label>
-            <input
-              type="file"
-              id="profilePicture"
-              accept="image/*"
-              className="form-control"
-              onChange={handleFileChange}
-            />
+            
             {profilePicture && (
               <AvatarEditor
                 ref={editorRef}
