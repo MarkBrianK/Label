@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 
 
 function EditProfile ({user}){
+
+  const [username, setUsername] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
 
 
 
