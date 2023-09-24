@@ -1,7 +1,9 @@
 import React from "react";
 
 
-function EditProfile (){
+function EditProfile ({user}){
+
+
 
 
   const handleUpdateProfile = async () => {
