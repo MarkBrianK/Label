@@ -2,6 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 import CryptoJS from 'crypto-js';
+import EditProfile from './Screens/EditProfile';
 
 
 const Home = lazy(() => import('./Components/Home'));
@@ -65,6 +66,7 @@ function App() {
 
         <Route path={ROUTES.clothcomments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
         <Route path={ROUTES.profile} element={<Suspense fallback={<div>Loading ...</div>}> < Profile user={user} userdetails={userdetails} /> </Suspense>} />
+        <Route path={ROUTES.editProfile} element={<Suspense fallback={<div>Loading ...</div>}> < EditProfile user={user}  /> </Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
