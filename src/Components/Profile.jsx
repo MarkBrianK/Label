@@ -81,28 +81,7 @@ export default function Profile({ user, userdetails}) {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="profilePicture" className="form-label">
-              Profile Picture:
-            </label>
-
-            {profilePicture && (
-              <AvatarEditor
-                ref={editorRef}
-                image={profilePicture}
-                width={200}
-                height={200}
-                border={50}
-                borderRadius={100}
-                scale={1.2}
-                className="mt-3"
-                style={{
-                  borderRadius: "50%",
-                  border: "1px solid goldenrod",
-                }}
-              />
-            )}
-          </div>
+          
           <div className="mb-3">
             <h3>User Details</h3>
             <ul>
@@ -129,7 +108,7 @@ export default function Profile({ user, userdetails}) {
 
           </div>
 
-         
+
         </div>
 
 
