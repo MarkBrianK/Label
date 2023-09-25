@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import AvatarEditor from "react-avatar-editor";
 import Header from "./Header";
 import Button from '../Shared/Button';
 
@@ -9,7 +8,7 @@ export default function Profile({ user, userdetails}) {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const editorRef = useRef();
+
   const sessionCookie = localStorage.getItem('session_id')
 
 
@@ -81,7 +80,7 @@ export default function Profile({ user, userdetails}) {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          
+
           <div className="mb-3">
             <h3>User Details</h3>
             <ul>

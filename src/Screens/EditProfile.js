@@ -1,10 +1,12 @@
-import React,{useState} from "react";
+import React,{useState, useRef } from "react";
 import axios from "axios";
+import AvatarEditor from "react-avatar-editor";
 
 function EditProfile ({user}){
 
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
+  const editorRef = useRef();
 
 
 
