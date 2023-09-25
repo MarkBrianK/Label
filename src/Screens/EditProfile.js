@@ -48,7 +48,9 @@ function EditProfile ({user}){
               onChange={handleFileChange}
             />
 
-
+            <button className="btn btn-primary" onClick={handleUpdateProfile}>
+            Update Profile
+          </button>
         </div>
     )
 }
