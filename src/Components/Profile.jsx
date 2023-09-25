@@ -85,7 +85,7 @@ export default function Profile({ user, userdetails}) {
             <label htmlFor="profilePicture" className="form-label">
               Profile Picture:
             </label>
-            
+
             {profilePicture && (
               <AvatarEditor
                 ref={editorRef}
@@ -129,9 +129,7 @@ export default function Profile({ user, userdetails}) {
 
           </div>
 
-          <button className="btn btn-primary" onClick={handleUpdateProfile}>
-            Update Profile
-          </button>
+         
         </div>
 
 
