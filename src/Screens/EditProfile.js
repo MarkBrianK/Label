@@ -1,4 +1,4 @@
-import React,{useState, useRef } from "react";
+import React,{useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 
@@ -8,6 +8,32 @@ function EditProfile ({user}){
   const [profilePicture, setProfilePicture] = useState(null);
   const editorRef = useRef();
 
+
+
+
+
+useEffect(() => {
+    const fetchUserData = async (user) => {
+      try {
+        const response = await axios.get(
+          `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
+        );
+        setUsername(response.data.username);
+
+
+        // Set the profile picture from the response
+        setProfilePicture(response.data.profile_picture);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+
+    if (user) {
+      fetchUserData(user);
+    }
+
+  }, [user]);
 
 
 
