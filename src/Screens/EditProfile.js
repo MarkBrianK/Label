@@ -1,8 +1,8 @@
-import React,{useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 
-function EditProfile ({user}){
+function EditProfile({ user }) {
 
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
@@ -12,7 +12,7 @@ function EditProfile ({user}){
 
 
 
-useEffect(() => {
+  useEffect(() => {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
@@ -66,43 +66,56 @@ useEffect(() => {
   const handleFileChange = (event) => {
     setProfilePicture(event.target.files[0]);
   };
-    return(
-        <div>
+  return (
+    <div>
+      <div className="mb-3">
+        <label htmlFor="username" className="form-label">
+          Username:
+        </label>
         <input
-              type="file"
-              id="profilePicture"
-              accept="image/*"
-              className="form-control"
-              onChange={handleFileChange}
-            />
-            <div className="mb-3">
-            <label htmlFor="profilePicture" className="form-label">
-              Profile Picture:
-            </label>
+          type="text"
+          id="username"
+          className="form-control"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      {profilePicture && (
+        <AvatarEditor
+          ref={editorRef}
+          image={profilePicture}
+          width={200}
+          height={200}
+          border={50}
+          borderRadius={100}
+          scale={1.2}
+          className="mt-3"
+          style={{
+            borderRadius: "50%",
+            border: "1px solid goldenrod",
+          }}
+        />
+      )}
+      <input
+        type="file"
+        id="profilePicture"
+        accept="image/*"
+        className="form-control"
+        onChange={handleFileChange}
+      />
+      <div className="mb-3">
+        <label htmlFor="profilePicture" className="form-label">
+          Profile Picture:
+        </label>
 
-            {profilePicture && (
-              <AvatarEditor
-                ref={editorRef}
-                image={profilePicture}
-                width={200}
-                height={200}
-                border={50}
-                borderRadius={100}
-                scale={1.2}
-                className="mt-3"
-                style={{
-                  borderRadius: "50%",
-                  border: "1px solid goldenrod",
-                }}
-              />
-            )}
-          </div>
 
-            <button className="btn btn-primary" onClick={handleUpdateProfile}>
-            Update Profile
-          </button>
-        </div>
-    )
+      </div>
+
+      <button className="btn btn-primary" onClick={handleUpdateProfile}>
+        Update Profile
+      </button>
+    </div>
+  )
 }
 
 export default EditProfile
