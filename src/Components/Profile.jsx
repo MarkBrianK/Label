@@ -68,18 +68,7 @@ export default function Profile({ user, userdetails}) {
       <div className="row mt-5">
         <div className="col-md-6">
           <h2>User Profile</h2>
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">
-              Username:
-            </label>
-            <input
-              type="text"
-              id="username"
-              className="form-control"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
+          
 
           <div className="mb-3">
             <h3>User Details</h3>
