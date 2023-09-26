@@ -68,7 +68,7 @@ export default function Profile({ user, userdetails}) {
       <div className="row mt-5">
         <div className="col-md-6">
           <h2>User Profile</h2>
-          
+
 
           <div className="mb-3">
             <h3>User Details</h3>
@@ -77,6 +77,7 @@ export default function Profile({ user, userdetails}) {
                 <strong>Username:</strong> {username}
 
             <Button onClick={handleAuth}> Log Out</Button>
+            <Button> Edit profile</Button>
               </li>
             </ul>
             {profilePicture && (
@@ -93,6 +94,7 @@ export default function Profile({ user, userdetails}) {
                 />
               </div>
             )}
+
 
           </div>
 
