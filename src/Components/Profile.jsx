@@ -13,6 +13,7 @@ export default function Profile({ user, userdetails}) {
 
 
   const handleProfileEdit = ()=>{
+    <Link to={`/editProfile`} className="icon-link"></Link>
 
   }
 
