@@ -82,7 +82,7 @@ export default function Profile({ user, userdetails}) {
                 <strong>Username:</strong> {username}
 
             <Button onClick={handleAuth}> Log Out</Button>
-            <Button> Edit profile</Button>
+            <Button onClick={handleProfileEdit}> Edit profile</Button>
               </li>
             </ul>
             {profilePicture && (
