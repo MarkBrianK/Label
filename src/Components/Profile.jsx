@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { useNavigate, Link  } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
 import Button from '../Shared/Button';
@@ -12,13 +12,16 @@ export default function Profile({ user, userdetails}) {
   const sessionCookie = localStorage.getItem('session_id')
 
 
-  const handleProfileEdit = ()=>{
-    <Link to={`/editProfile`} className="icon-link"></Link>
 
-  }
 
 
   const navigate = useNavigate()
+
+
+  const handleProfileEdit = () => {
+    navigate('/editProfile');
+  };
+  
   useEffect(() => {
     const fetchUserData = async (user) => {
       try {
