@@ -12,6 +12,11 @@ export default function Profile({ user, userdetails}) {
   const sessionCookie = localStorage.getItem('session_id')
 
 
+  const handleProfileEdit = ()=>{
+
+  }
+
+
   const navigate = useNavigate()
   useEffect(() => {
     const fetchUserData = async (user) => {
@@ -61,7 +66,6 @@ export default function Profile({ user, userdetails}) {
       navigate('/');
     }
   };
-
 
   return (
     <div className="container">
