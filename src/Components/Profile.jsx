@@ -19,9 +19,9 @@ export default function Profile({ user, userdetails}) {
 
 
   const handleProfileEdit = () => {
-    navigate('/editProfile');
+    navigate('/profile/edit');
   };
-  
+
   useEffect(() => {
     const fetchUserData = async (user) => {
       try {
