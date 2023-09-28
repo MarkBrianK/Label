@@ -4,16 +4,18 @@ import Button from "../Shared/Button";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import defaultProfilePicture from "../Assets/Image/user.jpg";
 
-function CommentHandler({user}) {
+function CommentHandler({ user }) {
   const { clothId } = useParams();
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-
-  if(user){
-    setLoggedIn(true)
-  }
+  useEffect(() => {
+    // Set loggedIn to true if user is present
+    if (user) {
+      setLoggedIn(true);
+    }
+  }, [user]);
 
   const fetchComments = useCallback(async () => {
     try {
@@ -74,37 +76,41 @@ function CommentHandler({user}) {
     <Container>
       <Row>
         <Col xs={12}>
-          <ul className="comment-list list-unstyled">
-            {comments.map((comment) => {
-              return comment.body ? (
-                <li key={comment.id}>
-                  <div className="comment-content">
-                    <div className="comment-user-info">
-                      {comment.user.profile_picture ? (
-                        <Image
-                          src={comment.user.profile_picture}
-                          roundedCircle
-                          width={30}
-                          height={30}
-                        />
-                      ) : (
-                        <Image
-                          src={defaultProfilePicture}
-                          roundedCircle
-                          width={30}
-                          height={30}
-                        />
-                      )}
-                      <span className="comment-username" style={{ fontWeight: "700" }}>
-                        {comment.user.name}
-                      </span>
+          {comments.length > 0 ? (
+            <ul className="comment-list list-unstyled">
+              {comments.map((comment) =>
+                comment.body ? (
+                  <li key={comment.id}>
+                    <div className="comment-content">
+                      <div className="comment-user-info">
+                        {comment.user.profile_picture ? (
+                          <Image
+                            src={comment.user.profile_picture}
+                            roundedCircle
+                            width={30}
+                            height={30}
+                          />
+                        ) : (
+                          <Image
+                            src={defaultProfilePicture}
+                            roundedCircle
+                            width={30}
+                            height={30}
+                          />
+                        )}
+                        <span className="comment-username" style={{ fontWeight: "700" }}>
+                          {comment.user.name}
+                        </span>
+                      </div>
+                      <div className="comment-body">{comment.body}</div>
                     </div>
-                    <div className="comment-body">{comment.body}</div>
-                  </div>
-                </li>
-              ) : null;
-            })}
-          </ul>
+                  </li>
+                ) : null
+              )}
+            </ul>
+          ) : (
+            <p>No comments available.</p>
+          )}
         </Col>
       </Row>
       {loggedIn ? (
