@@ -65,7 +65,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
 
-        <Route path={ROUTES.clothcomments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
+        <Route path={ROUTES.clothComments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
         <Route path={ROUTES.profile} element={<Suspense fallback={<div>Loading ...</div>}> < Profile user={user} userdetails={userdetails} /> </Suspense>} />
         <Route path={ROUTES.editProfile} element={<Suspense fallback={<div>Loading ...</div>}> < EditProfile user={user}  /> </Suspense>} />
 
