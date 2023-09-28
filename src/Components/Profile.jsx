@@ -49,8 +49,11 @@ export default function Profile({ user, userdetails }) {
         );
         localStorage.removeItem("session_id");
         localStorage.removeItem("user_id");
+        localStorage.removeItem("username")
+
         setIsLoggedIn(false);
         navigate("/");
+        window.location.reload()
       } catch (error) {
         console.error(error);
       }
