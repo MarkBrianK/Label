@@ -25,7 +25,7 @@ function LikeButton({ cloth, onLikeError, user }) {
         const likeId = individualLikeData.map((like) => like.id);
         setLike(parseInt(likeId));
         const likeUserId = individualLikeData.map((like) => like.user_id);
-        if (likeUserId.includes(user.id)) {
+        if (likeUserId.includes(user)) {
           setLiked(true);
         }
       } catch (error) {
@@ -50,7 +50,7 @@ function LikeButton({ cloth, onLikeError, user }) {
     }
 
     try {
-      const requestData = { user_id: user.id, cloth_id: cloth.id };
+      const requestData = { user_id: user, cloth_id: cloth.id };
 
       if (liked) {
         // Unlike the cloth
