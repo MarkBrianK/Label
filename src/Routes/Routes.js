@@ -9,7 +9,7 @@ export const ROUTES = {
   home: home,
   signUp: signup,
   signIn: signin,
-  comments: comments,
+  clothComments: comments,
   profile: profile,
   editProfile: editProfile
 }
