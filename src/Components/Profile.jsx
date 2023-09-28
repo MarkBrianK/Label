@@ -1,25 +1,18 @@
-import React, { useState, useEffect} from "react";
-import { useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
-import Button from '../Shared/Button';
+import Button from "../Shared/Button";
 
-export default function Profile({ user, userdetails}) {
+export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const sessionCookie = localStorage.getItem('session_id')
-
-
-
-
-
-  const navigate = useNavigate()
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const sessionCookie = localStorage.getItem("session_id");
+  const navigate = useNavigate();
 
   const handleProfileEdit = () => {
-    navigate('/profile/edit');
+    navigate("/profile/edit");
   };
 
   useEffect(() => {
@@ -29,90 +22,72 @@ export default function Profile({ user, userdetails}) {
           `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
         );
         setUsername(response.data.username);
-
-
-        // Set the profile picture from the response
         setProfilePicture(response.data.profile_picture);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
     };
 
-
     if (user) {
       fetchUserData(user);
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
     }
-
   }, [user]);
 
-
-
   const handleAuth = async () => {
-
     if (isLoggedIn) {
       try {
-        await axios.delete('https://levick-7b15defb7ee9.herokuapp.com/users/sign_out', {
-          headers: {
-            Authorization: `Bearer ${sessionCookie}`,
-          },
-          withCredentials: true,
-        });
-        localStorage.removeItem('session_id');
-        localStorage.removeItem('user_id')
+        await axios.delete(
+          "https://levick-7b15defb7ee9.herokuapp.com/users/sign_out",
+          {
+            headers: {
+              Authorization: `Bearer ${sessionCookie}`,
+            },
+            withCredentials: true,
+          }
+        );
+        localStorage.removeItem("session_id");
+        localStorage.removeItem("user_id");
         setIsLoggedIn(false);
-
-        navigate('/');
+        navigate("/");
       } catch (error) {
         console.error(error);
       }
     } else {
-      navigate('/');
+      navigate("/");
     }
   };
 
   return (
-    <div className="container" style={{display:"flex", backgroundColor:"black", height:"100%"}}>
-      <div className="row mt-5">
-        <div className="col-md-6">
-
-          {profilePicture && (
-              <div>
-                <h4>Profile Picture:</h4>
-                <img
-                  src={profilePicture}
-                  alt="Profile_picture"
-                  style={{
-                    width: "200px",
-                    height: "206px",
-                    borderRadius: "50%",
-                  }}
-                />
-              </div>
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="text-center">
+            {profilePicture && (
+              <img
+                src={profilePicture}
+                alt="Profile_picture"
+                className="img-fluid rounded-circle"
+                style={{ width: "100px", height: "100px" }}
+              />
             )}
-
-
-
-          <div className="mb-3">
-            <h3>User Details</h3>
-            <ul>
-              <li>
-                <strong>Username:</strong> {username}
-
-            <Button onClick={handleAuth}> Log Out</Button>
-            <Button onClick={handleProfileEdit}> Edit profile</Button>
-              </li>
-            </ul>
-
-
           </div>
-
-
         </div>
 
+        <div className="col-md-8">
+          <div className="user-details">
+            <h3 className="font-weight-bold">{username}</h3>
+            <div className="button-container mt-3">
+              <Button onClick={handleAuth}>Log Out</Button>
+              <Button onClick={handleProfileEdit}>Edit Profile</Button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div className="col-md-6" style={{marginTop:"40px"}}>
-          <Header username={userdetails} user={user}/>
+      <div className="row mt-4">
+        <div className="col-md-12">
+          <Header username={userdetails} user={user} />
         </div>
       </div>
     </div>
