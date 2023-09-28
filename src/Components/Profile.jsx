@@ -72,7 +72,7 @@ export default function Profile({ user, userdetails}) {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{display:"flex"}}>
       <div className="row mt-5">
         <div className="col-md-6">
           <h2>User Profile</h2>
