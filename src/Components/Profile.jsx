@@ -133,13 +133,13 @@ export default function Profile({ user, userdetails }) {
                 />
               </div>
               <div className="modal-footer">
-                <button
+                <Button
                   type="button"
                   className="btn btn-secondary"
                   onClick={() => setShowModal(false)}
                 >
                   Close
-                </button>
+                </Button>
               </div>
             </div>
           </div>
