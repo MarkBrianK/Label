@@ -72,23 +72,11 @@ export default function Profile({ user, userdetails}) {
   };
 
   return (
-    <div className="container" style={{display:"flex"}}>
+    <div className="container" style={{display:"flex", backgroundColor:"black", height:"100%"}}>
       <div className="row mt-5">
         <div className="col-md-6">
-          <h2>User Profile</h2>
 
-
-          <div className="mb-3">
-            <h3>User Details</h3>
-            <ul>
-              <li>
-                <strong>Username:</strong> {username}
-
-            <Button onClick={handleAuth}> Log Out</Button>
-            <Button onClick={handleProfileEdit}> Edit profile</Button>
-              </li>
-            </ul>
-            {profilePicture && (
+          {profilePicture && (
               <div>
                 <h4>Profile Picture:</h4>
                 <img
@@ -102,6 +90,19 @@ export default function Profile({ user, userdetails}) {
                 />
               </div>
             )}
+
+
+
+          <div className="mb-3">
+            <h3>User Details</h3>
+            <ul>
+              <li>
+                <strong>Username:</strong> {username}
+
+            <Button onClick={handleAuth}> Log Out</Button>
+            <Button onClick={handleProfileEdit}> Edit profile</Button>
+              </li>
+            </ul>
 
 
           </div>
