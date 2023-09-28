@@ -61,6 +61,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
             <LikeButton
               cloth={item}
               onLikeError={(errorMessage) => setLikeErrorMessage(errorMessage)}
+              user={user}
             />
             {isLoggedIn ? (
               <Link
