@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 import CryptoJS from 'crypto-js';
 import EditProfile from './Screens/EditProfile';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Home = lazy(() => import('./Components/Home'));
