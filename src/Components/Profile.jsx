@@ -77,7 +77,10 @@ export default function Profile({ user, userdetails }) {
         <div className="col-md-8">
           <div className="user-details">
             <h3 className="font-weight-bold">{username}</h3>
-            <div className="button-container mt-3">
+            <div
+              className="button-container mt-3"
+              style={{ display: "flex", gap: "10px" }}
+            >
               <Button onClick={handleAuth}>Log Out</Button>
               <Button onClick={handleProfileEdit}>Edit Profile</Button>
             </div>
