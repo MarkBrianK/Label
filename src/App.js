@@ -1,8 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
-import CryptoJS from 'crypto-js';
-import EditProfile from './Screens/EditProfile';
+import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -11,6 +10,8 @@ const SignUpForm = lazy(() => import('./Auth/Signup'));
 const SignInForm = lazy(() => import('./Auth/Signin'));
 const CommentHandler = lazy(()=> import('./Screens/CommentsHandler'));
 const Profile = lazy(()=> import('./Components/Profile'));
+const EditProfile =  lazy(()=> import('./Screens/EditProfile'))
+
 
 
 

@@ -63,7 +63,7 @@ export default function Profile({ user, userdetails }) {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container" style={{backgroundColor:"black", minHeight: "100vh"} }>
       <div className="row">
         <div className="col-md-4">
           <div className="text-center">
@@ -74,6 +74,7 @@ export default function Profile({ user, userdetails }) {
                   width: "100px",
                   height: "100px",
                   cursor: "pointer",
+                  marginTop:"10px"
                 }}
                 onClick={() => setShowModal(true)}
               >
@@ -111,7 +112,7 @@ export default function Profile({ user, userdetails }) {
 
         <div className="col-md-8">
           <div className="user-details">
-            <h3 className="font-weight-bold">{username}</h3>
+            <h3 className="font-weight-bold" style={{color:"white"}}>{username}</h3>
             <div className="button-container mt-3 d-flex gap-2">
               <Button onClick={handleAuth}>Log Out</Button>
               <Button onClick={handleProfileEdit}>Edit Profile</Button>
