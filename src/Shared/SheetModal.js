@@ -16,6 +16,7 @@ export default function SheetModal({ children}) {
         height: "fit-content",
         overflow: 'hidden',
         width:"100%",
+       
 
     }}>
       <div>{children}</div>
