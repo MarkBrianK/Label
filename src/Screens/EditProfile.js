@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
+import Header from "../Components/Header";
 
 function EditProfile({ user }) {
 
@@ -114,6 +115,11 @@ function EditProfile({ user }) {
       <button className="btn btn-primary" onClick={handleUpdateProfile}>
         Update Profile
       </button>
+      <div className="row mt-4">
+        <div className="col-md-12">
+          <Header user={user} />
+        </div>
+      </div>
     </div>
   )
 }
