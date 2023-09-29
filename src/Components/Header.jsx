@@ -52,7 +52,7 @@ function Header({ user,username  }) {
                   border: "1px solid goldenrod",
 
                   width: "40px",
-                  height: "44px",
+                  height: "40px",
                   minWidth: "40px",
                   minHeight: "40px",
                   padding: 0,
@@ -65,7 +65,8 @@ function Header({ user,username  }) {
                     style={{
                       width: "100%",
                       height: "100%",
-                      borderRadius:"50%"
+                      borderRadius:"50%",
+                      objectFit:"cover"
 
                     }}
                   />
@@ -75,6 +76,7 @@ function Header({ user,username  }) {
                     width: "100%",
                     height: "100%",
                     borderRadius: "50%",
+                    objectFit:"cover"
                   }}
                    className="icon" />
                 )}
