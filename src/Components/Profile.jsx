@@ -81,7 +81,7 @@ export default function Profile({ user, userdetails }) {
                   src={profilePicture}
                   alt="Profile_picture"
                   className="img-fluid rounded-circle"
-                  style={{ width: "100%", height: "100%" }}
+                  style={{ width: "100%", height: "100%", objectFit:"cover" }}
                 />
                 <div
                   style={{
