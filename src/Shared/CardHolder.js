@@ -34,7 +34,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
           <Carousel
             showStatus={false}
             showThumbs={false}
-            swipeScrollTolerance={80}
+            swipeable={false}
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
               hasPrev && (
                 <button
