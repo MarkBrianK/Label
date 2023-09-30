@@ -99,7 +99,7 @@ function CommentHandler({ user }) {
                           />
                         )}
                         <span className="comment-username" style={{ fontWeight: "700" }}>
-                          {comment.user.name}
+                          {comment.user.username}
                         </span>
                       </div>
                       <div className="comment-body">{comment.body}</div>
