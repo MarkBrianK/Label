@@ -34,6 +34,7 @@ function SignupForm() {
         "https://levick-7b15defb7ee9.herokuapp.com/users",
         {
           user: {
+            name,
             username,
             email,
             password,
