@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "../Assets/Styles/SearchBar.css"
 
 export default function SearchBar({ setSearchQuery }) {
   const handleSearchChange = (event) => {
