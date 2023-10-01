@@ -119,6 +119,18 @@ function SignupForm() {
                 {usernameError}
               </Form.Control.Feedback>
             </Form.Group>
+            <Form.Group controlId="name">
+              <Form.Label className="formlabel">Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                isInvalid={!!usernameError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {usernameError}
+              </Form.Control.Feedback>
+            </Form.Group>
             <Form.Group controlId="email">
               <Form.Label className="formlabel">Email address</Form.Label>
               <Form.Control
