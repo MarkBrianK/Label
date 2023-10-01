@@ -118,9 +118,7 @@ export default function Profile({ user, userdetails }) {
                 </div>
               </div>
             )}
-            <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
-              Edit Profile
-            </Button>
+
           </div>
         </div>
         <div className="col-md-8">
@@ -129,6 +127,9 @@ export default function Profile({ user, userdetails }) {
               {username}
             </h3>
             <div className="button-container mt-3 d-flex gap-2">
+            <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
+              Edit Profile
+            </Button>
               <Button onClick={handleAuth}>Log Out</Button>
             </div>
           </div>
