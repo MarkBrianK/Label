@@ -107,7 +107,6 @@ function SignupForm() {
             </div>
           )}
           <Form onSubmit={handleSubmit}>
-            <h2 className="form-header">Sign Up</h2>
             <Form.Group controlId="username">
               <Form.Label className="formlabel">Username</Form.Label>
               <Form.Control
