@@ -8,8 +8,7 @@ import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signup.css";
 
 function SignupForm() {
-
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,10 +18,12 @@ function SignupForm() {
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
+  const [passwordConfirmationError, setPasswordConfirmationError] =
+    useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] =
+    useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -79,13 +80,17 @@ function SignupForm() {
           {error && <Alert variant="danger">{error}</Alert>}
           {success && (
             <Alert variant="success">
-              You have successfully signed up. Kindly check your email to confirm your account.
+              You have successfully signed up. Kindly check your email to
+              confirm your account.
             </Alert>
           )}
 
           {isLoading && (
             <div className="loading-alert">
-              <div className="spinner-border text-primary loading-spinner" role="status">
+              <div
+                className="spinner-border text-primary loading-spinner"
+                role="status"
+              >
                 <span className="sr-only" id="spinner"></span>
               </div>
               <style>
@@ -180,7 +185,9 @@ function SignupForm() {
                 <input
                   type="checkbox"
                   checked={showPasswordConfirmation}
-                  onChange={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+                  onChange={() =>
+                    setShowPasswordConfirmation(!showPasswordConfirmation)
+                  }
                 />
                 <label>Show Password</label>
               </div>
