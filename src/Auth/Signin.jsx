@@ -78,6 +78,7 @@ const SignInForm = () => {
             <Form.Control
               type="email"
               value={email}
+              placeholder="example@gmail.com"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -87,6 +88,7 @@ const SignInForm = () => {
             <Form.Control
               type={showPassword ? "text" : "password"}
               value={password}
+              placeholder="Enter your Password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
