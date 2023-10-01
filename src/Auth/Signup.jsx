@@ -8,6 +8,8 @@ import logo from "../Assets/Image/Levick.png";
 import "../Assets/Styles/Signup.css";
 
 function SignupForm() {
+
+  const [name, setName] = useState("")
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
