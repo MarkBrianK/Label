@@ -46,7 +46,10 @@ function CommentHandler({ user }) {
       console.error("Please log in to comment.");
       return;
     }
-
+    if (!newComment.trim()) {
+      console.error("Please enter a non-empty comment.");
+      return;
+    }
     try {
       const requestData = {
         user_id: user,
