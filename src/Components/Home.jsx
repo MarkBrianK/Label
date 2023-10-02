@@ -69,7 +69,7 @@ export default function Home({user, userdetails}) {
 
       <Container className="text-center mt-3">
         <div className="fixed-logo-search-container">
-          <Row style={{ display: "flex", alignItems: "center", justifyContent:"space-around" }}>
+          <Row style={{ display: "flex", alignItems: "center", justifyContent:"space-evenly" }}>
             <Col xs={3}>
               <ImageHandler src={Levick} alt="Logo" style={imageStyle} />
             </Col>
