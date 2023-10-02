@@ -34,9 +34,9 @@ function LikeButton({ cloth, onLikeError, user }) {
       }
     };
 
-    if (user) {
+
       fetchLikes();
-    }
+  
   }, [cloth.id, user]);
 
   const handleLikeClick = async () => {
