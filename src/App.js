@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Helmet } from 'react-helmet-async';
 
 
 const Home = lazy(() => import('./Components/Home'));
