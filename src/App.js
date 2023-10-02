@@ -16,6 +16,7 @@ const EditProfile =  lazy(()=> import('./Screens/EditProfile'))
 
 
 
+
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -64,6 +65,11 @@ function App() {
 
   return (
     <div>
+
+    <Helmet>
+        <title>Levick 23</title>
+        <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-foward individuals like you." />
+      </Helmet>
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
 
