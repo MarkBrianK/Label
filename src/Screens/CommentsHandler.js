@@ -137,7 +137,7 @@ function CommentHandler({ user }) {
       )}
       {loggedIn && (
         <Row style={{ margin: "10px 0px 0px 10px" }}>
-          <Button onClick={handleCommentSubmit}>Submit</Button>
+          <Button onClick={handleCommentSubmit}>Comment</Button>
         </Row>
       )}
     </Container>
