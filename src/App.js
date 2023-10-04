@@ -3,16 +3,16 @@ import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 
 
 const Home = lazy(() => import('./Components/Home'));
 const SignUpForm = lazy(() => import('./Auth/Signup'));
 const SignInForm = lazy(() => import('./Auth/Signin'));
-const CommentHandler = lazy(()=> import('./Screens/CommentsHandler'));
-const Profile = lazy(()=> import('./Components/Profile'));
-const EditProfile =  lazy(()=> import('./Screens/EditProfile'))
+const CommentHandler = lazy(() => import('./Screens/CommentsHandler'));
+const Profile = lazy(() => import('./Components/Profile'));
+const EditProfile = lazy(() => import('./Screens/EditProfile'))
 
 
 
@@ -67,24 +67,27 @@ function App() {
   return (
     <div>
 
-    <Helmet>
+      <Helmet>
         <title>Levick 23</title>
-        <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-foward individuals like you." />
+        <meta
+          name="description"
+          content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-foward individuals like you."
+        />
       </Helmet>
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
 
         <Route path={ROUTES.clothComments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
         <Route path={ROUTES.profile} element={<Suspense fallback={<div>Loading ...</div>}> < Profile user={user} userdetails={userdetails} /> </Suspense>} />
-        <Route path={ROUTES.editProfile} element={<Suspense fallback={<div>Loading ...</div>}> < EditProfile user={user}  /> </Suspense>} />
+        <Route path={ROUTES.editProfile} element={<Suspense fallback={<div>Loading ...</div>}> < EditProfile user={user} /> </Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
-          <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm  /></Suspense>} />
+          <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
         )}
         {/* Render the SignInForm route only when the user is not logged in */}
         {!isLoggedIn && (
-          <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setUser={setUser}   /></Suspense>} />
+          <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setUser={setUser} /></Suspense>} />
         )}
 
       </Routes>
