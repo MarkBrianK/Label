@@ -57,7 +57,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
           >
             <img
               src={category.image}
-              alt={category.name}
+              alt={`${category.name} category`}
               style={{ width: "100%", height: "100%", borderRadius: "50%", marginRight: "5px" }}
             />
             <p style={{color:"white", fontSize:"xx-small", marginTop:"4px"}}>{category.name}</p>
