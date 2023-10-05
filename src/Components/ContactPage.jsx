@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from "../Shared/Button";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from 'react-helmet';
 
@@ -29,7 +30,7 @@ const ContactPage = () => {
                   <label htmlFor="message">Message</label>
                   <textarea className="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <Button type="submit" className="btn btn-primary">Submit</Button>
               </form>
             </div>
           </div>
