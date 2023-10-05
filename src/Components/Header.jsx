@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 import { Image } from "react-bootstrap";
 import { AccountCircle, Home, Mail, ShoppingBag } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
 
-function Header({ user,username  }) {
+function Header({ user, username }) {
   const sessionCookie = localStorage.getItem("session_id");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
-
 
   useEffect(() => {
     setIsLoggedIn(!!sessionCookie);
@@ -28,6 +28,13 @@ function Header({ user,username  }) {
 
   return (
     <header className={`header ${isLoggedIn ? "loggedIn" : ""}`}>
+      <Helmet>
+        <title>Levick 23 - Your Ultimate Fashion Destination</title>
+        <meta
+          name="description"
+          content="Welcome to Levick 23, your ultimate fashion destination for trendy and affordable clothing. Explore the latest styles and discover your unique fashion statement at Levick 23."
+        />
+      </Helmet>
       <div className="nav-icons">
         <Link to="/" className="icon-link">
           <Home className="icon" />
@@ -65,20 +72,20 @@ function Header({ user,username  }) {
                     style={{
                       width: "100%",
                       height: "100%",
-                      borderRadius:"50%",
-                      objectFit:"cover"
-
+                      borderRadius: "50%",
+                      objectFit: "cover",
                     }}
                   />
                 ) : (
                   <AccountCircle
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                    objectFit:"cover"
-                  }}
-                   className="icon" />
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
+                    className="icon"
+                  />
                 )}
               </div>
             </Link>
