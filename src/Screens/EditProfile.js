@@ -4,14 +4,9 @@ import AvatarEditor from "react-avatar-editor";
 import Header from "../Components/Header";
 
 function EditProfile({ user }) {
-
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const editorRef = useRef();
-
-
-
-
 
   useEffect(() => {
     const fetchUserData = async (user) => {
@@ -20,23 +15,16 @@ function EditProfile({ user }) {
           `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
         );
         setUsername(response.data.username);
-
-
-        // Set the profile picture from the response
         setProfilePicture(response.data.profile_picture);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
     };
 
-
     if (user) {
       fetchUserData(user);
     }
-
   }, [user]);
-
-
 
   const handleUpdateProfile = async () => {
     if (!user) {
@@ -67,6 +55,7 @@ function EditProfile({ user }) {
   const handleFileChange = (event) => {
     setProfilePicture(event.target.files[0]);
   };
+
   return (
     <div>
       <div className="mb-3">
@@ -108,10 +97,7 @@ function EditProfile({ user }) {
         <label htmlFor="profilePicture" className="form-label">
           Profile Picture:
         </label>
-
-
       </div>
-
       <button className="btn btn-primary" onClick={handleUpdateProfile}>
         Update Profile
       </button>
@@ -121,7 +107,7 @@ function EditProfile({ user }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default EditProfile
+export default EditProfile;
