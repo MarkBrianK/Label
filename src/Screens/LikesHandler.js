@@ -29,14 +29,12 @@ function LikeButton({ cloth, onLikeError, user }) {
           setLiked(true);
         }
       } catch (error) {
-        setErrorMessage(error)
+        setErrorMessage("Error fetching likes.");
         console.error("Error fetching likes:", error);
       }
     };
 
-
-      fetchLikes();
-  
+    fetchLikes();
   }, [cloth.id, user]);
 
   const handleLikeClick = async () => {
@@ -87,7 +85,7 @@ function LikeButton({ cloth, onLikeError, user }) {
   return (
     <div onClick={handleLikeClick} style={{ fontSize: "small" }}>
       {liked ? <FaHeart color="red" /> : <FaRegHeart />}
-      {likesCount}
+      <span>{likesCount}</span>
       {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
     </div>
   );
