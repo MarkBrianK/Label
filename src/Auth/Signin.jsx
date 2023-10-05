@@ -51,7 +51,7 @@ const SignInForm = () => {
 
         setSuccess(true);
         localStorage.setItem("session_id", response.data.session_id);
-        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("username", response.data.username)
         setTimeout(() => {
           navigate("/");
           window.location.reload();
@@ -80,11 +80,10 @@ const SignInForm = () => {
       <div className="image">
         <img src={logo} alt="Levick Logo" className="logo-image" />
       </div>
-
-      <div className="signin-form rounded p-5">
-        <Form onSubmit={handleSubmit}>
+      <div className="p-5 rounded">
+        <Form onSubmit={handleSubmit} className="form">
           <Form.Group controlId="email">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label className="formlabel">Email address</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -93,9 +92,8 @@ const SignInForm = () => {
               required
             />
           </Form.Group>
-
           <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label className="formlabel">Password</Form.Label>
             <Form.Control
               type={showPassword ? "text" : "password"}
               value={password}
@@ -103,17 +101,23 @@ const SignInForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <Form.Check
-              type="checkbox"
-              label="Show Password"
-              checked={showPassword}
-              onChange={() => setShowPassword(!showPassword)}
-            />
+            <div className="show-password-toggle">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              <label>Show Password</label>
+            </div>
           </Form.Group>
-
+          <br />
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-          {success && <Alert variant="success">Sign in successful.</Alert>}
-
+          {success && (
+            <Alert variant="success">
+              You have successfully signed in.
+            </Alert>
+          )}
+          <br />
           <Button
             type="submit"
             disabled={isLoading}
@@ -122,12 +126,12 @@ const SignInForm = () => {
           >
             {isLoading ? "Loading..." : "Sign In"}
           </Button>
-
-          <div className="mt-3 text-center" id="signup-link">
+          <div className="mt-3 text-center" id="signuplink">
             Don't have an account?{" "}
             <Link className="tosignup" to="/signup">
-              Sign up now.
-            </Link>
+              Sign up
+            </Link>{" "}
+            now.
           </div>
         </Form>
       </div>
