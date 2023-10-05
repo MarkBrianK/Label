@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AccountCircle } from "@mui/icons-material";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 import Header from "./Header";
 import Button from "../Shared/Button";
@@ -68,72 +69,85 @@ export default function Profile({ user, userdetails }) {
       className="container"
       style={{ backgroundColor: "black", minHeight: "100vh" }}
     >
+      <Helmet>
+        <title>
+          {username ? `${username} - Profile | Levick 23` : "Levick 23"}
+        </title>
+        <meta
+          name="description"
+          content={
+            username
+              ? `${username}'s profile on Levick 23`
+              : "Levick 23 profile page"
+          }
+        />
+      </Helmet>
       <div className="row">
         <div className="col-md-4">
           <div className="text-center">
-          {profilePicture ? (
-        <div
-          style={{
-            position: "relative",
-            width: "100px",
-            height: "100px",
-            cursor: "pointer",
-            marginTop: "10px",
-          }}
-          onClick={() => setShowModal(true)}
-        >
-          {/* Profile picture */}
-          <img
-            src={profilePicture}
-            alt="Profile_picture"
-            className="img-fluid rounded-circle"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-          {/* Camera icon */}
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              color: "white",
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-camera"
-              viewBox="0 0 16 16"
-            >
-              {/* Camera icon paths */}
-            </svg>
-          </div>
-        </div>
-      ) : (
-        // Render AccountCircle when there's no profile picture
-        <div
-          style={{
-            width: "100px",
-            height: "100px",
-            marginTop: "10px",
-          }}
-        >
-          <AccountCircle
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-          />
-        </div>
-      )}
+            {profilePicture ? (
+              <div
+                style={{
+                  position: "relative",
+                  width: "100px",
+                  height: "100px",
+                  cursor: "pointer",
+                  marginTop: "10px",
+                }}
+                onClick={() => setShowModal(true)}
+              >
+                {/* Profile picture */}
+                <img
+                  src={profilePicture}
+                  alt="Profile_picture"
+                  className="img-fluid rounded-circle"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+                {/* Camera icon */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-camera"
+                    viewBox="0 0 16 16"
+                  >
+                    {/* Camera icon paths */}
+                  </svg>
+                </div>
+              </div>
+            ) : (
+              // Render AccountCircle when there's no profile picture
+              <div
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  marginTop: "10px",
+                }}
+              >
+                <AccountCircle
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="col-md-8">
@@ -142,9 +156,9 @@ export default function Profile({ user, userdetails }) {
               {username}
             </h3>
             <div className="button-container mt-3 d-flex gap-2">
-            <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
-              Edit Profile
-            </Button>
+              <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
+                Edit Profile
+              </Button>
               <Button onClick={handleAuth}>Log Out</Button>
             </div>
           </div>
