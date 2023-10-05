@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -50,7 +51,7 @@ const SignInForm = () => {
 
         setSuccess(true);
         localStorage.setItem("session_id", response.data.session_id);
-        localStorage.setItem("username", response.data.username)
+        localStorage.setItem("username", response.data.username);
         setTimeout(() => {
           navigate("/");
           window.location.reload();
@@ -68,13 +69,22 @@ const SignInForm = () => {
 
   return (
     <div className="signin">
+      <Helmet>
+        <title>Sign In - Levick 23</title>
+        <meta
+          name="description"
+          content="Sign in to Levick 23 and explore our trendy and affordable clothing collection. Find your unique style and create your fashion statement with Levick 23."
+        />
+      </Helmet>
+
       <div className="image">
-        <img src={logo} alt="Logo" className="logo-image" />
+        <img src={logo} alt="Levick Logo" className="logo-image" />
       </div>
-      <div className="p-5 rounded">
-        <Form onSubmit={handleSubmit} className="form">
+
+      <div className="signin-form rounded p-5">
+        <Form onSubmit={handleSubmit}>
           <Form.Group controlId="email">
-            <Form.Label className="formlabel">Email address</Form.Label>
+            <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -83,8 +93,9 @@ const SignInForm = () => {
               required
             />
           </Form.Group>
+
           <Form.Group controlId="password">
-            <Form.Label className="formlabel">Password</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
               type={showPassword ? "text" : "password"}
               value={password}
@@ -92,23 +103,17 @@ const SignInForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <div className="show-password-toggle">
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={() => setShowPassword(!showPassword)}
-              />
-              <label>Show Password</label>
-            </div>
+            <Form.Check
+              type="checkbox"
+              label="Show Password"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />
           </Form.Group>
-          <br />
+
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-          {success && (
-            <Alert variant="success">
-              You have successfully signed in.
-            </Alert>
-          )}
-          <br />
+          {success && <Alert variant="success">Sign in successful.</Alert>}
+
           <Button
             type="submit"
             disabled={isLoading}
@@ -117,12 +122,12 @@ const SignInForm = () => {
           >
             {isLoading ? "Loading..." : "Sign In"}
           </Button>
-          <div className="mt-3 text-center" id="signuplink">
+
+          <div className="mt-3 text-center" id="signup-link">
             Don't have an account?{" "}
             <Link className="tosignup" to="/signup">
-              Sign up
-            </Link>{" "}
-            now.
+              Sign up now.
+            </Link>
           </div>
         </Form>
       </div>
