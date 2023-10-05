@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -72,6 +73,13 @@ function SignupForm() {
 
   return (
     <div className="home-container">
+      <Helmet>
+        <title>Sign Up - Levick 23</title>
+        <meta
+          name="description"
+          content="Sign up to Levick 23 and explore our trendy and affordable clothing collection. Create your account and discover your unique style at Levick 23."
+        />
+      </Helmet>
       <div className="display-image">
         <img src={logo} alt="Logo" className="display-logo img-fluid" />
       </div>
