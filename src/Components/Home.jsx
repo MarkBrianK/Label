@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImageHandler from "../Screens/ImageHandler";
 import Levick from "../Assets/Image/Levick.png";
+import { Helmet } from "react-helmet";
 import SheetModal from "../Shared/SheetModal";
 import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
@@ -11,7 +12,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
 
-export default function Home({user, userdetails}) {
+export default function Home({ user, userdetails }) {
   const imageStyle = {
     height: "100px",
     width: "100px",
@@ -24,6 +25,10 @@ export default function Home({user, userdetails}) {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     // Fetch clothes data from the API
     fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
       .then((response) => response.json())
@@ -34,7 +39,6 @@ export default function Home({user, userdetails}) {
   const handleViewMore = (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
-
   };
 
   const closeModal = () => {
@@ -65,27 +69,39 @@ export default function Home({user, userdetails}) {
 
   return (
     <div className="home-container">
-      <Header user={user} username={userdetails}  />
+      <Helmet>
+        <title>Levick 23 - Trendy Clothing for You</title>
+        <meta
+          name="description"
+          content="Explore a curated collection of trendy and affordable clothing at Levick 23. Discover the latest styles and find the perfect outfit that suits your taste."
+        />
+      </Helmet>
+      <Header user={user} username={userdetails} />
 
       <Container className="text-center mt-3">
         <div className="fixed-logo-search-container">
-          <Row style={{ display: "flex", alignItems: "center", justifyContent:"space-evenly" }}>
+          <Row
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-evenly",
+            }}
+          >
             <Col xs={3}>
-              <ImageHandler src={Levick} alt="Logo" style={imageStyle} />
+              <ImageHandler src={Levick} alt="Levick Logo" style={imageStyle} />
             </Col>
             <Col className="search">
               <SearchBar setSearchQuery={setSearchQuery} />
             </Col>
           </Row>
         </div>
-        <Row style={{ marginTop: "13vh"}}>
+        <Row style={{ marginTop: "13vh" }}>
           <Col>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
                 <SheetModal>
                   <ClothHandler
-
-                  user={user}
+                    user={user}
                     clothes={filteredBySearch}
                     selectedCategory={selectedCategory} // Pass the selectedCategory
                     handleViewMore={handleViewMore}
