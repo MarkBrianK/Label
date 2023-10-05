@@ -68,11 +68,8 @@ function App() {
     <div>
 
       <Helmet>
-        <title>Levick 23</title>
-        <meta
-          name="description"
-          content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-foward individuals like you."
-        />
+        <title>{userdetails ? `${userdetails} - Levick 23` : 'Levick 23 - Trendy and Affordable Clothing'}</title>
+        <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-forward individuals like you." />
       </Helmet>
       <Routes>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
