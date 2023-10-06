@@ -70,12 +70,13 @@ export default function Home({ user, userdetails }) {
   return (
     <div className="home-container">
       <Helmet>
-        <title>Levick 23 - Trendy Clothing for You</title>
+        <title>Trendy and Affordable Clothing Store - Levick 23</title>
         <meta
           name="description"
-          content="Explore a curated collection of trendy and affordable clothing at Levick 23. Discover the latest styles and find the perfect outfit that suits your taste."
+          content="Discover the best clothing store near Uthiru, Nairobi. Levick 23 offers trendy and affordable clothing for both men and women. Explore a diverse range of styles and designs online."
         />
       </Helmet>
+
       <Header user={user} username={userdetails} />
 
       <Container className="text-center mt-3">
