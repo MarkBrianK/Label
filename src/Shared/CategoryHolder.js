@@ -34,7 +34,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          marginBottom: "20px",
+          marginBottom: "10px",
         }}
       >
         {categories.map((category) => (
