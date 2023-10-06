@@ -48,10 +48,10 @@ function CategoryHolder({ children, handleCategorySelect }) {
               cursor: "pointer",
               border: "1px solid goldenrod",
               marginRight: "10px",
-              width: "60px",
-              height: "60px",
-              minWidth: "60px",
-              minHeight: "60px",
+              width: "80px",
+              height: "80px",
+              minWidth: "80px",
+              minHeight: "80px",
               padding: 0,
             }}
           >
