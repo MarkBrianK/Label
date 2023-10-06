@@ -89,7 +89,7 @@ export default function Home({ user, userdetails }) {
             }}
           >
             <Col xs={3}>
-              <ImageHandler src={Levick} alt="Levick Logo" style={imageStyle} />
+              <ImageHandler src={Levick} alt="Levick 23 Logo" style={imageStyle} />
             </Col>
             <Col className="search">
               <SearchBar setSearchQuery={setSearchQuery} />
@@ -100,7 +100,7 @@ export default function Home({ user, userdetails }) {
           <Col>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
-                <SheetModal>
+                <SheetModal >
                   <ClothHandler
                     user={user}
                     clothes={filteredBySearch}

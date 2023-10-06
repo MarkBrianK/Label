@@ -42,7 +42,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
   };
 
   return (
-    <div className="cloth-container">
+    <div className="cloth-container" >
       {shuffledClothes.map((item, index) => (
         <CardHolder
           key={index}
