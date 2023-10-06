@@ -7,7 +7,7 @@ const ContactPage = () => {
   return (
     <div className="container my-5">
       <Helmet>
-        <title>Contact Us - Your Website</title>
+        <title>Contact Us - Levick 23</title>
         <meta name="description" content="Contact us for inquiries and support." />
       </Helmet>
       <div className="row">
