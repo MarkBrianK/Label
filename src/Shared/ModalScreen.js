@@ -11,24 +11,19 @@ function ModalScreen(props) {
 
   const handleContactWhatsApp = () => {
     const phoneNumber = "+254719435030";
-
-    // Generate the WhatsApp message
     const message = `Hi, I'm interested in the ${name}`;
+    const encodedMessage = encodeURIComponent(message);
 
-    // Create the WhatsApp link for mobile application
-    const mobileWhatsAppLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    // Create the WhatsApp link for WhatsApp Web
-    const webWhatsAppLink = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-    // Open either the mobile WhatsApp or WhatsApp Web chat in a new tab
-    if (navigator.userAgent.match(/(android|iphone|ipad)/i)) {
-      // If the user is on a mobile device, open the mobile WhatsApp link
-      window.open(mobileWhatsAppLink, "_blank");
+    let whatsappLink;
+    if (isMobile) {
+      whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     } else {
-      // If the user is not on a mobile device, open the WhatsApp Web link
-      window.open(webWhatsAppLink, "_blank");
+      whatsappLink = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
     }
+
+    window.open(whatsappLink, "_blank");
   };
 
   const iconButtonStyle = {
