@@ -139,7 +139,7 @@ function ModalScreen(props) {
                   height: "20px",
                   borderRadius: "50%",
                   marginRight: "5px",
-                  backgroundColor: "#25D366",  // WhatsApp Green Color
+                  backgroundColor: "#25D366",
                   color: "white",
                   padding: "5px",
                 }}
