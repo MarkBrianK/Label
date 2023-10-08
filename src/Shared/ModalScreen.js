@@ -61,7 +61,7 @@ function ModalScreen(props) {
                       style={{
                         ...iconButtonStyle,
                         left: "15px",
-                        color: "white", // Set the color to white
+                        color: "white"
                       }}
                     >
                       <IoIosArrowBack size={30} />
