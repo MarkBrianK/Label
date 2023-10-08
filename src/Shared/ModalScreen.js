@@ -90,8 +90,8 @@ function ModalScreen(props) {
                       src={imageUrl}
                       alt={`logo`}
                       style={{
-                        maxWidth: "100%", // Set a maximum width
-                        maxHeight: "300px", // Set a maximum height
+                        maxWidth: "100%",
+                        maxHeight: "300px",
                         objectFit: "cover",
                       }}
                     />
@@ -105,8 +105,8 @@ function ModalScreen(props) {
                 src={imageUrls[0]}
                 alt={`logo`}
                 style={{
-                  maxWidth: "100%", // Set a maximum width
-                  maxHeight: "300px", // Set a maximum height
+                  maxWidth: "100%",
+                  maxHeight: "300px",
                   objectFit: "cover",
                   borderRadius: "15px 15px 0 0",
                 }}
