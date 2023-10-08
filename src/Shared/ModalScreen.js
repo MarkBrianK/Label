@@ -42,11 +42,9 @@ function ModalScreen(props) {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header className="modal-header">
-        {/* Header content */}
       </Modal.Header>
       <Modal.Body className="modal-body">
         <div className="modal-content" style={{ display: "flex" }}>
-          {/* Image displayed alone on the left */}
           <div className="responsive-image">
             {showImageCarousel && (
               <Carousel
