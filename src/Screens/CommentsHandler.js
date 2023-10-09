@@ -11,7 +11,6 @@ function CommentHandler({ user }) {
   const [newComment, setNewComment] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    // Set loggedIn to true if user is present
     if (user) {
       setLoggedIn(true);
     }

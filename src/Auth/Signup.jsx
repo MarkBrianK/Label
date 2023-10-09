@@ -57,7 +57,6 @@ function SignupForm() {
         }, 5000);
       } else {
         const data = response.data;
-        setError(data.error);
         if (data.errors) {
           setUsernameError(data.errors.username);
           setEmailError(data.errors.email);

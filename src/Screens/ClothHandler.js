@@ -82,7 +82,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
               </span>
             )}
           </div>
-          {likeErrorMessage && <Alert variant="danger">{likeErrorMessage}</Alert>}
+          {likeErrorMessage && <Alert variant="danger" style={{fontSize:"xx-small"}}>{likeErrorMessage}</Alert>}
         </CardHolder>
       ))}
     </div>

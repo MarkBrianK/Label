@@ -4,6 +4,7 @@ import { ROUTES } from './Routes/Routes';
 import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
+import  ContactPage from "./Components/ContactPage"
 
 
 
@@ -72,6 +73,7 @@ function App() {
         <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-forward individuals like you." />
       </Helmet>
       <Routes>
+      <Route path='/contact' element={<ContactPage />}></Route>
         <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
 
         <Route path={ROUTES.clothComments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
