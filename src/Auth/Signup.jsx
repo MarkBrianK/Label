@@ -30,6 +30,13 @@ function SignupForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    if (password !== passwordConfirmation) {
+      setPasswordConfirmationError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    } else {
+      setPasswordConfirmationError("");  // Reset the error if passwords match
+    }
 
     try {
       const response = await axios.post(
