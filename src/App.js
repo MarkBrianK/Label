@@ -1,10 +1,11 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
+import "./App.css"
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './Routes/Routes';
 import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
-import  ContactPage from "./Components/ContactPage"
+import ContactPage from "./Components/ContactPage"
 
 
 
@@ -24,6 +25,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null)
   const [userdetails, setUserDetails] = useState(null)
+
 
   useEffect(() => {
     try {
@@ -73,20 +75,40 @@ function App() {
         <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-forward individuals like you." />
       </Helmet>
       <Routes>
-      <Route path='/contact' element={<ContactPage />}></Route>
-        <Route path={ROUTES.home} element={<Suspense fallback={<div>Loading...</div>}><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
+        <Route path='/contact' element={<ContactPage />}></Route>
+        <Route path={ROUTES.home} element={<Suspense fallback={
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        }><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
 
-        <Route path={ROUTES.clothComments} element={<Suspense fallback={<div> Loading...</div>}  > <CommentHandler user={user} /></Suspense>} />
-        <Route path={ROUTES.profile} element={<Suspense fallback={<div>Loading ...</div>}> < Profile user={user} userdetails={userdetails} /> </Suspense>} />
-        <Route path={ROUTES.editProfile} element={<Suspense fallback={<div>Loading ...</div>}> < EditProfile user={user} /> </Suspense>} />
+        <Route path={ROUTES.clothComments} element={<Suspense fallback={
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        }  > <CommentHandler user={user} /></Suspense>} />
+        <Route path={ROUTES.profile} element={<Suspense fallback={<div className="loading-spinner">
+          <div className="spinner"></div>
+        </div>}> < Profile user={user} userdetails={userdetails} /> </Suspense>} />
+        <Route path={ROUTES.editProfile} element={<Suspense fallback={<div className="loading-spinner">
+          <div className="spinner"></div>
+        </div>}> < EditProfile user={user} /> </Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
-          <Route path={ROUTES.signUp} element={<Suspense fallback={<div>Loading...</div>}><SignUpForm /></Suspense>} />
+          <Route path={ROUTES.signUp} element={<Suspense fallback={
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+            </div>
+          }><SignUpForm /></Suspense>} />
         )}
         {/* Render the SignInForm route only when the user is not logged in */}
         {!isLoggedIn && (
-          <Route path={ROUTES.signIn} element={<Suspense fallback={<div>Loading...</div>}><SignInForm setUser={setUser} /></Suspense>} />
+          <Route path={ROUTES.signIn} element={<Suspense fallback={
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+            </div>
+          }><SignInForm setUser={setUser} /></Suspense>} />
         )}
 
       </Routes>

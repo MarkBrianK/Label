@@ -35,7 +35,7 @@ function SignupForm() {
       setIsLoading(false);
       return;
     } else {
-      setPasswordConfirmationError("");  // Reset the error if passwords match
+      setPasswordConfirmationError("");
     }
 
     try {
