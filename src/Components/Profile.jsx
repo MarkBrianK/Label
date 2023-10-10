@@ -67,7 +67,7 @@ export default function Profile({ user, userdetails }) {
   return (
     <div
       className="container"
-      style={{ backgroundColor: "black", minHeight: "100vh" }}
+      style={{ backgroundColor: "black", minHeight: "100vh", width:"100%" }}
     >
       <Helmet>
         <title>
