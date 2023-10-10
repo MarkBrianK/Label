@@ -66,7 +66,6 @@ export default function Profile({ user, userdetails }) {
 
   return (
     <div
-      className="container"
       style={{ backgroundColor: "black", minHeight: "100vh", width:"100%" }}
     >
       <Helmet>
@@ -82,9 +81,9 @@ export default function Profile({ user, userdetails }) {
           }
         />
       </Helmet>
-      <div className="row">
+      <div className="row" style={{ marginLeft:"10px"}}>
         <div className="col-md-4">
-          <div className="text-center">
+          <div className="text-center"  >
             {profilePicture ? (
               <div
                 style={{
