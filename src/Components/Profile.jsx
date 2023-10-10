@@ -66,7 +66,7 @@ export default function Profile({ user, userdetails }) {
 
   return (
     <div
-      style={{ backgroundColor: "black", minHeight: "100vh", width:"100%" }}
+      style={{ backgroundColor: "black", minHeight: "100vh", width: "100%" }}
     >
       <Helmet>
         <title>
@@ -81,7 +81,7 @@ export default function Profile({ user, userdetails }) {
           }
         />
       </Helmet>
-      <div className="row" style={{ marginLeft:"10px"}}>
+      <div className="row" style={{ marginLeft: "10px" }}>
         <div className="col-md-4">
           <div className="text-center"  >
             {profilePicture ? (
@@ -95,7 +95,6 @@ export default function Profile({ user, userdetails }) {
                 }}
                 onClick={() => setShowModal(true)}
               >
-                {/* Profile picture */}
                 <img
                   src={profilePicture}
                   alt="Profile_picture"
@@ -195,7 +194,9 @@ export default function Profile({ user, userdetails }) {
 
       <div className="row mt-4">
         <div className="col-md-12">
-          <Header username={userdetails} user={user} />
+          <Header username={userdetails} user={user} style={{
+            position: "fixed"
+          }} />
         </div>
       </div>
     </div>
