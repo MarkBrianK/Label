@@ -6,24 +6,9 @@ body {
   padding: 0;
 }
 
-.head {
-  color: white;
-  font-size: xx-large;
-  font-family: "Coca Cola ii", sans-serif;
-  margin: 0;
-  background-color: black;
-  padding: 10px;
-}
-
-.head span {
-  color: goldenrod;
-  font-size: small;
-}
-
 .header {
   position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -35,17 +20,13 @@ body {
   border-top: 0.5px solid rgb(50, 50, 50);
 }
 
-.header.loggedIn {
-  border-top: none;
-}
-
 .header .nav-icons {
   display: flex;
   color: white;
   text-decoration: none;
   justify-content: space-around;
   align-items: center;
-  flex: 1; /* Distribute icons evenly */
+  flex: 1;
 }
 
 .header .icon-link {
@@ -82,7 +63,6 @@ body {
   .header {
     position: fixed;
     bottom: 0;
-    left: 12.5%;
     width: 100%;
     display: flex;
     justify-content: space-between;
