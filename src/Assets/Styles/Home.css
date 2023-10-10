@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   scroll-behavior: smooth;
+  width: 100%;
 }
 .fixed-logo-search-container {
   position: fixed;
@@ -26,6 +27,6 @@
   }
 
   .header {
-    width: 75%;
+    width: 100%;
   }
 }
