@@ -22,7 +22,7 @@ export default function Profile({ user, userdetails }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
+          `http://127.0.0.1:3000/users/${user}`
         );
         setUsername(response.data.username);
         setProfilePicture(response.data.profile_picture);
@@ -41,7 +41,7 @@ export default function Profile({ user, userdetails }) {
     if (isLoggedIn) {
       try {
         await axios.delete(
-          "https://levick-7b15defb7ee9.herokuapp.com/users/sign_out",
+          "http://127.0.0.1:3000/users/sign_out",
           {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,
@@ -81,14 +81,14 @@ export default function Profile({ user, userdetails }) {
           }
         />
       </Helmet>
-      <div className="row" style={{ marginLeft: "10px" }}>
+      <div className="row">
         <div className="col-md-4">
           <div className="text-center"  >
             {profilePicture ? (
               <div
                 style={{
                   position: "relative",
-                  width: "100px",
+                  width: "100%",
                   height: "100px",
                   cursor: "pointer",
                   marginTop: "10px",
