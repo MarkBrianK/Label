@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import Header from "./Header";
 import Button from "../Shared/Button";
+import camera from "../Assets/Image/239220.png";
 
 export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
@@ -116,7 +117,7 @@ export default function Profile({ user, userdetails }) {
                   }}
                 >
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns={camera}
                     width="16"
                     height="16"
                     fill="currentColor"
