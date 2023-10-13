@@ -59,6 +59,7 @@
     flex-direction: column;
     background-color: white;
     overflow: hidden;
+    max-width: 400px;
   }
 
 
