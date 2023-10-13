@@ -8,7 +8,6 @@ import ClothHandler from "../Screens/ClothHandler";
 import ModalScreen from "../Shared/ModalScreen";
 import SearchBar from "../Shared/SearchBar";
 import CategoryHolder from "../Shared/CategoryHolder";
-import { Container, Row, Col } from "react-bootstrap";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
 
@@ -79,33 +78,28 @@ export default function Home({ user, userdetails }) {
 
       <Header user={user} username={userdetails} />
 
-      <Container className="text-center mt-3">
+      <div className="text-center mt-3">
         <div className="fixed-logo-search-container">
-          <Row
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <Col xs={3}>
+          <div className="logo-search-row">
+            <div className="logo">
               <ImageHandler src={Levick} alt="Levick 23 Logo" style={imageStyle} />
-            </Col>
-            <Col className="search">
+            </div>
+            <div className="search">
               <SearchBar setSearchQuery={setSearchQuery} />
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
-        <Row style={{ marginTop: "13vh" }}>
-          <Col>
+        <div className="cards-holder">
+          <div className="cards-row" style={{ marginTop: "13vh" }}>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
-                <SheetModal >
+                <SheetModal>
                   <ClothHandler
                     user={user}
                     clothes={filteredBySearch}
-                    selectedCategory={selectedCategory} // Pass the selectedCategory
+                    selectedCategory={selectedCategory}
                     handleViewMore={handleViewMore}
+
                   />
                 </SheetModal>
               )}
@@ -122,9 +116,9 @@ export default function Home({ user, userdetails }) {
               size={selectedCloth?.size}
               image={selectedCloth?.image}
             />
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
