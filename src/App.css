@@ -23,21 +23,3 @@
   }
 
 
-  .maintenance-container {
-    display: block;
-    height: 100vh;
-    background-color: #f0f0f0;
-  }
-
-  .maintenance-message {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    background-color: #fff;
-    max-width: 400px;
-    color: #333;
-  }
-
