@@ -23,7 +23,7 @@ export default function Profile({ user, userdetails }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:3000/users/${user}`
+          `https://seal-app-p8ntf.ondigitalocean.app/users/${user}`
         );
         setUsername(response.data.username);
         setProfilePicture(response.data.profile_picture);
@@ -42,7 +42,7 @@ export default function Profile({ user, userdetails }) {
     if (isLoggedIn) {
       try {
         await axios.delete(
-          "http://127.0.0.1:3000/users/sign_out",
+          "https://seal-app-p8ntf.ondigitalocean.app/users/sign_out",
           {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,
