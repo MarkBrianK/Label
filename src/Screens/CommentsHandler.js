@@ -19,7 +19,7 @@ function CommentHandler({ user }) {
   const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://seal-app-p8ntf.ondigitalocean.app/${clothId}`
+        `https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
@@ -57,7 +57,7 @@ function CommentHandler({ user }) {
       };
 
       await fetch(
-        `https://seal-app-p8ntf.ondigitalocean.app/${clothId}/comments`,
+        `https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}/comments`,
         {
           method: "POST",
           headers: {
