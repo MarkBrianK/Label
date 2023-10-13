@@ -12,7 +12,7 @@ function EditProfile({ user }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`
+          `https://seal-app-p8ntf.ondigitalocean.app/${user}`
         );
         setUsername(response.data.username);
         setProfilePicture(response.data.profile_picture);
@@ -40,7 +40,7 @@ function EditProfile({ user }) {
 
     try {
       await axios.patch(
-        `https://levick-7b15defb7ee9.herokuapp.com/users/${user}`,
+        `https://seal-app-p8ntf.ondigitalocean.app/${user}`,
         formData
       );
       console.log("Profile updated successfully.");
