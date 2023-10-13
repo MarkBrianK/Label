@@ -12,7 +12,7 @@ function LikeButton({ cloth, onLikeError, user }) {
     const fetchLikes = async () => {
       try {
         const response = await fetch(
-          `https://seal-app-p8ntf.ondigitalocean.app/${cloth.id}`
+          `https://seal-app-p8ntf.ondigitalocean.app/cloths/${cloth.id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch likes");
@@ -53,7 +53,7 @@ function LikeButton({ cloth, onLikeError, user }) {
       if (liked) {
         // Unlike the cloth
         await fetch(
-          `https://seal-app-p8ntf.ondigitalocean.app/${cloth.id}/likes/${like}`,
+          `https://seal-app-p8ntf.ondigitalocean.app/cloths/${cloth.id}/likes/${like}`,
           {
             method: "DELETE",
             headers: {
@@ -65,7 +65,7 @@ function LikeButton({ cloth, onLikeError, user }) {
       } else {
         // Like the cloth
         await fetch(
-          `https://seal-app-p8ntf.ondigitalocean.app/${cloth.id}/likes`,
+          `https://seal-app-p8ntf.ondigitalocean.app/cloths/${cloth.id}/likes`,
           {
             method: "POST",
             headers: {
