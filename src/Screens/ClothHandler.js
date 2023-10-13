@@ -14,33 +14,14 @@ function shuffleArray(array) {
 }
 
 function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [likeErrorMessage, setLikeErrorMessage] = useState("");
   const [shuffledClothes, setShuffledClothes] = useState([]);
 
-  useEffect(() => {
-    const session = localStorage.getItem("session_id");
-    if (session) {
 
-      setTimeout(() => {
-        setIsLoggedIn(true);
-      }, 2000);
-    }
-  }, []);
   useEffect(() => {
     const newShuffledClothes = shuffleArray([...clothes]);
     setShuffledClothes(newShuffledClothes);
   }, [clothes]);
-
-  const error = () => {
-    if (!isLoggedIn) {
-      setLikeErrorMessage("Please log in to comment.");
-      setTimeout(() => {
-        setLikeErrorMessage("");
-      }, 2000);
-    }
-  };
-
   return (
     <div className="cloth-container" >
       {shuffledClothes.map((item, index) => (
@@ -63,26 +44,22 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
               onLikeError={(errorMessage) => setLikeErrorMessage(errorMessage)}
               user={user}
             />
-            {isLoggedIn ? (
-              <Link
-                style={{
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  color: "black",
-                }}
-                to={`comments/${item.id}`}
-                className="comment-link ml-2"
-              >
-                <FaComment /> {item.comments.length}
-              </Link>
-            ) : (
-              <span style={{ color: "black" }}>
-                <FaComment onClick={error} /> {item.comments.length}
-              </span>
-            )}
+
+            <Link
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                color: "black",
+              }}
+              to={`comments/${item.id}`}
+              className="comment-link ml-2"
+            >
+              <FaComment /> {item.comments.length}
+            </Link>
+
           </div>
-          {likeErrorMessage && <Alert variant="danger" style={{fontSize:"xx-small"}}>{likeErrorMessage}</Alert>}
+          {likeErrorMessage && <Alert variant="danger" style={{ fontSize: "xx-small" }}>{likeErrorMessage}</Alert>}
         </CardHolder>
       ))}
     </div>
