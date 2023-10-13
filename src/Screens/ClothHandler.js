@@ -4,6 +4,7 @@ import LikeButton from "./LikesHandler";
 import { Link } from "react-router-dom";
 import { FaComment } from "react-icons/fa";
 import { Alert } from "react-bootstrap";
+import "../Assets/Styles/Handler.css";
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -17,19 +18,20 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
   const [likeErrorMessage, setLikeErrorMessage] = useState("");
   const [shuffledClothes, setShuffledClothes] = useState([]);
 
-
   useEffect(() => {
     const newShuffledClothes = shuffleArray([...clothes]);
     setShuffledClothes(newShuffledClothes);
   }, [clothes]);
+
   return (
-    <div className="cloth-container" >
+    <div className="cloth-container">
       {shuffledClothes.map((item, index) => (
         <CardHolder
           key={index}
           user={user}
           cloth={item}
           handleViewMore={() => handleViewMore(item)}
+          className="cards"
         >
           <div
             style={{
@@ -57,7 +59,6 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
             >
               <FaComment /> {item.comments.length}
             </Link>
-
           </div>
           {likeErrorMessage && <Alert variant="danger" style={{ fontSize: "xx-small" }}>{likeErrorMessage}</Alert>}
         </CardHolder>
