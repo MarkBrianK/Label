@@ -30,7 +30,7 @@ export default function Home({ user, userdetails }) {
 
   useEffect(() => {
     // Fetch clothes data from the API
-    fetch("https://levick-7b15defb7ee9.herokuapp.com/cloths")
+    fetch("https://seal-app-p8ntf.ondigitalocean.app/cloths")
       .then((response) => response.json())
       .then((data) => setClothes(data))
       .catch((error) => console.error("Error fetching clothes:", error));
