@@ -117,7 +117,7 @@ function ModalScreen(props) {
           <div className="details-container" style={{ flex: "2", padding: "10px" }}>
             <p style={{fontSize:"small"}}><strong>Name:</strong> {name}</p>
             <p style={{fontSize:"small"}}><strong>Colour:</strong> {description}</p>
-            <p style={{fontSize:"small"}}> <strong>Price:</strong> {price}</p>
+            <p style={{fontSize:"small"}}> <strong>Price: Ksh</strong>  {price} /=</p>
             <p style={{fontSize:"small"}}> <strong>Size:</strong> {size}</p>
             <button
               style={{
