@@ -146,7 +146,7 @@ function ModalScreen(props) {
                 }}
                 icon={faWhatsapp}
               />
-              <span style={{ marginLeft: "5px", fontWeight: "600", color: "#1a474a", fontSize: "small" }}>Contact via WhatsApp</span>
+              <span style={{ marginLeft: "5px", fontWeight: "600", color: "#1a474a", fontSize: "small" }}>Click to Buy</span>
             </button>
 
           </div>
