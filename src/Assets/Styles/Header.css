@@ -24,7 +24,7 @@ body {
   display: flex;
   color: white;
   text-decoration: none;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   flex: 1;
 }
@@ -55,7 +55,7 @@ body {
     gap: 20px;
     color: white;
     text-decoration: none;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex: 1; /* Distribute icons evenly */
   }
