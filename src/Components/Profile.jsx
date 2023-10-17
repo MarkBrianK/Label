@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import Header from "./Header";
 import Button from "../Shared/Button";
-import camera from "../Assets/Image/239220.png";
 
 export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
@@ -66,9 +65,7 @@ export default function Profile({ user, userdetails }) {
   };
 
   return (
-    <div
-      style={{ minHeight: "100vh", width: "100%", position: "fixed"  }}
-    >
+    <div style={{ minHeight: "100vh", width: "100%", position: "fixed" }}>
       <Helmet>
         <title>
           {username ? `${username} - Profile | Levick 23` : "Levick 23"}
@@ -82,78 +79,53 @@ export default function Profile({ user, userdetails }) {
           }
         />
       </Helmet>
-      <div className="row">
-        <div className="col-md-4">
-          <div className="text-center"  >
-            {profilePicture ? (
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: "100px",
-                  cursor: "pointer",
-                  marginTop: "10px",
-                }}
-                onClick={() => setShowModal(true)}
-              >
-                <img
-                  src={profilePicture}
-                  alt="Profile_picture"
-                  className="img-fluid rounded-circle"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-                {/* Camera icon */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "white",
-                  }}
-                >
-                  <svg
-                    xmlns={camera}
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-camera"
-                    viewBox="0 0 16 16"
-                  >
-                    {/* Camera icon paths */}
-                  </svg>
-                </div>
-              </div>
-            ) : (
-              // Render AccountCircle when there's no profile picture
-              <div
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  marginTop: "10px",
-                }}
-              >
-                <AccountCircle
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-            )}
+
+      {/* Profile Picture */}
+      <div
+        className="text-center"
+        style={{
+          width: "100%",
+          cursor: "pointer",
+
+        }}
+        onClick={() => setShowModal(true)}
+      >
+        {profilePicture ? (
+          <img
+            src={profilePicture}
+            alt="Profile_picture"
+            className=""
+            style={{
+              width: "100%",
+              height: "auto",
+              maxWidth: "100%", // Make image responsive
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              width: "100px",
+              height: "100px",
+              marginTop: "10px",
+            }}
+          >
+            <AccountCircle
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+            />
           </div>
-        </div>
-        <div className="col-md-8">
+        )}
+      </div>
+
+      <div className="row">
+        <div className="col-md-12">
           <div className="user-details">
-            <h3 className="font-weight-bold" style={{}}>
-              {username}
-            </h3>
+            <h3 className="font-weight-bold" style={{fontSize:"large"}}> <span style={{fontWeight:"600" }}>Username:</span>  {username}</h3>
+            <h3 className="font-weight-bold" style={{fontSize:"large"}}> <span style={{fontWeight:"600" }}>Name:</span>  {username}</h3>
             <div className="button-container mt-3 d-flex gap-2">
               <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
                 Edit Profile
@@ -195,9 +167,13 @@ export default function Profile({ user, userdetails }) {
 
       <div className="row mt-4">
         <div className="col-md-12">
-          <Header username={userdetails} user={user} style={{
-            position: "fixed"
-          }} />
+          <Header
+            username={userdetails}
+            user={user}
+            style={{
+              position: "fixed",
+            }}
+          />
         </div>
       </div>
     </div>
