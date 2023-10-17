@@ -67,7 +67,7 @@ export default function Profile({ user, userdetails }) {
 
   return (
     <div
-      style={{ backgroundColor: "black", minHeight: "100vh", width: "100%", position: "fixed"  }}
+      style={{ minHeight: "100vh", width: "100%", position: "fixed"  }}
     >
       <Helmet>
         <title>
@@ -151,7 +151,7 @@ export default function Profile({ user, userdetails }) {
         </div>
         <div className="col-md-8">
           <div className="user-details">
-            <h3 className="font-weight-bold" style={{ color: "white" }}>
+            <h3 className="font-weight-bold" style={{}}>
               {username}
             </h3>
             <div className="button-container mt-3 d-flex gap-2">
