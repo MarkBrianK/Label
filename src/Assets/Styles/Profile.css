@@ -1,0 +1,6 @@
+@media (max-width: 768px) {
+    .profileimage {
+      width: 100%;
+      height: auto;
+    }
+  }
