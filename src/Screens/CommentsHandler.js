@@ -91,6 +91,7 @@ function CommentHandler({ user }) {
                             roundedCircle
                             width={30}
                             height={30}
+                            style={{ objectFit: "cover" }}
                           />
                         ) : (
                           <Image
@@ -100,9 +101,11 @@ function CommentHandler({ user }) {
                             height={30}
                           />
                         )}
+
                         <span className="comment-username" style={{ fontWeight: "700" }}>
                           {comment.user.username}
                         </span>
+                        
                       </div>
                       <div className="comment-body">{comment.body}</div>
                     </div>
