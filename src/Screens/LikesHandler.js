@@ -42,7 +42,7 @@ function LikeButton({ cloth, onLikeError, user }) {
       const errorMessage = "Please log in to like.";
       onLikeError(errorMessage);
       setTimeout(() => {
-        onLikeError(""); // Clear the error message after 2 seconds
+        onLikeError(""); 
       }, 2000);
       return;
     }
