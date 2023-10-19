@@ -45,10 +45,13 @@ body {
   text-decoration: none;
   color: white;
   gap: 10px;
+  display: block;
+  text-align: center;
 }
 
 .header .auth-link:hover {
   color: #1a474a;
+  transition: 3s;
 }
 
 /* Media queries */
