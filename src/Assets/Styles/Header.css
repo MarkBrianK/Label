@@ -32,8 +32,15 @@ body {
 .header .icon-link {
   text-decoration: none;
   color: white;
+  display: flex;
 }
+.header .icon-link p {
+  color:#1a474a
 
+}
+header .icon-link p:hover{
+  color: white;
+}
 .header .icon-link:hover {
   color: #1a474a;
 }
