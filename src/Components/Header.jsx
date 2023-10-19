@@ -48,7 +48,7 @@ function Header({ user, username }) {
 
         <Link to="/" className="icon-link">
           <Mail className="icon" />
-          <p>Messages</p>
+          <p>Chats</p>
         </Link>
 
         <div className="auth-link">
