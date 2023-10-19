@@ -32,14 +32,10 @@ body {
 .header .icon-link {
   text-decoration: none;
   color: white;
-  display: flex;
-}
-.header .icon-link p {
-  color:#1a474a
-
-}
-header .icon-link p:hover{
-  color: white;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  font-size: small;
 }
 .header .icon-link:hover {
   color: #1a474a;
