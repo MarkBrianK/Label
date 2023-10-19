@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Image } from "react-bootstrap";
-import { AccountCircle, Home, Mail, ShoppingBag } from "@mui/icons-material";
+import { AccountCircle, Home  } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import ChatIcon from '@mui/icons-material/Chat';
 
 function Header({ user, username }) {
   const sessionCookie = localStorage.getItem("session_id");
@@ -42,12 +44,12 @@ function Header({ user, username }) {
         </Link>
 
         <Link to="/" className="icon-link">
-          <ShoppingBag className="icon" />
+          <LibraryBooksOutlinedIcon className="icon" />
           <p>Stories</p>
         </Link>
 
         <Link to="/" className="icon-link">
-          <Mail className="icon" />
+          <ChatIcon className="icon" />
           <p>Chats</p>
         </Link>
 
