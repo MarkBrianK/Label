@@ -54,7 +54,7 @@ function Header({ user, username }) {
         <div className="auth-link">
           {isLoggedIn ? (
             <Link to={`/profile/${username}`} className="icon-link">
-              <div
+              <AccountCircle
                 className="d-flex align-items-center"
                 style={{
                   borderRadius: "50%",
@@ -91,7 +91,7 @@ function Header({ user, username }) {
                     className="icon"
                   />
                 )}
-              </div>
+              </AccountCircle>
               <p>Account</p>
             </Link>
           ) : (
