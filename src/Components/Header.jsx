@@ -60,12 +60,6 @@ function Header({ user, username }) {
                   borderRadius: "50%",
                   cursor: "pointer",
                   border: "1px solid goldenrod",
-
-                  width: "40px",
-                  height: "40px",
-                  minWidth: "40px",
-                  minHeight: "40px",
-                  padding: 0,
                 }}
               >
                 {profilePicture ? (
