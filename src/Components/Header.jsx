@@ -38,14 +38,17 @@ function Header({ user, username }) {
       <div className="nav-icons">
         <Link to="/" className="icon-link">
           <Home className="icon" />
+          <p>Home</p>
         </Link>
 
         <Link to="/" className="icon-link">
           <ShoppingBag className="icon" />
+          <p>Stories</p>
         </Link>
 
         <Link to="/" className="icon-link">
           <Mail className="icon" />
+          <p>Messages</p>
         </Link>
 
         <div className="auth-link">
@@ -76,6 +79,7 @@ function Header({ user, username }) {
                       objectFit: "cover",
                     }}
                   />
+
                 ) : (
                   <AccountCircle
                     style={{
@@ -88,10 +92,12 @@ function Header({ user, username }) {
                   />
                 )}
               </div>
+              <p>Account</p>
             </Link>
           ) : (
             <Link to="/signin" className="icon-link">
               <AccountCircle className="icon" />
+              <p>Sign in</p>
             </Link>
           )}
         </div>
