@@ -50,7 +50,7 @@ function Header({ user, username }) {
 
         <Link to="/" className="icon-link">
           <ChatIcon className="icon" />
-          <p>Chats</p>
+          <p>Chat</p>
         </Link>
 
         <div className="auth-link">
