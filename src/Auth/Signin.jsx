@@ -118,14 +118,18 @@ const SignInForm = () => {
             </Alert>
           )}
           <br />
-          <Button
+          {isLoading ?
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+              </div> : <Button
             type="submit"
             disabled={isLoading}
             block
             className="custom-button"
           >
-            {isLoading ? "Loading..." : "Sign In"}
-          </Button>
+            Sign In
+          </Button>}
+
           <div className="mt-3 text-center" id="signuplink">
             Don't have an account?{" "}
             <Link className="tosignup" to="/signup">
