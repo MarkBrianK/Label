@@ -210,14 +210,17 @@ function SignupForm() {
               </Form.Control.Feedback>
             </Form.Group>
             <br />
-            <Button
-              className="custom-button"
-              variant="primary"
-              type="submit"
-              disabled={isLoading}
-            >
-              {isLoading ? "Loading..." : "Sign Up"}
-            </Button>
+            {isLoading ?
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+              </div> : <Button
+            type="submit"
+            disabled={isLoading}
+            block
+            className="custom-button"
+          >
+            Sign Up
+          </Button>}
           </Form>
         </div>
       </div>
