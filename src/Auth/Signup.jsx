@@ -98,33 +98,6 @@ function SignupForm() {
               confirm your account.
             </Alert>
           )}
-
-          {isLoading && (
-            <div className="loading-alert">
-              <div
-                className="spinner-border text-primary loading-spinner"
-                role="status"
-              >
-                <span className="sr-only" id="spinner"></span>
-              </div>
-              <style>
-                {`
-                .loading-spinner {
-                  transform-origin: center;
-                  animation: spin 2s linear infinite;
-                }
-
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-              `}
-              </style>
-              <Alert variant="danger" className="loading-text">
-                {isLoading ? "Loading..." : ""}
-              </Alert>
-            </div>
-          )}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="formlabel">Username</Form.Label>

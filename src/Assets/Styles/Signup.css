@@ -1,82 +1,86 @@
 .home-container {
-    min-height: 100vh;
-    background-color: black;
-  }
-  .display-image {
-    display: flex;
-    justify-content: flex-end;
-
-  }
-
-  .display-logo {
-    display: flex;
-    height: 100px;
-    width: 100px;
-    align-content: flex-end;
-  }
-
-  .centered-container {
-    min-width:auto;
-    margin: 0px 30px 30px 30px;
-  }
-
-  .holder {
-    background-color: black;
-    padding: 20px;
-    border: 0.3px solid #1A474A;
-    border-radius: 16px;
-    align-items: center;
-  }
-
-  .form-header {
-    text-align: center;
-    color: #c7a034;
-  }
-  .formlabel {
-    color: #c7a034;
-  }
-
-  .spinner-border {
-    margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .alert {
-    margin-top: 20px;
-  }
-
-  .custom-button {
-    background-color: #1A474A!important;
-    color: white !important;
-    border-color: #1A474A !important;
-  }
-  .loading-alert {
-    position: relative;
-  }
-  .loading-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .loading-text {
-    color: white;
-  }
-  .loading-spinner,
-.loading-text {
-  z-index: 1;
+  min-height: 100vh;
+  background-color: black;
 }
-  .custom-button:hover {
-    background-color: black !important;
-  }
-  @media (min-width: 768px) {
+.display-image {
+  display: flex;
+  justify-content: flex-end;
+}
 
+.display-logo {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  align-content: flex-end;
+}
+
+.centered-container {
+  min-width: auto;
+  margin: 0px 30px 30px 30px;
+}
+
+.holder {
+  background-color: black;
+  padding: 20px;
+  border: 0.3px solid #1a474a;
+  border-radius: 16px;
+  align-items: center;
+}
+
+.form-header {
+  text-align: center;
+  color: #c7a034;
+}
+.formlabel {
+  color: #c7a034;
+}
+
+.spinner-border {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.custom-button {
+  background-color: #1a474a !important;
+  color: white !important;
+  border-color: #1a474a !important;
+}
+.custom-button:hover {
+  background-color: black !important;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  border: 8px solid #c7a034;
+  border-top: 8px solid #1a474a;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; /* Apply the spin animation */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (min-width: 768px) {
   .holder {
     background-color: black;
     padding: 20px;
-    border: 0.3px solid #1A474A;
+    border: 0.3px solid #1a474a;
     border-radius: 16px;
     width: 300px;
     display: flex;
@@ -85,6 +89,4 @@
     align-items: center; /* Vertical centering */
     margin: 0 auto; /* Center within the parent container */
   }
-
-  }
-
+}
