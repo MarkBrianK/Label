@@ -107,6 +107,7 @@ function SignupForm() {
                 onChange={(e) => setUsername(e.target.value)}
                 isInvalid={!!usernameError}
                 placeholder="John Doe"
+                required
               />
               <Form.Control.Feedback type="invalid">
                 {usernameError}
@@ -120,6 +121,7 @@ function SignupForm() {
                 onChange={(e) => setName(e.target.value)}
                 isInvalid={!!usernameError}
                 placeholder="John Doe Smith"
+                required
               />
               <Form.Control.Feedback type="invalid">
                 {usernameError}
@@ -133,6 +135,7 @@ function SignupForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 isInvalid={!!emailError}
                 placeholder="example@gmail.com"
+                required
               />
               <Form.Control.Feedback type="invalid">
                 {emailError}
@@ -146,6 +149,7 @@ function SignupForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 isInvalid={!!passwordError}
                 placeholder="Password"
+                required
               />
               <div className="show-password-toggle">
                 <input
@@ -167,6 +171,7 @@ function SignupForm() {
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 isInvalid={!!passwordConfirmationError}
                 placeholder="Confirm Password"
+                required
               />
               <div className="show-password-toggle">
                 <input
