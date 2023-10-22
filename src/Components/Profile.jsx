@@ -125,12 +125,10 @@ export default function Profile({ user, userdetails }) {
 
                     viewBox="0 0 16 16"
                   >
-                    {/* Camera icon paths */}
                   </svg>
                 </div>
               </div>
             ) : (
-              // Render AccountCircle when there's no profile picture
               <div
                 style={{
                   width: "100px",
