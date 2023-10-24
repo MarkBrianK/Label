@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
 import ContactPage from "./Components/ContactPage"
 import Sales from './Components/Sales';
+import MakeSaleForm from './Screens/MakeSale';
 
 
 
@@ -107,7 +108,12 @@ function App() {
           <div className="loading-spinner">
             <div className="spinner"></div>
           </div>
-        }><Sales clothes={clothes} user={user}/></Suspense>} />
+        }><Sales clothes={clothes} user={user} /></Suspense>} />
+        <Route path={ROUTES.makeSale} element={<Suspense fallback={
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        }><MakeSaleForm user={user} userdetails={userdetails} /></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
