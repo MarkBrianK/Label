@@ -4,6 +4,7 @@ const signin = "/signin";
 const comments = "/comments/:clothId";
 const profile = "/profile/:username";
 const editProfile = "/profile/edit"
+const sales = "/sales"
 
 export const ROUTES = {
   home: home,
@@ -11,5 +12,6 @@ export const ROUTES = {
   signIn: signin,
   clothComments: comments,
   profile: profile,
-  editProfile: editProfile
+  editProfile: editProfile,
+  sales:sales
 }
