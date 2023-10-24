@@ -11,13 +11,12 @@ import CategoryHolder from "../Shared/CategoryHolder";
 import Button from "../Shared/Button";
 import "../Assets/Styles/Home.css";
 
-export default function Home({ user, userdetails }) {
+export default function Home({ clothes, user, userdetails }) {
   const imageStyle = {
     height: "100px",
     width: "100px",
   };
 
-  const [clothes, setClothes] = useState([]);
   const [selectedCloth, setSelectedCloth] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,15 +26,7 @@ export default function Home({ user, userdetails }) {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    // Fetch clothes data from the API
-    fetch("https://seal-app-p8ntf.ondigitalocean.app/cloths")
-      .then((response) => response.json())
-      .then((data) => setClothes(data))
-      .catch((error) => console.error("Error fetching clothes:", error));
-  }, []);
-
-  const handleViewMore = (cloth) => {
+    const handleViewMore = (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
   };
