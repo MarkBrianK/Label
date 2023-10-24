@@ -126,7 +126,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
                 height: "100%",
                 textAlign: "center",
                 lineHeight: "1",
-                fontSize:"x-small"
+                fontSize: "x-small"
               }}
             >
               &#9733; New{/* Unicode star character */}
