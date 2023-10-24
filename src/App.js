@@ -6,6 +6,7 @@ import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
 import ContactPage from "./Components/ContactPage"
+import Sales from './Components/Sales';
 
 
 
@@ -25,6 +26,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null)
   const [userdetails, setUserDetails] = useState(null)
+  const [clothes, setClothes] = useState([]);
 
 
   useEffect(() => {
@@ -52,6 +54,15 @@ function App() {
       console.error("Error decrypting user data:", error);
     }
   }, []);
+  useEffect(() => {
+    // Fetch clothes data from the API
+    fetch("https://seal-app-p8ntf.ondigitalocean.app/cloths")
+      .then((response) => response.json())
+      .then((data) => setClothes(data))
+      .catch((error) => console.error("Error fetching clothes:", error));
+  }, []);
+
+
 
 
 
@@ -79,7 +90,7 @@ function App() {
           <div className="loading-spinner">
             <div className="spinner"></div>
           </div>
-        }><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} /></Suspense>} />
+        }><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} clothes={clothes} /></Suspense>} />
 
         <Route path={ROUTES.clothComments} element={<Suspense fallback={
           <div className="loading-spinner">
@@ -92,6 +103,11 @@ function App() {
         <Route path={ROUTES.editProfile} element={<Suspense fallback={<div className="loading-spinner">
           <div className="spinner"></div>
         </div>}> < EditProfile user={user} /> </Suspense>} />
+        <Route path={ROUTES.sales} element={<Suspense fallback={
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        }><Sales clothes={clothes}/></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
