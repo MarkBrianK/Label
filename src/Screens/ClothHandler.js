@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CardHolder from "../Shared/CardHolder";
-import LikeButton from "./LikesHandler";
-import { Link } from "react-router-dom";
-import { FaComment } from "react-icons/fa";
-import { Alert } from "react-bootstrap";
+//import LikeButton from "./LikesHandler";
+//import { Link } from "react-router-dom";
+//import { FaComment } from "react-icons/fa";
+//import { Alert } from "react-bootstrap";
 import "../Assets/Styles/Handler.css";
 
 function shuffleArray(array) {
@@ -15,7 +15,7 @@ function shuffleArray(array) {
 }
 
 function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
-  const [likeErrorMessage, setLikeErrorMessage] = useState("");
+  // const [likeErrorMessage, setLikeErrorMessage] = useState("");
   const [shuffledClothes, setShuffledClothes] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
           handleViewMore={() => handleViewMore(item)}
           className="cards"
         >
-          <div
+         {/* <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -60,7 +60,7 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
               <FaComment /> {item.comments.length}
             </Link>
           </div>
-          {likeErrorMessage && <Alert variant="danger" style={{ fontSize: "xx-small" }}>{likeErrorMessage}</Alert>}
+            {likeErrorMessage && <Alert variant="danger" style={{ fontSize: "xx-small" }}>{likeErrorMessage}</Alert>}*/}
         </CardHolder>
       ))}
     </div>
