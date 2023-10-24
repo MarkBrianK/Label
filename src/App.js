@@ -107,7 +107,7 @@ function App() {
           <div className="loading-spinner">
             <div className="spinner"></div>
           </div>
-        }><Sales clothes={clothes}/></Suspense>} />
+        }><Sales clothes={clothes} user={user}/></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
