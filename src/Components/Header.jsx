@@ -48,11 +48,15 @@ function Header({ user, username }) {
           <LibraryBooksOutlinedIcon className="icon" />
           <p>Stories</p>
         </Link>
+        {isLoggedIn && (
+          <Link to="/" className="icon-link">
+            <ChatIcon className="icon" />
+            <p>Chat</p>
+          </Link>
 
-        <Link to="/" className="icon-link">
-          <ChatIcon className="icon" />
-          <p>Chat</p>
-        </Link>
+        )}
+
+
         {isLoggedIn && (
           <Link to="/sales" className="icon-link">
             <MonetizationOnIcon className="icon" />
