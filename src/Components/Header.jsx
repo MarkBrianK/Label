@@ -105,7 +105,7 @@ function Header({ user, username }) {
                   />
                 )}
               </div>
-              <p>Account</p>
+              <p> My Account</p>
             </Link>
           ) : (
             <Link to="/signin" className="icon-link">
