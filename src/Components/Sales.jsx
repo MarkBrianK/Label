@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Table, TableCell, TableRow, TableHead, TableBody,Button as TableButton } from "@mui/material";
 import { Paper, Typography, Button as MobileButton } from "@mui/material";
+import Header from "./Header";
 
 
-export default function Sales({ clothes }) {
+export default function Sales({ clothes, user }) {
     const navigate = useNavigate()
     const handleMakeSale = (clothId) => {
         navigate("/")
@@ -93,6 +94,7 @@ export default function Sales({ clothes }) {
 
                 </div>
             )}
+            <Header user={user} />
         </div>
     );
 }
