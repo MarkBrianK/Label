@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Image } from "react-bootstrap";
-import { AccountCircle, Home  } from "@mui/icons-material";
+import { AccountCircle, Home } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -53,10 +53,12 @@ function Header({ user, username }) {
           <ChatIcon className="icon" />
           <p>Chat</p>
         </Link>
-        <Link to="/sales" className="icon-link">
-          <MonetizationOnIcon className="icon" />
-          <p>Earn</p>
-        </Link>
+        {isLoggedIn && (
+          <Link to="/sales" className="icon-link">
+            <MonetizationOnIcon className="icon" />
+            <p>Earn</p>
+          </Link>
+        )}
 
         <div className="auth-link">
           {isLoggedIn ? (
