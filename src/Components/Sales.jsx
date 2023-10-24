@@ -1,12 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Table, TableCell, TableRow, TableHead, TableBody,Button as TableButton } from "@mui/material";
 import { Paper, Typography, Button as MobileButton } from "@mui/material";
 
 
 export default function Sales({ clothes }) {
+    const navigate = useNavigate()
     const handleMakeSale = (clothId) => {
-        // Implement your logic to create a sale for the selected cloth here
-        // You can open a modal or navigate to a "Make a Sale" page
+        navigate("/")
     };
 
     // Determine the screen width
