@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Table, TableCell, TableRow, TableHead, TableBody, Button as TableButton } from "@mui/material";
+import { Table, TableCell, TableRow, TableHead, TableBody, Button as TableButton, TextField } from "@mui/material";
 import { Paper, Typography, Button as MobileButton } from "@mui/material";
 import Header from "./Header";
 import MakeSaleForm from "../Screens/MakeSale";
@@ -9,6 +9,13 @@ export default function Sales({ clothes, user }) {
     const navigate = useNavigate();
     const [selectedCloth, setSelectedCloth] = useState(null);
     const [isMakingSale, setIsMakingSale] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+
+
+    const filteredClothes = clothes.filter((cloth) =>
+        cloth.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
 
     const handleMakeSale = (clothId) => {
         navigate(`/sales/${clothId}`);
@@ -37,7 +44,14 @@ export default function Sales({ clothes, user }) {
     const isTableLayout = window.innerWidth >= 768;
 
     return (
-        <div>
+        <div style={{marginTop:"20px"}}>
+            <TextField
+                label="Search"
+                variant="outlined"
+                fullWidth
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
             {isTableLayout ? (
                 <Table className="table-responsive">
                     <TableHead>
@@ -51,7 +65,7 @@ export default function Sales({ clothes, user }) {
                         </TableRow>
                     </TableHead>
                     <TableBody className="table">
-                        {clothes.map((cloth) => {
+                        {filteredClothes.map((cloth) => {
                             const imageUrls = JSON.parse(cloth.image);
                             const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : null;
                             const clothId = cloth.id
@@ -82,7 +96,7 @@ export default function Sales({ clothes, user }) {
                 </Table>
             ) : (
                 <div className="cards-container">
-                    {clothes.map((cloth) => {
+                    {filteredClothes.map((cloth) => {
                         const imageUrls = JSON.parse(cloth.image);
                         const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : null;
                         const clothId = cloth.id
