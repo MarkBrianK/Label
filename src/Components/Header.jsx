@@ -7,6 +7,7 @@ import { AccountCircle, Home  } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import ChatIcon from '@mui/icons-material/Chat';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
 function Header({ user, username }) {
   const sessionCookie = localStorage.getItem("session_id");
@@ -51,6 +52,10 @@ function Header({ user, username }) {
         <Link to="/" className="icon-link">
           <ChatIcon className="icon" />
           <p>Chat</p>
+        </Link>
+        <Link to="/sales" className="icon-link">
+          <MonetizationOnIcon className="icon" />
+          <p>Earn</p>
         </Link>
 
         <div className="auth-link">
