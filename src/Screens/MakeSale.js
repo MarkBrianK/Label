@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function MakeSaleForm({ user }) {
+  const navigate = useNavigate()
   const { clothId } = useParams();
-  const user_id = user.id; // Assuming user information includes an 'id' property
+  const user_id = user; // Assuming user information includes an 'id' property
   const [selectedCloth, setSelectedCloth] = useState({});
   const [formData, setFormData] = useState({
     reference_code: generateReferenceCode(),
     user_id: user_id,
-    cloth_id: selectedCloth.id,
-    paid_date: new Date().toISOString(), // Use ISO format for date
+    paid_date: new Date().toISOString(),
+    cloth_id: clothId,
     customer_location: "",
     customer_number: "",
     status: "unpaid",
   });
 
   useEffect(() => {
-    // Fetch clothes data from the API
+    // Fetch cloth data from the API
     fetch(`https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}`)
       .then((response) => response.json())
       .then((data) => setSelectedCloth(data))
-      .catch((error) => console.error("Error fetching clothes:", error));
+      .catch((error) => console.error("Error fetching cloth:", error));
   }, [clothId]);
 
   const handleChange = (e) => {
@@ -38,27 +39,36 @@ export default function MakeSaleForm({ user }) {
     // You can use formData to send the required data to your server.
 
     // Example: Send formData to your backend
-    fetch("http://127.0.0.1:3001/sales", {
+    console.log(formData)
+    fetch(" https://seal-app-p8ntf.ondigitalocean.app/sales", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Request failed with status: ${response.status}`);
+
+        }
+        return response.json();
+      })
       .then((data) => {
-        // Handle the response or any post-submission actions
+        navigate('/')
+        console.log(data)
       })
       .catch((error) => {
         console.error("Error submitting the sale:", error);
       });
+
   };
 
   return (
     <div>
       <h2>Make a Sale</h2>
+      <p>Cloth Name: {selectedCloth.name}</p>
       <form onSubmit={handleSubmit}>
-        {/* Additional form fields for capturing sale data */}
         <div>
           <label htmlFor="customer_location">Customer Location:</label>
           <input
