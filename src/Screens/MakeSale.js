@@ -39,7 +39,6 @@ export default function MakeSaleForm({ user }) {
     // You can use formData to send the required data to your server.
 
     // Example: Send formData to your backend
-    console.log(formData)
     fetch(" https://seal-app-p8ntf.ondigitalocean.app/sales", {
       method: "POST",
       headers: {
