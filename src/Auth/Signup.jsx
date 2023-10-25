@@ -40,7 +40,7 @@ function SignupForm() {
 
     try {
       const response = await axios.post(
-        "https://seal-app-p8ntf.ondigitalocean.app/users",
+        "https://levick-29ef28f8e880.herokuapp.com/users",
         {
           user: {
             name,
