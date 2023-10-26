@@ -3,9 +3,9 @@ import Header from "../Components/Header";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function MakeSaleForm({ user }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { clothId } = useParams();
-  const user_id = user; // Assuming user information includes an 'id' property
+  const user_id = user;
   const [selectedCloth, setSelectedCloth] = useState({});
   const [formData, setFormData] = useState({
     reference_code: generateReferenceCode(),
@@ -18,11 +18,21 @@ export default function MakeSaleForm({ user }) {
   });
 
   useEffect(() => {
-    // Fetch cloth data from the API
-    fetch(`https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}`)
-      .then((response) => response.json())
-      .then((data) => setSelectedCloth(data))
-      .catch((error) => console.error("Error fetching cloth:", error));
+    // Fetch cloth data from the API using the native fetch API
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setSelectedCloth(data);
+        } else {
+          console.error("Error fetching cloth:", response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching cloth:", error);
+      }
+    };
+    fetchData();
   }, [clothId]);
 
   const handleChange = (e) => {
@@ -33,34 +43,27 @@ export default function MakeSaleForm({ user }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the form submission here, which may involve sending data to your backend API to create a sale record.
-    // You can use formData to send the required data to your server.
+    console.log(formData);
 
-    // Example: Send formData to your backend
-    fetch(" https://seal-app-p8ntf.ondigitalocean.app/sales", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Request failed with status: ${response.status}`);
-
-        }
-        return response.json();
-      })
-      .then((data) => {
-        navigate('/')
-        console.log(data)
-      })
-      .catch((error) => {
-        console.error("Error submitting the sale:", error);
+    try {
+      const response = await fetch("https://levick-29ef28f8e880.herokuapp.com/sales", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
+      if (response.ok) {
+        navigate('/allsales');
+      } else {
+        console.error("Error submitting the sale:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting the sale:", error);
+    }
   };
 
   return (
