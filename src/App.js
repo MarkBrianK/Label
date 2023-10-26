@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
 import ContactPage from "./Components/ContactPage"
 import Sales from './Components/Sales';
-import MakeSaleForm from './Screens/MakeSale';
+//import MakeSaleForm from './Screens/MakeSale';
 
 
 
@@ -17,6 +17,8 @@ const SignInForm = lazy(() => import('./Auth/Signin'));
 const CommentHandler = lazy(() => import('./Screens/CommentsHandler'));
 const Profile = lazy(() => import('./Components/Profile'));
 const EditProfile = lazy(() => import('./Screens/EditProfile'))
+const MakeSaleForm = lazy(()=> import('./Screens/MakeSale'))
+const AllSales = lazy(()=> import('./Screens/AllSales'))
 
 
 
@@ -114,6 +116,11 @@ function App() {
             <div className="spinner"></div>
           </div>
         }><MakeSaleForm user={user} userdetails={userdetails} /></Suspense>} />
+        <Route path={ROUTES.allSales} element={<Suspense fallback={
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        }><AllSales user={user} /></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
