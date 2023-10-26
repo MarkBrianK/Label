@@ -45,7 +45,6 @@ export default function AllSales({user}) {
     // After successful submission, you can reset the form and exit update mode
     setIsUpdating(false);
   };
-  console.log(salesData)
 
   return (
     <div style={{ marginTop: "20px" }}>
