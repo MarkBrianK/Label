@@ -24,7 +24,7 @@ export default function Profile({ user, userdetails }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://seal-app-p8ntf.ondigitalocean.app/users/${user}`
+          `https://levick-29ef28f8e880.herokuapp.com/users/${user}`
         );
         setUsername(response.data.username);
         setProfilePicture(response.data.profile_picture);
@@ -43,7 +43,7 @@ export default function Profile({ user, userdetails }) {
     if (isLoggedIn) {
       try {
         await axios.delete(
-          "https://seal-app-p8ntf.ondigitalocean.app/users/sign_out",
+          "https://levick-29ef28f8e880.herokuapp.com/users/sign_out",
           {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,
