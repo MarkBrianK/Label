@@ -21,7 +21,7 @@ export default function MakeSaleForm({ user }) {
     // Fetch cloth data from the API using the native fetch API
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}`);
+        const response = await fetch(`https://levick-29ef28f8e880.herokuapp.com//${clothId}`);
         if (response.ok) {
           const data = await response.json();
           setSelectedCloth(data);
