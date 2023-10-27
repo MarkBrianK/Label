@@ -16,7 +16,7 @@ export default function AllSales({user}) {
       setIsAdmin(true)
     }
     // Fetch sales data from your backend API
-    fetch("http://127.0.0.1:3001/sales")
+    fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
       .then((response) => response.json())
       .then((data) => {
         setSalesData(data);
