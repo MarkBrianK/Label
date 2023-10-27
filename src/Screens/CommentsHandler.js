@@ -19,7 +19,7 @@ function CommentHandler({ user }) {
   const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}`
+        `https://levick-29ef28f8e880.herokuapp.com/cloths/${clothId}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
@@ -57,7 +57,7 @@ function CommentHandler({ user }) {
       };
 
       await fetch(
-        `https://seal-app-p8ntf.ondigitalocean.app/cloths/${clothId}/comments`,
+        `https://levick-29ef28f8e880.herokuapp.com/cloths/${clothId}/comments`,
         {
           method: "POST",
           headers: {
@@ -105,7 +105,7 @@ function CommentHandler({ user }) {
                         <span className="comment-username" style={{ fontWeight: "700" }}>
                           {comment.user.username}
                         </span>
-                        
+
                       </div>
                       <div className="comment-body">{comment.body}</div>
                     </div>
