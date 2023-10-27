@@ -19,7 +19,7 @@ function Header({ user, username }) {
 
     if (!!sessionCookie) {
       axios
-        .get(`https://seal-app-p8ntf.ondigitalocean.app/users/${user}`)
+        .get(`https://levick-29ef28f8e880.herokuapp.com/users/${user}`)
         .then((response) => {
           setProfilePicture(response.data.profile_picture);
         })
