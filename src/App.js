@@ -59,7 +59,7 @@ function App() {
   }, []);
   useEffect(() => {
     // Fetch clothes data from the API
-    fetch("https://seal-app-p8ntf.ondigitalocean.app/cloths")
+    fetch("https://levick-29ef28f8e880.herokuapp.com/cloths")
       .then((response) => response.json())
       .then((data) => setClothes(data))
       .catch((error) => console.error("Error fetching clothes:", error));
