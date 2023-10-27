@@ -30,7 +30,7 @@ const SignInForm = () => {
       setIsLoading(true);
 
       const response = await axios.post(
-        "https://seal-app-p8ntf.ondigitalocean.app/users/sign_in",
+        "https://levick-29ef28f8e880.herokuapp.com/users/sign_in",
         {
           email,
           password,
