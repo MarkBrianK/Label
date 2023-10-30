@@ -10,7 +10,7 @@ export default function MakeSaleForm({ user }) {
   const [formData, setFormData] = useState({
     reference_code: generateReferenceCode(),
     user_id: user_id,
-    paid_date: new Date().toISOString(),
+    paid_date: new Date(),
     cloth_id: clothId,
     customer_location: "",
     customer_number: "",
