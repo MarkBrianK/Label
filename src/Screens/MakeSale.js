@@ -45,7 +45,6 @@ export default function MakeSaleForm({ user }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     try {
       const response = await fetch("https://levick-29ef28f8e880.herokuapp.com/sales", {
