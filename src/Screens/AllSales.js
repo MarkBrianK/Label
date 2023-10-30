@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Paper, Typography, Button, TextField } from "@mui/material";
+import Header from "../Components/Header"
 
 export default function AllSales({user}) {
   const [salesData, setSalesData] = useState([]);
@@ -92,6 +93,7 @@ export default function AllSales({user}) {
           )}
         </Paper>
       ))}
+      <Header user={user} />
     </div>
   );
 }
