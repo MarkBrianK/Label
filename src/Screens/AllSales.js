@@ -40,7 +40,6 @@ export default function AllSales({ user }) {
     // Prepare the data to be sent in the PATCH request
     const updatedData = {
       status: updateFormData.status,
-      paid_date: updateFormData.paid_date,
     };
 
     // Send a PATCH request to update the sale
@@ -95,13 +94,6 @@ export default function AllSales({ user }) {
                 fullWidth
                 value={updateFormData.status}
                 onChange={(e) => setUpdateFormData({ ...updateFormData, status: e.target.value })}
-              />
-              <TextField
-                label="Paid Date"
-                variant="outlined"
-                fullWidth
-                value={updateFormData.paid_date}
-                onChange={(e) => setUpdateFormData({ ...updateFormData, paid_date: e.target.value })}
               />
               <Button variant="contained" onClick={handleUpdateSubmit}>
                 Update
