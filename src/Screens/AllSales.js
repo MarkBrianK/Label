@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Paper, Typography, Button, TextField } from "@mui/material";
 import Header from "../Components/Header"
 
-export default function AllSales({user}) {
+export default function AllSales({ user }) {
   const [salesData, setSalesData] = useState([]);
   const [updateFormData, setUpdateFormData] = useState({
     saleId: null,
@@ -13,7 +13,7 @@ export default function AllSales({user}) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if(user===1){
+    if (user === 1) {
       setIsAdmin(true)
     }
     // Fetch sales data from your backend API
@@ -37,15 +37,41 @@ export default function AllSales({user}) {
   };
 
   const handleUpdateSubmit = () => {
-    // Handle the update submission here, send data to your backend API
-    // You can use the updateFormData to send the updated data
+    // Prepare the data to be sent in the PATCH request
+    const updatedData = {
+      status: updateFormData.status,
+      paid_date: updateFormData.paid_date,
+    };
 
-    // Example: Send updateFormData to your backend
-    console.log(updateFormData);
+    // Send a PATCH request to update the sale
+    fetch(`https://levick-29ef28f8e880.herokuapp.com/sales/${updateFormData.saleId}`, {
+      method: 'PATCH', // Use PATCH method
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sale: updatedData }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Sale updated successfully, refresh the sales data
+          fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
+            .then((response) => response.json())
+            .then((data) => {
+              setSalesData(data);
+            })
+            .catch((error) => console.error("Error fetching sales data:", error));
 
-    // After successful submission, you can reset the form and exit update mode
-    setIsUpdating(false);
+          // Clear the update form
+          setUpdateFormData({ saleId: null, status: "", paid_date: "" });
+          setIsUpdating(false);
+        } else {
+          // Handle error response here, e.g., show an error message to the user
+          console.error("Error updating sale:", response.status);
+        }
+      })
+      .catch((error) => console.error("Error updating sale:", error));
   };
+
 
   return (
     <div style={{ marginTop: "20px" }}>
@@ -62,7 +88,7 @@ export default function AllSales({user}) {
           <Typography variant="body1">Status: {sale.status}</Typography>
           {isAdmin && isUpdating && updateFormData.saleId === sale.id ? (
             <div>
-            <Typography variant="body1">Customer Number: {sale.customer_number}</Typography>
+              <Typography variant="body1">Customer Number: {sale.customer_number}</Typography>
               <TextField
                 label="Status"
                 variant="outlined"
