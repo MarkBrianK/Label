@@ -85,9 +85,9 @@ export default function AllSales({ user }) {
           <Typography variant="body1">Sale Date: {sale.paid_date}</Typography>
           <Typography variant="body1">Customer Location: {sale.customer_location}</Typography>
           <Typography variant="body1">Status: {sale.status}</Typography>
+          {isAdmin && <Typography variant="body1">Customer Number: {sale.customer_number}</Typography>}
           {isAdmin && isUpdating && updateFormData.saleId === sale.id ? (
             <div>
-              {isAdmin && <Typography variant="body1">Customer Number: {sale.customer_number}</Typography>}
               <TextField
                 label="Status"
                 variant="outlined"
