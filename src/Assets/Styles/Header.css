@@ -27,16 +27,19 @@ body {
   justify-content: space-evenly;
   align-items: center;
   flex: 1;
+  margin-top: 20px;
 }
 
 .header .icon-link {
   text-decoration: none;
   color: white;
-  display: block;
-  margin-top: 20px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: small;
+  gap: 2px; /* Adjust the gap between icon and text */
 }
+
 .header .icon-link:hover {
   color: #1a474a;
 }
@@ -44,14 +47,21 @@ body {
 .header .auth-link {
   text-decoration: none;
   color: white;
+  display: flex;
+  align-items: center;
   gap: 10px;
-  display: block;
-  text-align: center;
 }
 
 .header .auth-link:hover {
   color: #1a474a;
   transition: 3s;
+}
+
+.header .auth-link .icon-link {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 
 /* Media queries */

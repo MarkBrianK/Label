@@ -5,9 +5,10 @@ import { Helmet } from "react-helmet";
 import { Image } from "react-bootstrap";
 import { AccountCircle, Home } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
-import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+//import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 //import ChatIcon from '@mui/icons-material/Chat';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import ExploreIcon from '@mui/icons-material/Explore';
 
 function Header({ user, username }) {
   const sessionCookie = localStorage.getItem("session_id");
@@ -45,8 +46,8 @@ function Header({ user, username }) {
         </Link>
 
         <Link to="/" className="icon-link">
-          <LibraryBooksOutlinedIcon className="icon" />
-          <p>Stories</p>
+          <ExploreIcon className="icon" />
+          <p>Explore</p>
         </Link>
         {/* {isLoggedIn && (
           <Link to="/" className="icon-link">
@@ -68,7 +69,7 @@ function Header({ user, username }) {
           {isLoggedIn ? (
             <Link to={`/profile/${username}`} className="icon-link">
               <div
-                className="d-flex align-items-center"
+                className=""
                 style={{
                   borderRadius: "50%",
                   cursor: "pointer",
@@ -78,7 +79,6 @@ function Header({ user, username }) {
                   height: "30px",
                   minWidth: "30px",
                   minHeight: "30px",
-                  padding: 0,
                 }}
               >
                 {profilePicture ? (
@@ -105,7 +105,7 @@ function Header({ user, username }) {
                   />
                 )}
               </div>
-              <p> My Account</p>
+              <p> Account</p>
             </Link>
           ) : (
             <Link to="/signin" className="icon-link">
