@@ -44,7 +44,7 @@ export default function Sales({ clothes, user }) {
     const isTableLayout = window.innerWidth >= 768;
 
     return (
-        <div style={{marginTop:"20px"}}>
+        <div style={{marginTop:"20px", marginBottom:"20px"}}>
             <TextField
                 label="Search"
                 variant="outlined"
@@ -102,7 +102,7 @@ export default function Sales({ clothes, user }) {
                         const clothId = cloth.id
 
                         return (
-                            <Paper className="cloth-item" key={cloth.id}>
+                            <Paper className="cloth-item" key={cloth.id} style={{marginTop:"20px"}}>
                                 <img
                                     src={firstImageUrl}
                                     alt={cloth.name}
