@@ -119,22 +119,21 @@ const SignInForm = () => {
           )}
           <br />
           {isLoading ?
-            <div className="loading-spinner">
-              <div className="spinner"></div>
-            </div> : <Button
-              type="submit"
-              disabled={isLoading}
-              block
-              className="custom-button"
-            >
-              Sign In
-            </Button>}
-
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+              </div> : <Button
+            type="submit"
+            disabled={isLoading}
+            block
+            className="custom-button"
+          >
+            Sign In
+          </Button>}
           <div className="mt-3 text-center" id="signuplink">
             {/* Add a "Forgot Password" link here */}
-            <Link to="/forgot-password" className="forgot-password-link">
+            <a href="https://levick-29ef28f8e880.herokuapp.com/users/forgot_password" className="forgot-password-link">
               Forgot Password ?
-            </Link>
+            </a>
           </div>
 
           <div className="mt-3 text-center" id="signuplink">
