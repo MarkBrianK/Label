@@ -4,8 +4,13 @@ import AvatarEditor from "react-avatar-editor";
 import Header from "../Components/Header";
 
 function EditProfile({ user }) {
-  const [username, setUsername] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [formData, setFormData] = useState({
+    username: "",
+    mobileNumber: "",
+    county: "",
+    profilePicture: null,
+  });
+
   const editorRef = useRef();
 
   useEffect(() => {
@@ -14,8 +19,13 @@ function EditProfile({ user }) {
         const response = await axios.get(
           `https://levick-29ef28f8e880.herokuapp.com/users/${user}`
         );
-        setUsername(response.data.username);
-        setProfilePicture(response.data.profile_picture);
+        const { username, mobile_number, county, profile_picture } = response.data;
+        setFormData({
+          username,
+          mobileNumber: mobile_number || "",
+          county: county || "",
+          profilePicture: profile_picture,
+        });
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -26,34 +36,37 @@ function EditProfile({ user }) {
     }
   }, [user]);
 
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, profilePicture: event.target.files[0] });
+  };
+
   const handleUpdateProfile = async () => {
     if (!user) {
       console.error("User is null. Cannot update profile.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("user[username]", username);
-    if (profilePicture) {
-      formData.append("user[profile_picture]", profilePicture);
+    const updatedFormData = new FormData();
+    updatedFormData.append("user[username]", formData.username);
+    updatedFormData.append("user[mobile_number]", formData.mobileNumber);
+    updatedFormData.append("user[county]", formData.county);
+
+    if (formData.profilePicture) {
+      updatedFormData.append("user[profile_picture]", formData.profilePicture);
     }
 
     try {
       await axios.patch(
         `https://levick-29ef28f8e880.herokuapp.com/users/${user}`,
-        formData
+        updatedFormData
       );
       console.log("Profile updated successfully.");
 
-      // Reload the page after updating the profile
+      // Reload the page after updating the profile (You might want to use a different approach for a better user experience)
       window.location.reload();
     } catch (error) {
       console.error("Error updating profile:", error);
     }
-  };
-
-  const handleFileChange = (event) => {
-    setProfilePicture(event.target.files[0]);
   };
 
   return (
@@ -66,14 +79,38 @@ function EditProfile({ user }) {
           type="text"
           id="username"
           className="form-control"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={formData.username}
+          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
         />
       </div>
-      {profilePicture && (
+      <div className="mb-3">
+        <label htmlFor="mobileNumber" className="form-label">
+          Mobile Number:
+        </label>
+        <input
+          type="text"
+          id="mobileNumber"
+          className="form-control"
+          value={formData.mobileNumber}
+          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="county" className="form-label">
+          County:
+        </label>
+        <input
+          type="text"
+          id="county"
+          className="form-control"
+          value={formData.county}
+          onChange={(e) => setFormData({ ...formData, county: e.target.value })}
+        />
+      </div>
+      {formData.profilePicture && (
         <AvatarEditor
           ref={editorRef}
-          image={profilePicture}
+          image={formData.profilePicture}
           width={200}
           height={200}
           border={50}
