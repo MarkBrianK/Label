@@ -119,16 +119,23 @@ const SignInForm = () => {
           )}
           <br />
           {isLoading ?
-              <div className="loading-spinner">
-                <div className="spinner"></div>
-              </div> : <Button
-            type="submit"
-            disabled={isLoading}
-            block
-            className="custom-button"
-          >
-            Sign In
-          </Button>}
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+            </div> : <Button
+              type="submit"
+              disabled={isLoading}
+              block
+              className="custom-button"
+            >
+              Sign In
+            </Button>}
+
+          <div className="mt-3 text-center" id="signuplink">
+            {/* Add a "Forgot Password" link here */}
+            <Link to="/forgot-password" className="forgot-password-link">
+              Forgot Password ?
+            </Link>
+          </div>
 
           <div className="mt-3 text-center" id="signuplink">
             Don't have an account?{" "}
