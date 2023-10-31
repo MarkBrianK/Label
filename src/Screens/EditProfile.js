@@ -70,7 +70,7 @@ function EditProfile({ user }) {
   };
 
   return (
-    <div>
+    <div style={{marginBottom:"30px"}}>
       <div className="mb-3">
         <label htmlFor="username" className="form-label">
           Username:
