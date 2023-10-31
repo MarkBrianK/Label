@@ -6,10 +6,12 @@ import axios from "axios";
 import Header from "./Header";
 import Button from "../Shared/Button";
 import camera from "../Assets/Image/239220.png";
-import "../Assets/Styles/Profile.css"
+import "../Assets/Styles/Profile.css";
 
 export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
+  const [mobileNumber, setMobileNumber] = useState(""); // Add mobileNumber state
+  const [county, setCounty] = useState(""); // Add county state
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +28,10 @@ export default function Profile({ user, userdetails }) {
         const response = await axios.get(
           `https://levick-29ef28f8e880.herokuapp.com/users/${user}`
         );
+
         setUsername(response.data.username);
+        setMobileNumber(response.data.mobile_number); // Set mobile number
+        setCounty(response.data.county); // Set county
         setProfilePicture(response.data.profile_picture);
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -67,9 +72,7 @@ export default function Profile({ user, userdetails }) {
   };
 
   return (
-    <div
-      style={{  minHeight: "100vh", width: "100%", position: "fixed"  }}
-    >
+    <div style={{ minHeight: "100vh", width: "100%", position: "fixed" }}>
       <Helmet>
         <title>
           {username ? `${username} - Profile | Levick 23` : "Levick 23"}
@@ -85,7 +88,8 @@ export default function Profile({ user, userdetails }) {
       </Helmet>
       <div className="row">
         <div className="col-md-4">
-          <div className="text-center"  >
+          <div className="text-center">
+            {/* Profile Picture Section */}
             {profilePicture ? (
               <div
                 style={{
@@ -93,7 +97,6 @@ export default function Profile({ user, userdetails }) {
                   width: "100%",
                   height: "auto",
                   cursor: "pointer",
-
                 }}
                 onClick={() => setShowModal(true)}
               >
@@ -107,7 +110,6 @@ export default function Profile({ user, userdetails }) {
                     objectFit: "cover",
                   }}
                 />
-                {/* Camera icon */}
                 <div
                   style={{
                     position: "absolute",
@@ -122,9 +124,9 @@ export default function Profile({ user, userdetails }) {
                     width="16"
                     height="16"
                     fill="currentColor"
-
                     viewBox="0 0 16 16"
                   >
+                    {/* Camera icon */}
                   </svg>
                 </div>
               </div>
@@ -150,9 +152,10 @@ export default function Profile({ user, userdetails }) {
         </div>
         <div className="col-md-8">
           <div className="user-details">
-            <h3 className="font-weight-bold">
-              {username}
-            </h3>
+            <h3 className="font-weight-bold">{username}</h3>
+            {/* Display Mobile Number and County */}
+            <p>Mobile Number: {mobileNumber}</p>
+            <p>County: {county}</p>
             <div className="button-container mt-3 d-flex gap-2">
               <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
                 Edit Profile
@@ -194,9 +197,9 @@ export default function Profile({ user, userdetails }) {
 
       <div className="row mt-4">
         <div className="col-md-12">
-          <Header username={userdetails} user={user} style={{
-            position: "fixed"
-          }} />
+          {/* Link to User's Sales */}
+          <Header username={userdetails} user={user} >
+          </Header>
         </div>
       </div>
     </div>
