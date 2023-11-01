@@ -23,7 +23,7 @@
 .fixed-logo-search-container .logo-search-row {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .fixed-logo-search-container .logo-search-row .logo {
