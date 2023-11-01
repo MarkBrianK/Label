@@ -45,7 +45,7 @@ function Header({ user, username }) {
           <p>Home</p>
         </Link>
 
-        <Link to="/" className="icon-link">
+        <Link to="/explore" className="icon-link">
           <ExploreIcon className="icon" />
           <p>Explore</p>
         </Link>
