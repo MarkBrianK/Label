@@ -86,7 +86,7 @@ export default function Home({ clothes, user, userdetails }) {
               <SearchBar setSearchQuery={setSearchQuery} />
             </div>
             <div className="support-email">
-              <a href={`mailto:${supportEmail}`}> <SupportAgentOutlinedIcon style={{ fontSize: 32, marginRight: 4, color: "white" }} /> </a>
+              <a href={`mailto:${supportEmail}`}> <SupportAgentOutlinedIcon style={{ fontSize: 32, marginRight: 4, color: "goldenrod" }} /> </a>
             </div>
 
           </div>
