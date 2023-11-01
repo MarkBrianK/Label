@@ -6,7 +6,7 @@ const profile = "/profile/:username";
 const editProfile = "/profile/edit";
 const sales = "/sales";
 const makeSale = "/sales/:clothId"; // Include clothId in the route
-const allSales = "/allsales"
+const allSales = "/all_sales"
 const explore = "/explore"
 
 export const ROUTES = {
