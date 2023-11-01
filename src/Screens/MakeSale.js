@@ -56,7 +56,7 @@ export default function MakeSaleForm({ user }) {
       });
 
       if (response.ok) {
-        navigate('/allsales');
+        navigate('/all_sales');
       } else {
         console.error("Error submitting the sale:", response.status, response.statusText);
       }
