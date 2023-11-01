@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import ImageHandler from "../Screens/ImageHandler";
 import Levick from "../Assets/Image/Levick.png";
 import { Helmet } from "react-helmet";
@@ -21,12 +22,14 @@ export default function Home({ clothes, user, userdetails }) {
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const supportEmail = "levickwears@gmail.com";
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-    const handleViewMore = (cloth) => {
+  const handleViewMore = (cloth) => {
     setSelectedCloth(cloth);
     setShowModal(true);
   };
@@ -72,12 +75,20 @@ export default function Home({ clothes, user, userdetails }) {
       <div className="text-center mt-3">
         <div className="fixed-logo-search-container">
           <div className="logo-search-row">
-            <div className="logo">
+            <div className="logo" style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
               <ImageHandler src={Levick} alt="Levick 23 Logo" style={imageStyle} />
+
             </div>
+
+
+
             <div className="search">
               <SearchBar setSearchQuery={setSearchQuery} />
             </div>
+            <div className="support-email">
+              <a href={`mailto:${supportEmail}`}> <SupportAgentOutlinedIcon style={{ fontSize: 32, marginRight: 4, color: "white" }} /> </a>
+            </div>
+
           </div>
         </div>
         <div className="cards-holder">
