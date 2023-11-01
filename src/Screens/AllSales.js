@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, Button, TextField } from "@mui/material";
-import Header from "../Components/Header"
+import { Paper, Typography, Button, TextField, FormControlLabel, Switch } from "@mui/material";
+import Header from "../Components/Header";
 
 export default function AllSales({ user }) {
   const [salesData, setSalesData] = useState([]);
@@ -11,10 +11,11 @@ export default function AllSales({ user }) {
   });
   const [isUpdating, setIsUpdating] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [filterByCurrentUser, setFilterByCurrentUser] = useState(false);
 
   useEffect(() => {
     if (user === 1) {
-      setIsAdmin(true)
+      setIsAdmin(true);
     }
     // Fetch sales data from your backend API
     fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
@@ -22,12 +23,10 @@ export default function AllSales({ user }) {
       .then((data) => {
         setSalesData(data);
       })
-
       .catch((error) => console.error("Error fetching sales data:", error));
   }, [user]);
 
   const handleUpdateClick = (saleId) => {
-    // Set the saleId for the sale being updated
     setUpdateFormData({ saleId, status: "", paid_date: "" });
     setIsUpdating(true);
   };
@@ -37,22 +36,19 @@ export default function AllSales({ user }) {
   };
 
   const handleUpdateSubmit = () => {
-    // Prepare the data to be sent in the PATCH request
     const updatedData = {
       status: updateFormData.status,
     };
 
-    // Send a PATCH request to update the sale
     fetch(`https://levick-29ef28f8e880.herokuapp.com/sales/${updateFormData.saleId}`, {
-      method: 'PATCH', // Use PATCH method
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ sale: updatedData }),
     })
       .then((response) => {
         if (response.ok) {
-          // Sale updated successfully, refresh the sales data
           fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
             .then((response) => response.json())
             .then((data) => {
@@ -60,20 +56,39 @@ export default function AllSales({ user }) {
             })
             .catch((error) => console.error("Error fetching sales data:", error));
 
-          // Clear the update form
           setUpdateFormData({ saleId: null, status: "", paid_date: "" });
           setIsUpdating(false);
         } else {
-          // Handle error response here, e.g., show an error message to the user
           console.error("Error updating sale:", response.status);
         }
       })
       .catch((error) => console.error("Error updating sale:", error));
   };
 
+  const toggleFilterByCurrentUser = () => {
+    setFilterByCurrentUser(!filterByCurrentUser);
+    if (filterByCurrentUser) {
+      // Reset the sales data to its original state
+      fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
+        .then((response) => response.json())
+        .then((data) => {
+          setSalesData(data);
+        })
+        .catch((error) => console.error("Error fetching sales data:", error));
+    } else {
+      // Filter sales by the current user
+      const currentUserSales = salesData.filter((sale) => sale.user.id === user);
+      setSalesData(currentUserSales);
+    }
+  };
 
   return (
     <div style={{ marginTop: "20px" }}>
+      <FormControlLabel
+        control={<Switch checked={filterByCurrentUser} onChange={toggleFilterByCurrentUser} />}
+        label="My sales"
+        style={{ position: "absolute", top: 0, right: 0, margin: "10px" }}
+      />
       <Typography variant="h4">All Sales</Typography>
       {salesData.map((sale) => (
         <Paper className="sale-item" key={sale.id}>
@@ -110,7 +125,8 @@ export default function AllSales({ user }) {
             )
           )}
         </Paper>
-      ))}
+      )
+      )}
       <Header user={user} />
     </div>
   );
