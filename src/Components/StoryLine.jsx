@@ -35,7 +35,6 @@ export default function StoryLine({ clothes, user}) {
               <p>Price: ${clothing.price}</p>
               <p>Size: {clothing.size}</p>
               <p>Category: {clothing.category.name}</p>
-              <p>Sales: {clothing.sales.length}</p>
               <p>Rating: <StarRating rating={calculateRatingFromSales(clothing.sales.length)} /></p>
             </div>
           </li>
