@@ -7,6 +7,7 @@ import { AccountCircle, Home } from "@mui/icons-material";
 import "../Assets/Styles/Header.css";
 //import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 //import ChatIcon from '@mui/icons-material/Chat';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ExploreIcon from '@mui/icons-material/Explore';
 
@@ -49,13 +50,13 @@ function Header({ user, username }) {
           <ExploreIcon className="icon" />
           <p>Explore</p>
         </Link>
-        {/* {isLoggedIn && (
-          <Link to="/" className="icon-link">
-            <ChatIcon className="icon" />
-            <p>Chat</p>
+        {isLoggedIn && (
+          <Link to="/all_sales" className="icon-link">
+            <ReceiptLongIcon className="icon" />
+            <p>Sales</p>
           </Link>
 
-        )} */}
+        )}
 
 
         {isLoggedIn && (
