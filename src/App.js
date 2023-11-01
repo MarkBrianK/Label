@@ -6,7 +6,7 @@ import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
 import ContactPage from "./Components/ContactPage"
-import Sales from './Components/Sales';
+//import Sales from './Components/Sales';
 //import MakeSaleForm from './Screens/MakeSale';
 
 
@@ -19,6 +19,8 @@ const Profile = lazy(() => import('./Components/Profile'));
 const EditProfile = lazy(() => import('./Screens/EditProfile'))
 const MakeSaleForm = lazy(()=> import('./Screens/MakeSale'))
 const AllSales = lazy(()=> import('./Screens/AllSales'))
+const Sales = lazy(()=> import('./Components/Sales'))
+const Explore =lazy(()=> import('./Components/StoryLine'))
 
 
 
@@ -121,6 +123,11 @@ function App() {
             <div className="spinner"></div>
           </div>
         }><AllSales user={user} /></Suspense>} />
+        <Route path={ROUTES.explore} element={<Suspense fallback={
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        }><Explore user={user} clothes={clothes} /></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
