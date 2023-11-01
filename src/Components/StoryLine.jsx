@@ -15,7 +15,7 @@ export default function StoryLine({ clothes, user}) {
       return 2; // Low rating for items with 10 or more sales
     } else if (sales>=1){
       return 1;
-       // Lowest rating for items with fewer than 10 sales
+
     }
     else{
       return 0;
@@ -28,7 +28,9 @@ export default function StoryLine({ clothes, user}) {
       <h1>Top Sales</h1>
       <ul>
         {clothes.map((clothing) => (
-          <li key={clothing.id}>
+          <li key={clothing.id} style={
+            {listStyleType:"none"}
+          }>
             <div>
               <h3>{clothing.name}</h3>
               <p>Description: {clothing.description}</p>

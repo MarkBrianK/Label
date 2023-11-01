@@ -24,13 +24,7 @@ export default function Sales({ clothes, user }) {
 
 
     const handleSaleSubmit = (selectedCloth, formData) => {
-        // Handle the sale submission here, e.g., send data to your backend
-        // After successful submission, you can navigate or perform other actions
-
-        // For this example, we'll log the data
-        console.log("Sale submitted for:", selectedCloth, formData);
-
-        // Reset the form and selected cloth
+       
         setSelectedCloth(null);
         setIsMakingSale(false);
     };
