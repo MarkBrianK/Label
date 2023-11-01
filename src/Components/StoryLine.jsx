@@ -2,7 +2,7 @@ import React from "react";
 import StarRating from "../Screens/StarRating";
 import Header from "./Header";
 
-export default function StoryLine({ clothes, user}) {
+export default function StoryLine({ clothes, user }) {
   // Function to calculate the rating based on sales
   const calculateRatingFromSales = (sales) => {
     if (sales >= 100) {
@@ -13,28 +13,27 @@ export default function StoryLine({ clothes, user}) {
       return 3; // Moderate rating for items with 20 or more sales
     } else if (sales >= 10) {
       return 2; // Low rating for items with 10 or more sales
-    } else if (sales>=1){
+    } else if (sales >= 1) {
       return 1;
-
-    }
-    else{
+    } else {
       return 0;
     }
-
   };
+
+  // Sort the clothes array by rating in descending order
+  const sortedClothes = clothes.slice().sort((a, b) => {
+    return calculateRatingFromSales(b.sales.length) - calculateRatingFromSales(a.sales.length);
+  });
 
   return (
     <div>
       <h1>Top Sales</h1>
       <ul>
-        {clothes.map((clothing) => (
-          <li key={clothing.id} style={
-            {listStyleType:"none"}
-          }>
+        {sortedClothes.map((clothing) => (
+          <li key={clothing.id} style={{ listStyleType: "none" }}>
             <div>
               <h3>{clothing.name}</h3>
               <p>Description: {clothing.description}</p>
-              <p>Price: Kes{clothing.price}</p>
               <p>Size: {clothing.size}</p>
               <p>Category: {clothing.category.name}</p>
               <p>Rating: <StarRating rating={calculateRatingFromSales(clothing.sales.length)} /></p>
@@ -42,7 +41,7 @@ export default function StoryLine({ clothes, user}) {
           </li>
         ))}
       </ul>
-      <Header user={user}/>
+      <Header user={user} />
     </div>
   );
 }
