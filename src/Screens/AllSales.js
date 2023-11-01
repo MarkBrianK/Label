@@ -83,7 +83,7 @@ export default function AllSales({ user }) {
   };
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div style={{ marginTop: "20px", marginBottom:"20px" }}>
       <FormControlLabel
         control={<Switch checked={filterByCurrentUser} onChange={toggleFilterByCurrentUser} />}
         label="My sales"
