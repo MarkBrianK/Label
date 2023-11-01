@@ -12,6 +12,7 @@ export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
   const [mobileNumber, setMobileNumber] = useState(""); // Add mobileNumber state
   const [county, setCounty] = useState(""); // Add county state
+  const [ email, setEmail] = useState("")
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -33,6 +34,7 @@ export default function Profile({ user, userdetails }) {
         setMobileNumber(response.data.mobile_number); // Set mobile number
         setCounty(response.data.county); // Set county
         setProfilePicture(response.data.profile_picture);
+        setEmail(response.data.email)
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -156,6 +158,7 @@ export default function Profile({ user, userdetails }) {
             {/* Display Mobile Number and County */}
             <p>Mobile Number: {mobileNumber}</p>
             <p>County: {county}</p>
+            <p> Email: {email} </p>
             <div className="button-container mt-3 d-flex gap-2">
               <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
                 Edit Profile
