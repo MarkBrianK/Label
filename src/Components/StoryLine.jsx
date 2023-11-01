@@ -1,7 +1,8 @@
 import React from "react";
 import StarRating from "../Screens/StarRating";
+import Header from "./Header";
 
-export default function StoryLine({ clothes}) {
+export default function StoryLine({ clothes, user}) {
   // Function to calculate the rating based on sales
   const calculateRatingFromSales = (sales) => {
     if (sales >= 100) {
@@ -40,6 +41,7 @@ export default function StoryLine({ clothes}) {
           </li>
         ))}
       </ul>
+      <Header user={user}/>
     </div>
   );
 }
