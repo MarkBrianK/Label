@@ -1,7 +1,10 @@
 .home-container {
-  min-height: 100vh;
   background-color: black;
+  min-height: 100vh;
+    overflow: hidden;
 }
+
+
 .display-image {
   display: flex;
   justify-content: flex-end;
@@ -9,8 +12,8 @@
 
 .display-logo {
   display: flex;
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 150px;
   align-content: flex-end;
 }
 
@@ -30,9 +33,13 @@
   text-align: center;
   color: #c7a034;
 }
+
 .formlabel {
+  margin-top: 5px;
   color: #c7a034;
+  text-align: center; 
 }
+
 
 .spinner-border {
   margin-top: 20px;
@@ -45,10 +52,17 @@
   margin-top: 20px;
 }
 
+
+
 .custom-button {
-  background-color: #1a474a !important;
-  color: white !important;
-  border-color: #1a474a !important;
+  background-color: #123f42!important;
+  border-radius: 50px;
+  color: #c7a034 !important;
+  border-color: gray !important;
+  text-align: center;
+  margin: 0 auto; 
+  display: block; 
+  width: 60%;
 }
 .custom-button:hover {
   background-color: black !important;
@@ -78,13 +92,13 @@
 @media (min-width: 768px) {
   .holder {
     background-color: black;
-    padding: 20px;
-    border: 0.3px solid #1a474a;
+    /* padding: 20px; */
+    /* border: 0.3px solid #1a474a; */
     border-radius: 16px;
-    width: 300px;
+    width: 500px;
     display: flex;
     align-self: center;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
   }
