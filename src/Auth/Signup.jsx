@@ -157,7 +157,7 @@ function SignupForm() {
                   checked={showPassword}
                   onChange={() => setShowPassword(!showPassword)}
                 />
-                <label>Show Password</label>
+                <label className="m-1 text-secondary">Show Password</label>
               </div>
               <Form.Control.Feedback type="invalid">
                 {passwordError}
@@ -175,13 +175,15 @@ function SignupForm() {
               />
               <div className="show-password-toggle">
                 <input
+                  className="custom-checkbox"
                   type="checkbox"
                   checked={showPasswordConfirmation}
                   onChange={() =>
                     setShowPasswordConfirmation(!showPasswordConfirmation)
                   }
                 />
-                <label>Show Password</label>
+
+                <label className="m-1 text-secondary">Show Password</label>
               </div>
               <Form.Control.Feedback type="invalid">
                 {passwordConfirmationError}
@@ -192,13 +194,13 @@ function SignupForm() {
               <div className="loading-spinner">
                 <div className="spinner"></div>
               </div> : <Button
-            type="submit"
-            disabled={isLoading}
-            block
-            className="custom-button"
-          >
-            Sign Up
-          </Button>}
+                type="submit"
+                disabled={isLoading}
+                className="custom-button mx-auto d-flex justify-content-center"
+              >
+                Sign Up
+              </Button>
+            }
           </Form>
         </div>
       </div>
