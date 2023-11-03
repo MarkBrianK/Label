@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import logo from "../Assets/Image/Levick.png";
-import "../Assets/Styles/Signup.css";
+import Styles  from "../Assets/Styles/Signup.module.css"
 
 function SignupForm() {
   const [name, setName] = useState("");
@@ -76,7 +76,7 @@ function SignupForm() {
   };
 
   return (
-    <div className="home-container">
+    <div className={Styles.homeContainer}>
       <Helmet>
         <title>Sign Up - Levick 23</title>
         <meta
@@ -84,11 +84,11 @@ function SignupForm() {
           content="Sign up to Levick 23 and explore our trendy and affordable clothing collection. Create your account and discover your unique style at Levick 23."
         />
       </Helmet>
-      <div className="display-image">
-        <img src={logo} alt="Logo" className="display-logo img-fluid" />
+      <div className={Styles.displayImage}>
+        <img src={logo} alt="Logo" className={Styles.displayLogo}  />
       </div>
-      <div className="centered-container">
-        <div className="holder">
+      <div className={Styles.centeredContainer}>
+        <div className={Styles.holder}>
           {error && <Alert variant="danger">{error}</Alert>}
           {success && (
             <Alert variant="success">
@@ -98,7 +98,7 @@ function SignupForm() {
           )}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
-              <Form.Label className="formlabel">Username</Form.Label>
+              <Form.Label className={Styles.formlabel}>Username</Form.Label>
               <Form.Control
                 type="text"
                 value={username}
@@ -112,7 +112,7 @@ function SignupForm() {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="name">
-              <Form.Label className="formlabel">Name</Form.Label>
+              <Form.Label className={Styles.formlabel}>Name</Form.Label>
               <Form.Control
                 type="text"
                 value={name}
@@ -126,7 +126,7 @@ function SignupForm() {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="email">
-              <Form.Label className="formlabel">Email address</Form.Label>
+              <Form.Label className={Styles.formlabel}>Email address</Form.Label>
               <Form.Control
                 type="email"
                 value={email}
@@ -140,7 +140,7 @@ function SignupForm() {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label className="formlabel">Password</Form.Label>
+              <Form.Label className={Styles.formlabel}>Password</Form.Label>
               <Form.Control
                 type={showPassword ? "text" : "password"}
                 value={password}
@@ -149,7 +149,7 @@ function SignupForm() {
                 placeholder="Password"
                 required
               />
-              <div className="show-password-toggle">
+              <div >
                 <input
                   type="checkbox"
                   checked={showPassword}
@@ -162,7 +162,7 @@ function SignupForm() {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="password-confirmation">
-              <Form.Label className="formlabel">Confirm Password</Form.Label>
+              <Form.Label className={Styles.formlabel}>Confirm Password</Form.Label>
               <Form.Control
                 type={showPasswordConfirmation ? "text" : "password"}
                 value={passwordConfirmation}
@@ -171,7 +171,7 @@ function SignupForm() {
                 placeholder="Confirm Password"
                 required
               />
-              <div className="show-password-toggle">
+              <div >
                 <input
                   className="custom-checkbox"
                   type="checkbox"
@@ -189,15 +189,17 @@ function SignupForm() {
             </Form.Group>
             <br />
             {isLoading ?
-              <div className="loading-spinner">
-                <div className="spinner"></div>
-              </div> : <Button
-                type="submit"
-                disabled={isLoading}
-                className="custom-button mx-auto d-flex justify-content-center"
-              >
-                Sign Up
-              </Button>
+              <div className={Styles.loadingSpinner}>
+                <div className={Styles.spinner}></div>
+              </div> :
+              <Button
+              type="submit"
+              disabled={isLoading}
+              className={`customButton mx-auto d-flex justify-content-center ${Styles.customButton}`}
+            >
+              Sign Up
+            </Button>
+            
             }
           </Form>
         </div>

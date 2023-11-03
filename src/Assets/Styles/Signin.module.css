@@ -1,106 +1,91 @@
-  .signin {
-    background-color: black;
-    min-height: 100vh;
-    overflow: hidden;
+.signin {
+  background-color: black;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image .logoImage {
+  display: flex;
+  height: 120px;
+  width: 120px;
+  align-content: flex-end;
+}
+
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.formlabel {
+  margin-top: 10px;
+  color: #c7a034;
+}
+
+.loadingSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  border: 8px solid #c7a034;
+  border-top: 8px solid #1A474A;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+.customButton {
+  background-color: #123f42 !important;
+  border-radius: 50px;
+  color: #c7a034 !important;
+  border-color: gray !important;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+}
+
+.forgotPasswordLink {
+  color: gray;
+  text-decoration: none;
+}
+
+.forgotPasswordLink:hover {
+  color: rgb(212, 228, 226);
+  text-decoration: underline;
+}
+
+.tosignup {
+  text-decoration: none !important;
+  color: gray;
+  font-size: larger !important;
+}
+
+#signuplink {
+  color: #c7a034;
+  text-decoration: none;
+  font-size: small;
+}
+
+.customButton:hover {
+  background-color: black !important;
+}
+
+.tosignup:hover {
+  color: aliceblue;
+}
+
+@media (max-width: 768px) {
+  .logoImage {
+    height: 200px;
+    width: 200px;
   }
-
-  .image {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .image .logoImage {
-    display: flex;
-    height: 120px;
-    width: 120px;
-    align-content: flex-end;
-  }
-
-  /* the form */
-  .form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .formlabel {
-    margin-top: 10px;
-    color: #c7a034;
-  }
-
-  /* loading spinners */
-  .loadingSpinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .spinner {
-    border: 8px solid #c7a034;
-    border-top: 8px solid #1A474A;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-  }
-
-  /* button */
-  .customButton {
-    background-color: #123f42 !important;
-    border-radius: 50px;
-    color: #c7a034 !important;
-    border-color: gray !important;
-    text-align: center;
-    margin: 0 auto;
-    display: block;
-    width: 60%;
-  }
-
-  /* forgot password */
-  .forgotPasswordLink {
-    color: gray;
-    text-decoration: none;
-  }
-
-  .forgotPasswordLink:hover {
-    color: rgb(212, 228, 226);
-    text-decoration: underline;
-  }
-
-  /* sign up */
-
-  .tosignup {
-    text-decoration: none !important;
-    color: gray;
-    font-size: larger !important;
-  }
-
-  #signuplink {
-    color: #c7a034;
-    text-decoration: none;
-    font-size: small;
-  }
-
-  .custom-button:hover {
-    background-color: black !important;
-  }
-
-
-  .tosignup:hover {
-    color: aliceblue;
-  }
-
-
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .logoImage {
-      height: 200px;
-      width: 200px;
-    }
-  }
+}
