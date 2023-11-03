@@ -4,6 +4,7 @@
     overflow: hidden;
 }
 
+
 .display-image {
   display: flex;
   justify-content: flex-end;
@@ -55,6 +56,7 @@
 
 .custom-button {
   background-color: #123f42!important;
+  border-radius: 50px;
   color: #c7a034 !important;
   border-color: gray !important;
   text-align: center;
