@@ -5,7 +5,7 @@ import axios from "axios";
 import CryptoJS from "crypto-js";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/Image/Levick.png";
-import "../Assets/Styles/Signin.css";
+import Styles from "../Assets/Styles/Signin.module.css"
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -68,7 +68,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="signin">
+    <div className={Styles.signin}>
       <Helmet>
         <title>Sign In - Levick 23</title>
         <meta
@@ -77,13 +77,13 @@ const SignInForm = () => {
         />
       </Helmet>
 
-      <div className="image">
-        <img src={logo} alt="Levick Logo" className="logo-image" />
+      <div className={Styles.image}>
+        <img src={logo} alt="Levick Logo" className={Styles.logoImage} />
       </div>
       <div className="p-4 rounded">
-        <Form onSubmit={handleSubmit} className="form">
+        <Form onSubmit={handleSubmit} className={Styles.form}>
           <Form.Group controlId="email">
-            <Form.Label className="formlabel">Email address</Form.Label>
+            <Form.Label className={Styles.formlabel}>Email address</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -93,7 +93,7 @@ const SignInForm = () => {
             />
           </Form.Group>
           <Form.Group controlId="password">
-            <Form.Label className="formlabel">Password</Form.Label>
+            <Form.Label className={Styles.formlabel}>Password</Form.Label>
             <Form.Control
               type={showPassword ? "text" : "password"}
               value={password}
@@ -101,7 +101,7 @@ const SignInForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <div className="show-password-toggle">
+            <div >
               <input
                 className="m-1"
                 type="checkbox"
@@ -120,27 +120,27 @@ const SignInForm = () => {
           )}
           <br />
           {isLoading ?
-            <div className="loading-spinner">
-              <div className="spinner"></div>
+            <div className={Styles.loadingSpinner}>
+              <div className={Styles.spinner}></div>
             </div> : <Button
               type="submit"
               disabled={isLoading}
               block
-              className="custom-button"
+              className={Styles.customButton}
             >
               Sign In
             </Button>}
-          <div className="mt-3 text-center" id="signuplink">
+          <div className="mt-3 text-center" id={Styles.signuplink}>
             {/* Add a "Forgot Password" link here */}
-            <a href="https://levick-29ef28f8e880.herokuapp.com/users/forgot_password" className="forgot-password-link">
+            <a href="https://levick-29ef28f8e880.herokuapp.com/users/forgot_password" className={Styles.forgotPasswordLink}>
               Forgot Password ?
             </a>
 
           </div>
 
-          <div className="mt-3 text-center" id="signuplink">
+          <div className="mt-3 text-center" id={Styles.signuplink}>
             Don't have an account?{" "}
-            <Link className="tosignup" to="/signup">
+            <Link className={Styles.tosignup} to="/signup">
               Sign up
             </Link>{" "}
             now.
