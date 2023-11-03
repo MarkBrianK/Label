@@ -80,7 +80,7 @@ const SignInForm = () => {
       <div className="image">
         <img src={logo} alt="Levick Logo" className="logo-image" />
       </div>
-      <div className="p-5 rounded">
+      <div className="p-4 rounded">
         <Form onSubmit={handleSubmit} className="form">
           <Form.Group controlId="email">
             <Form.Label className="formlabel">Email address</Form.Label>
@@ -103,11 +103,12 @@ const SignInForm = () => {
             />
             <div className="show-password-toggle">
               <input
+                className="m-1"
                 type="checkbox"
                 checked={showPassword}
                 onChange={() => setShowPassword(!showPassword)}
               />
-              <label>Show Password</label>
+              <label className="mt-1 text-secondary">Show Password</label>
             </div>
           </Form.Group>
           <br />
@@ -119,21 +120,22 @@ const SignInForm = () => {
           )}
           <br />
           {isLoading ?
-              <div className="loading-spinner">
-                <div className="spinner"></div>
-              </div> : <Button
-            type="submit"
-            disabled={isLoading}
-            block
-            className="custom-button"
-          >
-            Sign In
-          </Button>}
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+            </div> : <Button
+              type="submit"
+              disabled={isLoading}
+              block
+              className="custom-button"
+            >
+              Sign In
+            </Button>}
           <div className="mt-3 text-center" id="signuplink">
             {/* Add a "Forgot Password" link here */}
             <a href="https://levick-29ef28f8e880.herokuapp.com/users/forgot_password" className="forgot-password-link">
               Forgot Password ?
             </a>
+
           </div>
 
           <div className="mt-3 text-center" id="signuplink">

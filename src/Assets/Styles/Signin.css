@@ -1,6 +1,7 @@
   .signin {
     background-color: black;
     min-height: 100vh;
+    overflow: hidden;
   }
 
   .image {
@@ -10,11 +11,12 @@
 
   .image .logo-image {
     display: flex;
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     align-content: flex-end;
   }
   .formlabel {
+    margin-top: 10px;
     color: #c7a034;
   }
 
@@ -23,18 +25,32 @@
     margin: 0 auto;
   }
 
+  
   .custom-button {
-    background-color: #1A474A!important;
-    color: white !important;
-    border-color: #1A474A !important;
+    background-color: #123f42!important;
+    color: #c7a034 !important;
+    border-color: gray !important;
+    text-align: center;
+    margin: 0 auto; 
+    display: block; 
+    width: 60%;
   }
-
+  .forgot-password-link {
+    color: gray;
+    text-decoration: none;
+  }
+  
+  .forgot-password-link:hover {
+    color: gray; 
+    text-decoration: underline;
+  }
+  
   .custom-button:hover {
     background-color: black !important;
   }
   .tosignup{
     text-decoration: none !important;
-    color: #1A474A;
+    color: gray; 
     font-size: larger !important;
   }
   .tosignup:hover{
