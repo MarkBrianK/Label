@@ -48,9 +48,7 @@ function App() {
         if (decryptedUserData) {
           const currentUser = JSON.parse(decryptedUserData);
           setUser(currentUser);
-
         } else {
-
           console.error("Please log in.");
         }
       } else {
@@ -60,6 +58,7 @@ function App() {
       console.error("Error decrypting user data:", error);
     }
   }, []);
+
   useEffect(() => {
     // Fetch clothes data from the API
     fetch("https://levick-6ab9bbf8750f.herokuapp.com/cloths")
@@ -67,9 +66,6 @@ function App() {
       .then((data) => setClothes(data))
       .catch((error) => console.error("Error fetching clothes:", error));
   }, []);
-
-
-
 
 
   useEffect(() => {
@@ -85,7 +81,6 @@ function App() {
 
   return (
     <div>
-
       <Helmet>
         <title>{userdetails ? `${userdetails} - Levick 23` : 'Levick 23 - Trendy and Affordable Clothing'}</title>
         <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-forward individuals like you." />

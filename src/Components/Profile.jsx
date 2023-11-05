@@ -6,13 +6,13 @@ import axios from "axios";
 import Header from "./Header";
 import Button from "../Shared/Button";
 import camera from "../Assets/Image/239220.png";
-import "../Assets/Styles/Profile.css";
+import Styles from "../Assets/Styles/Profile.module.css";
 
 export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
   const [mobileNumber, setMobileNumber] = useState(""); // Add mobileNumber state
   const [county, setCounty] = useState(""); // Add county state
-  const [ email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +34,7 @@ export default function Profile({ user, userdetails }) {
         setMobileNumber(response.data.mobile_number); // Set mobile number
         setCounty(response.data.county); // Set county
         setProfilePicture(response.data.profile_picture);
-        setEmail(response.data.email)
+        setEmail(response.data.email);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -74,8 +74,8 @@ export default function Profile({ user, userdetails }) {
   };
 
   return (
-    <div style={{ minHeight: "100vh", width: "100%", position: "fixed" }}>
-      <Helmet>
+    <div className="container mt-5 " style={{ minHeight: "93.4vh" }}>
+      <Helmet className="mt-5">
         <title>
           {username ? `${username} - Profile | Levick 23` : "Levick 23"}
         </title>
@@ -88,8 +88,8 @@ export default function Profile({ user, userdetails }) {
           }
         />
       </Helmet>
-      <div className="row">
-        <div className="col-md-4">
+      <div className="row" style={{ minHeight: "100%" }}>
+        <div className="col-md-4 mt-5 d-flex justify-content-center align-items-center">
           <div className="text-center">
             {/* Profile Picture Section */}
             {profilePicture ? (
@@ -150,61 +150,73 @@ export default function Profile({ user, userdetails }) {
                 />
               </div>
             )}
-          </div>
+          {/* </div> */}
         </div>
-        <div className="col-md-8">
-          <div className="user-details">
-            <h3 className="font-weight-bold">{username}</h3>
-            {/* Display Mobile Number and County */}
-            <p>Mobile Number: {mobileNumber}</p>
-            <p>County: {county}</p>
-            <p> Email: {email} </p>
-            <div className="button-container mt-3 d-flex gap-2">
-              <Button onClick={handleProfileEdit} style={{ marginTop: "10px" }}>
+        </div>
+        <div className="col-md-8 text-center">
+          <div className="user-details mt-3">
+            <h3 className={`font-weight-bold ${Styles.userInfo}`}>{username}</h3>
+            <div className={`font-weight-bold mt-3 ${Styles.userInfo}`}>
+              Mobile Number: <span>{mobileNumber}</span>
+            </div>
+            <div className={`font-weight-bold mt-3 ${Styles.userInfo}`}>
+              County: <span>{county}</span>
+            </div>
+            <div className={`font-weight-bold mt-3 ${Styles.userInfo}`}>
+              Email: <span>{email}</span>
+            </div>
+            <div className="button-container d-flex gap-2">
+              <button onClick={handleProfileEdit} className={Styles.profileButton}>
                 Edit Profile
+              </button>
+              <button onClick={handleAuth} className={Styles.profileButton}>
+                Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  
+
+      {
+    profilePicture && (
+      <div
+        className={`modal fade ${showModal ? "show" : ""}`}
+        style={{ display: showModal ? "block" : "none" }}
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-body text-center">
+              <img
+                src={profilePicture}
+                alt="Profile_picture"
+                className="img-fluid"
+                style={{ maxWidth: "100%", maxHeight: "80vh" }}
+              />
+            </div>
+            <div className="modal-footer">
+              <Button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setShowModal(false)}
+              >
+                Close
               </Button>
-              <Button onClick={handleAuth}>Log Out</Button>
             </div>
           </div>
         </div>
       </div>
+    )
+  }
 
-      {profilePicture && (
-        <div
-          className={`modal fade ${showModal ? "show" : ""}`}
-          style={{ display: showModal ? "block" : "none" }}
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-body text-center">
-                <img
-                  src={profilePicture}
-                  alt="Profile_picture"
-                  className="img-fluid"
-                  style={{ maxWidth: "100%", maxHeight: "80vh" }}
-                />
-              </div>
-              <div className="modal-footer">
-                <Button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setShowModal(false)}
-                >
-                  Close
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="row mt-4">
-        <div className="col-md-12">
-          {/* Link to User's Sales */}
-          <Header username={userdetails} user={user} >
-          </Header>
-        </div>
-      </div>
+  <div className="row mt-4">
+    <div className="col-md-12">
+      {/* Link to User's Sales */}
+      <Header username={userdetails} user={user} >
+      </Header>
     </div>
+  </div>
+    </div >
   );
 }

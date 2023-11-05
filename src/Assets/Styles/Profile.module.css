@@ -1,0 +1,63 @@
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Maintain aspect ratio */
+  cursor: pointer;
+}
+
+.profileimage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.centered-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.default-profile-image {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileButton {
+  color: #fff;
+  width: 100%;
+  margin-top: 40px;
+  border: none;
+  outline: 0 !important;
+  border-radius: 50px;
+  background: #1a474a;
+  box-shadow: 20px 20px 40px #2c6a6e, -20px -20px 40px #1a474a;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileButton:hover,
+.profileButton.active {
+  background-color: black;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    padding-top: 50%; /* Adjust aspect ratio for smaller screens */
+  }
+  .profileButton {
+    flex-direction: column;
+  }
+}
+
+
+
+
