@@ -17,7 +17,7 @@ function EditProfile({ user }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://levick-29ef28f8e880.herokuapp.com/users/${user}`
+          `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`
         );
         const { username, mobile_number, county, profile_picture } = response.data;
         setFormData({
@@ -57,7 +57,7 @@ function EditProfile({ user }) {
 
     try {
       await axios.patch(
-        `https://levick-29ef28f8e880.herokuapp.com/users/${user}`,
+        `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`,
         updatedFormData
       );
       console.log("Profile updated successfully.");
