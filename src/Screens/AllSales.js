@@ -14,7 +14,7 @@ export default function AllSales({ user }) {
   const [filterByCurrentUser, setFilterByCurrentUser] = useState(false);
 
   useEffect(() => {
-    if (user === 1) {
+    if (user === 2) {
       setIsAdmin(true);
     }
     // Fetch sales data from your backend API
