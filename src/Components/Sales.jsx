@@ -15,8 +15,6 @@ export default function Sales({ clothes, user }) {
     const filteredClothes = clothes.filter((cloth) =>
         cloth.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-
     const handleMakeSale = (clothId) => {
         navigate(`/sales/${clothId}`);
 
@@ -24,7 +22,7 @@ export default function Sales({ clothes, user }) {
 
 
     const handleSaleSubmit = (selectedCloth, formData) => {
-       
+
         setSelectedCloth(null);
         setIsMakingSale(false);
     };
@@ -38,7 +36,7 @@ export default function Sales({ clothes, user }) {
     const isTableLayout = window.innerWidth >= 768;
 
     return (
-        <div style={{marginTop:"20px", marginBottom:"20px"}}>
+        <div style={{ marginTop: "20px", marginBottom: "20px" }}>
             <TextField
                 label="Search"
                 variant="outlined"
@@ -59,10 +57,11 @@ export default function Sales({ clothes, user }) {
                         </TableRow>
                     </TableHead>
                     <TableBody className="table">
-                        {filteredClothes.map((cloth) => {
+                        {clothes.map((cloth) => {
                             const imageUrls = JSON.parse(cloth.image);
                             const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : null;
                             const clothId = cloth.id
+
                             return (
                                 <TableRow key={cloth.id}>
                                     <TableCell>
@@ -74,10 +73,10 @@ export default function Sales({ clothes, user }) {
                                             />
                                         )}
                                     </TableCell>
-                                    <TableCell>{cloth.name}</TableCell>
+                                    <TableCell> {cloth.name}</TableCell>
                                     <TableCell>{cloth.description}</TableCell>
                                     <TableCell>Ksh {cloth.price}/=</TableCell>
-                                    <TableCell>{cloth.category.name}</TableCell>
+                                    <TableCell> {cloth.category.name}</TableCell>
                                     <TableCell>
                                         <TableButton variant="outlined" onClick={() => handleMakeSale(clothId)}>
                                             Make a Sale
@@ -96,7 +95,7 @@ export default function Sales({ clothes, user }) {
                         const clothId = cloth.id
 
                         return (
-                            <Paper className="cloth-item" key={cloth.id} style={{marginTop:"20px"}}>
+                            <Paper className="cloth-item" key={cloth.id} style={{ marginTop: "20px" }}>
                                 <img
                                     src={firstImageUrl}
                                     alt={cloth.name}
@@ -105,6 +104,7 @@ export default function Sales({ clothes, user }) {
                                 />
                                 <Typography variant="h6" className="cloth-name">
                                     {cloth.name}
+
                                 </Typography>
                                 <Typography variant="body1" className="cloth-description">
                                     {cloth.description}
@@ -113,7 +113,10 @@ export default function Sales({ clothes, user }) {
                                     Price: Ksh {cloth.price}/=
                                 </Typography>
                                 <Typography variant="body1" className="cloth-category">
-                                    Category: {cloth.category.name}
+                                    {cloth.category.name}
+
+
+
                                 </Typography>
                                 <MobileButton variant="outlined" onClick={() => handleMakeSale(clothId)}>
                                     Make a Sale
