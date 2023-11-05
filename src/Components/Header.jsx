@@ -21,7 +21,7 @@ function Header({ user, username }) {
 
     if (!!sessionCookie) {
       axios
-        .get(`https://levick-29ef28f8e880.herokuapp.com/users/${user}`)
+        .get(`https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`)
         .then((response) => {
           setProfilePicture(response.data.profile_picture);
         })
