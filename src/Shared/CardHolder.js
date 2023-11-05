@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
 import "../Assets/Styles/CardHolder.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 function CardHolder({ cloth, handleViewMore, user, children }) {
   const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
+
+  const [imagesLoaded, setImagesLoaded] = useState(Array(imageUrls.length).fill(false));
+  const [isLoading, setIsLoading] = useState(true);
 
   const iconButtonStyle = {
     position: "absolute",
@@ -19,6 +22,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
     border: "none",
     cursor: "pointer",
   };
+
   function isWithinLastTwoWeeks(dateString) {
     const today = new Date();
     const creationDate = new Date(dateString);
@@ -27,66 +31,81 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
     return creationDate >= twoWeeksAgo;
   }
 
+  const handleImageLoad = (index) => {
+    const newImagesLoaded = [...imagesLoaded];
+    newImagesLoaded[index] = true;
+    setImagesLoaded(newImagesLoaded);
+
+    // Check if all images have loaded
+    if (!newImagesLoaded.includes(false)) {
+      setIsLoading(false); // Set isLoading to false when all images have loaded
+    }
+  };
+
   return (
     <Card className="card-container">
       <div className="responsive-image">
         {showImageCarousel && (
-          <Carousel
-            showStatus={false}
-            showThumbs={false}
-            swipeable={false}
-            renderArrowPrev={(onClickHandler, hasPrev, label) =>
-              hasPrev && (
-                <button
-                  type="button"
-                  onClick={onClickHandler}
-                  title={label}
-                  style={{
-                    ...iconButtonStyle,
-                    left: "15px",
-                    color: "white", // Set the color to white
-                  }}
-                >
-                  <IoIosArrowBack size={30} />
-                </button>
-              )
-            }
-            renderArrowNext={(onClickHandler, hasNext, label) =>
-              hasNext && (
-                <button
-                  type="button"
-                  onClick={onClickHandler}
-                  title={label}
-                  style={{
-                    ...iconButtonStyle,
-                    right: "15px",
-                    color: "white", // Set the color to white
-                  }}
-                >
-                  <IoIosArrowForward size={30} />
-                </button>
-              )
-            }
-          >
-            {imageUrls.map((imageUrl, index) => (
-              <div key={index} className="popup-image-container">
-                <img
-                  className="popup-image"
-                  src={imageUrl}
-                  alt={`${cloth.name}`}
-                  style={{
-                    width: "100%",
-                    aspectRatio: "1/1",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-            ))}
-          </Carousel>
+          <>
+            {isLoading && <LoadingSpinner/> }
+            <Carousel
+              showStatus={false}
+              showThumbs={false}
+              swipeable={false}
+              renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                hasPrev && (
+                  <button
+                    type="button"
+                    onClick={onClickHandler}
+                    title={label}
+                    style={{
+                      ...iconButtonStyle,
+                      left: "15px",
+                      color: "white",
+                    }}
+                  >
+                    <IoIosArrowBack size={30} />
+                  </button>
+                )
+              }
+              renderArrowNext={(onClickHandler, hasNext, label) =>
+                hasNext && (
+                  <button
+                    type="button"
+                    onClick={onClickHandler}
+                    title={label}
+                    style={{
+                      ...iconButtonStyle,
+                      right: "15px",
+                      color: "white",
+                    }}
+                  >
+                    <IoIosArrowForward size={30} />
+                  </button>
+                )
+              }
+            >
+              {imageUrls.map((imageUrl, index) => (
+                <div key={index} className="popup-image-container">
+                  <img
+                    className={`popup-image ${imagesLoaded[index] ? 'loaded' : 'hidden'}`}
+                    src={imageUrl}
+                    alt={`${cloth.name}`}
+                    style={{
+                      width: "100%",
+                      aspectRatio: "1/1",
+                      objectFit: "cover",
+                    }}
+                    onLoad={() => handleImageLoad(index)}
+                  />
+                </div>
+              ))}
+            </Carousel>
+          </>
         )}
         {!showImageCarousel && (
           <img
-            className="image"
+            className={`image ${imagesLoaded[0] ? 'loaded' : 'hidden'}`}
             src={imageUrls[0]}
             alt={`${cloth.name}`}
             style={{
@@ -95,9 +114,9 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
               objectFit: "cover",
               borderRadius: "15px 15px 0 0",
             }}
+            onLoad={() => handleImageLoad(0)}
           />
         )}
-
 
         {isWithinLastTwoWeeks(cloth.created_at) && (
           <div
@@ -111,7 +130,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "14px", // Adjust the font size for the "new" text
+              fontSize: "14px",
               fontWeight: "bold",
             }}
           >
@@ -120,22 +139,19 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
                 backgroundColor: "black",
                 color: "goldenrod",
                 borderRadius: "50%",
-                padding: "4px", // Adjust padding as needed
+                padding: "4px",
                 display: "inline-block",
                 width: "100%",
                 height: "100%",
                 textAlign: "center",
                 lineHeight: "1",
-                fontSize: "x-small"
+                fontSize: "x-small",
               }}
             >
-              &#9733; New{/* Unicode star character */}
+              &#9733; New
             </span>
           </div>
         )}
-
-
-
       </div>
       <Card.Body className="text-center">
         <Card.Title style={{ fontSize: "small", fontWeight: "600" }}>
