@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CardHolder from "../Shared/CardHolder";
-//import LikeButton from "./LikesHandler";
-//import { Link } from "react-router-dom";
-//import { FaComment } from "react-icons/fa";
-//import { Alert } from "react-bootstrap";
+import LoadingSpinner from "../Shared/LoadingSpinner"; // Import a loading spinner component
 import "../Assets/Styles/Handler.css";
 
 function shuffleArray(array) {
@@ -13,9 +10,7 @@ function shuffleArray(array) {
   }
   return array;
 }
-
-function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
-  // const [likeErrorMessage, setLikeErrorMessage] = useState("");
+function ClothHandler({ clothes, handleViewMore, selectedCategory, user, isLoading }) {
   const [shuffledClothes, setShuffledClothes] = useState([]);
 
   useEffect(() => {
@@ -25,44 +20,21 @@ function ClothHandler({ clothes, handleViewMore, selectedCategory, user }) {
 
   return (
     <div className="cloth-container">
-      {shuffledClothes.map((item, index) => (
-        <CardHolder
-          key={index}
-          user={user}
-          cloth={item}
-          handleViewMore={() => handleViewMore(item)}
-          className="cards"
-        >
-         {/* <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "20%",
-              marginLeft: "30%",
-            }}
+      {isLoading ? (
+        <LoadingSpinner /> // Display the loading spinner if isLoading is true
+      ) : (
+        shuffledClothes.map((item, index) => (
+          <CardHolder
+            key={index}
+            user={user}
+            cloth={item}
+            handleViewMore={() => handleViewMore(item)}
+            className="cards"
           >
-            <LikeButton
-              cloth={item}
-              onLikeError={(errorMessage) => setLikeErrorMessage(errorMessage)}
-              user={user}
-            />
-
-            <Link
-              style={{
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                color: "black",
-              }}
-              to={`comments/${item.id}`}
-              className="comment-link ml-2"
-            >
-              <FaComment /> {item.comments.length}
-            </Link>
-          </div>
-            {likeErrorMessage && <Alert variant="danger" style={{ fontSize: "xx-small" }}>{likeErrorMessage}</Alert>}*/}
-        </CardHolder>
-      ))}
+            {/* Content for CardHolder */}
+          </CardHolder>
+        ))
+      )}
     </div>
   );
 }
