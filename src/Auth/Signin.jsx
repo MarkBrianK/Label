@@ -30,7 +30,7 @@ const SignInForm = () => {
       setIsLoading(true);
 
       const response = await axios.post(
-        "https://levick-29ef28f8e880.herokuapp.com/users/sign_in",
+        "https://levick-6ab9bbf8750f.herokuapp.com/users/sign_in",
         {
           email,
           password,
@@ -132,7 +132,7 @@ const SignInForm = () => {
             </Button>}
           <div className="mt-3 text-center" id={Styles.signuplink}>
             {/* Add a "Forgot Password" link here */}
-            <a href="https://levick-29ef28f8e880.herokuapp.com/users/forgot_password" className={Styles.forgotPasswordLink}>
+            <a href="https://levick-6ab9bbf8750f.herokuapp.com/users/forgot_password" className="forgot-password-link">
               Forgot Password ?
             </a>
 
