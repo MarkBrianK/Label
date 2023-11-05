@@ -1,0 +1,118 @@
+.centeredContainer {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+
+.editProfileLabel {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.defaultProfilePictureResized {
+    width: 200px; /* Set to the desired width */
+    height: 200px; /* Set to the desired height */
+  }
+  
+  .defaultProfilePicture {
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover; 
+  }
+  
+
+.input {
+    margin-bottom: 1px !important;
+}
+
+/* camera */
+.avatarContainer {
+    position: relative;
+}
+
+.cameraIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.formContainer {
+    text-align: center;
+    width: 300px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.formElement {
+    margin-bottom: 15px;
+}
+
+.formLabel {
+    font-weight: bold;
+}
+
+.formInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.profilePictureInput {
+    display: none;
+}
+
+.profilePictureLabel {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.avatarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatarPlaceholder {
+    width: 200px;
+    height: 200px;
+    background-color: #ccc;
+    /* Default image background */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.takePictureButton {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.updateButton {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

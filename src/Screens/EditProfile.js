@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
-import Header from "../Components/Header";
+import styles from "../../src/Assets/Styles/EditProfile.module.css";
 
 function EditProfile({ user }) {
   const [formData, setFormData] = useState({
@@ -61,8 +61,6 @@ function EditProfile({ user }) {
         updatedFormData
       );
       console.log("Profile updated successfully.");
-
-      // Reload the page after updating the profile (You might want to use a different approach for a better user experience)
       window.location.reload();
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -70,80 +68,88 @@ function EditProfile({ user }) {
   };
 
   return (
-    <div style={{marginBottom:"30px"}}>
-      <div className="mb-3">
-        <label htmlFor="username" className="form-label">
-          Username:
-        </label>
-        <input
-          type="text"
-          id="username"
-          className="form-control"
-          value={formData.username}
-          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="mobileNumber" className="form-label">
-          Mobile Number:
-        </label>
-        <input
-          type="text"
-          id="mobileNumber"
-          className="form-control"
-          value={formData.mobileNumber}
-          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="county" className="form-label">
-          County:
-        </label>
-        <input
-          type="text"
-          id="county"
-          className="form-control"
-          value={formData.county}
-          onChange={(e) => setFormData({ ...formData, county: e.target.value })}
-        />
-      </div>
-      {formData.profilePicture && (
-        <AvatarEditor
-          ref={editorRef}
-          image={formData.profilePicture}
-          width={200}
-          height={200}
-          border={50}
-          borderRadius={100}
-          scale={1.2}
-          className="mt-3"
-          style={{
-            borderRadius: "50%",
-            border: "1px solid goldenrod",
-          }}
-        />
-      )}
-      <input
-        type="file"
-        id="profilePicture"
-        accept="image/*"
-        className="form-control"
-        onChange={handleFileChange}
-      />
-      <div className="mb-3">
-        <label htmlFor="profilePicture" className="form-label">
-          Profile Picture:
-        </label>
-      </div>
-      <button className="btn btn-primary" onClick={handleUpdateProfile}>
-        Update Profile
-      </button>
-      <div className="row mt-4">
-        <div className="col-md-12">
-          <Header user={user} />
+    <div className={styles.centeredContainer}>
+      <label htmlFor="profilePicture" className={styles.editProfileLabel}>
+        Edit Profile
+      </label>
+    
+      <div className={styles.formContainer}>
+        <div className={styles.avatarContainer}>
+          {formData.profilePicture ? (
+            /* User's profile picture */
+              <AvatarEditor
+                ref={editorRef}
+                image={formData.profilePicture}
+                width={200}
+                height={200}
+                border={50}
+                borderRadius={100}
+                scale={1.2}
+              />
+            
+          ) : (
+            <img
+              src={formData.profilePicture || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"}
+              alt="Default Profile"
+              className={`${styles.defaultProfilePicture} ${styles.defaultProfilePictureResized}`}
+            />
+
+          )}
         </div>
+
+        <input
+          type="file"
+          id="profilePicture"
+          accept="image/*"
+          className={styles.profilePictureInput}
+          onChange={handleFileChange}
+        />
+        <label className={styles.profilePictureLabel} htmlFor="profilePicture">
+          Upload Profile Picture
+        </label>
+        <div className={styles.formElement}>
+          <label htmlFor="username" className={styles.formLabel}>
+            Username:
+          </label>
+          <input
+            type="text"
+            id="username"
+            className={styles.formInput}
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+          />
+        </div>
+        <div className={styles.formElement}>
+          <label htmlFor="mobileNumber" className={styles.formLabel}>
+            Mobile Number:
+          </label>
+          <input
+            type="text"
+            id="mobileNumber"
+            className={styles.formInput}
+            value={formData.mobileNumber}
+            onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+          />
+        </div>
+        <div className={styles.formElement}>
+          <label htmlFor="county" className={styles.formLabel}>
+            County:
+          </label>
+          <input
+            type="text"
+            id="county"
+            className={styles.formInput}
+            value={formData.county}
+            onChange={(e) => setFormData({ ...formData, county: e.target.value })}
+          />
+        </div>
+        <button className={styles.updateButton} onClick={handleUpdateProfile}>
+          Update Profile
+        </button>
       </div>
+      
     </div>
+
   );
 }
 
