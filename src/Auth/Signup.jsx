@@ -38,7 +38,7 @@ function SignupForm() {
 
     try {
       const response = await axios.post(
-        "https://levick-29ef28f8e880.herokuapp.com/users",
+        "https://levick-6ab9bbf8750f.herokuapp.com/users",
         {
           user: {
             name,
