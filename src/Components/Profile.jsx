@@ -81,9 +81,10 @@ export default function Profile({ user, userdetails }) {
           fontWeight: "bold",
           borderBottom: "1px solid #000",
           width: "100%",
+          lineHeight:" 2.5"
         }}
       >
-        My profile
+        My Profile
       </label>
 
       <Helmet className="mt-5">
@@ -106,8 +107,8 @@ export default function Profile({ user, userdetails }) {
               <div
                 style={{
                   position: "relative",
-                  width: "100%",
-                  height: "auto",
+                  width: "200%",
+                  height: "200%",
                   cursor: "pointer",
                 }}
                 onClick={() => setShowModal(true)}
