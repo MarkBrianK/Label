@@ -27,7 +27,7 @@ export default function Profile({ user, userdetails }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://levick-29ef28f8e880.herokuapp.com/users/${user}`
+          `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`
         );
 
         setUsername(response.data.username);
@@ -50,7 +50,7 @@ export default function Profile({ user, userdetails }) {
     if (isLoggedIn) {
       try {
         await axios.delete(
-          "https://levick-29ef28f8e880.herokuapp.com/users/sign_out",
+          "https://levick-6ab9bbf8750f.herokuapp.com/users/sign_out",
           {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,

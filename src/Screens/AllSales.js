@@ -14,11 +14,11 @@ export default function AllSales({ user }) {
   const [filterByCurrentUser, setFilterByCurrentUser] = useState(false);
 
   useEffect(() => {
-    if (user === 1) {
+    if (user === 2) {
       setIsAdmin(true);
     }
     // Fetch sales data from your backend API
-    fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
+    fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
       .then((response) => response.json())
       .then((data) => {
         setSalesData(data);
@@ -40,7 +40,7 @@ export default function AllSales({ user }) {
       status: updateFormData.status,
     };
 
-    fetch(`https://levick-29ef28f8e880.herokuapp.com/sales/${updateFormData.saleId}`, {
+    fetch(`https://levick-6ab9bbf8750f.herokuapp.com/sales/${updateFormData.saleId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function AllSales({ user }) {
     })
       .then((response) => {
         if (response.ok) {
-          fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
+          fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
             .then((response) => response.json())
             .then((data) => {
               setSalesData(data);
@@ -69,7 +69,7 @@ export default function AllSales({ user }) {
     setFilterByCurrentUser(!filterByCurrentUser);
     if (filterByCurrentUser) {
       // Reset the sales data to its original state
-      fetch("https://levick-29ef28f8e880.herokuapp.com/sales")
+      fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
         .then((response) => response.json())
         .then((data) => {
           setSalesData(data);
