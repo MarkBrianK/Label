@@ -6,6 +6,7 @@ import CryptoJS from 'crypto-js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from "react-helmet";
 import ContactPage from "./Components/ContactPage"
+import LoadingSpinner from './Shared/LoadingSpinner';
 //import Sales from './Components/Sales';
 //import MakeSaleForm from './Screens/MakeSale';
 
@@ -17,10 +18,10 @@ const SignInForm = lazy(() => import('./Auth/Signin'));
 const CommentHandler = lazy(() => import('./Screens/CommentsHandler'));
 const Profile = lazy(() => import('./Components/Profile'));
 const EditProfile = lazy(() => import('./Screens/EditProfile'))
-const MakeSaleForm = lazy(()=> import('./Screens/MakeSale'))
-const AllSales = lazy(()=> import('./Screens/AllSales'))
-const Sales = lazy(()=> import('./Components/Sales'))
-const Explore =lazy(()=> import('./Components/StoryLine'))
+const MakeSaleForm = lazy(() => import('./Screens/MakeSale'))
+const AllSales = lazy(() => import('./Screens/AllSales'))
+const Sales = lazy(() => import('./Components/Sales'))
+const Explore = lazy(() => import('./Components/StoryLine'))
 
 
 
@@ -92,15 +93,11 @@ function App() {
       <Routes>
         <Route path='/contact' element={<ContactPage />}></Route>
         <Route path={ROUTES.home} element={<Suspense fallback={
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-          </div>
+          <LoadingSpinner />
         }><Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} clothes={clothes} /></Suspense>} />
 
         <Route path={ROUTES.clothComments} element={<Suspense fallback={
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-          </div>
+          <LoadingSpinner />
         }  > <CommentHandler user={user} /></Suspense>} />
         <Route path={ROUTES.profile} element={<Suspense fallback={<div className="loading-spinner">
           <div className="spinner"></div>
@@ -109,40 +106,28 @@ function App() {
           <div className="spinner"></div>
         </div>}> < EditProfile user={user} /> </Suspense>} />
         <Route path={ROUTES.sales} element={<Suspense fallback={
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-          </div>
+          <LoadingSpinner />
         }><Sales clothes={clothes} user={user} /></Suspense>} />
         <Route path={ROUTES.makeSale} element={<Suspense fallback={
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-          </div>
+          <LoadingSpinner />
         }><MakeSaleForm user={user} userdetails={userdetails} /></Suspense>} />
         <Route path={ROUTES.allSales} element={<Suspense fallback={
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-          </div>
+          <LoadingSpinner />
         }><AllSales user={user} /></Suspense>} />
         <Route path={ROUTES.explore} element={<Suspense fallback={
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-          </div>
+          <LoadingSpinner />
         }><Explore user={user} clothes={clothes} /></Suspense>} />
 
         {/* Render the SignUpFo<Route path=''rm route only when the user is not logged in */}
         {!isLoggedIn && (
           <Route path={ROUTES.signUp} element={<Suspense fallback={
-            <div className="loading-spinner">
-              <div className="spinner"></div>
-            </div>
+            <LoadingSpinner />
           }><SignUpForm /></Suspense>} />
         )}
         {/* Render the SignInForm route only when the user is not logged in */}
         {!isLoggedIn && (
           <Route path={ROUTES.signIn} element={<Suspense fallback={
-            <div className="loading-spinner">
-              <div className="spinner"></div>
-            </div>
+            <LoadingSpinner />
           }><SignInForm setUser={setUser} /></Suspense>} />
         )}
 
