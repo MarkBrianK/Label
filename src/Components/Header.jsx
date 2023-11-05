@@ -4,9 +4,8 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Image } from "react-bootstrap";
 import { AccountCircle, Home } from "@mui/icons-material";
-import "../Assets/Styles/Header.css";
-//import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
-//import ChatIcon from '@mui/icons-material/Chat';
+import Styles from "../Assets/Styles/Header.module.css";
+
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -31,8 +30,9 @@ function Header({ user, username }) {
     }
   }, [sessionCookie, user]);
 
+
   return (
-    <header className={`header ${isLoggedIn ? "loggedIn" : ""}`}>
+    <header className={`${Styles.header} ${isLoggedIn ? "loggedIn" : ""}`}>
       <Helmet>
         <title>Levick 23 - Your Ultimate Fashion Destination</title>
         <meta
@@ -40,80 +40,85 @@ function Header({ user, username }) {
           content="Welcome to Levick 23, your ultimate fashion destination for trendy and affordable clothing. Explore the latest styles and discover your unique fashion statement at Levick 23."
         />
       </Helmet>
-      <div className="nav-icons">
-        <Link to="/" className="icon-link">
-          <Home className="icon" />
-          <p>Home</p>
-        </Link>
-
-        <Link to="/explore" className="icon-link">
-          <ExploreIcon className="icon" />
-          <p>Explore</p>
-        </Link>
-        {isLoggedIn && (
-          <Link to="/all_sales" className="icon-link">
-            <ReceiptLongIcon className="icon" />
-            <p>Sales</p>
-          </Link>
-
-        )}
-
-
-        {isLoggedIn && (
-          <Link to="/sales" className="icon-link">
-            <MonetizationOnIcon className="icon" />
-            <p>Earn</p>
-          </Link>
-        )}
-
-        <div className="auth-link">
-          {isLoggedIn ? (
-            <Link to={`/profile/${username}`} className="icon-link">
-              <div
-                className=""
-                style={{
-                  borderRadius: "50%",
-                  cursor: "pointer",
-                  border: "1px solid goldenrod",
-
-                  width: "30px",
-                  height: "30px",
-                  minWidth: "30px",
-                  minHeight: "30px",
-                }}
-              >
-                {profilePicture ? (
-                  <Image
-                    src={profilePicture}
-                    alt={user}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                    }}
-                  />
-
-                ) : (
-                  <AccountCircle
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                    }}
-                    className="icon"
-                  />
-                )}
-              </div>
-              <p> Account</p>
+      <div class="container">
+        <div className={`row ${Styles.navIcons}`}>
+          <div className="col-2 col-md-2">
+            <Link to="/" className={Styles.iconLink}>
+              <Home className={Styles.icon} />
+              <p>Home</p>
             </Link>
-          ) : (
-            <Link to="/signin" className="icon-link">
-              <AccountCircle className="icon" />
-              <p>Sign in</p>
+          </div>
+          <div className="col-2 col-md-2">
+            <Link to="/explore" className={Styles.iconLink}>
+              <ExploreIcon className={Styles.icon} />
+              <p>Explore</p>
             </Link>
+          </div>
+          {isLoggedIn && (
+            <div className="col-2 col-md-2">
+              <Link to="/all_sales" className={Styles.iconLink}>
+                <ReceiptLongIcon className={Styles.icon} />
+                <p>Sales</p>
+              </Link>
+            </div>
           )}
+          {isLoggedIn && (
+            <div className="col-2 col-md-2">
+              <Link to="/sales" className={Styles.iconLink}>
+                <MonetizationOnIcon className={Styles.icon} />
+                <p>Earn</p>
+              </Link>
+            </div>
+          )}
+          <div className="col-2 col-md-2">
+            <div className={`${Styles.authLink}`}>
+              {isLoggedIn ? (
+                <Link to={`/profile/${username}`} className={Styles.iconLink} style={{ marginRight: "10px" }}>
+                  <div
+                    className=""
+                    style={{
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                      border: "1px solid goldenrod",
+                      width: "30px",
+                      height: "30px",
+                      minWidth: "30px",
+                      minHeight: "30px",
+                    }}
+                  >
+                    {profilePicture ? (
+                      <Image
+                        src={profilePicture}
+                        alt={user}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <AccountCircle
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                        }}
+                        className={Styles.icon}
+                      />
+                    )}
+                  </div>
+                  <p>Account</p>
+                </Link>
+              ) : (
+                <Link to="/signin" className={Styles.iconLink}>
+                  <AccountCircle className={Styles.icon} />
+                  <p>Sign in</p>
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </header>

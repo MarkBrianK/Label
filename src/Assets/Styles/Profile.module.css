@@ -1,15 +1,13 @@
-.image-container {
-  position: relative;
-  width: 100%;
-  padding-top: 100%; /* Maintain aspect ratio */
-  cursor: pointer;
+.userInfo{
+  font-weight: 300;
 }
 
-.profileimage {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.containerMain {
+  width: 100% !important;
+  height: 93.3vh;
+}
+.header {
+  width: 100% !important;
 }
 
 .centered-icon {
@@ -30,8 +28,9 @@
 
 .profileButton {
   color: #fff;
-  width: 100%;
+  width: 40%;
   margin-top: 40px;
+  margin-bottom: 10px;
   border: none;
   outline: 0 !important;
   border-radius: 50px;
@@ -43,6 +42,7 @@
   align-items: center;
 }
 
+
 .profileButton:hover,
 .profileButton.active {
   background-color: black;
@@ -51,7 +51,7 @@
 
 @media (max-width: 768px) {
   .image-container {
-    padding-top: 50%; /* Adjust aspect ratio for smaller screens */
+    padding-top: 60%; /* Adjust aspect ratio for smaller screens */
   }
   .profileButton {
     flex-direction: column;

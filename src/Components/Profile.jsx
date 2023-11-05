@@ -10,8 +10,8 @@ import Styles from "../Assets/Styles/Profile.module.css";
 
 export default function Profile({ user, userdetails }) {
   const [username, setUsername] = useState("");
-  const [mobileNumber, setMobileNumber] = useState(""); // Add mobileNumber state
-  const [county, setCounty] = useState(""); // Add county state
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [county, setCounty] = useState("");
   const [email, setEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,8 +31,8 @@ export default function Profile({ user, userdetails }) {
         );
 
         setUsername(response.data.username);
-        setMobileNumber(response.data.mobile_number); // Set mobile number
-        setCounty(response.data.county); // Set county
+        setMobileNumber(response.data.mobile_number);
+        setCounty(response.data.county);
         setProfilePicture(response.data.profile_picture);
         setEmail(response.data.email);
       } catch (error) {
@@ -74,7 +74,18 @@ export default function Profile({ user, userdetails }) {
   };
 
   return (
-    <div className="container mt-5 " style={{ minHeight: "93.4vh" }}>
+<div className={`${Styles.containerMain} mt-2`}>
+      <label
+        className="col-md-4 mt-2 d-flex justify-content-center align-items-center"
+        style={{
+          fontWeight: "bold",
+          borderBottom: "1px solid #000",
+          width: "100%",
+        }}
+      >
+        My profile
+      </label>
+
       <Helmet className="mt-5">
         <title>
           {username ? `${username} - Profile | Levick 23` : "Levick 23"}
@@ -88,10 +99,9 @@ export default function Profile({ user, userdetails }) {
           }
         />
       </Helmet>
-      <div className="row" style={{ minHeight: "100%" }}>
-        <div className="col-md-4 mt-5 d-flex justify-content-center align-items-center">
+      <div className="column" style={{ minHeight: "100%" }}>
+        <div className="col-md-12 mt-1 d-flex justify-content-center align-items-center">
           <div className="text-center">
-            {/* Profile Picture Section */}
             {profilePicture ? (
               <div
                 style={{
@@ -107,8 +117,8 @@ export default function Profile({ user, userdetails }) {
                   alt="Profile_picture"
                   className="profileimage"
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    width: "200%",
+                    height: "200%",
                     objectFit: "cover",
                   }}
                 />
@@ -150,12 +160,11 @@ export default function Profile({ user, userdetails }) {
                 />
               </div>
             )}
-          {/* </div> */}
+          </div>
         </div>
-        </div>
-        <div className="col-md-8 text-center">
+        <div className="col-md-12 text-center">
           <div className="user-details mt-3">
-            <h3 className={`font-weight-bold ${Styles.userInfo}`}>{username}</h3>
+            <h3 className={` ${Styles.userInfo}`}>{username}</h3>
             <div className={`font-weight-bold mt-3 ${Styles.userInfo}`}>
               Mobile Number: <span>{mobileNumber}</span>
             </div>
@@ -165,7 +174,7 @@ export default function Profile({ user, userdetails }) {
             <div className={`font-weight-bold mt-3 ${Styles.userInfo}`}>
               Email: <span>{email}</span>
             </div>
-            <div className="button-container d-flex gap-2">
+            <div className="button-container d-flex justify-content-center col-md-12 gap-2">
               <button onClick={handleProfileEdit} className={Styles.profileButton}>
                 Edit Profile
               </button>
@@ -176,47 +185,41 @@ export default function Profile({ user, userdetails }) {
           </div>
         </div>
       </div>
-    
-  
-
       {
-    profilePicture && (
-      <div
-        className={`modal fade ${showModal ? "show" : ""}`}
-        style={{ display: showModal ? "block" : "none" }}
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body text-center">
-              <img
-                src={profilePicture}
-                alt="Profile_picture"
-                className="img-fluid"
-                style={{ maxWidth: "100%", maxHeight: "80vh" }}
-              />
-            </div>
-            <div className="modal-footer">
-              <Button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => setShowModal(false)}
-              >
-                Close
-              </Button>
+        profilePicture && (
+          <div
+            className={`modal fade ${showModal ? "show" : ""}`}
+            style={{ display: showModal ? "block" : "none" }}
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body text-center">
+                  <img
+                    src={profilePicture}
+                    alt="Profile_picture"
+                    className="img-fluid"
+                    style={{ maxWidth: "100%", maxHeight: "80vh" }}
+                  />
+                </div>
+                <div className="modal-footer">
+                  <Button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
+        )
+      }
+      <div>
+        <div className="">
+          <Header username={userdetails} user={user} />
         </div>
       </div>
-    )
-  }
-
-  <div className="row mt-4">
-    <div className="col-md-12">
-      {/* Link to User's Sales */}
-      <Header username={userdetails} user={user} >
-      </Header>
     </div>
-  </div>
-    </div >
   );
 }
