@@ -61,7 +61,7 @@ function App() {
   }, []);
   useEffect(() => {
     // Fetch clothes data from the API
-    fetch("https://levick-29ef28f8e880.herokuapp.com/cloths")
+    fetch("https://levick-6ab9bbf8750f.herokuapp.com/cloths")
       .then((response) => response.json())
       .then((data) => setClothes(data))
       .catch((error) => console.error("Error fetching clothes:", error));
