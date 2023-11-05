@@ -17,7 +17,7 @@ function EditProfile({ user }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`
+          `https://levick-29ef28f8e880.herokuapp.com/users/${user}`
         );
         const { username, mobile_number, county, profile_picture } = response.data;
         setFormData({
@@ -57,7 +57,7 @@ function EditProfile({ user }) {
 
     try {
       await axios.patch(
-        `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`,
+        `https://levick-29ef28f8e880.herokuapp.com/users/${user}`,
         updatedFormData
       );
       console.log("Profile updated successfully.");
@@ -72,28 +72,24 @@ function EditProfile({ user }) {
       <label htmlFor="profilePicture" className={styles.editProfileLabel}>
         Edit Profile
       </label>
-    
       <div className={styles.formContainer}>
         <div className={styles.avatarContainer}>
           {formData.profilePicture ? (
-            /* User's profile picture */
-              <AvatarEditor
-                ref={editorRef}
-                image={formData.profilePicture}
-                width={200}
-                height={200}
-                border={50}
-                borderRadius={100}
-                scale={1.2}
-              />
-            
+            <AvatarEditor
+              ref={editorRef}
+              image={formData.profilePicture}
+              width={200}
+              height={200}
+              border={50}
+              borderRadius={100}
+              scale={1.2}
+            />
           ) : (
             <img
               src={formData.profilePicture || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"}
               alt="Default Profile"
-              className={`${styles.defaultProfilePicture} ${styles.defaultProfilePictureResized}`}
+              className={styles.defaultProfilePicture}
             />
-
           )}
         </div>
 
@@ -147,9 +143,7 @@ function EditProfile({ user }) {
           Update Profile
         </button>
       </div>
-      
     </div>
-
   );
 }
 
