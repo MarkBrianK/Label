@@ -2,17 +2,23 @@
 
 .header {
   position: fixed;
-  bottom: 0;
-  width: 100% !important;
+  bottom: -70px;
+  width: 100%;
   display: flex;
-  justify-content: space-around !important;
+  justify-content: space-around;
   align-items: center;
   background-color: black;
   z-index: 999;
   height: 70px;
   padding: 0 20px 0 0;
   border-top: 0.5px solid rgb(50, 50, 50);
+  transition: bottom 0.3s;
 }
+
+.header:hover {
+  bottom: 0;
+}
+
 
 .navIcons {
   display: flex;
@@ -75,7 +81,7 @@
 
   .header {
     position: fixed;
-    bottom: 0;
+    bottom: -70px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -85,5 +91,10 @@
     height: 60px;
     padding: 0 10px;
     border-top: 0.5px solid rgb(50, 50, 50);
+    transition: bottom 0.3s;
   }
+  .header:hover {
+    bottom: 0;
+  }
+
 }
