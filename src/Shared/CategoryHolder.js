@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Styles from "../../src/Assets/Styles/CategoryHolder.module.css";
 
 function CategoryHolder({ children, handleCategorySelect }) {
   const [categories, setCategories] = useState([]);
@@ -30,37 +31,23 @@ function CategoryHolder({ children, handleCategorySelect }) {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          marginBottom: "10px",
-        }}
-      >
+      <div className={Styles.categoryContainer}>
         {categories.map((category) => (
           <button
             key={category.id}
             onClick={() => handleCategoryClick(category)}
-            style={{
-              backgroundColor:
-                selectedCategory === category.name ? "#f6f6f6" : "transparent",
-              borderRadius: "50%",
-              cursor: "pointer",
-              border: "1px solid goldenrod",
-              marginRight: "10px",
-              width: "80px",
-              height: "80px",
-              minWidth: "80px",
-              minHeight: "80px",
-              padding: 0,
-            }}
+            className={`${Styles.categoryButton} ${
+              selectedCategory === category.name ? Styles.selectedCategory : ""
+            }`}
           >
-            <img
-              src={category.image}
-              alt={`${category.name} category`}
-              style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover", marginRight: "5px" }}
-            />
-            <p style={{color:"white", fontSize:"xx-small", marginTop:"4px"}}>{category.name}</p>
+            <div className={Styles.outerCircle}>
+              <img
+                src={category.image}
+                alt={`${category.name} category`}
+                className={`${Styles.innerCircle}`}
+              />
+            </div>
+            <p className={Styles.categoryName}>{category.name}</p>
           </button>
         ))}
       </div>

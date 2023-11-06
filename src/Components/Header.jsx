@@ -124,5 +124,4 @@ function Header({ user, username }) {
     </header>
   );
 }
-
 export default Header;
