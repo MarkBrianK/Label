@@ -1,79 +1,76 @@
 @import url("https://fonts.cdnfonts.com/css/coca-cola-ii");
 
-/* Reset margin and padding for body */
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .header {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100% !important;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around !important;
   align-items: center;
   background-color: black;
   z-index: 999;
-  height: 60px;
-  padding: 0 10px;
+  height: 70px;
+  padding: 0 20px 0 0;
   border-top: 0.5px solid rgb(50, 50, 50);
 }
 
-.header .nav-icons {
+.navIcons {
   display: flex;
   color: white;
   text-decoration: none;
-  justify-content: space-evenly;
+  justify-content: space-around !important;
   align-items: center;
   flex: 1;
   margin-top: 20px;
+  width: 100% !important;
 }
 
-.header .icon-link {
+.iconLink {
   text-decoration: none;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: small;
-  gap: 2px; /* Adjust the gap between icon and text */
+  gap: 2px;
+  flex: 1 !important;
 }
 
-.header .icon-link:hover {
+.iconLink:hover {
   color: #1a474a;
 }
 
-.header .auth-link {
+.authLink {
   text-decoration: none;
   color: white;
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100% !important;
 }
 
-.header .auth-link:hover {
+.authLink:hover {
   color: #1a474a;
   transition: 3s;
 }
 
-.header .auth-link .icon-link {
+.authLink .iconLink {
   text-decoration: none;
   color: white;
   display: flex;
   align-items: center;
 }
 
-/* Media queries */
+/* Media queries for large screens */
 @media (min-width: 768px) {
-  .header .nav-icons {
+  .header .navIcons {
     display: flex;
     gap: 20px;
     color: white;
     text-decoration: none;
-    justify-content: space-evenly;
+    justify-content: space-between; /* Distribute icons evenly on large screens */
     align-items: center;
-    flex: 1; /* Distribute icons evenly */
+    flex: 1;
   }
 
   .header {
