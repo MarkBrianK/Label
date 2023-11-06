@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 import styles from "../../src/Assets/Styles/EditProfile.module.css";
+import Header from "../Components/Header";
 
 function EditProfile({ user }) {
   const [formData, setFormData] = useState({
@@ -143,6 +144,7 @@ function EditProfile({ user }) {
           Update Profile
         </button>
       </div>
+      <Header user={user} />
     </div>
   );
 }
