@@ -30,7 +30,6 @@ function Header({ user, username }) {
     }
   }, [sessionCookie, user]);
 
-
   return (
     <header className={`${Styles.header} ${isLoggedIn ? "loggedIn" : ""}`}>
       <Helmet>

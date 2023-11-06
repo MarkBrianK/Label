@@ -2,7 +2,7 @@
 
 .header {
   position: fixed;
-  bottom: -70px;
+  bottom: 0px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -15,9 +15,7 @@
   transition: bottom 0.3s;
 }
 
-.header:hover {
-  bottom: 0;
-}
+
 
 
 .navIcons {
@@ -81,7 +79,7 @@
 
   .header {
     position: fixed;
-    bottom: -70px;
+    bottom: 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -93,8 +91,5 @@
     border-top: 0.5px solid rgb(50, 50, 50);
     transition: bottom 0.3s;
   }
-  .header:hover {
-    bottom: 0;
-  }
-
+ 
 }
