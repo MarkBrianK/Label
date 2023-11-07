@@ -3,7 +3,7 @@ import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import ImageHandler from "../Screens/ImageHandler";
 import Levick from "../Assets/Image/Levick.png";
 import { Helmet } from "react-helmet";
-import SheetModal from "../Shared/SheetModal";
+//import SheetModal from "../Shared/SheetModal";
 import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
 import ModalScreen from "../Shared/ModalScreen";
@@ -14,10 +14,6 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import Styles from "../Assets/Styles/Home.module.css";
 
 export default function Home({ clothes, user, userdetails }) {
-  const imageStyle = {
-    height: "100px",
-    width: "100px",
-  };
 
   const [selectedCloth, setSelectedCloth] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -84,19 +80,22 @@ export default function Home({ clothes, user, userdetails }) {
       </Helmet>
       {/* nav at the top */}
       <div class={`${Styles.NavContainer} bg-black`}>
-        <div class="row align-items-center flex-column flex-sm-row">
-          <div class="col">
-            <ImageHandler src={Levick} alt="Levick 23 Logo" style={{ height: "50px" }} />
-          </div>
-          <div class="col my-2 my-sm-0">
-            <SearchBar className={Styles.search} setSearchQuery={setSearchQuery} />
-          </div>
-          <div class="col text-center d-flex justify-content-center">
-            <a href={`mailto:${supportEmail}`}>
-              <SupportAgentOutlinedIcon style={{ fontSize: 36, color: "goldenrod" }} />
-            </a>
-          </div>
-        </div>
+      <div class="row align-items-center">
+  <div class="col">
+    <ImageHandler src={Levick} alt="Levick 23 Logo" className={Styles.NavLogo} />
+  </div>
+  <div class="col-6 my-2">
+    <SearchBar className={Styles.search} setSearchQuery={setSearchQuery} />
+  </div>
+  <div class="col text-center">
+    <a href={`mailto:${supportEmail}`}>
+      <SupportAgentOutlinedIcon style={{ fontSize: 36, color: "goldenrod" }} />
+    </a>
+  </div>
+</div>
+
+
+
       </div>
 
 
@@ -106,17 +105,17 @@ export default function Home({ clothes, user, userdetails }) {
         {isLoading ? (
           <LoadingSpinner />
         ) : (
-          <div className={Styles.cardsRow} style={{ marginTop: "13vh" }}>
+          <div className={Styles.cardsRow} style={{ marginTop: "13vh", background: "black" }}>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
-                <SheetModal>
-                  <ClothHandler
-                    user={user}
-                    clothes={filteredBySearch}
-                    selectedCategory={selectedCategory}
-                    handleViewMore={handleViewMore}
-                  />
-                </SheetModal>
+
+                <ClothHandler
+                  user={user}
+                  clothes={filteredBySearch}
+                  selectedCategory={selectedCategory}
+                  handleViewMore={handleViewMore}
+                />
+
               )}
             </CategoryHolder>
 
