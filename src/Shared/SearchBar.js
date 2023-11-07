@@ -13,7 +13,7 @@ export default function SearchBar({ setSearchQuery }) {
       <input
         className="form-control me-2 rounded-pill"
         type="search"
-        placeholder="Search items"
+        placeholder="Search"
         aria-label="Search"
         onChange={handleSearchChange}
       />
