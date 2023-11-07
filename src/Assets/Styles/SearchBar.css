@@ -1,0 +1,7 @@
+/* Adjust the max-width on larger screens */
+@media (min-width: 768px) {
+    .container {
+      max-width: 100%;
+    }
+  }
+  

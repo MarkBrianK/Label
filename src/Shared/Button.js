@@ -1,11 +1,18 @@
 import React from "react";
-import "../Assets/Styles/Button.css"
+import "../Assets/Styles/Button.css";
 
-function Button({children}){
-    return(
-        <button className="button" >
-        {children}
-        </button>
-    )
+function Button({ children, onClick }) {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <button  className="button" onClick={handleClick}>
+      {children}
+    </button>
+  );
 }
-export default Button
+
+export default Button;

@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import Styles from "../../src/Assets/Styles/CategoryHolder.module.css";
 
-function CategoryHolder({ children }) {
+function CategoryHolder({ children, handleCategorySelect }) {
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const categoriesResponse = await axios.get(
-          'https://levick-7b15defb7ee9.herokuapp.com/categories'
+        const response = await fetch(
+          "https://levick-6ab9bbf8750f.herokuapp.com/categories"
         );
-        // Sort the categories alphabetically by name
-        const sortedCategories = categoriesResponse.data.sort((a, b) =>
+        const categoriesData = await response.json();
+        const sortedCategories = categoriesData.sort((a, b) =>
           a.name.localeCompare(b.name)
         );
         setCategories(sortedCategories);
@@ -23,25 +24,34 @@ function CategoryHolder({ children }) {
     fetchData();
   }, []);
 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    handleCategorySelect(category);
+  };
+
   return (
     <div>
-      {categories.map((category) => (
-        <button
-          key={category.id}
-          style={{
-            backgroundColor: '#f6f6f6',
-            padding: '5px 10px',
-            borderRadius: '30px',
-            cursor: 'pointer',
-            width: '141px',
-            height: '62px',
-            border: 'none',
-            marginBottom: '10px', 
-          }}
-        >
-          {children}
-        </button>
-      ))}
+      <div className={Styles.categoryContainer}>
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => handleCategoryClick(category)}
+            className={`${Styles.categoryButton} ${
+              selectedCategory === category.name ? Styles.selectedCategory : ""
+            }`}
+          >
+            <div className={Styles.outerCircle}>
+              <img
+                src={category.image}
+                alt={`${category.name} category`}
+                className={`${Styles.innerCircle}`}
+              />
+            </div>
+            <p className={Styles.categoryName}>{category.name}</p>
+          </button>
+        ))}
+      </div>
+      {children(selectedCategory)}
     </div>
   );
 }

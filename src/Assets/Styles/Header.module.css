@@ -1,0 +1,94 @@
+@import url("https://fonts.cdnfonts.com/css/coca-cola-ii");
+
+.header {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+  z-index: 999;
+  height: 70px;
+  border-top: 0.5px solid rgb(50, 50, 50);
+  transition: bottom 0.3s;
+}
+
+
+
+
+.navIcons {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin-top: 20px;
+  width: 100% !important;
+}
+
+.iconLink {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: x-small;
+  gap: 2px;
+  flex: 1 !important;
+}
+
+.iconLink:hover {
+  color: #1a474a;
+}
+
+.authLink {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100% !important;
+}
+
+.authLink:hover {
+  color: #1a474a;
+  transition: 3s;
+}
+
+.authLink .iconLink {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+/* Media queries for large screens */
+@media (min-width: 768px) {
+  .header .navIcons {
+    display: flex;
+    gap: 20px;
+    color: white;
+    text-decoration: none;
+    justify-content: space-between; /* Distribute icons evenly on large screens */
+    align-items: center;
+    flex: 1;
+  }
+
+  .header {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    z-index: 999;
+    height: 60px;
+    padding: 0 10px;
+    border-top: 0.5px solid rgb(50, 50, 50);
+    transition: bottom 0.3s;
+  }
+
+}
