@@ -86,7 +86,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
               }
             >
               {imageUrls.map((imageUrl, index) => (
-                <div key={index} className="popup-image-container">
+                <div key={index} className="popup-image-container" >
                   <img
                     className={`popup-image ${imagesLoaded[index] ? 'loaded' : 'hidden'}`}
                     src={imageUrl}
@@ -112,7 +112,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
               width: "100%",
               aspectRatio: "1/1",
               objectFit: "cover",
-              borderRadius: "15px 15px 0 0",
+              borderRadius: "6px 6px 0 0",
             }}
             onLoad={() => handleImageLoad(0)}
           />
