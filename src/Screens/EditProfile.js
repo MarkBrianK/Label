@@ -106,24 +106,24 @@ function EditProfile({ user }) {
       </label>
       <div className={styles.formContainer}>
         <div className={styles.avatarContainer}>
-          {isEditing && (
-            <>
-              {formData.profilePicture && (
-                <AvatarEditor
-                  ref={editorRef}
-                  image={formData.profilePicture}
-                  width={200}
-                  height={200}
-                  border={50}
-                  borderRadius={100}
-                  scale={1.2}
-                />
-              )}
-              <button className={styles.saveButton} onClick={handleSaveImage}>
-                Save
-              </button>
-            </>
-          )}
+        {isEditing && (
+  <div className={styles.avatarContainer}>
+    {formData.profilePicture && (
+      <AvatarEditor
+        ref={editorRef}
+        image={formData.profilePicture}
+        width={200}
+        height={200}
+        border={50}
+        borderRadius={100}
+        scale={1.2}
+      />
+    )}
+    <button className={styles.saveButton} onClick={handleSaveImage}>
+      Save
+    </button>
+  </div>
+)}
           {!isEditing && (
             <img
               src={formData.profilePicture || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"}
@@ -139,7 +139,7 @@ function EditProfile({ user }) {
             onChange={handleFileChange}
           />
           <div class="mb-3">
-            <label for="formFile" class="form-label">Upload Profile Picture</label>
+            <label for="formFile" className={styles.uploadName}>Upload Profile Picture:</label>
             <input class="form-control" type="file" id="formFile" onChange={handleFileChange} />
           </div>
         </div>
@@ -171,6 +171,7 @@ function EditProfile({ user }) {
           <label htmlFor="county" className={styles.formLabel}>
             County:
           </label>
+          <br/>
           <input
             type="text"
             id="county"
