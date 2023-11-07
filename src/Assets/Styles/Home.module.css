@@ -16,11 +16,21 @@
   width: 100%!important;
 }
 
+.cardsRow{
+  margin-top: 12vh;
+}
+.cardsHolder{
+  background-color: black;
+}
 /* On small screens (less than 768px) */
 @media (max-width: 767px) {
   .NavLogo{
     height: 30px;
     width: 60px;
+  }
+  .cardsRow{
+    margin-top: 14vh;
+
   }
 
 

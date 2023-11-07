@@ -105,7 +105,7 @@ export default function Home({ clothes, user, userdetails }) {
         {isLoading ? (
           <LoadingSpinner />
         ) : (
-          <div className={Styles.cardsRow} style={{ marginTop: "12.7vh", background: "black" }}>
+          <div className={Styles.cardsRow}>
             <CategoryHolder handleCategorySelect={handleCategorySelect}>
               {(selectedCategory) => (
 
