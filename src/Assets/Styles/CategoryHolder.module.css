@@ -9,8 +9,8 @@
     border: 1px solid goldenrod;
     border-radius: 50%;
     cursor: pointer;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     padding: 0;
 }
 
@@ -32,15 +32,16 @@
 }
 
 .outerCircle {
-    border: 1px solid red;
+    border: 1.5px solid red;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     object-fit: cover;
+    padding: 0%;
 }
 
 
