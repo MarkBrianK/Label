@@ -1,13 +1,8 @@
-/* Add your styles here */
-/* In CategoryHolder.module.css */
 .categoryContainer {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 10%;
-    /* Increase margin */
+    margin-bottom: 2%;
 }
-
-
 
 .categoryButton {
     background-color: transparent;
@@ -16,7 +11,6 @@
     cursor: pointer;
     width: 80px;
     height: 80px;
-
     padding: 0;
 }
 
@@ -25,33 +19,28 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 5px;
 }
 
 .categoryName {
     color: black;
-    /* Make category names dark */
     font-size: xx-small;
     margin-top: 4px;
 }
 
-/* Add a class for the selected category */
 .selectedCategory {
     background-color: #f6f6f6;
 }
 
-/* Outer circle styles */
 .outerCircle {
     border: 1px solid red;
     border-radius: 50%;
-    width: 96px;
-    /* Adjust the size as needed */
-    height: 96px;
-    /* Adjust the size as needed */
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    padding: 10px;
-    margin-right: 10px;
+    object-fit: cover;
 }
+
+
