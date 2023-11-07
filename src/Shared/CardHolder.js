@@ -4,14 +4,14 @@ import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
 import "../Assets/Styles/CardHolder.css";
-import LoadingSpinner from "./LoadingSpinner";
+
 
 function CardHolder({ cloth, handleViewMore, user, children }) {
   const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
 
   const [imagesLoaded, setImagesLoaded] = useState(Array(imageUrls.length).fill(false));
-  const [isLoading, setIsLoading] = useState(true);
+  //const [isLoading, setIsLoading] = useState(true);
 
   const iconButtonStyle = {
     position: "absolute",
@@ -37,9 +37,9 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
     setImagesLoaded(newImagesLoaded);
 
     // Check if all images have loaded
-    if (!newImagesLoaded.includes(false)) {
-      setIsLoading(false); // Set isLoading to false when all images have loaded
-    }
+    // if (!newImagesLoaded.includes(false)) {
+    //   setIsLoading(false); // Set isLoading to false when all images have loaded
+    // }
   };
 
   return (
@@ -47,7 +47,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
       <div className="responsive-image">
         {showImageCarousel && (
           <>
-            {isLoading && <LoadingSpinner/> }
+
             <Carousel
               showStatus={false}
               showThumbs={false}
