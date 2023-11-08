@@ -3,6 +3,7 @@ import axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 import styles from "../../src/Assets/Styles/EditProfile.module.css";
 import Header from "../Components/Header";
+import { useNavigate } from "react-router-dom";
 
 function EditProfile({ user }) {
   const [formData, setFormData] = useState({
@@ -12,7 +13,11 @@ function EditProfile({ user }) {
     profilePicture: null,
   });
 
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
   const editorRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async (user) => {
@@ -38,7 +43,25 @@ function EditProfile({ user }) {
   }, [user]);
 
   const handleFileChange = (event) => {
-    setFormData({ ...formData, profilePicture: event.target.files[0] });
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataURL = e.target.result;
+        setFormData({ ...formData, profilePicture: dataURL });
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    setSelectedFile(file);
+    setIsEditing(true);
+  };
+
+  const handleSaveImage = () => {
+    // Perform any necessary actions when the image is saved
+    setIsEditing(false);
   };
 
   const handleUpdateProfile = async () => {
@@ -48,21 +71,29 @@ function EditProfile({ user }) {
     }
 
     const updatedFormData = new FormData();
-    updatedFormData.append("user[username]", formData.username);
-    updatedFormData.append("user[mobile_number]", formData.mobileNumber);
-    updatedFormData.append("user[county]", formData.county);
+    updatedFormData.append("username", formData.username);
+    updatedFormData.append("mobile_number", formData.mobileNumber);
+    updatedFormData.append("county", formData.county);
 
-    if (formData.profilePicture) {
-      updatedFormData.append("user[profile_picture]", formData.profilePicture);
+    if (selectedFile) {
+      updatedFormData.append("profile_picture", selectedFile);
     }
 
     try {
       await axios.patch(
         `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`,
-        updatedFormData
+        updatedFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
-      console.log("Profile updated successfully.");
-      window.location.reload();
+
+      setIsUpdated(true);
+      setIsEditing(false);
+      // Redirect to the user's profile page
+      navigate(`/profile/${user}`);
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -75,35 +106,43 @@ function EditProfile({ user }) {
       </label>
       <div className={styles.formContainer}>
         <div className={styles.avatarContainer}>
-          {formData.profilePicture ? (
-            <AvatarEditor
-              ref={editorRef}
-              image={formData.profilePicture}
-              width={200}
-              height={200}
-              border={50}
-              borderRadius={100}
-              scale={1.2}
-            />
-          ) : (
+        {isEditing && (
+  <div className={styles.avatarContainer}>
+    {formData.profilePicture && (
+      <AvatarEditor
+        ref={editorRef}
+        image={formData.profilePicture}
+        width={200}
+        height={200}
+        border={50}
+        borderRadius={100}
+        scale={1.2}
+      />
+    )}
+    <button className={styles.saveButton} onClick={handleSaveImage}>
+      Save
+    </button>
+  </div>
+)}
+          {!isEditing && (
             <img
               src={formData.profilePicture || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"}
               alt="Default Profile"
               className={styles.defaultProfilePicture}
             />
           )}
+          <input
+            type="file"
+            id="profilePicture"
+            accept="image/*"
+            className={styles.profilePictureInput}
+            onChange={handleFileChange}
+          />
+          <div class="mb-3">
+            <label for="formFile" className={styles.uploadName}>Upload Profile Picture:</label>
+            <input class="form-control" type="file" id="formFile" onChange={handleFileChange} />
+          </div>
         </div>
-
-        <input
-          type="file"
-          id="profilePicture"
-          accept="image/*"
-          className={styles.profilePictureInput}
-          onChange={handleFileChange}
-        />
-        <label className={styles.profilePictureLabel} htmlFor="profilePicture">
-          Upload Profile Picture
-        </label>
         <div className={styles.formElement}>
           <label htmlFor="username" className={styles.formLabel}>
             Username:
@@ -132,6 +171,7 @@ function EditProfile({ user }) {
           <label htmlFor="county" className={styles.formLabel}>
             County:
           </label>
+          <br/>
           <input
             type="text"
             id="county"

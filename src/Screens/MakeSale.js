@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import { useParams, useNavigate } from "react-router-dom";
+import styles from "../Assets/Styles/MakeSales.module.css";
 
 export default function MakeSaleForm({ user }) {
   const navigate = useNavigate();
@@ -66,13 +67,18 @@ export default function MakeSaleForm({ user }) {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Make a Sale</h2>
-      <p>Cloth Name: {selectedCloth.name}</p>
-      <form onSubmit={handleSubmit}>
+      <p className={
+        styles.name
+      }>Cloth Name: <span className={styles.selectedName}>
+          {selectedCloth.name}
+        </span> </p>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="customer_location">Customer Location:</label>
+          <label className={styles.labelName} htmlFor="customer_location">Customer Location:</label><br />
           <input
+            className={styles.input}
             type="text"
             id="customer_location"
             name="customer_location"
@@ -81,8 +87,9 @@ export default function MakeSaleForm({ user }) {
           />
         </div>
         <div>
-          <label htmlFor="customer_number">Customer Number:</label>
+          <label className={styles.labelName} htmlFor="customer_number">Customer Number:</label><br />
           <input
+            className={styles.input}
             type="text"
             id="customer_number"
             name="customer_number"

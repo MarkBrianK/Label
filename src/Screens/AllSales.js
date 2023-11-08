@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, Button, TextField, FormControlLabel, Switch } from "@mui/material";
+import { Paper, Typography, Button, FormControlLabel, Switch } from "@mui/material";
 import Header from "../Components/Header";
+import styles from "../Assets/Styles/AllSales.module.css";
 
 export default function AllSales({ user }) {
   const [salesData, setSalesData] = useState([]);
-  const [updateFormData, setUpdateFormData] = useState({
-    saleId: null,
-    status: "",
-    paid_date: "",
-  });
-  const [isUpdating, setIsUpdating] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [filterByCurrentUser, setFilterByCurrentUser] = useState(false);
 
@@ -26,44 +21,17 @@ export default function AllSales({ user }) {
       .catch((error) => console.error("Error fetching sales data:", error));
   }, [user]);
 
-  const handleUpdateClick = (saleId) => {
-    setUpdateFormData({ saleId, status: "", paid_date: "" });
-    setIsUpdating(true);
-  };
-
-  const handleUpdateCancel = () => {
-    setIsUpdating(false);
-  };
-
-  const handleUpdateSubmit = () => {
-    const updatedData = {
-      status: updateFormData.status,
+  function formatDateTime(dateTimeString) {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
     };
-
-    fetch(`https://levick-6ab9bbf8750f.herokuapp.com/sales/${updateFormData.saleId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ sale: updatedData }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
-            .then((response) => response.json())
-            .then((data) => {
-              setSalesData(data);
-            })
-            .catch((error) => console.error("Error fetching sales data:", error));
-
-          setUpdateFormData({ saleId: null, status: "", paid_date: "" });
-          setIsUpdating(false);
-        } else {
-          console.error("Error updating sale:", response.status);
-        }
-      })
-      .catch((error) => console.error("Error updating sale:", error));
-  };
+    const dateTime = new Date(dateTimeString);
+    return dateTime.toLocaleString('en-US', options);
+  }
 
   const toggleFilterByCurrentUser = () => {
     setFilterByCurrentUser(!filterByCurrentUser);
@@ -82,51 +50,65 @@ export default function AllSales({ user }) {
     }
   };
 
+  const renderSales = () => {
+    return salesData.map((sale, index) => (
+      <div className="col-lg-3 col-md-4 col-sm-6 col-12" key={sale.id}>
+        <Paper className={styles.saleItem}>
+          <Typography className={styles.sales} variant="h6">
+            Receipt {index + 1}
+          </Typography>
+          <div className={styles.cloth}>
+            <div className={styles.label}>Agent Name:</div>
+            <div className={styles.dynamicContent}>{sale.user.name}</div>
+          </div>
+          <div className={styles.cloth}>
+            <div className={styles.label}>Agent Number:</div>
+            <div className={styles.dynamicContent}>{sale.user.mobile_number}</div>
+          </div>
+          <div className={styles.cloth}>
+            <div className={styles.label}>Agent Region:</div>
+            <div className={styles.dynamicContent}>{sale.user.county}</div>
+          </div>
+          <div className={styles.cloth}>
+            <div className={styles.label}>Cloth:</div>
+            <div className={styles.dynamicContent}>{sale.cloth.name}</div>
+          </div>
+          <div className={styles.cloth}>
+            <div className={styles.label}>Sale Date:</div>
+            <div className={styles.dynamicContent}>
+              {formatDateTime(sale.paid_date)}
+            </div>
+          </div>
+          <div className={styles.cloth}>
+            <div className={styles.label}>Customer Location:</div>
+            <div className={styles.dynamicContent}>{sale.customer_location}</div>
+          </div>
+          <Typography
+            className={`${styles.paymentStatus} ${
+              sale.status === "paid" ? styles.paidStatus : styles.unpaidStatus
+            }`}
+            variant="body1"
+          >
+            Payment Status: {sale.status}
+          </Typography>
+        </Paper>
+      </div>
+    ));
+  };
+
   return (
-    <div style={{ marginTop: "20px", marginBottom:"20px" }}>
+    <div className="container">
       <FormControlLabel
         control={<Switch checked={filterByCurrentUser} onChange={toggleFilterByCurrentUser} />}
         label="My sales"
-        style={{ position: "absolute", top: 0, right: 0, margin: "10px" }}
+        className={styles.formControl}
       />
-      <Typography variant="h4">All Sales</Typography>
-      {salesData.map((sale) => (
-        <Paper className="sale-item" key={sale.id}>
-          <Typography variant="h6">Sale : {sale.reference_code}</Typography>
-          <Typography variant="body1">Agent Name: {sale.user.name}</Typography>
-          <Typography variant="body1">Agent Number: {sale.user.mobile_number}</Typography>
-          <Typography variant="body1">Agent region: {sale.user.county}</Typography>
-          <Typography variant="body1">Cloth: {sale.cloth.name}</Typography>
-          <Typography variant="body1">Sale Date: {sale.paid_date}</Typography>
-          <Typography variant="body1">Customer Location: {sale.customer_location}</Typography>
-          <Typography variant="body1">Payment status: {sale.status}</Typography>
-          {isAdmin && <Typography variant="body1">Customer Number: {sale.customer_number}</Typography>}
-          {isAdmin && isUpdating && updateFormData.saleId === sale.id ? (
-            <div>
-              <TextField
-                label="Status"
-                variant="outlined"
-                fullWidth
-                value={updateFormData.status}
-                onChange={(e) => setUpdateFormData({ ...updateFormData, status: e.target.value })}
-              />
-              <Button variant="contained" onClick={handleUpdateSubmit}>
-                Update
-              </Button>
-              <Button variant="contained" onClick={handleUpdateCancel}>
-                Cancel
-              </Button>
-            </div>
-          ) : (
-            isAdmin && (
-              <Button variant="contained" onClick={() => handleUpdateClick(sale.id)}>
-                Update
-              </Button>
-            )
-          )}
-        </Paper>
-      )
-      )}
+      <Typography className={styles.heading} variant="h4">
+        All Sales
+      </Typography>
+      <div className="row">
+        {renderSales()}
+      </div>
       <Header user={user} />
     </div>
   );
