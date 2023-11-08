@@ -84,9 +84,8 @@ export default function AllSales({ user }) {
             <div className={styles.dynamicContent}>{sale.customer_location}</div>
           </div>
           <Typography
-            className={`${styles.paymentStatus} ${
-              sale.status === "paid" ? styles.paidStatus : styles.unpaidStatus
-            }`}
+            className={`${styles.paymentStatus} ${sale.status === "paid" ? styles.paidStatus : styles.unpaidStatus
+              }`}
             variant="body1"
           >
             Payment Status: {sale.status}
@@ -97,17 +96,20 @@ export default function AllSales({ user }) {
   };
 
   return (
-    <div className="container">
-      <FormControlLabel
-        control={<Switch checked={filterByCurrentUser} onChange={toggleFilterByCurrentUser} />}
-        label="My sales"
-        className={styles.formControl}
-      />
-      <Typography className={styles.heading} variant="h4">
-        All Sales
-      </Typography>
-      <div className="row">
-        {renderSales()}
+    <div>
+      <div className="container">
+        <FormControlLabel
+          control={<Switch checked={filterByCurrentUser} onChange={toggleFilterByCurrentUser} />}
+          label="My sales"
+          className={styles.formControl}
+        />
+        <Typography className={styles.heading} variant="h4">
+          All Sales
+        </Typography>
+        <div className="row">
+          {renderSales()}
+        </div>
+
       </div>
       <Header user={user} />
     </div>
