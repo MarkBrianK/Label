@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, Button, FormControlLabel, Switch } from "@mui/material";
+import {
+  Paper,
+  Typography,
+  Button,
+  TextField,
+  FormControlLabel,
+  Switch,
+} from "@mui/material";
 import Header from "../Components/Header";
 import styles from "../Assets/Styles/AllSales.module.css";
 
 export default function AllSales({ user }) {
   const [salesData, setSalesData] = useState([]);
+  const [updateFormData, setUpdateFormData] = useState({
+    saleId: null,
+    status: "",
+    paid_date: "",
+  });
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [filterByCurrentUser, setFilterByCurrentUser] = useState(false);
 
@@ -21,17 +34,45 @@ export default function AllSales({ user }) {
       .catch((error) => console.error("Error fetching sales data:", error));
   }, [user]);
 
-  function formatDateTime(dateTimeString) {
-    const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
+  const handleUpdateClick = (saleId) => {
+    setUpdateFormData({ saleId, status: "", paid_date: "" });
+    setIsUpdating(true);
+  };
+
+  const handleUpdateCancel = () => {
+    setIsUpdating(false);
+  };
+
+  const handleUpdateSubmit = () => {
+    const updatedData = {
+      status: updateFormData.status,
     };
-    const dateTime = new Date(dateTimeString);
-    return dateTime.toLocaleString('en-US', options);
-  }
+
+    fetch(`https://levick-6ab9bbf8750f.herokuapp.com/sales/${updateFormData.saleId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sale: updatedData }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          window.location.reload();
+          fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
+            .then((response) => response.json())
+            .then((data) => {
+              setSalesData(data);
+            })
+            .catch((error) => console.error("Error fetching sales data:", error));
+
+          setUpdateFormData({ saleId: null, status: "", paid_date: "" });
+          setIsUpdating(false);
+        } else {
+          console.error("Error updating sale:", response.status);
+        }
+      })
+      .catch((error) => console.error("Error updating sale:", error));
+  };
 
   const toggleFilterByCurrentUser = () => {
     setFilterByCurrentUser(!filterByCurrentUser);
@@ -50,54 +91,9 @@ export default function AllSales({ user }) {
     }
   };
 
-  const renderSales = () => {
-    return salesData.map((sale, index) => (
-      <div className="col-lg-3 col-md-4 col-sm-6 col-12" key={sale.id}>
-        <Paper className={styles.saleItem}>
-          <Typography className={styles.sales} variant="h6">
-            Receipt {index + 1}
-          </Typography>
-          <div className={styles.cloth}>
-            <div className={styles.label}>Agent Name:</div>
-            <div className={styles.dynamicContent}>{sale.user.name}</div>
-          </div>
-          <div className={styles.cloth}>
-            <div className={styles.label}>Agent Number:</div>
-            <div className={styles.dynamicContent}>{sale.user.mobile_number}</div>
-          </div>
-          <div className={styles.cloth}>
-            <div className={styles.label}>Agent Region:</div>
-            <div className={styles.dynamicContent}>{sale.user.county}</div>
-          </div>
-          <div className={styles.cloth}>
-            <div className={styles.label}>Cloth:</div>
-            <div className={styles.dynamicContent}>{sale.cloth.name}</div>
-          </div>
-          <div className={styles.cloth}>
-            <div className={styles.label}>Sale Date:</div>
-            <div className={styles.dynamicContent}>
-              {formatDateTime(sale.paid_date)}
-            </div>
-          </div>
-          <div className={styles.cloth}>
-            <div className={styles.label}>Customer Location:</div>
-            <div className={styles.dynamicContent}>{sale.customer_location}</div>
-          </div>
-          <Typography
-            className={`${styles.paymentStatus} ${sale.status === "paid" ? styles.paidStatus : styles.unpaidStatus
-              }`}
-            variant="body1"
-          >
-            Payment Status: {sale.status}
-          </Typography>
-        </Paper>
-      </div>
-    ));
-  };
-
   return (
     <div>
-      <div className="container">
+      <div className={styles.mainContainer}>
         <FormControlLabel
           control={<Switch checked={filterByCurrentUser} onChange={toggleFilterByCurrentUser} />}
           label="My sales"
@@ -106,8 +102,71 @@ export default function AllSales({ user }) {
         <Typography className={styles.heading} variant="h4">
           All Sales
         </Typography>
-        <div className="row">
-          {renderSales()}
+        <div className="salesGrid">
+          {salesData.map((sale) => (
+            <Paper className={styles.saleItem} key={sale.id}>
+              <Typography className={styles.sales} variant="h6">
+                Sale : {sale.reference_code}
+              </Typography>
+              <Typography className={styles.agentName} variant="body1">
+                Agent Name: {sale.user.name}
+              </Typography>
+              <Typography className={styles.agentNumber} variant="body1">
+                Agent Number: {sale.user.mobile_number}
+              </Typography>
+              <Typography className={styles.region} variant="body1">
+                Agent Region: {sale.user.county}
+              </Typography>
+              <Typography className={styles.cloth} variant="body1">
+                Cloth: {sale.cloth.name}
+              </Typography>
+              <Typography className={styles.date} variant="body1">
+                Sale Date: {sale.paid_date}
+              </Typography>
+              <Typography className={styles.location} variant="body1">
+                Customer Location: {sale.customer_location}
+              </Typography>
+              <Typography className={`${styles.paymentStatus} ${sale.status === "paid" ? styles.paidStatus : styles.unpaidStatus}`} variant="body1">
+                Payment Status: {sale.status}
+              </Typography>
+              {isAdmin && (
+                <Typography className={styles.customerNumber} variant="body1">
+                  Customer Number: {sale.customer_number}
+                </Typography>
+              )}
+              {isAdmin && isUpdating && updateFormData.saleId === sale.id ? (
+                <div className={styles.buttonContainer}>
+                  <TextField
+                    label="Status"
+                    variant="outlined"
+                    fullWidth
+                    value={updateFormData.status}
+                    onChange={(e) => setUpdateFormData({ ...updateFormData, status: e.target.value })}
+                  />
+                  <Button
+                    className={styles.updateButton}
+                    variant="contained"
+                    onClick={handleUpdateSubmit}
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    className={styles.cancelButton}
+                    variant="contained"
+                    onClick={handleUpdateCancel}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              ) : (
+                isAdmin && (
+                  <Button variant="contained" onClick={() => handleUpdateClick(sale.id)}>
+                    Update
+                  </Button>
+                )
+              )}
+            </Paper>
+          ))}
         </div>
 
       </div>
