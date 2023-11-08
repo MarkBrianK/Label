@@ -25,10 +25,10 @@ export default function StoryLine({ clothes, user }) {
   const sortedClothes = clothes.slice().sort((a, b) => {
     return calculateRatingFromSales(b.sales.length) - calculateRatingFromSales(a.sales.length);
   });
-
-  const cardsPerRow = 3; // Number of cards to display per row
+ // Number of cards to display per row
 
   return (
+    <div>
     <div className={styles["storyline-container"]}>
       <h1 className={styles["storyline-header"]}>Top 20 Sales</h1>
       <ul className={styles["storyline-list"]}>
@@ -46,7 +46,12 @@ export default function StoryLine({ clothes, user }) {
           </li>
         ))}
       </ul>
-      <Header user={user} />
+
+
+
+
+    </div>
+    <Header user={user} />
     </div>
   );
 }
