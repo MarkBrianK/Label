@@ -1,6 +1,7 @@
 import React from "react";
 import StarRating from "../Screens/StarRating";
 import Header from "./Header";
+import styles from "../Assets/Styles/StoryLine.module.css"
 
 export default function StoryLine({ clothes, user }) {
   // Function to calculate the rating based on sales
@@ -25,17 +26,22 @@ export default function StoryLine({ clothes, user }) {
     return calculateRatingFromSales(b.sales.length) - calculateRatingFromSales(a.sales.length);
   });
 
+  const cardsPerRow = 3; // Number of cards to display per row
+
   return (
-    <div>
-      <h1>Top Sales</h1>
-      <ul>
+    <div className={styles["storyline-container"]}>
+      <h1 className={styles["storyline-header"]}>Top 20 Sales</h1>
+      <ul className={styles["storyline-list"]}>
         {sortedClothes.map((clothing) => (
-          <li key={clothing.id} style={{ listStyleType: "none" }}>
-            <div>
-              <h3>{clothing.name}</h3>
-              <p>Description: {clothing.description}</p>
-              <p>Size: {clothing.size}</p>
-              <p>Rating <StarRating rating={calculateRatingFromSales(clothing.sales.length)} /></p>
+          <li key={clothing.id} className={styles["storyline-item"]}>
+            <div className={styles["storyline-card"]}>
+              <h3 className={styles["storyline-name"]}>{clothing.name}</h3>
+              <p className={styles["storyline-description"]}>{clothing.description}</p>
+              <p className={styles["storyline-size"]}>{clothing.size}</p>
+              <p className={styles["storyline-rating"]}>
+                 <StarRating rating={calculateRatingFromSales(clothing.sales.length)} />
+              </p>
+
             </div>
           </li>
         ))}
