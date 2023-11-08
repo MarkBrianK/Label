@@ -6,6 +6,7 @@ import CryptoJS from "crypto-js";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/Image/Levick.png";
 import Styles from "../Assets/Styles/Signin.module.css"
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -120,9 +121,8 @@ const SignInForm = () => {
           )}
           <br />
           {isLoading ?
-            <div className={Styles.loadingSpinner}>
-              <div className={Styles.spinner}></div>
-            </div> : <Button
+          <LoadingSpinner />
+             : <Button
               type="submit"
               disabled={isLoading}
               block
