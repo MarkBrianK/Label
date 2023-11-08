@@ -7,6 +7,7 @@ import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import logo from "../Assets/Image/Levick.png";
 import Styles  from "../Assets/Styles/Signup.module.css"
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 function SignupForm() {
   const [name, setName] = useState("");
@@ -189,9 +190,8 @@ function SignupForm() {
             </Form.Group>
             <br />
             {isLoading ?
-              <div className={Styles.loadingSpinner}>
-                <div className={Styles.spinner}></div>
-              </div> :
+            <LoadingSpinner />
+              :
               <Button
               type="submit"
               disabled={isLoading}
@@ -199,7 +199,7 @@ function SignupForm() {
             >
               Sign Up
             </Button>
-            
+
             }
           </Form>
         </div>
