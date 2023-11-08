@@ -1,0 +1,157 @@
+
+.mainContainer {
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+}
+
+.formControl {
+    margin: 10px 0;
+}
+
+.heading {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.sale-item {
+    
+    gap: 20px;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.sales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #1A474A;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: #c7a034;
+}
+
+
+.agentName {
+    font-size: 16px;
+    color: #555;
+}
+
+.agentNumber {
+    font-size: 16px;
+    color: #555;
+}
+
+.region {
+    font-size: 16px;
+    color: #555;
+}
+
+.cloth {
+    font-size: 16px;
+    color: #555;
+}
+
+.date {
+    font-size: 16px;
+    color: #555;
+}
+
+.location {
+    font-size: 16px;
+    color: #555;
+}
+
+.paymentStatus {
+    font-size: 16px;
+    color: #555;
+}
+
+.paidStatus {
+    color: green;
+}
+
+.unpaidStatus {
+    color: red;
+}
+
+.customerNumber {
+    font-size: 16px;
+    color: #555;
+}
+
+
+
+.agentName,
+.agentNumber,
+.region,
+.cloth,
+.date,
+.location,
+.paymentStatus,
+.customerNumber {
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+.label {
+    color: #00333a;
+    font-size: 20px;
+}
+
+.dynamicContent {
+    color: #7c9a9c;
+    font-size: 18px;
+}
+
+
+.updateButton {
+    background-color: #1A474A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+}
+
+.cancelButton {
+    background-color: #c7a034;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .salesGrid {
+        grid-template-columns: 1fr;
+    }
+}
