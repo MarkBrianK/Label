@@ -67,39 +67,42 @@ export default function MakeSaleForm({ user }) {
   };
 
   return (
-    <div className={styles.container}>
-      <h2>Make a Sale</h2>
-      <p className={
-        styles.name
-      }>Cloth Name: <span className={styles.selectedName}>
-          {selectedCloth.name}
-        </span> </p>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div>
-          <label className={styles.labelName} htmlFor="customer_location">Customer Location:</label><br />
-          <input
-            className={styles.input}
-            type="text"
-            id="customer_location"
-            name="customer_location"
-            value={formData.customer_location}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className={styles.labelName} htmlFor="customer_number">Customer Number:</label><br />
-          <input
-            className={styles.input}
-            type="text"
-            id="customer_number"
-            name="customer_number"
-            value={formData.customer_number}
-            onChange={handleChange}
-          />
-        </div>
+    <div>
+      <div className={styles.container}>
+        <h2>Make a Sale</h2>
+        <p className={
+          styles.name
+        }>Cloth Name: <span className={styles.selectedName}>
+            {selectedCloth.name}
+          </span> </p>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div>
+            <label className={styles.labelName} htmlFor="customer_location">Customer Location:</label><br />
+            <input
+              className={styles.input}
+              type="text"
+              id="customer_location"
+              name="customer_location"
+              value={formData.customer_location}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className={styles.labelName} htmlFor="customer_number">Customer Number:</label><br />
+            <input
+              className={styles.input}
+              type="text"
+              id="customer_number"
+              name="customer_number"
+              value={formData.customer_number}
+              onChange={handleChange}
+            />
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+
+      </div>
       <Header user={user} />
     </div>
   );
