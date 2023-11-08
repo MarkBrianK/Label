@@ -33,22 +33,6 @@
   color: #c7a034;
 }
 
-.loadingSpinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.spinner {
-  border: 8px solid #c7a034;
-  border-top: 8px solid #1a474a;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
 
 .customButton {
   background-color: #123f42 !important;
