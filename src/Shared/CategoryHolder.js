@@ -45,6 +45,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
                 src={category.image}
                 alt={`${category.name} category`}
                 className={`${Styles.innerCircle}`}
+                loading="lazy"
               />
             </div>
             <p className={Styles.categoryName}>{category.name}</p>
