@@ -12,6 +12,7 @@ import LoadingSpinner from './Shared/LoadingSpinner';
 
 
 
+
 const Home = lazy(() => import('./Components/Home'));
 const SignUpForm = lazy(() => import('./Auth/Signup'));
 const SignInForm = lazy(() => import('./Auth/Signin'));
@@ -73,7 +74,7 @@ function App() {
     if (session) {
       setTimeout(() => {
         setIsLoggedIn(true);
-      }, 2000);
+      }, 100);
     }
   }, []);
 
