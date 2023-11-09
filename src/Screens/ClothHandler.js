@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CardHolder from "../Shared/CardHolder";
-import LoadingSpinner from "../Shared/LoadingSpinner"; // Import a loading spinner component
+import LoadingSpinner from "../Shared/LoadingSpinner";
 import "../Assets/Styles/Handler.css";
 
-
-
 function ClothHandler({ clothes, handleViewMore, selectedCategory, user, isLoading }) {
-
-
+  const sortedClothes = clothes.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
   return (
     <div className="cloth-container">
       {isLoading ? (
-        <LoadingSpinner /> // Display the loading spinner if isLoading is true
+        <LoadingSpinner />
       ) : (
-        clothes.map((item, index) => (
+        sortedClothes.map((item, index) => (
           <CardHolder
             key={index}
             user={user}
             cloth={item}
             handleViewMore={() => handleViewMore(item)}
             className="cards"
-          >
-            {/* Content for CardHolder */}
-          </CardHolder>
+          />
         ))
       )}
     </div>
