@@ -35,7 +35,7 @@ export default function Home({ clothes, user, userdetails }) {
     // Simulate loading delay for demonstration purposes
     setTimeout(() => {
       setIsLoading(false); // Set isLoading to false after loading (replace this with your actual loading logic)
-    }, 100); // Adjust the delay duration as needed
+    }, 1000); // Adjust the delay duration as needed
 
     window.scrollTo(0, 0);
   }, []);
