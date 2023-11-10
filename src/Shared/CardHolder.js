@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
+import { Image } from "cloudinary-react";
 import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore, user, children }) {
@@ -70,35 +71,26 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
           >
             {imageUrls.map((imageUrl, index) => (
               <div key={index} className="popup-image-container">
-                <img
-                  className={`popup-image ${imagesLoaded[index] ? 'loaded' : 'hidden'}`}
-                  src={imageUrl}
+                <Image
+                  cloudName="djmvocl1y"
+                  publicId={imageUrl}
                   alt={`${cloth.name}`}
-                  style={{
-                    width: "100%",
-                    aspectRatio: "1/1",
-                    objectFit: "cover",
-                  }}
+                  className={`popup-image ${imagesLoaded[index] ? 'loaded' : 'hidden'}`}
                   onLoad={() => handleImageLoad(index)}
-                  loading="lazy" // Add the lazy loading attribute
+                  loading="lazy"
                 />
               </div>
             ))}
           </Carousel>
         )}
         {!showImageCarousel && (
-          <img
-            className={`image ${imagesLoaded[0] ? 'loaded' : 'hidden'}`}
-            src={imageUrls[0]}
+          <Image
+            cloudName="djmvocl1y" 
+            publicId={imageUrls[0]}
             alt={`${cloth.name}`}
-            style={{
-              width: "100%",
-              aspectRatio: "1/1",
-              objectFit: "cover",
-              borderRadius: "6px 6px 0 0",
-            }}
+            className={`image ${imagesLoaded[0] ? 'loaded' : 'hidden'}`}
             onLoad={() => handleImageLoad(0)}
-            loading="lazy" // Add the lazy loading attribute
+            loading="lazy"
           />
         )}
       </div>
