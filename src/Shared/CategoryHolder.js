@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Image } from "cloudinary-react";
 import Styles from "../../src/Assets/Styles/CategoryHolder.module.css";
 
 function CategoryHolder({ children, handleCategorySelect }) {
@@ -17,7 +18,7 @@ function CategoryHolder({ children, handleCategorySelect }) {
         );
         setCategories(sortedCategories);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching categories:", error);
       }
     }
 
@@ -41,8 +42,9 @@ function CategoryHolder({ children, handleCategorySelect }) {
             }`}
           >
             <div className={Styles.outerCircle}>
-              <img
-                src={category.image}
+              <Image
+                cloudName="djmvocl1y" 
+                publicId={category.image}
                 alt={`${category.name} category`}
                 className={`${Styles.innerCircle}`}
                 loading="lazy"
