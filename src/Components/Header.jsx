@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Image } from "react-bootstrap";
@@ -11,6 +11,8 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ExploreIcon from '@mui/icons-material/Explore';
 
 function Header({ user, username }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const sessionCookie = localStorage.getItem("session_id");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
@@ -30,10 +32,12 @@ function Header({ user, username }) {
     }
   }, [sessionCookie, user]);
 
-  const handleHomeClick = () => {
-    window.location.reload();
+  const handleIconClick = (path) => {
+    navigate(path); // Navigate to the specified path
+    if (location.pathname === path) {
+      window.location.reload(); // Reload only if on the specified path
+    }
   };
-
 
   return (
     <header className={`${Styles.header} ${isLoggedIn ? "loggedIn" : ""}`}>
@@ -44,23 +48,23 @@ function Header({ user, username }) {
           content="Welcome to Levick 23, your ultimate fashion destination for trendy and affordable clothing. Explore the latest styles and discover your unique fashion statement at Levick 23."
         />
       </Helmet>
-      <div class="container">
+      <div className="container">
         <div className={`row ${Styles.navIcons}`}>
           <div className="col-2 col-md-2">
-            <Link to="/" className={Styles.iconLink} onClick={handleHomeClick}>
+            <Link to="/" className={Styles.iconLink} onClick={() => handleIconClick("/")}>
               <Home className={Styles.icon} />
               <p>Home</p>
             </Link>
           </div>
           <div className="col-2 col-md-2">
-            <Link to="/explore" className={Styles.iconLink}>
+            <Link to="/explore" className={Styles.iconLink} onClick={() => handleIconClick("/explore")}>
               <ExploreIcon className={Styles.icon} />
               <p>Explore</p>
             </Link>
           </div>
           {isLoggedIn && (
             <div className="col-2 col-md-2">
-              <Link to="/all_sales" className={Styles.iconLink}>
+              <Link to="/all_sales" className={Styles.iconLink} onClick={() => handleIconClick("/all_sales")}>
                 <ReceiptLongIcon className={Styles.icon} />
                 <p>Sales</p>
               </Link>
@@ -68,7 +72,7 @@ function Header({ user, username }) {
           )}
           {isLoggedIn && (
             <div className="col-2 col-md-2">
-              <Link to="/sales" className={Styles.iconLink}>
+              <Link to="/sales" className={Styles.iconLink} onClick={() => handleIconClick("/sales")}>
                 <MonetizationOnIcon className={Styles.icon} />
                 <p>Earn</p>
               </Link>
@@ -77,7 +81,7 @@ function Header({ user, username }) {
           <div className="col-2 col-md-2">
             <div className={`${Styles.authLink}`}>
               {isLoggedIn ? (
-                <Link to={`/profile/${username}`} className={Styles.iconLink} style={{ marginRight: "10px" }}>
+                <Link to={`/profile/${username}`} className={Styles.iconLink} style={{ marginRight: "10px" }} onClick={() => handleIconClick(`/profile/${username}`)}>
                   <div
                     className=""
                     style={{
@@ -116,7 +120,7 @@ function Header({ user, username }) {
                   <p>Account</p>
                 </Link>
               ) : (
-                <Link to="/signin" className={Styles.iconLink}>
+                <Link to="/signin" className={Styles.iconLink} onClick={() => handleIconClick("/signin")}>
                   <AccountCircle className={Styles.icon} />
                   <p>Sign in</p>
                 </Link>
@@ -128,4 +132,5 @@ function Header({ user, username }) {
     </header>
   );
 }
+
 export default Header;
