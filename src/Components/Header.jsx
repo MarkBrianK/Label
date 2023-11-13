@@ -30,6 +30,11 @@ function Header({ user, username }) {
     }
   }, [sessionCookie, user]);
 
+  const handleHomeClick = () => {
+    window.location.reload();
+  };
+
+
   return (
     <header className={`${Styles.header} ${isLoggedIn ? "loggedIn" : ""}`}>
       <Helmet>
@@ -42,7 +47,7 @@ function Header({ user, username }) {
       <div class="container">
         <div className={`row ${Styles.navIcons}`}>
           <div className="col-2 col-md-2">
-            <Link to="/" className={Styles.iconLink}>
+            <Link to="/" className={Styles.iconLink} onClick={handleHomeClick}>
               <Home className={Styles.icon} />
               <p>Home</p>
             </Link>
