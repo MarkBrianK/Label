@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
 import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
 import { Image } from "cloudinary-react";
-import LoadingSpinner from "./LoadingSpinner"; 
 import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore, user, children }) {
   const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
-
-  const [imagesLoaded, setImagesLoaded] = useState(Array(imageUrls.length).fill(false));
 
   const iconButtonStyle = {
     position: "absolute",
@@ -21,12 +18,6 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
     background: "transparent",
     border: "none",
     cursor: "pointer",
-  };
-
-  const handleImageLoad = (index) => {
-    const newImagesLoaded = [...imagesLoaded];
-    newImagesLoaded[index] = true;
-    setImagesLoaded(newImagesLoaded);
   };
 
   return (
@@ -72,13 +63,11 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
           >
             {imageUrls.map((imageUrl, index) => (
               <div key={index} className="popup-image-container">
-                {!imagesLoaded[index] && <LoadingSpinner />}
                 <Image
                   cloudName="djmvocl1y"
                   publicId={imageUrl}
                   alt={`${cloth.name}`}
-                  className={`popup-image ${imagesLoaded[index] ? 'loaded' : 'hidden'}`}
-                  onLoad={() => handleImageLoad(index)}
+                  className="popup-image"
                   loading="lazy"
                 />
               </div>
@@ -87,13 +76,11 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
         )}
         {!showImageCarousel && (
           <div className="responsive-image">
-            {!imagesLoaded[0] && <LoadingSpinner />}
             <Image
               cloudName="djmvocl1y"
               publicId={imageUrls[0]}
               alt={`${cloth.name}`}
-              className={`image ${imagesLoaded[0] ? 'loaded' : 'hidden'}`}
-              onLoad={() => handleImageLoad(0)}
+              className="image"
               loading="lazy"
             />
           </div>
