@@ -69,7 +69,7 @@ export default function Home({ clothes, user, userdetails }) {
 
   return (
     <div
-    // className={Styles.homeContainer}
+      className={Styles.homeContainer}
     >
       <Helmet>
         <title>Trendy and Affordable Clothing Store - Levick 23</title>
@@ -80,19 +80,19 @@ export default function Home({ clothes, user, userdetails }) {
       </Helmet>
       {/* nav at the top */}
       <div class={`${Styles.NavContainer} bg-black`}>
-      <div class="row align-items-center">
-  <div class="col">
-    <ImageHandler src={Levick} alt="Levick 23 Logo" className={Styles.NavLogo} />
-  </div>
-  <div class="col-6 my-2">
-    <SearchBar className={Styles.search} setSearchQuery={setSearchQuery} />
-  </div>
-  <div class="col text-center">
-    <a href={`mailto:${supportEmail}`}>
-      <SupportAgentOutlinedIcon style={{ fontSize: 36, color: "goldenrod" }} />
-    </a>
-  </div>
-</div>
+        <div class="row align-items-center">
+          <div class="col">
+            <ImageHandler src={Levick} alt="Levick 23 Logo" className={Styles.NavLogo} />
+          </div>
+          <div class="col-6 my-2">
+            <SearchBar className={Styles.search} setSearchQuery={setSearchQuery} />
+          </div>
+          <div class="col text-center">
+            <a href={`mailto:${supportEmail}`}>
+              <SupportAgentOutlinedIcon style={{ fontSize: 36, color: "goldenrod" }} />
+            </a>
+          </div>
+        </div>
 
 
 
