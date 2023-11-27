@@ -104,7 +104,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
         {children}
         <div className="button-container">
           <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
-            View More
+            More Details
           </Button>
           {user && (
             <button className="make-sale-button" onClick={handleMakeSale}>
