@@ -29,7 +29,8 @@ export default function AllSales({ user }) {
     fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
       .then((response) => response.json())
       .then((data) => {
-        setSalesData(data);
+        const sortedSalesData = data.sort((a, b) => new Date(b.paid_date) - new Date(a.paid_date));
+        setSalesData(sortedSalesData);
       })
       .catch((error) => console.error("Error fetching sales data:", error));
   }, [user]);
@@ -99,26 +100,15 @@ export default function AllSales({ user }) {
           label="My sales"
           className={styles.formControl}
         />
-        <Typography className={styles.heading} variant="h4">
-          All Sales
-        </Typography>
         <div className="salesGrid">
           {salesData.map((sale) => (
             <Paper className={styles.saleItem} key={sale.id}>
               <Typography className={styles.sales} variant="h6">
                 Sale : {sale.reference_code}
               </Typography>
-              <Typography className={styles.agentName} variant="body1">
-                Agent Name: {sale.user.name}
-              </Typography>
-              <Typography className={styles.agentNumber} variant="body1">
-                Agent Number: {sale.user.mobile_number}
-              </Typography>
-              <Typography className={styles.region} variant="body1">
-                Agent Region: {sale.user.county}
-              </Typography>
+
               <Typography className={styles.cloth} variant="body1">
-                Cloth: {sale.cloth.name}
+                Item: {sale.cloth.name}
               </Typography>
               <Typography className={styles.date} variant="body1">
                 Sale Date: {sale.paid_date}
@@ -129,10 +119,20 @@ export default function AllSales({ user }) {
               <Typography className={`${styles.paymentStatus} ${sale.status === "paid" ? styles.paidStatus : styles.unpaidStatus}`} variant="body1">
                 Payment Status: {sale.status}
               </Typography>
-              {isAdmin && (
+              {isAdmin && (<>
+                <Typography className={styles.agentName} variant="body1">
+                Agent Name: {sale.user.name}
+              </Typography>
+              <Typography className={styles.agentNumber} variant="body1">
+                Agent Number: {sale.user.mobile_number}
+              </Typography>
+              <Typography className={styles.region} variant="body1">
+                Agent Region: {sale.user.county}
+              </Typography>
                 <Typography className={styles.customerNumber} variant="body1">
                   Customer Number: {sale.customer_number}
                 </Typography>
+                </>
               )}
               {isAdmin && isUpdating && updateFormData.saleId === sale.id ? (
                 <div className={styles.buttonContainer}>
