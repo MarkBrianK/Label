@@ -2,13 +2,16 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Carousel } from "react-responsive-carousel";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Button from "./Button";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { Image } from "cloudinary-react";
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 import "../Assets/Styles/CardHolder.css";
 
 function CardHolder({ cloth, handleViewMore, user, children }) {
   const imageUrls = JSON.parse(cloth.image);
   const showImageCarousel = imageUrls.length > 1;
+  const navigate = useNavigate();
 
   const iconButtonStyle = {
     position: "absolute",
@@ -18,6 +21,14 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
     background: "transparent",
     border: "none",
     cursor: "pointer",
+  };
+
+  const handleMakeSale = () => {
+    if (user) {
+      navigate(`/sales/${cloth.id}`);
+    } else {
+      console.log("User not authenticated. Show login prompt or handle accordingly.");
+    }
   };
 
   return (
@@ -91,9 +102,18 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
           {cloth.name}
         </Card.Title>
         {children}
-        <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
-          View More
-        </Button>
+        <div className="button-container">
+          <Button className="custom-button" onClick={() => handleViewMore(cloth)}>
+            View More
+          </Button>
+          {user && (
+            <button className="make-sale-button" onClick={handleMakeSale}>
+              <div className="button-content">
+                <MonetizationOnIcon />
+              </div>
+            </button>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );
