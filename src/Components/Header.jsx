@@ -7,7 +7,6 @@ import { AccountCircle, Home } from "@mui/icons-material";
 import Styles from "../Assets/Styles/Header.module.css";
 
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ExploreIcon from '@mui/icons-material/Explore';
 
 function Header({ user, username }) {
@@ -70,14 +69,7 @@ function Header({ user, username }) {
               </Link>
             </div>
           )}
-          {isLoggedIn && (
-            <div className="col-2 col-md-2">
-              <Link to="/sales" className={Styles.iconLink} onClick={() => handleIconClick("/sales")}>
-                <MonetizationOnIcon className={Styles.icon} />
-                <p>Earn</p>
-              </Link>
-            </div>
-          )}
+
           <div className="col-2 col-md-2">
             <div className={`${Styles.authLink}`}>
               {isLoggedIn ? (
