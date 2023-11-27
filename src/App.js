@@ -17,7 +17,6 @@ const Profile = lazy(() => import('./Components/Profile'));
 const EditProfile = lazy(() => import('./Screens/EditProfile'));
 const MakeSaleForm = lazy(() => import('./Screens/MakeSale'));
 const AllSales = lazy(() => import('./Screens/AllSales'));
-const Sales = lazy(() => import('./Components/Sales'));
 const Explore = lazy(() => import('./Components/StoryLine'));
 
 function App() {
@@ -105,14 +104,6 @@ function App() {
             element={(
               <Suspense fallback={<div className="loading-spinner"><div className="spinner"></div></div>}>
                 <EditProfile user={user} />
-              </Suspense>
-            )}
-          />
-          <Route
-            path={ROUTES.sales}
-            element={(
-              <Suspense fallback={<LoadingSpinner />}>
-                <Sales clothes={clothes} user={user} />
               </Suspense>
             )}
           />
