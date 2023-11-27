@@ -26,6 +26,37 @@
   height: 100%;
   border-radius: 6px 6px 0 0;
 }
+.button-container {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  gap: 10px;
+}
+.make-sale-button {
+  height: 24px;
+  width: 24px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.make-sale-button:hover {
+  background-color: rgb(125, 90, 3);
+}
+.button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 .text-center {
   padding: 20px;
