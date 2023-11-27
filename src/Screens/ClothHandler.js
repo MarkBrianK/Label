@@ -6,7 +6,7 @@ import "../Assets/Styles/Handler.css";
 function ClothHandler({ clothes, handleViewMore, selectedCategory, user, isLoading }) {
   const sortedClothes = clothes.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-  if (clothes.length === 0) {
+  if (sortedClothes.length === 0) {
     return (
       <div
         style={{
