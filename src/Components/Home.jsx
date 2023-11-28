@@ -96,7 +96,6 @@ export default function Home({ clothes, user, userdetails }) {
         </div>
       </div>
 
-      {/* Cards Section */}
       <div className={Styles.cardsHolder}>
         {isLoading ? (
           <LoadingSpinner />
