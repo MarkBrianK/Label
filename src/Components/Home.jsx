@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import ImageHandler from "../Screens/ImageHandler";
-import SearchOffIcon from '@mui/icons-material/SearchOff';
 import Levick from "../Assets/Image/Levick.png";
 import { Helmet } from "react-helmet";
 import Header from "../Components/Header";
@@ -128,7 +127,7 @@ export default function Home({ clothes, user, userdetails }) {
                 />
               </div>
             )}
-         
+
       </div>
 
       {/* Bottom Navigation */}
