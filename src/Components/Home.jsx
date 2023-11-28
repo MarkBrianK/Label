@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import ImageHandler from "../Screens/ImageHandler";
+import SearchOffIcon from '@mui/icons-material/SearchOff';
 import Levick from "../Assets/Image/Levick.png";
 import { Helmet } from "react-helmet";
-//import SheetModal from "../Shared/SheetModal";
 import Header from "../Components/Header";
 import ClothHandler from "../Screens/ClothHandler";
 import ModalScreen from "../Shared/ModalScreen";
@@ -14,7 +14,6 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import Styles from "../Assets/Styles/Home.module.css";
 
 export default function Home({ clothes, user, userdetails }) {
-
   const [selectedCloth, setSelectedCloth] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,11 +32,12 @@ export default function Home({ clothes, user, userdetails }) {
 
   useEffect(() => {
     // Simulate loading delay for demonstration purposes
-    setTimeout(() => {
-      setIsLoading(false); // Set isLoading to false after loading (replace this with your actual loading logic)
-    }, 1000); // Adjust the delay duration as needed
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
 
-    window.scrollTo(0, 0);
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(loadingTimeout);
   }, []);
 
   const closeModal = () => {
@@ -67,10 +67,10 @@ export default function Home({ clothes, user, userdetails }) {
     );
   });
 
+  const isNoResults = filteredBySearch.length === 0;
+
   return (
-    <div
-      className={Styles.homeContainer}
-    >
+    <div className={Styles.homeContainer}>
       <Helmet>
         <title>Trendy and Affordable Clothing Store - Levick 23</title>
         <meta
@@ -78,66 +78,83 @@ export default function Home({ clothes, user, userdetails }) {
           content="Discover the best clothing store near Uthiru, Nairobi. Levick 23 offers trendy and affordable clothing for both men and women. Explore a diverse range of styles and designs online."
         />
       </Helmet>
-      {/* nav at the top */}
-      <div class={`${Styles.NavContainer} bg-black`}>
-        <div class="row align-items-center">
-          <div class="col">
+
+      {/* Navigation at the top */}
+      <div className={`${Styles.NavContainer} bg-black`}>
+        <div className="row align-items-center">
+          <div className="col">
             <ImageHandler src={Levick} alt="Levick 23 Logo" className={Styles.NavLogo} />
           </div>
-          <div class="col-6 my-2">
+          <div className="col-6 my-2">
             <SearchBar className={Styles.search} setSearchQuery={setSearchQuery} />
           </div>
-          <div class="col text-center">
+          <div className="col text-center">
             <a href={`mailto:${supportEmail}`}>
               <SupportAgentOutlinedIcon style={{ fontSize: 36, color: "goldenrod" }} />
             </a>
           </div>
         </div>
-
-
-
       </div>
 
-
-
-      {/* cards */}
+      {/* Cards Section */}
       <div className={Styles.cardsHolder}>
         {isLoading ? (
           <LoadingSpinner />
         ) : (
-          <div className={Styles.cardsRow}>
-            <CategoryHolder handleCategorySelect={handleCategorySelect}>
-              {(selectedCategory) => (
+          <>
+            {isNoResults ? (
 
-                <ClothHandler
-                  user={user}
-                  clothes={filteredBySearch}
-                  selectedCategory={selectedCategory}
-                  handleViewMore={handleViewMore}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "black",
+                  height: "100vh",
+                  color: "white",
+                  textAlign: "center",
+                }}
+              >
+                <SearchOffIcon style={{ fontSize: 36, color: "white" }} />
+                <p>There are no results for "<strong>{searchQuery}</strong>".</p>
+                <p>- Check your spelling for typing errors</p>
+                <p>- Try searching with short and simple keywords</p>
+                <p>- Try searching more general terms - you can then filter the search results</p>
+                <Button  style={{ height: "40px", width: "120px" }} onClick={() => window.location.reload()}>GO TO HOMEPAGE</Button>
+              </div>
+            ) : (
+              <div className={Styles.cardsRow}>
+                <CategoryHolder handleCategorySelect={handleCategorySelect}>
+                  {(selectedCategory) => (
+                    <ClothHandler
+                      user={user}
+                      clothes={filteredBySearch}
+                      selectedCategory={selectedCategory}
+                      handleViewMore={handleViewMore}
+                    />
+                  )}
+                </CategoryHolder>
+
+                <ModalScreen
+                  show={showModal}
+                  onHide={closeModal}
+                  body={selectedCloth?.description}
+                  footer={<Button onClick={closeModal}>Back</Button>}
+                  name={selectedCloth?.name}
+                  description={selectedCloth?.description}
+                  price={selectedCloth?.price}
+                  size={selectedCloth?.size}
+                  image={selectedCloth?.image}
                 />
-
-              )}
-            </CategoryHolder>
-
-
-            <ModalScreen
-              show={showModal}
-              onHide={closeModal}
-              body={selectedCloth?.description}
-              footer={<Button onClick={closeModal}>Back</Button>}
-              name={selectedCloth?.name}
-              description={selectedCloth?.description}
-              price={selectedCloth?.price}
-              size={selectedCloth?.size}
-              image={selectedCloth?.image}
-            />
-          </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 
-
-      {/* bottom nav */}
+      {/* Bottom Navigation */}
       <Header user={user} username={userdetails} />
-    </div >
+    </div>
   );
 }
