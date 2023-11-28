@@ -60,6 +60,7 @@ export default function Home({ clothes, user, userdetails }) {
     const itemDescription = cloth.description.toLowerCase();
     const itemSize = cloth.size.toLowerCase();
 
+
     return (
       itemName.includes(searchTerm) ||
       itemDescription.includes(searchTerm) ||
@@ -67,7 +68,7 @@ export default function Home({ clothes, user, userdetails }) {
     );
   });
 
-  const isNoResults = filteredBySearch.length === 0;
+
 
   return (
     <div className={Styles.homeContainer}>
@@ -101,29 +102,7 @@ export default function Home({ clothes, user, userdetails }) {
         {isLoading ? (
           <LoadingSpinner />
         ) : (
-          <>
-            {isNoResults ? (
 
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "black",
-                  height: "100vh",
-                  color: "white",
-                  textAlign: "center",
-                }}
-              >
-                <SearchOffIcon style={{ fontSize: 36, color: "white" }} />
-                <p>There are no results for "<strong>{searchQuery}</strong>".</p>
-                <p>- Check your spelling for typing errors</p>
-                <p>- Try searching with short and simple keywords</p>
-                <p>- Try searching more general terms - you can then filter the search results</p>
-                <Button  style={{ height: "40px", width: "120px" }} onClick={() => window.location.reload()}>GO TO HOMEPAGE</Button>
-              </div>
-            ) : (
               <div className={Styles.cardsRow}>
                 <CategoryHolder handleCategorySelect={handleCategorySelect}>
                   {(selectedCategory) => (
@@ -149,8 +128,7 @@ export default function Home({ clothes, user, userdetails }) {
                 />
               </div>
             )}
-          </>
-        )}
+         
       </div>
 
       {/* Bottom Navigation */}
