@@ -70,7 +70,7 @@ export default function Home({ clothes, user, userdetails }) {
 
 
   return (
-    <div className={Styles.homeContainer}>
+    <div >
       <Helmet>
         <title>Trendy and Affordable Clothing Store - Levick 23</title>
         <meta
