@@ -3,7 +3,7 @@ import CardHolder from "../Shared/CardHolder";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import "../Assets/Styles/Handler.css";
 
-function ClothHandler({ clothes, handleViewMore, selectedCategory, user, isLoading }) {
+function ClothHandler({ clothes, handleViewMore, user, isLoading }) {
   const sortedClothes = clothes.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
   return (
