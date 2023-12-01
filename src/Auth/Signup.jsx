@@ -29,6 +29,8 @@ function SignupForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    const formattedUsername = username.replace(/\s+/g, '_');
     if (password !== passwordConfirmation) {
       setPasswordConfirmationError("Passwords do not match");
       setIsLoading(false);
@@ -43,7 +45,7 @@ function SignupForm() {
         {
           user: {
             name,
-            username,
+            username: formattedUsername,
             email,
             password,
             password_confirmation: passwordConfirmation,
