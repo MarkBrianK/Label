@@ -131,7 +131,7 @@ const SignInForm = () => {
               Sign In
             </Button>}
           <div className="mt-3 text-center" id={Styles.signuplink}>
-            {/* Add a "Forgot Password" link here */}
+            {/*  "Forgot Password"  */}
             <a href="https://levick-6ab9bbf8750f.herokuapp.com/users/forgot_password" className="forgot-password-link">
               Forgot Password ?
             </a>
