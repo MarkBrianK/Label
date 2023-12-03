@@ -21,7 +21,7 @@ function EditProfile({ user }) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:3000/users/${user}`);
+        const response = await axios.get(`https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`);
         const { username, mobile_number, county, profile_picture } = response.data;
         setFormData({
           username,
