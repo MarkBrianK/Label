@@ -72,7 +72,7 @@ export default function MakeSaleForm({ user }) {
         <h2>Make a Sale</h2>
         <p className={
           styles.name
-        }>Cloth Name: <span className={styles.selectedName}>
+        }>Item Name: <span className={styles.selectedName}>
             {selectedCloth.name}
           </span> </p>
         <form className={styles.form} onSubmit={handleSubmit}>
