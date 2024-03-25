@@ -57,7 +57,6 @@ function EditProfile({ user }) {
   };
 
   const handleSaveImage = () => {
-    // Perform any necessary actions when the image is saved
     setIsEditing(false);
   };
 
@@ -82,8 +81,6 @@ function EditProfile({ user }) {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      // Redirect to the user's profile page on successful update
       navigate(`/profile/${user}`);
     } catch (error) {
       console.error("Error updating profile:", error);
