@@ -25,7 +25,6 @@ export default function AllSales({ user }) {
     if (user === 2) {
       setIsAdmin(true);
     }
-    // Fetch sales data from your backend API
     fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
       .then((response) => response.json())
       .then((data) => {
@@ -86,7 +85,7 @@ export default function AllSales({ user }) {
         })
         .catch((error) => console.error("Error fetching sales data:", error));
     } else {
-      // Filter sales by the current user
+    
       const currentUserSales = salesData.filter((sale) => sale.user.id === user);
       setSalesData(currentUserSales);
     }
