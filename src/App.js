@@ -22,7 +22,7 @@ const Explore = lazy(() => import('./Components/StoryLine'));
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const [userdetails, setUserDetails] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
   const [clothes, setClothes] = useState([]);
 
   useEffect(() => {
@@ -49,7 +49,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Fetch clothes data from the API
     fetch('https://levick-6ab9bbf8750f.herokuapp.com/cloths')
       .then((response) => response.json())
       .then((data) => setClothes(data))
@@ -68,7 +67,7 @@ function App() {
   return (
     <div>
       <Helmet>
-        <title>{userdetails ? `${userdetails} - Levick 23` : 'Levick 23 - Trendy and Affordable Clothing'}</title>
+        <title>{userDetails ? `${userDetails} - Levick 23` : 'Levick 23 - Trendy and Affordable Clothing'}</title>
         <meta name="description" content="Welcome to Levick 23, your ultimate destination for trendy and affordable clothing! At Levick 23, we believe that fashion should be a reflection of individuality, style, and confidence. Our carefully curated collection features a diverse range of chic and contemporary apparel, designed to inspire and empower fashion-forward individuals like you." />
       </Helmet>
       <CloudinaryContext cloudName="djmvocl1y">
@@ -78,7 +77,7 @@ function App() {
             path={ROUTES.home}
             element={(
               <Suspense fallback={<LoadingSpinner />}>
-                <Home user={user} userdetails={userdetails} isLoggedIn={isLoggedIn} clothes={clothes} />
+                <Home user={user} userdetails={userDetails} isLoggedIn={isLoggedIn} clothes={clothes} />
               </Suspense>
             )}
           />
@@ -95,7 +94,7 @@ function App() {
             path={ROUTES.profile}
             element={(
               <Suspense fallback={<div className="loading-spinner"><div className="spinner"></div></div>}>
-                <Profile user={user} userdetails={userdetails} />
+                <Profile user={user} userdetails={userDetails} />
               </Suspense>
             )}
           />
@@ -111,7 +110,7 @@ function App() {
             path={ROUTES.makeSale}
             element={(
               <Suspense fallback={<LoadingSpinner />}>
-                <MakeSaleForm user={user} userdetails={userdetails} />
+                <MakeSaleForm user={user} userdetails={userDetails} />
               </Suspense>
             )}
           />
@@ -132,7 +131,6 @@ function App() {
             )}
           />
 
-          {/* Render the SignUpForm route only when the user is not logged in */}
           {!isLoggedIn && (
             <Route
               path={ROUTES.signUp}
@@ -143,7 +141,6 @@ function App() {
               )}
             />
           )}
-          {/* Render the SignInForm route only when the user is not logged in */}
           {!isLoggedIn && (
             <Route
               path={ROUTES.signIn}
