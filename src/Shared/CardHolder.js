@@ -27,7 +27,7 @@ function CardHolder({ cloth, handleViewMore, user, children }) {
     if (user) {
       navigate(`/sales/${cloth.id}`);
     } else {
-      console.log("User not authenticated. Show login prompt or handle accordingly.");
+      alert("User not authenticated. Show login prompt or handle accordingly.");
     }
   };
 
