@@ -49,7 +49,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('https://levick-6ab9bbf8750f.herokuapp.com/cloths')
+    fetch('http://127.0.0.1:3000/cloths')
       .then((response) => response.json())
       .then((data) => setClothes(data))
       .catch((error) => console.error('Error fetching clothes:', error));
