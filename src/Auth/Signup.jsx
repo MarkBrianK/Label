@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import logo from "../Assets/Image/Levick.png";
-import Styles  from "../Assets/Styles/Signup.module.css"
+import Styles from "../Assets/Styles/Signup.module.css";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 function SignupForm() {
@@ -17,10 +17,6 @@ function SignupForm() {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [usernameError, setUsernameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
@@ -32,11 +28,9 @@ function SignupForm() {
 
     const formattedUsername = username.replace(/\s+/g, '_');
     if (password !== passwordConfirmation) {
-      setPasswordConfirmationError("Passwords do not match");
+      setError("Passwords do not match");
       setIsLoading(false);
       return;
-    } else {
-      setPasswordConfirmationError("");
     }
 
     try {
@@ -63,31 +57,22 @@ function SignupForm() {
         setTimeout(() => {
           navigate("/signin");
         }, 5000);
-      } else {
-        const data = response.data;
-        if (data.errors) {
-          setUsernameError(data.errors.username);
-          setEmailError(data.errors.email);
-          setPasswordError(data.errors.password);
-          setPasswordConfirmationError(data.errors.password_confirmation);
-        }
       }
     } catch (error) {
-      if(usernameError){
-        setError(usernameError)
-      } else if (emailError){
-        setError(emailError)
-
-      } else if(passwordError){
-        setError(passwordError)
-
-      } else if(passwordConfirmationError){
-        setError(passwordConfirmationError)
+      if (error.response) {
+        const responseData = error.response.data;
+        if (responseData.errors) {
+          const { username, email, password, password_confirmation } = responseData.errors;
+          setUsername(username);
+          setEmail(email);
+          setPassword(password);
+          setPasswordConfirmation(password_confirmation);
+        } else {
+          setError("An unexpected error occurred. Please try again.");
+        }
+      } else {
+        setError("An unexpected error occurred. Please try again.");
       }
-      else(
-        setError("Please try again")
-      )
-
     }
     setIsLoading(false);
   };
@@ -102,15 +87,14 @@ function SignupForm() {
         />
       </Helmet>
       <div className={Styles.displayImage}>
-        <img src={logo} alt="Logo" className={Styles.displayLogo}  />
+        <img src={logo} alt="Logo" className={Styles.displayLogo} />
       </div>
       <div className={Styles.centeredContainer}>
         <div className={Styles.holder}>
           {error && <Alert variant="danger">{error}</Alert>}
           {success && (
             <Alert variant="success">
-              You have successfully signed up. Kindly check your email to
-              confirm your account.
+              You have successfully signed up. Kindly check your email to confirm your account.
             </Alert>
           )}
           <Form onSubmit={handleSubmit}>
@@ -120,13 +104,11 @@ function SignupForm() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                isInvalid={!!usernameError}
+                isInvalid={!!username}
                 placeholder="John Doe"
                 required
               />
-              <Form.Control.Feedback type="invalid">
-                {usernameError}
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{username}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="name">
               <Form.Label className={Styles.formlabel}>Name</Form.Label>
@@ -134,13 +116,11 @@ function SignupForm() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                isInvalid={!!usernameError}
+                isInvalid={!!username}
                 placeholder="John Doe Smith"
                 required
               />
-              <Form.Control.Feedback type="invalid">
-                {usernameError}
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{username}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="email">
               <Form.Label className={Styles.formlabel}>Email address</Form.Label>
@@ -148,13 +128,11 @@ function SignupForm() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                isInvalid={!!emailError}
+                isInvalid={!!email}
                 placeholder="example@gmail.com"
                 required
               />
-              <Form.Control.Feedback type="invalid">
-                {emailError}
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{email}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="password">
               <Form.Label className={Styles.formlabel}>Password</Form.Label>
@@ -162,11 +140,11 @@ function SignupForm() {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                isInvalid={!!passwordError}
+                isInvalid={!!password}
                 placeholder="Password"
                 required
               />
-              <div >
+              <div>
                 <input
                   type="checkbox"
                   checked={showPassword}
@@ -174,9 +152,7 @@ function SignupForm() {
                 />
                 <label className="m-1 text-secondary">Show Password</label>
               </div>
-              <Form.Control.Feedback type="invalid">
-                {passwordError}
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{password}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="password-confirmation">
               <Form.Label className={Styles.formlabel}>Confirm Password</Form.Label>
@@ -184,39 +160,33 @@ function SignupForm() {
                 type={showPasswordConfirmation ? "text" : "password"}
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
-                isInvalid={!!passwordConfirmationError}
+                isInvalid={!!passwordConfirmation}
                 placeholder="Confirm Password"
                 required
               />
-              <div >
+              <div>
                 <input
                   className="custom-checkbox"
                   type="checkbox"
                   checked={showPasswordConfirmation}
-                  onChange={() =>
-                    setShowPasswordConfirmation(!showPasswordConfirmation)
-                  }
+                  onChange={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
                 />
-
                 <label className="m-1 text-secondary">Show Password</label>
               </div>
-              <Form.Control.Feedback type="invalid">
-                {passwordConfirmationError}
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{passwordConfirmation}</Form.Control.Feedback>
             </Form.Group>
             <br />
-            {isLoading ?
-            <LoadingSpinner />
-              :
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
               <Button
-              type="submit"
-              disabled={isLoading}
-              className={`customButton mx-auto d-flex justify-content-center ${Styles.customButton}`}
-            >
-              Sign Up
-            </Button>
-
-            }
+                type="submit"
+                disabled={isLoading}
+                className={`customButton mx-auto d-flex justify-content-center ${Styles.customButton}`}
+              >
+                Sign Up
+              </Button>
+            )}
           </Form>
         </div>
       </div>
