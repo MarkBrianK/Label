@@ -22,7 +22,7 @@ export default function MakeSaleForm({ user }) {
     // Fetch cloth data from the API using the native fetch API
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://levick-6ab9bbf8750f.herokuapp.com/cloths/${clothId}`);
+        const response = await fetch(`http://127.0.0.1:3000/cloths/${clothId}`);
         if (response.ok) {
           const data = await response.json();
           setSelectedCloth(data);
@@ -48,7 +48,7 @@ export default function MakeSaleForm({ user }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales", {
+      const response = await fetch("http://127.0.0.1:3000/sales", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
