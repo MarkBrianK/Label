@@ -41,7 +41,7 @@ function SignupForm() {
 
     try {
       const response = await axios.post(
-        "https://levick-6ab9bbf8750f.herokuapp.com/users",
+        "http://127.0.0.1:3000/users",
         {
           user: {
             name,
@@ -73,7 +73,21 @@ function SignupForm() {
         }
       }
     } catch (error) {
-      setError("An error occurred. Please try again later.");
+      if(usernameError){
+        setError(usernameError)
+      } else if (emailError){
+        setError(emailError)
+
+      } else if(passwordError){
+        setError(passwordError)
+
+      } else if(passwordConfirmationError){
+        setError(passwordConfirmationError)
+      }
+      else(
+        setError("Please try again")
+      )
+
     }
     setIsLoading(false);
   };
