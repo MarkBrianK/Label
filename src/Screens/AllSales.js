@@ -25,7 +25,7 @@ export default function AllSales({ user }) {
     if (user === 2) {
       setIsAdmin(true);
     }
-    fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
+    fetch("http://127.0.0.1:3000/sales")
       .then((response) => response.json())
       .then((data) => {
         const sortedSalesData = data.sort((a, b) => new Date(b.paid_date) - new Date(a.paid_date));
@@ -48,7 +48,7 @@ export default function AllSales({ user }) {
       status: updateFormData.status,
     };
 
-    fetch(`https://levick-6ab9bbf8750f.herokuapp.com/sales/${updateFormData.saleId}`, {
+    fetch(`http://127.0.0.1:3000/sales/${updateFormData.saleId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function AllSales({ user }) {
       .then((response) => {
         if (response.ok) {
           window.location.reload();
-          fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
+          fetch("http://127.0.0.1:3000/sales")
             .then((response) => response.json())
             .then((data) => {
               setSalesData(data);
@@ -78,14 +78,14 @@ export default function AllSales({ user }) {
     setFilterByCurrentUser(!filterByCurrentUser);
     if (filterByCurrentUser) {
       // Reset the sales data to its original state
-      fetch("https://levick-6ab9bbf8750f.herokuapp.com/sales")
+      fetch("http://127.0.0.1:3000/sales")
         .then((response) => response.json())
         .then((data) => {
           setSalesData(data);
         })
         .catch((error) => console.error("Error fetching sales data:", error));
     } else {
-    
+
       const currentUserSales = salesData.filter((sale) => sale.user.id === user);
       setSalesData(currentUserSales);
     }
