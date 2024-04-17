@@ -27,7 +27,7 @@ export default function Profile({ user, userdetails }) {
     const fetchUserData = async (user) => {
       try {
         const response = await axios.get(
-          `https://levick-6ab9bbf8750f.herokuapp.com/users/${user}`
+          `http://127.0.0.1:3000/users/${user}`
         );
 
         setUsername(response.data.username);
@@ -50,7 +50,7 @@ export default function Profile({ user, userdetails }) {
     if (isLoggedIn) {
       try {
         await axios.delete(
-          "https://levick-6ab9bbf8750f.herokuapp.com/users/sign_out",
+          "http://127.0.0.1:3000/users/sign_out",
           {
             headers: {
               Authorization: `Bearer ${sessionCookie}`,
