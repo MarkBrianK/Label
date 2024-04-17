@@ -19,7 +19,7 @@ function CommentHandler({ user }) {
   const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://levick-6ab9bbf8750f.herokuapp.com/cloths/${clothId}`
+        `http://127.0.0.1:3000/cloths/${clothId}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
@@ -57,7 +57,7 @@ function CommentHandler({ user }) {
       };
 
       await fetch(
-        `https://levick-6ab9bbf8750f.herokuapp.com/cloths/${clothId}/comments`,
+        `http://127.0.0.1:3000/cloths/${clothId}/comments`,
         {
           method: "POST",
           headers: {
